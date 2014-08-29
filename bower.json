@@ -1,0 +1,26 @@
+{
+  "name": "paint",
+  "version": "0.0.0",
+  "homepage": "https://github.com/alphasights/paint",
+  "authors": [
+    "David Griffiths <david.griffiths@alphasights.com>"
+  ],
+  "description": "Base CSS Framework",
+  "main": "paint.scss",
+  "keywords": [
+    "CSS",
+    "Base"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "zurb/bower-foundation#~5.4.1"
+  }
+}
