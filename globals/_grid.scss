@@ -1,0 +1,17 @@
+%grid-row {
+  @include grid-row;
+}
+
+%grid-row-nested {
+  @include grid-row($behavior: nest-collapse);
+}
+
+@for $i from 1 through $total-columns {
+  %grid-column-#{$i} {
+    @include grid-column($i, $collapse: true);
+  }
+
+  %grid-column-last-#{$i} {
+    @include grid-column($i, $collapse: true, $last-column: true);
+  }
+}
