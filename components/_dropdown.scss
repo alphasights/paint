@@ -1,0 +1,9 @@
+%dropdown {
+  @include dropdown-container(list, bottom);
+
+  padding-left: 0;
+
+  li {
+    @include dropdown-style;
+  }
+}
