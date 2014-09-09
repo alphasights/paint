@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "zurb/bower-foundation#~5.4.1"
+    "foundation": "zurb/bower-foundation#~5.4.1",
+    "fontawesome": "~4.2.0"
   }
 }
