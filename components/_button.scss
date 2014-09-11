@@ -1,3 +1,15 @@
+$button-text-color: #8c8c8c !default;
+$button-background-color: #ffffff !default;
+
 %button {
   @include button-base;
+
+  background-color: $button-background-color;
+  color: $button-text-color;
+  border: rem-calc(1px) solid lighten($button-text-color, 20%);
+  border-radius: rem-calc(4px);
+
+  &:hover {
+    color: darken($button-text-color, 20%);
+  }
 }
