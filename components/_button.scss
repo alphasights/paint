@@ -12,4 +12,8 @@ $button-background-color: #ffffff !default;
   &:hover {
     color: darken($button-text-color, 20%);
   }
+
+  &:focus {
+    outline: 0;
+  }
 }
