@@ -15,3 +15,13 @@
     }
   }
 }
+
+@for $i from 1 through $total-columns {
+  %grid-column-collapse-#{$i} {
+    @include grid-column($i, $collapse: true);
+
+    &:last-child {
+      @include grid-column($i, $collapse: true, $last-column: true);
+    }
+  }
+}
