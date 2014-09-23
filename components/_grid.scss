@@ -8,10 +8,10 @@
 
 @for $i from 1 through $total-columns {
   %grid-column-#{$i} {
-    @include grid-column($i, $collapse: true);
+    @include grid-column($i);
 
     &:last-child {
-      @include grid-column($i, $collapse: true, $last-column: true);
+      @include grid-column($i, $last-column: true);
     }
   }
 }
