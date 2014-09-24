@@ -1,8 +1,36 @@
-$body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
-$fa-font-path: $icon-font-folder-path;
 $include-html-classes: false;
 $include-html-form-classes: true;
 $include-html-global-classes: true;
-$row-width: 100%;
+$include-html-type-classes: true;
+
+$fa-font-path: $icon-font-folder-path;
 
 $global-radius: 6px;
+
+// Grid
+
+$row-width: 100%;
+
+// Colors
+
+$primary-color: #f36b09;
+$secondary-color: #a42524;
+
+// Fonts
+
+$body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+$font-weight-normal: 300;
+$font-weight-bold: 400;
+$font-weight-extrabold: 600;
+
+// Headers
+
+$header-font-weight: $font-weight-normal;
+$header-text-rendering: antialiased;
+
+$h1-font-size: rem-calc(37);
+$h2-font-size: rem-calc(27);
+$h3-font-size: rem-calc(23);
+$h4-font-size: rem-calc(20);
+$h5-font-size: rem-calc(18);
+$h6-font-size: 1rem;
