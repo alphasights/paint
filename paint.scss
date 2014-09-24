@@ -1,13 +1,13 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,300");
 
 @import "globals/settings";
+@import "globals/colours";
 @import "globals/typography";
 
 @import "bower_components/foundation/scss/normalize";
 @import "bower_components/foundation/scss/foundation";
 @import "bower_components/fontawesome/scss/font-awesome";
 
-@import "components/colours";
 @import "components/button";
 @import "components/dropdown";
 @import "components/grid";
