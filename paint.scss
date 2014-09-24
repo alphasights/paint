@@ -1,6 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,300");
 
 @import "globals/settings";
+@import "globals/typography";
 
 @import "bower_components/foundation/scss/normalize";
 @import "bower_components/foundation/scss/foundation";
@@ -10,7 +11,6 @@
 @import "components/button";
 @import "components/dropdown";
 @import "components/grid";
-@import "components/typography";
 @import "components/icon";
 
 @import "globals/default";
