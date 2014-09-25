@@ -1,0 +1,17 @@
+%uppercase-large-heading {
+  font-size: $h1-font-size;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
+}
+
+%uppercase-medium-heading {
+  font-size: $h4-font-size;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
+
+%uppercase-small-heading {
+  font-size: $h5-font-size;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
