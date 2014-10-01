@@ -15,6 +15,9 @@ $default-application-container-block: 'main' !default;
 $default-application-content-block:   '.content' !default;
 $default-application-sidebar-block:   '.sidebar' !default;
 
+$sidebar-nav-classes: dashboard, paint, settings !default;
+$sidebar-nav-icons:   dashboard, paint-brush, cog !default;
+
 $include-html-application-layout: true !default;
 
 %full-height-block {
@@ -25,6 +28,17 @@ $include-html-application-layout: true !default;
   @extend %heading-small-uppercase;
 
   font-weight: $font-weight-normal;
+}
+
+@mixin generate-navigation-icon-classes($classes-list: $sidebar-nav-classes, $icons-list: $sidebar-nav-icons) {
+  @for $i from 1 through length($classes-list) {
+    $class-name: nth($classes-list, $i);
+    $icon-value: nth($icons-list, $i);
+
+    .#{$class-name} i {
+      @include icon($icon-value);
+    }
+  }
 }
 
 @mixin build-application-sidebar(
@@ -120,6 +134,8 @@ $include-html-application-layout: true !default;
         }
 
         > ul {
+          @include generate-navigation-icon-classes();
+
           list-style-type: none;
           margin: 0;
           padding: 0;
@@ -156,22 +172,6 @@ $include-html-application-layout: true !default;
             color: $sidebar-nav-link-text-color;
             margin-right: $column-gutter / 2;
             padding: rem-calc(10px);
-          }
-
-          .dashboard i {
-            @include icon(tachometer);
-          }
-
-          .team i {
-            @include icon(tasks);
-          }
-
-          .projects i {
-            @include icon(folder);
-          }
-
-          .performances i {
-            @include icon(bar-chart);
           }
         }
       }
