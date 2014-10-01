@@ -1,7 +1,14 @@
+$default-application-block:           '.application' !default;
+$default-application-container-block: 'main' !default;
+$default-application-content-block:   '.content' !default;
+$default-application-sidebar-block:   '.sidebar' !default;
+
 $sidebar-nav-text-color:              #f2f2f2;
 $sidebar-nav-background-color:        #191c1f;
 $sidebar-nav-link-height:             rem-calc(80px);
 $sidebar-nav-link-text-color:         darken($sidebar-nav-text-color, 30%);
+$sidebar-nav-link-icon-roundness:     rem-calc(10px);
+$sidebar-nav-link-icon-padding:       rem-calc(10px);
 $sidebar-nav-min-height:              rem-calc(500px);
 $sidebar-nav-title-height:            rem-calc(60px);
 $sidebar-nav-title-text-color:        darken($sidebar-nav-text-color, 50%);
@@ -9,11 +16,6 @@ $sidebar-nav-title-background-color:  lighten($sidebar-nav-background-color, 5%)
 $sidebar-nav-width:                   rem-calc(260px);
 $sidebar-header-height:               rem-calc(80px);
 $sidebar-footer-height:               rem-calc(60px);
-
-$default-application-block:           '.application' !default;
-$default-application-container-block: 'main' !default;
-$default-application-content-block:   '.content' !default;
-$default-application-sidebar-block:   '.sidebar' !default;
 
 $sidebar-nav-classes: dashboard, paint, settings !default;
 $sidebar-nav-icons:   dashboard, paint-brush, cog !default;
@@ -64,10 +66,11 @@ $include-html-application-layout: true !default;
     }
 
     #{$sidebar-block} {
+      @extend %full-height-block;
+
       float: left;
       width: $width;
       background-color: $bg-color;
-      height: 100%;
       position: relative;
 
       @if $include-header {
@@ -148,8 +151,8 @@ $include-html-application-layout: true !default;
 
             border-bottom: 1px solid $sidebar-nav-title-background-color;
             display: block;
-            font-size: rem-calc(14px);
-            font-weight: 300;
+            font-size: $paragraph-font-size;
+            font-weight: $font-weight-normal;
             line-height: $sidebar-nav-link-height;
             padding: 0 $column-gutter;
             text-decoration: none;
@@ -168,10 +171,10 @@ $include-html-application-layout: true !default;
             @include single-transition(margin, 150ms, linear);
 
             background-color: $sidebar-nav-title-background-color;
-            border-radius: rem-calc(10px);
+            border-radius: $sidebar-nav-link-icon-roundness;
             color: $sidebar-nav-link-text-color;
             margin-right: $column-gutter / 2;
-            padding: rem-calc(10px);
+            padding: $sidebar-nav-link-icon-padding;
           }
         }
       }
@@ -186,45 +189,46 @@ $include-html-application-layout: true !default;
           left: 0;
           right: 0;
 
-          .picture {
-            border-radius: $footer-height / 2;
-            display: inline-block;
-            height: $footer-height / 2;
-            margin: 0 $column-gutter / 2;
-            width: $footer-height / 2;
-          }
+          // This would move to phoenix, too specific
+          // .picture {
+          //   border-radius: $footer-height / 2;
+          //   display: inline-block;
+          //   height: $footer-height / 2;
+          //   margin: 0 $column-gutter / 2;
+          //   width: $footer-height / 2;
+          // }
 
-          .name {
-            color: $sidebar-nav-link-text-color;
-            display: inline-block;
-            font-size: rem-calc(14px);
-            margin-right: $column-gutter / 2;
-          }
+          // .name {
+          //   color: $sidebar-nav-link-text-color;
+          //   display: inline-block;
+          //   font-size: rem-calc(14px);
+          //   margin-right: $column-gutter / 2;
+          // }
 
-          .toggle-actions {
-            display: inline-block;
-            float: right;
-            font-size: rem-calc(18px);
-            line-height: $footer-height;
-            margin-right: $column-gutter / 2;
+          // .toggle-actions {
+          //   display: inline-block;
+          //   float: right;
+          //   font-size: rem-calc(18px);
+          //   line-height: $footer-height;
+          //   margin-right: $column-gutter / 2;
 
-            button {
-              @include icon(cog);
+          //   button {
+          //     @include icon(cog);
 
-              background-color: transparent;
-              border-width: 0;
-              color: $sidebar-nav-link-text-color;
-            }
+          //     background-color: transparent;
+          //     border-width: 0;
+          //     color: $sidebar-nav-link-text-color;
+          //   }
 
-            .actions {
-              @extend %dropdown;
-            }
-          }
+          //   .actions {
+          //     @extend %dropdown;
+          //   }
+          // }
         }
       }
 
       &.collapsed {
-        width: $sidebar-nav-width * 0.25;
+        width: $width * 0.25;
 
         @if $include-header {
           > #{$header-block} {
@@ -268,16 +272,16 @@ $include-html-application-layout: true !default;
 
         @if $include-footer {
           #{$footer-block} {
-            .picture, .name {
-              display: none;
-            }
+            // .picture, .name {
+            //   display: none;
+            // }
 
-            .toggle-actions {
-              float: none;
-              display: block;
-              margin-left: $column-gutter / 2;
-              text-align: center;
-            }
+            // .toggle-actions {
+            //   float: none;
+            //   display: block;
+            //   margin-left: $column-gutter / 2;
+            //   text-align: center;
+            // }
           }
         }
       }
