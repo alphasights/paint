@@ -21,6 +21,12 @@ $include-html-application-layout: true !default;
   height: 100%;
 }
 
+%sidebar-heading {
+  @extend %heading-small-uppercase;
+
+  font-weight: $font-weight-normal;
+}
+
 @mixin build-application-sidebar(
     $sidebar-block: $default-application-sidebar-block,
     $bg-color: $sidebar-nav-background-color,
