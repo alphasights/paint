@@ -1,0 +1,315 @@
+$sidebar-nav-text-color:              #f2f2f2;
+$sidebar-nav-background-color:        #191c1f;
+$sidebar-nav-link-height:             rem-calc(80px);
+$sidebar-nav-link-text-color:         darken($sidebar-nav-text-color, 30%);
+$sidebar-nav-min-height:              rem-calc(500px);
+$sidebar-nav-title-height:            rem-calc(60px);
+$sidebar-nav-title-text-color:        darken($sidebar-nav-text-color, 50%);
+$sidebar-nav-title-background-color:  lighten($sidebar-nav-background-color, 5%);
+$sidebar-nav-width:                   rem-calc(260px);
+$sidebar-header-height:               rem-calc(80px);
+$sidebar-footer-height:               rem-calc(60px);
+
+$default-application-block:           '.application' !default;
+$default-application-container-block: 'main' !default;
+$default-application-content-block:   '.content' !default;
+$default-application-sidebar-block:   '.sidebar' !default;
+
+$include-html-application-layout: true !default;
+
+%full-height-block {
+  height: 100%;
+}
+
+@mixin build-application-sidebar(
+    $sidebar-block: $default-application-sidebar-block,
+    $bg-color: $sidebar-nav-background-color,
+    $width: $sidebar-nav-width,
+    $include-header: true,
+    $header-height: $sidebar-header-height,
+    $header-block: 'header',
+    $include-footer: true,
+    $footer-height: $sidebar-footer-height,
+    $footer-block: 'footer'
+  ) {
+    $nav-top-margin: 0;
+    $nav-bottom-margin: 0;
+
+    @if $include-header {
+      $nav-top-margin: $header-height;
+    }
+
+    @if $include-footer {
+      $nav-bottom-margin: $footer-height;
+    }
+
+    #{$sidebar-block} {
+      float: left;
+      width: $width;
+      background-color: $bg-color;
+      height: 100%;
+      position: relative;
+
+      @if $include-header {
+        > #{$header-block} {
+          padding: 0 $column-gutter / 2;
+          height: $header-height;
+          line-height: $header-height;
+
+          img {
+            @include single-transition(padding, 150ms, linear);
+
+            height: rem-calc(30px);
+            margin-right: $column-gutter / 2;
+            width: rem-calc(30px);
+          }
+
+          h1 {
+            @extend %sidebar-heading;
+
+            display: inline-block;
+            color: $white;
+            margin: 0;
+          }
+        }
+      }
+
+      > nav {
+        position: absolute;
+        top: $nav-top-margin;
+        bottom: $nav-bottom-margin;
+        right: 0;
+        left: 0;
+        overflow-y: scroll;
+
+        header {
+          background-color: $sidebar-nav-title-background-color;
+          color: $sidebar-nav-title-text-color;
+          line-height: $sidebar-nav-title-height;
+          padding: 0 $column-gutter / 2;
+          white-space: nowrap;
+
+          h1 {
+            @extend %sidebar-heading;
+
+            color: $sidebar-nav-link-text-color;
+            display: inline-block;
+            margin: 0;
+          }
+
+          .toggle-collapse {
+            display: inline-block;
+            float: right;
+            font-size: rem-calc(18px);
+            line-height: $sidebar-nav-title-height;
+            color: $sidebar-nav-link-text-color;
+
+            button {
+              @include icon(caret-square-o-left);
+
+              background-color: transparent;
+              border-width: 0;
+            }
+          }
+        }
+
+        > ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+
+          a {
+            @include single-transition(color, 150ms, linear);
+            @include single-transition(background-color, 150ms, linear);
+            @include single-transition(margin, 150ms, linear);
+            @include single-transition(padding, 150ms, linear);
+
+            border-bottom: 1px solid $sidebar-nav-title-background-color;
+            display: block;
+            font-size: rem-calc(14px);
+            font-weight: 300;
+            line-height: $sidebar-nav-link-height;
+            padding: 0 $column-gutter;
+            text-decoration: none;
+            white-space: nowrap;
+
+            &, &:visited {
+              color: $sidebar-nav-link-text-color;
+            }
+
+            &:hover {
+              background-color: $sidebar-nav-title-background-color;
+            }
+          }
+
+          i {
+            @include single-transition(margin, 150ms, linear);
+
+            background-color: $sidebar-nav-title-background-color;
+            border-radius: rem-calc(10px);
+            color: $sidebar-nav-link-text-color;
+            margin-right: $column-gutter / 2;
+            padding: rem-calc(10px);
+          }
+
+          .dashboard i {
+            @include icon(tachometer);
+          }
+
+          .team i {
+            @include icon(tasks);
+          }
+
+          .projects i {
+            @include icon(folder);
+          }
+
+          .performances i {
+            @include icon(bar-chart);
+          }
+        }
+      }
+
+      @if $include-footer {
+        #{$footer-block} {
+          height: $footer-height;
+          line-height: $footer-height;
+          background: $sidebar-nav-title-background-color;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+
+          .picture {
+            border-radius: $footer-height / 2;
+            display: inline-block;
+            height: $footer-height / 2;
+            margin: 0 $column-gutter / 2;
+            width: $footer-height / 2;
+          }
+
+          .name {
+            color: $sidebar-nav-link-text-color;
+            display: inline-block;
+            font-size: rem-calc(14px);
+            margin-right: $column-gutter / 2;
+          }
+
+          .toggle-actions {
+            display: inline-block;
+            float: right;
+            font-size: rem-calc(18px);
+            line-height: $footer-height;
+            margin-right: $column-gutter / 2;
+
+            button {
+              @include icon(cog);
+
+              background-color: transparent;
+              border-width: 0;
+              color: $sidebar-nav-link-text-color;
+            }
+
+            .actions {
+              @extend %dropdown;
+            }
+          }
+        }
+      }
+
+      &.collapsed {
+        width: $sidebar-nav-width * 0.25;
+
+        @if $include-header {
+          > #{$header-block} {
+            text-align: center;
+
+            img {
+              margin-right: 0;
+            }
+          }
+        }
+
+        > nav > ul a {
+          padding: 0 $column-gutter / 2;
+          text-align: center;
+
+          > i {
+            margin-right: 0;
+          }
+
+          > span {
+            display: none;
+          }
+        }
+
+        header {
+          text-align: center;
+
+          h1 {
+            display: none;
+          }
+
+          .toggle-collapse {
+            button {
+              @include icon(caret-square-o-right);
+            }
+
+            float: none;
+            margin-bottom: 0;
+          }
+        }
+
+        @if $include-footer {
+          #{$footer-block} {
+            .picture, .name {
+              display: none;
+            }
+
+            .toggle-actions {
+              float: none;
+              display: block;
+              margin-left: $column-gutter / 2;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+}
+
+@mixin build-application-layout(
+    $application-block: $default-application-block,
+    $container-block: $default-application-container-block,
+    $content-block: $default-application-content-block
+  ) {
+    html, body {
+      @extend %full-height-block;
+
+      overflow: hidden;
+    }
+
+    #{$application-block} {
+      @extend %full-height-block;
+
+      > #{$container-block} {
+        @extend %full-height-block;
+
+        overflow: hidden;
+        position: relative;
+
+        > #{$content-block} {
+          @extend %full-height-block;
+
+          overflow-y: scroll;
+        }
+      }
+    }
+}
+
+@include exports("application-layout") {
+  @if $include-html-application-layout {
+    @include build-application-layout();
+    @include build-application-sidebar();
+  }
+}
