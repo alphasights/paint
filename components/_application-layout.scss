@@ -22,7 +22,7 @@ $application-layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 
 $include-html-application-layout: true !default;
 
-%sidebar-heading {
+%application-layout-sidebar-heading {
   @extend %heading-small-uppercase;
 
   font-weight: $font-weight-normal;
@@ -86,7 +86,7 @@ $include-html-application-layout: true !default;
           }
 
           h1 {
-            @extend %sidebar-heading;
+            @extend %application-layout-sidebar-heading;
 
             display: inline-block;
             color: $white;
@@ -111,7 +111,7 @@ $include-html-application-layout: true !default;
           white-space: nowrap;
 
           h1 {
-            @extend %sidebar-heading;
+            @extend %application-layout-sidebar-heading;
 
             color: $application-layout-sidebar-nav-link-text-color;
             display: inline-block;
