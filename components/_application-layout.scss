@@ -9,7 +9,6 @@ $sidebar-nav-link-height:             rem-calc(80px);
 $sidebar-nav-link-text-color:         darken($sidebar-nav-text-color, 30%);
 $sidebar-nav-link-icon-roundness:     rem-calc(10px);
 $sidebar-nav-link-icon-padding:       rem-calc(10px);
-$sidebar-nav-min-height:              rem-calc(500px);
 $sidebar-nav-title-height:            rem-calc(60px);
 $sidebar-nav-title-text-color:        darken($sidebar-nav-text-color, 50%);
 $sidebar-nav-title-background-color:  lighten($sidebar-nav-background-color, 5%);
@@ -32,15 +31,18 @@ $include-html-application-layout: true !default;
   font-weight: $font-weight-normal;
 }
 
-@mixin generate-navigation-icon-classes($classes-list: $sidebar-nav-classes, $icons-list: $sidebar-nav-icons) {
-  @for $i from 1 through length($classes-list) {
-    $class-name: nth($classes-list, $i);
-    $icon-value: nth($icons-list, $i);
+@mixin generate-navigation-icon-classes(
+        $classes-list: $sidebar-nav-classes,
+        $icons-list: $sidebar-nav-icons
+  ) {
+    @for $i from 1 through length($classes-list) {
+      $class-name: nth($classes-list, $i);
+      $icon-value: nth($icons-list, $i);
 
-    .#{$class-name} i {
-      @include icon($icon-value);
+      .#{$class-name} i {
+        @include icon($icon-value);
+      }
     }
-  }
 }
 
 @mixin build-application-sidebar(
@@ -189,42 +191,6 @@ $include-html-application-layout: true !default;
           line-height: $footer-height;
           position: absolute;
           right: 0;
-
-          // This would move to phoenix, too specific
-          // .picture {
-          //   border-radius: $footer-height / 2;
-          //   display: inline-block;
-          //   height: $footer-height / 2;
-          //   margin: 0 $column-gutter / 2;
-          //   width: $footer-height / 2;
-          // }
-
-          // .name {
-          //   color: $sidebar-nav-link-text-color;
-          //   display: inline-block;
-          //   font-size: rem-calc(14px);
-          //   margin-right: $column-gutter / 2;
-          // }
-
-          // .toggle-actions {
-          //   display: inline-block;
-          //   float: right;
-          //   font-size: rem-calc(18px);
-          //   line-height: $footer-height;
-          //   margin-right: $column-gutter / 2;
-
-          //   button {
-          //     @include icon(cog);
-
-          //     background-color: transparent;
-          //     border-width: 0;
-          //     color: $sidebar-nav-link-text-color;
-          //   }
-
-          //   .actions {
-          //     @extend %dropdown;
-          //   }
-          // }
         }
       }
 
@@ -260,29 +226,10 @@ $include-html-application-layout: true !default;
           h1 {
             display: none;
           }
-
-          .toggle-collapse {
-            button {
-              @include icon(caret-square-o-right);
-            }
-
-            float: none;
-            margin-bottom: 0;
-          }
         }
 
         @if $include-footer {
           #{$footer-block} {
-            // .picture, .name {
-            //   display: none;
-            // }
-
-            // .toggle-actions {
-            //   float: none;
-            //   display: block;
-            //   margin-left: $column-gutter / 2;
-            //   text-align: center;
-            // }
           }
         }
       }
