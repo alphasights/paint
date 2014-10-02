@@ -22,10 +22,6 @@ $application-layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 
 $include-html-application-layout: true !default;
 
-%full-height-block {
-  height: 100%;
-}
-
 %sidebar-heading {
   @extend %heading-small-uppercase;
 
@@ -69,12 +65,11 @@ $include-html-application-layout: true !default;
     }
 
     #{$sidebar-block} {
-      @extend %full-height-block;
-
       float: left;
       width: $width;
       background-color: $bg-color;
       position: relative;
+      height: 100%;
 
       @if $include-header {
         > #{$header-block} {
@@ -252,23 +247,20 @@ $include-html-application-layout: true !default;
     $content-block: $application-default-content-block
   ) {
     html, body {
-      @extend %full-height-block;
-
+      height: 100%;
       overflow: hidden;
     }
 
     #{$application-block} {
-      @extend %full-height-block;
+      height: 100%;
 
       > #{$container-block} {
-        @extend %full-height-block;
-
+        height: 100%;
         overflow: hidden;
         position: relative;
 
         > #{$content-block} {
-          @extend %full-height-block;
-
+          height: 100%;
           overflow-y: scroll;
         }
       }
