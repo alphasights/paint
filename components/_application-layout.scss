@@ -13,6 +13,7 @@ $application-layout-sidebar-nav-title-height: rem-calc(60px) !default;
 $application-layout-sidebar-nav-title-text-color: darken($application-layout-sidebar-nav-text-color, 50%) !default;
 $application-layout-sidebar-nav-title-background-color: lighten($application-layout-sidebar-nav-background-color, 5%) !default;
 $application-layout-sidebar-nav-width: rem-calc(260px) !default;
+$application-layout-sidebar-nav-width-collapsed: $application-layout-sidebar-nav-width * 0.25 !default;
 
 $application-layout-sidebar-header-height: rem-calc(80px) !default;
 $application-layout-sidebar-footer-height: rem-calc(60px) !default;
@@ -46,6 +47,7 @@ $include-html-application-layout: true !default;
     $sidebar-block: $application-default-sidebar-block,
     $background-color: $application-layout-sidebar-nav-background-color,
     $width: $application-layout-sidebar-nav-width,
+    $width-collapsed: $application-layout-sidebar-nav-width-collapsed,
     $include-header: true,
     $header-height: $application-layout-sidebar-header-height,
     $header-block: 'header',
@@ -191,7 +193,7 @@ $include-html-application-layout: true !default;
       }
 
       &.collapsed {
-        width: $width * 0.25;
+        width: $width-collapsed;
 
         @if $include-header {
           > #{$header-block} {
