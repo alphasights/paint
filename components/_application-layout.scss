@@ -44,7 +44,7 @@ $include-html-application-layout: true !default;
 
 @mixin application-layout-sidebar(
     $sidebar-block: $application-default-sidebar-block,
-    $bg-color: $application-layout-sidebar-nav-background-color,
+    $background-color: $application-layout-sidebar-nav-background-color,
     $width: $application-layout-sidebar-nav-width,
     $include-header: true,
     $header-height: $application-layout-sidebar-header-height,
@@ -67,7 +67,7 @@ $include-html-application-layout: true !default;
     #{$sidebar-block} {
       float: left;
       width: $width;
-      background-color: $bg-color;
+      background-color: $background-color;
       position: relative;
       height: 100%;
 
