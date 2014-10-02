@@ -1,23 +1,24 @@
-$default-application-block:           '.application' !default;
-$default-application-container-block: 'main' !default;
-$default-application-content-block:   '.content' !default;
-$default-application-sidebar-block:   '.sidebar' !default;
+$application-default-block:           '.application' !default;
+$application-default-container-block: 'main' !default;
+$application-default-content-block:   '.content' !default;
+$application-default-sidebar-block:   '.sidebar' !default;
 
-$sidebar-nav-text-color:              #f2f2f2 !default;
-$sidebar-nav-background-color:        #191c1f !default;
-$sidebar-nav-link-height:             rem-calc(80px) !default;
-$sidebar-nav-link-text-color:         darken($sidebar-nav-text-color, 30%) !default;
-$sidebar-nav-link-icon-roundness:     rem-calc(10px) !default;
-$sidebar-nav-link-icon-padding:       rem-calc(10px) !default;
-$sidebar-nav-title-height:            rem-calc(60px) !default;
-$sidebar-nav-title-text-color:        darken($sidebar-nav-text-color, 50%) !default;
-$sidebar-nav-title-background-color:  lighten($sidebar-nav-background-color, 5%) !default;
-$sidebar-nav-width:                   rem-calc(260px) !default;
-$sidebar-header-height:               rem-calc(80px) !default;
-$sidebar-footer-height:               rem-calc(60px) !default;
+$application-layout-sidebar-nav-text-color: #f2f2f2 !default;
+$application-layout-sidebar-nav-background-color: #191c1f !default;
+$application-layout-sidebar-nav-link-height: rem-calc(80px) !default;
+$application-layout-sidebar-nav-link-text-color: darken($application-layout-sidebar-nav-text-color, 30%) !default;
+$application-layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
+$application-layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
+$application-layout-sidebar-nav-title-height: rem-calc(60px) !default;
+$application-layout-sidebar-nav-title-text-color: darken($application-layout-sidebar-nav-text-color, 50%) !default;
+$application-layout-sidebar-nav-title-background-color: lighten($application-layout-sidebar-nav-background-color, 5%) !default;
+$application-layout-sidebar-nav-width: rem-calc(260px) !default;
 
-$sidebar-nav-classes: dashboard, paint, settings !default;
-$sidebar-nav-icons:   dashboard, paint-brush, cog !default;
+$application-layout-sidebar-header-height: rem-calc(80px) !default;
+$application-layout-sidebar-footer-height: rem-calc(60px) !default;
+
+$application-layout-sidebar-nav-classes: dashboard, paint, settings !default;
+$application-layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 
 $include-html-application-layout: true !default;
 
@@ -32,8 +33,8 @@ $include-html-application-layout: true !default;
 }
 
 @mixin generate-navigation-icon-classes(
-        $classes-list: $sidebar-nav-classes,
-        $icons-list: $sidebar-nav-icons
+        $classes-list: $application-layout-sidebar-nav-classes,
+        $icons-list: $application-layout-sidebar-nav-icons
   ) {
     @for $i from 1 through length($classes-list) {
       $class-name: nth($classes-list, $i);
@@ -46,14 +47,14 @@ $include-html-application-layout: true !default;
 }
 
 @mixin build-application-sidebar(
-    $sidebar-block: $default-application-sidebar-block,
-    $bg-color: $sidebar-nav-background-color,
-    $width: $sidebar-nav-width,
+    $sidebar-block: $application-default-sidebar-block,
+    $bg-color: $application-layout-sidebar-nav-background-color,
+    $width: $application-layout-sidebar-nav-width,
     $include-header: true,
-    $header-height: $sidebar-header-height,
+    $header-height: $application-layout-sidebar-header-height,
     $header-block: 'header',
     $include-footer: true,
-    $footer-height: $sidebar-footer-height,
+    $footer-height: $application-layout-sidebar-footer-height,
     $footer-block: 'footer'
   ) {
     $nav-top-margin: 0;
@@ -108,16 +109,16 @@ $include-html-application-layout: true !default;
         overflow-y: scroll;
 
         header {
-          background-color: $sidebar-nav-title-background-color;
-          color: $sidebar-nav-title-text-color;
-          line-height: $sidebar-nav-title-height;
+          background-color: $application-layout-sidebar-nav-title-background-color;
+          color: $application-layout-sidebar-nav-title-text-color;
+          line-height: $application-layout-sidebar-nav-title-height;
           padding: 0 $column-gutter / 2;
           white-space: nowrap;
 
           h1 {
             @extend %sidebar-heading;
 
-            color: $sidebar-nav-link-text-color;
+            color: $application-layout-sidebar-nav-link-text-color;
             display: inline-block;
             margin: 0;
           }
@@ -126,8 +127,8 @@ $include-html-application-layout: true !default;
             display: inline-block;
             float: right;
             font-size: rem-calc(18px);
-            line-height: $sidebar-nav-title-height;
-            color: $sidebar-nav-link-text-color;
+            line-height: $application-layout-sidebar-nav-title-height;
+            color: $application-layout-sidebar-nav-link-text-color;
 
             button {
               @include icon(caret-square-o-left);
@@ -151,41 +152,41 @@ $include-html-application-layout: true !default;
             @include single-transition(margin, 150ms, linear);
             @include single-transition(padding, 150ms, linear);
 
-            border-bottom: 1px solid $sidebar-nav-title-background-color;
+            border-bottom: 1px solid $application-layout-sidebar-nav-title-background-color;
             display: block;
             font-size: $paragraph-font-size;
             font-weight: $font-weight-normal;
-            line-height: $sidebar-nav-link-height;
+            line-height: $application-layout-sidebar-nav-link-height;
             padding: 0 $column-gutter;
             text-decoration: none;
             white-space: nowrap;
 
             &, &:visited {
-              color: $sidebar-nav-link-text-color;
+              color: $application-layout-sidebar-nav-link-text-color;
             }
 
             &:hover {
-              background-color: $sidebar-nav-title-background-color;
+              background-color: $application-layout-sidebar-nav-title-background-color;
             }
           }
 
           i {
             @include single-transition(margin, 150ms, linear);
 
-            background-color: $sidebar-nav-title-background-color;
-            border-radius: $sidebar-nav-link-icon-roundness;
-            color: $sidebar-nav-link-text-color;
+            background-color: $application-layout-sidebar-nav-title-background-color;
+            border-radius: $application-layout-sidebar-nav-link-icon-roundness;
+            color: $application-layout-sidebar-nav-link-text-color;
             margin-right: $column-gutter / 2;
-            padding: $sidebar-nav-link-icon-padding;
+            padding: $application-layout-sidebar-nav-link-icon-padding;
           }
         }
       }
 
       @if $include-footer {
         #{$footer-block} {
-          background: $sidebar-nav-title-background-color;
+          background: $application-layout-sidebar-nav-title-background-color;
           bottom: 0;
-          color: $sidebar-nav-link-text-color;
+          color: $application-layout-sidebar-nav-link-text-color;
           height: $footer-height;
           left: 0;
           line-height: $footer-height;
@@ -237,9 +238,9 @@ $include-html-application-layout: true !default;
 }
 
 @mixin build-application-layout(
-    $application-block: $default-application-block,
-    $container-block: $default-application-container-block,
-    $content-block: $default-application-content-block
+    $application-block: $application-default-block,
+    $container-block: $application-default-container-block,
+    $content-block: $application-default-content-block
   ) {
     html, body {
       @extend %full-height-block;
