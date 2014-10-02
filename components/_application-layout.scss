@@ -28,7 +28,7 @@ $include-html-application-layout: true !default;
   font-weight: $font-weight-normal;
 }
 
-@mixin generate-navigation-icon-classes(
+@mixin navigation-icon-classes(
         $classes-list: $application-layout-sidebar-nav-classes,
         $icons-list: $application-layout-sidebar-nav-icons
   ) {
@@ -42,7 +42,7 @@ $include-html-application-layout: true !default;
     }
 }
 
-@mixin build-application-sidebar(
+@mixin application-layout-sidebar(
     $sidebar-block: $application-default-sidebar-block,
     $bg-color: $application-layout-sidebar-nav-background-color,
     $width: $application-layout-sidebar-nav-width,
@@ -135,7 +135,7 @@ $include-html-application-layout: true !default;
         }
 
         > ul {
-          @include generate-navigation-icon-classes();
+          @include navigation-icon-classes();
 
           list-style-type: none;
           margin: 0;
@@ -241,7 +241,7 @@ $include-html-application-layout: true !default;
     }
 }
 
-@mixin build-application-layout(
+@mixin application-layout(
     $application-block: $application-default-block,
     $container-block: $application-default-container-block,
     $content-block: $application-default-content-block
@@ -269,7 +269,7 @@ $include-html-application-layout: true !default;
 
 @include exports("application-layout") {
   @if $include-html-application-layout {
-    @include build-application-layout();
-    @include build-application-sidebar();
+    @include application-layout();
+    @include application-layout-sidebar();
   }
 }
