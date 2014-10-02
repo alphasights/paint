@@ -227,6 +227,15 @@ $include-html-application-layout: true !default;
           h1 {
             display: none;
           }
+
+          .toggle-collapse {
+            button {
+              @include icon(caret-square-o-right);
+            }
+
+            float: none;
+            margin-bottom: 0;
+          }
         }
 
         @if $include-footer {
