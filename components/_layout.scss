@@ -1,5 +1,5 @@
-$layout-application-block: '.application' !default;
-$layout-container-block: 'main' !default;
+$layout-main-block: '.application' !default;
+$layout-content-wrapper-block: 'main' !default;
 $layout-content-block: '.content' !default;
 $layout-sidebar-block: '.sidebar' !default;
 
@@ -245,10 +245,10 @@ $include-html-layout: true !default;
     overflow: hidden;
   }
 
-  #{$layout-application-block} {
+  #{$layout-main-block} {
     height: 100%;
 
-    > #{$layout-container-block} {
+    > #{$layout-content-wrapper-block} {
       height: 100%;
       overflow: hidden;
       position: relative;
