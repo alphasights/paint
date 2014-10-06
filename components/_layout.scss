@@ -17,7 +17,7 @@ $layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
 $layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
 
-$layout-sidebar-heading-height: rem-calc(80px) !default;
+$layout-sidebar-header-height: rem-calc(80px) !default;
 $layout-sidebar-footer-height: rem-calc(60px) !default;
 
 $layout-sidebar-nav-classes: dashboard, paint, settings !default;
@@ -55,7 +55,7 @@ $include-html-layout: true !default;
   $nav-bottom-margin: 0;
 
   @if $include-header {
-    $nav-top-margin: $layout-sidebar-heading-height;
+    $nav-top-margin: $layout-sidebar-header-height;
   }
 
   @if $include-footer {
@@ -71,8 +71,8 @@ $include-html-layout: true !default;
 
     @if $include-header {
       > #{$header-block} {
-        height: $layout-sidebar-heading-height;
-        line-height: $layout-sidebar-heading-height;
+        height: $layout-sidebar-header-height;
+        line-height: $layout-sidebar-header-height;
         padding: 0 $column-gutter / 2;
 
         img {
