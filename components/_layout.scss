@@ -31,16 +31,13 @@ $include-html-layout: true !default;
   font-weight: $font-weight-normal;
 }
 
-@mixin navigation-icon-classes(
-  $classes-list: $layout-sidebar-nav-classes,
-  $icons-list: $layout-sidebar-nav-icons
-) {
-  @for $i from 1 through length($classes-list) {
-    $class-name: nth($classes-list, $i);
-    $icon-value: nth($icons-list, $i);
+@mixin layout-navigation-icons($class-names: $layout-sidebar-nav-classes, $icon-names: $layout-sidebar-nav-icons) {
+  @for $i from 1 through length($class-names) {
+    $class-name: nth($class-names, $i);
+    $icon-name: nth($icon-names, $i);
 
     .#{$class-name} i {
-      @include icon($icon-value);
+      @include icon($icon-name);
     }
   }
 }
@@ -128,7 +125,7 @@ $include-html-layout: true !default;
       }
 
       > ul {
-        @include navigation-icon-classes();
+        @include layout-navigation-icons();
 
         list-style-type: none;
         margin: 0;
