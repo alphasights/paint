@@ -45,12 +45,7 @@ $include-html-layout: true !default;
   }
 }
 
-@mixin layout-sidebar(
-  $include-header: true,
-  $header-block: 'header',
-  $include-footer: true,
-  $footer-block: 'footer'
-) {
+@mixin layout-sidebar($include-header: true, $header-block: 'header', $include-footer: true, $footer-block: 'footer') {
   $nav-top-margin: 0;
   $nav-bottom-margin: 0;
 
