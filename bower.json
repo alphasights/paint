@@ -1,10 +1,11 @@
 {
   "name": "paint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/alphasights/paint",
   "authors": [
     "Eugenio Depalo <eugenio@alphasights.com>",
-    "David Griffiths <david.griffiths@alphasights.com>"
+    "David Griffiths <david.griffiths@alphasights.com>",
+    "Andrei Popa <andrei@alphasights.com>"
   ],
   "description": "Base CSS Framework",
   "main": "paint.scss",
