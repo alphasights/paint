@@ -17,7 +17,11 @@ $layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
 $layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
 
+$layout-sidebar-include-header: true !default;
+$layout-sidebar-header-block: 'header' !default;
 $layout-sidebar-header-height: rem-calc(80px) !default;
+$layout-sidebar-include-footer: true !default;
+$layout-sidebar-footer-block: 'footer' !default;
 $layout-sidebar-footer-height: rem-calc(60px) !default;
 
 $layout-sidebar-nav-classes: dashboard, paint, settings !default;
@@ -42,15 +46,15 @@ $include-html-layout: true !default;
   }
 }
 
-@mixin layout-sidebar($include-header: true, $header-block: 'header', $include-footer: true, $footer-block: 'footer') {
+@mixin layout-sidebar() {
   $nav-top-margin: 0;
   $nav-bottom-margin: 0;
 
-  @if $include-header {
+  @if $layout-sidebar-include-header {
     $nav-top-margin: $layout-sidebar-header-height;
   }
 
-  @if $include-footer {
+  @if $layout-sidebar-include-footer {
     $nav-bottom-margin: $layout-sidebar-footer-height;
   }
 
@@ -61,8 +65,8 @@ $include-html-layout: true !default;
     position: relative;
     width: $layout-sidebar-nav-width;
 
-    @if $include-header {
-      > #{$header-block} {
+    @if $layout-sidebar-include-header {
+      > #{$layout-sidebar-header-block} {
         height: $layout-sidebar-header-height;
         line-height: $layout-sidebar-header-height;
         padding: 0 $column-gutter / 2;
@@ -167,8 +171,8 @@ $include-html-layout: true !default;
       }
     }
 
-    @if $include-footer {
-      #{$footer-block} {
+    @if $layout-sidebar-include-footer {
+      #{$layout-sidebar-footer-block} {
         background: $layout-sidebar-nav-title-background-color;
         bottom: 0;
         color: $layout-sidebar-nav-link-text-color;
@@ -183,8 +187,8 @@ $include-html-layout: true !default;
     &.collapsed {
       width: $layout-sidebar-nav-width-collapsed;
 
-      @if $include-header {
-        > #{$header-block} {
+      @if $layout-sidebar-include-header {
+        > #{$layout-sidebar-header-block} {
           text-align: center;
 
           img {
@@ -223,8 +227,8 @@ $include-html-layout: true !default;
         }
       }
 
-      @if $include-footer {
-        #{$footer-block} {
+      @if $layout-sidebar-include-footer {
+        #{$layout-sidebar-footer-block} {
         }
       }
     }
