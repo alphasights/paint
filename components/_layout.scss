@@ -3,23 +3,32 @@ $layout-content-wrapper-block: 'main' !default;
 $layout-content-block: '.content' !default;
 $layout-sidebar-block: '.sidebar' !default;
 
+$layout-sidebar-font-weight: $font-weight-bold !default;
+$layout-sidebar-heading-font-size: $small-font-size !default;
+$layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
+
 $layout-sidebar-nav-width: rem-calc(260px) !default;
-$layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-width * 0.25 !default;
+$layout-sidebar-nav-padding: $column-gutter / 2 !default;
+$layout-sidebar-nav-link-icon-width: rem-calc(36px) !default;
+$layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
+$layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
 $layout-sidebar-nav-background-color: #191c1f !default;
 $layout-sidebar-nav-text-color: #f2f2f2 !default;
 
 $layout-sidebar-nav-title-background-color: lighten($layout-sidebar-nav-background-color, 5%) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
-$layout-sidebar-nav-title-height: rem-calc(60px) !default;
+$layout-sidebar-nav-title-height: rem-calc(40px) !default;
 
-$layout-sidebar-nav-link-height: rem-calc(80px) !default;
-$layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
+$layout-sidebar-nav-link-height: rem-calc(60px) !default;
+
 $layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
 
 $layout-sidebar-include-header: true !default;
 $layout-sidebar-header-block: 'header' !default;
-$layout-sidebar-header-height: rem-calc(80px) !default;
+$layout-sidebar-header-height: rem-calc(60px) !default;
+$layout-sidebar-header-logo-height: $layout-sidebar-header-height * 0.5 !default;
+
 $layout-sidebar-include-footer: true !default;
 $layout-sidebar-footer-block: 'footer' !default;
 $layout-sidebar-footer-height: rem-calc(60px) !default;
@@ -30,9 +39,10 @@ $layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 $include-html-layout: true !default;
 
 %layout-sidebar-heading {
-  @extend %heading-small-uppercase;
-
-  font-weight: $font-weight-normal;
+  font-size: $layout-sidebar-heading-font-size;
+  font-weight: $layout-sidebar-heading-font-weight;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 @mixin layout-navigation-icons($class-names: $layout-sidebar-nav-classes, $icon-names: $layout-sidebar-nav-icons) {
@@ -64,19 +74,19 @@ $include-html-layout: true !default;
     height: 100%;
     position: relative;
     width: $layout-sidebar-nav-width;
+    font-weight: $layout-sidebar-font-weight;
 
     @if $layout-sidebar-include-header {
       > #{$layout-sidebar-header-block} {
         height: $layout-sidebar-header-height;
         line-height: $layout-sidebar-header-height;
-        padding: 0 $column-gutter / 2;
+        padding: 0 $layout-sidebar-nav-padding;
 
         img {
           @include single-transition(padding, 150ms, linear);
 
-          height: rem-calc(30px);
-          margin-right: $column-gutter / 2;
-          width: rem-calc(30px);
+          height: $layout-sidebar-header-logo-height;
+          margin-right: $layout-sidebar-nav-padding / 2;
         }
 
         h1 {
@@ -101,7 +111,7 @@ $include-html-layout: true !default;
         background-color: $layout-sidebar-nav-title-background-color;
         color: $layout-sidebar-nav-title-text-color;
         line-height: $layout-sidebar-nav-title-height;
-        padding: 0 $column-gutter / 2;
+        padding: 0 $layout-sidebar-nav-padding;
         white-space: nowrap;
 
         h1 {
@@ -116,7 +126,6 @@ $include-html-layout: true !default;
           color: $layout-sidebar-nav-link-text-color;
           display: inline-block;
           float: right;
-          font-size: rem-calc(18px);
           line-height: $layout-sidebar-nav-title-height;
 
           button {
@@ -124,6 +133,7 @@ $include-html-layout: true !default;
 
             background-color: transparent;
             border-width: 0;
+            margin-bottom: 0;
           }
         }
       }
@@ -144,9 +154,8 @@ $include-html-layout: true !default;
           border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
           display: block;
           font-size: $paragraph-font-size;
-          font-weight: $font-weight-normal;
           line-height: $layout-sidebar-nav-link-height;
-          padding: 0 $column-gutter;
+          padding: 0 $layout-sidebar-nav-padding;
           text-decoration: none;
           white-space: nowrap;
 
@@ -165,8 +174,11 @@ $include-html-layout: true !default;
           background-color: $layout-sidebar-nav-title-background-color;
           border-radius: $layout-sidebar-nav-link-icon-roundness;
           color: $layout-sidebar-nav-link-text-color;
-          margin-right: $column-gutter / 2;
-          padding: $layout-sidebar-nav-link-icon-padding;
+          margin-right: $layout-sidebar-nav-padding / 2;
+          padding: $layout-sidebar-nav-link-icon-padding 0;
+          text-align: center;
+          width: $layout-sidebar-nav-link-icon-width;
+          font-size: $base-font-size;
         }
       }
     }
@@ -198,9 +210,6 @@ $include-html-layout: true !default;
       }
 
       > nav > ul a {
-        padding: 0 $column-gutter / 2;
-        text-align: center;
-
         > i {
           margin-right: 0;
         }
@@ -218,12 +227,11 @@ $include-html-layout: true !default;
         }
 
         .toggle-collapse {
+          float: none;
+
           button {
             @include icon(caret-square-o-right);
           }
-
-          float: none;
-          margin-bottom: 0;
         }
       }
 
