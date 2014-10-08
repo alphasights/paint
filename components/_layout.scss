@@ -3,23 +3,23 @@ $layout-content-wrapper-block: 'main' !default;
 $layout-content-block: '.content' !default;
 $layout-sidebar-block: '.sidebar' !default;
 
-$layout-sidebar-nav-width: rem-calc(260px) !default;
+$layout-sidebar-nav-width: rem-calc(220px) !default;
 $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-width * 0.25 !default;
 $layout-sidebar-nav-background-color: #191c1f !default;
 $layout-sidebar-nav-text-color: #f2f2f2 !default;
 
 $layout-sidebar-nav-title-background-color: lighten($layout-sidebar-nav-background-color, 5%) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
-$layout-sidebar-nav-title-height: rem-calc(60px) !default;
+$layout-sidebar-nav-title-height: rem-calc(40px) !default;
 
-$layout-sidebar-nav-link-height: rem-calc(80px) !default;
+$layout-sidebar-nav-link-height: rem-calc(60px) !default;
 $layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
 $layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
 
 $layout-sidebar-include-header: true !default;
 $layout-sidebar-header-block: 'header' !default;
-$layout-sidebar-header-height: rem-calc(80px) !default;
+$layout-sidebar-header-height: rem-calc(50px) !default;
 $layout-sidebar-include-footer: true !default;
 $layout-sidebar-footer-block: 'footer' !default;
 $layout-sidebar-footer-height: rem-calc(60px) !default;
