@@ -3,9 +3,9 @@ $layout-content-wrapper-block: 'main' !default;
 $layout-content-block: '.content' !default;
 $layout-sidebar-block: '.sidebar' !default;
 
-$layout-sidebar-font-weight: $font-weight-bold;
-$layout-sidebar-heading-font-size: $small-font-size;
-$layout-sidebar-heading-font-weight: $font-weight-extrabold;
+$layout-sidebar-font-weight: $font-weight-bold !default;
+$layout-sidebar-heading-font-size: $small-font-size !default;
+$layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
 
 $layout-sidebar-nav-width: rem-calc(260px) !default;
 $layout-sidebar-nav-padding: $column-gutter / 2 !default;
