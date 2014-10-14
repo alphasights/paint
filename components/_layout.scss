@@ -7,31 +7,31 @@ $layout-sidebar-font-weight: $font-weight-bold !default;
 $layout-sidebar-heading-font-size: $small-font-size !default;
 $layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
 
-$layout-sidebar-nav-width: rem-calc(260px) !default;
+$layout-sidebar-nav-width: rem-calc(260) !default;
 $layout-sidebar-nav-padding: $column-gutter / 2 !default;
-$layout-sidebar-nav-link-icon-width: rem-calc(36px) !default;
-$layout-sidebar-nav-link-icon-padding: rem-calc(10px) !default;
+$layout-sidebar-nav-link-icon-width: rem-calc(36) !default;
+$layout-sidebar-nav-link-icon-padding: rem-calc(10) !default;
 $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
 $layout-sidebar-nav-background-color: #191c1f !default;
 $layout-sidebar-nav-text-color: #f2f2f2 !default;
 
 $layout-sidebar-nav-title-background-color: lighten($layout-sidebar-nav-background-color, 5%) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
-$layout-sidebar-nav-title-height: rem-calc(40px) !default;
+$layout-sidebar-nav-title-height: rem-calc(40) !default;
 
-$layout-sidebar-nav-link-height: rem-calc(60px) !default;
+$layout-sidebar-nav-link-height: rem-calc(60) !default;
 
-$layout-sidebar-nav-link-icon-roundness: rem-calc(10px) !default;
+$layout-sidebar-nav-link-icon-roundness: rem-calc(10) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
 
 $layout-sidebar-include-header: true !default;
 $layout-sidebar-header-block: 'header' !default;
-$layout-sidebar-header-height: rem-calc(60px) !default;
+$layout-sidebar-header-height: rem-calc(60) !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * 0.5 !default;
 
 $layout-sidebar-include-footer: true !default;
 $layout-sidebar-footer-block: 'footer' !default;
-$layout-sidebar-footer-height: rem-calc(60px) !default;
+$layout-sidebar-footer-height: rem-calc(60) !default;
 
 $layout-sidebar-nav-classes: dashboard, paint, settings !default;
 $layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;

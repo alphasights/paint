@@ -6,8 +6,8 @@ $button-background-color: #ffffff !default;
 
   background-color: $button-background-color;
   color: $button-text-color;
-  border: rem-calc(1px) solid lighten($button-text-color, 20%);
-  border-radius: rem-calc(4px);
+  border: 1px solid lighten($button-text-color, 20%);
+  border-radius: $global-radius;
 
   &:hover {
     color: darken($button-text-color, 20%);
