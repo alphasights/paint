@@ -1,27 +1,25 @@
-%grid-root-row {
-  @include grid-row;
+// Mixin to generate default grid placeholders e.g %grid-column-6
+@mixin grid-column-placeholders($prefix: $grid-prefix, $collapse: false, $float: true) {
+  @for $i from 1 through $total-columns {
+    %#{$prefix}-#{$i} { @include grid-column($columns:$i, $collapse: $collapse, $float: $float); }
+  }
+}
+
+@include grid-column-placeholders();
+
+// Code to generate placeholders for different media queries
+// e.g %grid-column-small-2 or %grid-column-medium-4
+// If another size is required, update the global variables above
+@for $i from 1 through length($grid-responsive-media-queries) {
+  $query: nth($grid-responsive-media-queries, $i);
+  $size: nth($grid-responsive-sizes, $i);
+  $prefix: '#{$grid-prefix}-#{$size}';
+
+  @media #{$query} {
+    @include grid-column-placeholders($prefix: $prefix);
+  }
 }
 
 %grid-row {
-  @include grid-row($behavior: nest-collapse);
-}
-
-@for $i from 1 through $total-columns {
-  %grid-column-#{$i} {
-    @include grid-column($i);
-
-    &:last-child {
-      @include grid-column($i, $last-column: true);
-    }
-  }
-}
-
-@for $i from 1 through $total-columns {
-  %grid-column-collapse-#{$i} {
-    @include grid-column($i, $collapse: true);
-
-    &:last-child {
-      @include grid-column($i, $collapse: true, $last-column: true);
-    }
-  }
+  @include grid-row;
 }
