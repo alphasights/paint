@@ -1,10 +1,10 @@
-@mixin grid-column-placeholders($prefix: $grid-prefix, $collapse: false, $float: true) {
+@mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
-    %#{$prefix}-#{$i} { @include grid-column($columns:$i, $collapse: $collapse, $float: $float); }
+    %#{$prefix}-#{$i} { @include grid-column($columns:$i, $collapse: false, $float: true); }
   }
 }
 
-@include grid-column-placeholders();
+@include grid-column-placeholders;
 
 // Code to generate placeholders for different media queries, e.g %grid-column-small-4
 @for $i from 1 through length($grid-responsive-media-queries) {
