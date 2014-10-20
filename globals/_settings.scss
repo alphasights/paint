@@ -7,6 +7,12 @@ $fa-font-path: $icon-font-folder-path;
 
 $global-radius: 6px;
 
+// Visibility
+$include-html-visibility-classes: true;
+$include-legacy-visibility-classes: true;
+$include-accessibility-classes: false;
+$include-table-visibility-classes: false;
+
 // Media Queries
 $small-range: (0em, 40em);
 $medium-range: (40.063em, 64em);
