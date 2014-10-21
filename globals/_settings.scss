@@ -7,9 +7,31 @@ $fa-font-path: $icon-font-folder-path;
 
 $global-radius: 6px;
 
+// Visibility
+
+$include-html-visibility-classes: true;
+$include-legacy-visibility-classes: true;
+$include-accessibility-classes: false;
+$include-table-visibility-classes: false;
+
+// Media Queries
+
+$small-range: (0em, 40em);
+$medium-range: (40.063em, 64em);
+$large-range: (64.063em, 90em);
+
+$screen: 'only screen';
+
+$small-up: $screen;
+$medium-up: '#{$screen} and (min-width:#{lower-bound($medium-range)})';
+$large-up: '#{$screen} and (min-width:#{lower-bound($large-range)})';
+
 // Grid
 
 $row-width: 100%;
+$grid-prefix: 'grid-column';
+$grid-responsive-media-queries: $small-up, $medium-up, $large-up;
+$grid-responsive-sizes: 'small', 'medium', 'large';
 
 // Colors
 

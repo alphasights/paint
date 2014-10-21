@@ -1,27 +1,29 @@
-%grid-root-row {
-  @include grid-row;
+@mixin grid-column-placeholders($prefix: $grid-prefix) {
+  @for $i from 1 through $total-columns {
+    %#{$prefix}-#{$i} {
+      @include grid-column($columns:$i, $collapse: false, $float: true);
+
+      &:last-child {
+        @include grid-column($columns:$i, $collapse: false, $float: true, $last-column: true);
+      }
+    }
+  }
+}
+
+@include grid-column-placeholders;
+
+// Generate placeholders for different media queries, e.g. %grid-column-small-4
+
+@for $i from 1 through length($grid-responsive-media-queries) {
+  $query: nth($grid-responsive-media-queries, $i);
+  $size: nth($grid-responsive-sizes, $i);
+  $prefix: '#{$grid-prefix}-#{$size}';
+
+  @media #{$query} {
+    @include grid-column-placeholders($prefix: $prefix);
+  }
 }
 
 %grid-row {
-  @include grid-row($behavior: nest-collapse);
-}
-
-@for $i from 1 through $total-columns {
-  %grid-column-#{$i} {
-    @include grid-column($i);
-
-    &:last-child {
-      @include grid-column($i, $last-column: true);
-    }
-  }
-}
-
-@for $i from 1 through $total-columns {
-  %grid-column-collapse-#{$i} {
-    @include grid-column($i, $collapse: true);
-
-    &:last-child {
-      @include grid-column($i, $collapse: true, $last-column: true);
-    }
-  }
+  @include grid-row;
 }
