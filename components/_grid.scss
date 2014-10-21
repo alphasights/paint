@@ -12,7 +12,8 @@
 
 @include grid-column-placeholders;
 
-// Code to generate placeholders for different media queries, e.g %grid-column-small-4
+// Generate placeholders for different media queries, e.g. %grid-column-small-4
+
 @for $i from 1 through length($grid-responsive-media-queries) {
   $query: nth($grid-responsive-media-queries, $i);
   $size: nth($grid-responsive-sizes, $i);
