@@ -129,7 +129,7 @@ $include-html-layout: true !default;
           line-height: $layout-sidebar-nav-title-height;
 
           button {
-            @include icon(caret-square-o-left);
+            @include icon(chevron-circle-left);
 
             background-color: transparent;
             border-width: 0;
@@ -230,7 +230,7 @@ $include-html-layout: true !default;
           float: none;
 
           button {
-            @include icon(caret-square-o-right);
+            @include icon(chevron-circle-right);
           }
         }
       }
