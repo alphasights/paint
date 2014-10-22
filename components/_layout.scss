@@ -3,7 +3,7 @@ $layout-content-wrapper-block: 'main' !default;
 $layout-content-block: '.content' !default;
 $layout-sidebar-block: '.sidebar' !default;
 
-$layout-sidebar-font-weight: $font-weight-bold !default;
+$layout-sidebar-font-weight: $font-weight-normal !default;
 $layout-sidebar-heading-font-size: $small-font-size !default;
 $layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
 
@@ -129,7 +129,7 @@ $include-html-layout: true !default;
           line-height: $layout-sidebar-nav-title-height;
 
           button {
-            @include icon(caret-square-o-left);
+            @include icon(chevron-circle-left);
 
             background-color: transparent;
             border-width: 0;
@@ -174,7 +174,7 @@ $include-html-layout: true !default;
           background-color: $layout-sidebar-nav-title-background-color;
           border-radius: $layout-sidebar-nav-link-icon-roundness;
           color: $layout-sidebar-nav-link-text-color;
-          margin-right: $layout-sidebar-nav-padding / 2;
+          margin-right: $layout-sidebar-nav-padding;
           padding: $layout-sidebar-nav-link-icon-padding 0;
           text-align: center;
           width: $layout-sidebar-nav-link-icon-width;
@@ -230,7 +230,7 @@ $include-html-layout: true !default;
           float: none;
 
           button {
-            @include icon(caret-square-o-right);
+            @include icon(chevron-circle-right);
           }
         }
       }
