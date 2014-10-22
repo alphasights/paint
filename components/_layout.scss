@@ -45,10 +45,10 @@ $include-html-layout: true !default;
   letter-spacing: 1px;
 }
 
-@mixin layout-navigation-icons($class-names: $layout-sidebar-nav-classes, $icon-names: $layout-sidebar-nav-icons) {
-  @for $i from 1 through length($class-names) {
-    $class-name: nth($class-names, $i);
-    $icon-name: nth($icon-names, $i);
+@mixin layout-navigation-icons {
+  @for $i from 1 through length($layout-sidebar-nav-classes) {
+    $class-name: nth($layout-sidebar-nav-classes, $i);
+    $icon-name: nth($layout-sidebar-nav-icons, $i);
 
     .#{$class-name} i {
       @include icon($icon-name);
@@ -56,7 +56,7 @@ $include-html-layout: true !default;
   }
 }
 
-@mixin layout-sidebar() {
+@mixin layout-sidebar {
   $nav-top-margin: 0;
   $nav-bottom-margin: 0;
 
@@ -171,7 +171,6 @@ $include-html-layout: true !default;
         i {
           @include single-transition(margin, 150ms, linear);
 
-          background-color: $layout-sidebar-nav-title-background-color;
           border-radius: $layout-sidebar-nav-link-icon-roundness;
           color: $layout-sidebar-nav-link-text-color;
           margin-right: $layout-sidebar-nav-padding;
@@ -267,7 +266,7 @@ $include-html-layout: true !default;
 
 @include exports("layout") {
   @if $include-html-layout {
-    @include layout();
-    @include layout-sidebar();
+    @include layout;
+    @include layout-sidebar;
   }
 }
