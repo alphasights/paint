@@ -1,0 +1,7 @@
+%progress-bar {
+  @include progress-container;
+
+  > div {
+    @include progress-meter;
+  }
+}
