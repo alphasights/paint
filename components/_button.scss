@@ -1,5 +1,26 @@
+@import "icon";
+
 $button-text-color: #8c8c8c !default;
 $button-background-color: #ffffff !default;
+$button-icon-size: 28px !default;
+
+$include-html-button: true !default;
+
+@mixin button-icon($icon) {
+  @extend %button-icon;
+  @include icon($icon);
+}
+
+%button-icon {
+  margin-bottom: 0;
+  padding: 0;
+
+  &:before {
+    display: block;
+    line-height: $button-icon-size;
+    width: $button-icon-size;
+  }
+}
 
 %button {
   @include button-base;
@@ -15,5 +36,13 @@ $button-background-color: #ffffff !default;
 
   &:focus {
     outline: 0;
+  }
+}
+
+@include exports("button") {
+  @if $include-html-button {
+    button {
+      @extend %button;
+    }
   }
 }
