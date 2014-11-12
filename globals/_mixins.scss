@@ -1,0 +1,5 @@
+@mixin detached-border($color: $info-color, $radius: $global-radius) {
+  border-radius: $radius;
+  box-shadow: 0 0 0 1px $color, 0 0 0 1px #fff inset;
+  padding: 1px;
+}

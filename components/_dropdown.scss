@@ -15,6 +15,12 @@
     @include dropdown-container(list, top);
   }
 
+  &.drop-#{$opposite-direction},
+  &.drop-#{$default-float},
+  &.drop-top {
+    width: auto;
+  }
+
   li {
     @include dropdown-style;
   }
