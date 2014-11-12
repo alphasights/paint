@@ -1,6 +1,8 @@
 $button-text-color: #8c8c8c !default;
 $button-background-color: #ffffff !default;
 
+$include-html-button: true !default;
+
 %button {
   @include button-base;
 
@@ -15,5 +17,13 @@ $button-background-color: #ffffff !default;
 
   &:focus {
     outline: 0;
+  }
+}
+
+@include exports("button") {
+  @if $include-html-button {
+    button {
+      @extend %button;
+    }
   }
 }
