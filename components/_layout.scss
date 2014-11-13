@@ -36,7 +36,7 @@ $layout-sidebar-footer-height: rem-calc(60) !default;
 $layout-sidebar-nav-classes: dashboard, paint, settings !default;
 $layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 
-$include-html-layout: true !default;
+$include-html-paint-layout: true !default;
 
 %layout-sidebar-heading {
   font-size: $layout-sidebar-heading-font-size;
@@ -264,8 +264,8 @@ $include-html-layout: true !default;
   }
 }
 
-@include exports("layout") {
-  @if $include-html-layout {
+@include exports("paint-layout") {
+  @if $include-html-paint-layout {
     @include layout;
     @include layout-sidebar;
   }
