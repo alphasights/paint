@@ -150,10 +150,7 @@ $include-html-paint-layout: true !default;
         padding: 0;
 
         a {
-          @include single-transition(color, 150ms, linear);
           @include single-transition(background-color, 150ms, linear);
-          @include single-transition(margin, 150ms, linear);
-          @include single-transition(padding, 150ms, linear);
 
           border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
           display: block;
