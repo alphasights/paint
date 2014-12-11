@@ -1,7 +1,9 @@
 @import "icon";
 
-$button-text-color: #8c8c8c !default;
-$button-background-color: #ffffff !default;
+$button-base-text-color: $jumbo !default;
+$button-base-background-color: $white !default;
+$button-text-color: $white !default;
+$button-background-color: $primary-button-color !default;
 $button-icon-size: 28px !default;
 
 $include-html-paint-button: true !default;
@@ -15,6 +17,7 @@ $include-html-paint-button: true !default;
   margin-bottom: 0;
   padding: 0;
 
+
   &:before {
     display: block;
     line-height: $button-icon-size;
@@ -22,12 +25,12 @@ $include-html-paint-button: true !default;
   }
 }
 
-%button {
+%button-base {
   @include button-base;
 
-  background-color: $button-background-color;
-  color: $button-text-color;
-  border: 1px solid lighten($button-text-color, 20%);
+  background-color: $button-base-background-color;
+  color: $button-base-text-color;
+  border: 1px solid lighten($button-base-text-color, 20%);
   border-radius: $global-radius;
 
   &:hover {
@@ -39,10 +42,22 @@ $include-html-paint-button: true !default;
   }
 }
 
+%button {
+  @include button(
+    $bg: $button-background-color,
+    $padding: $column-gutter / 2,
+    $radius: $global-radius
+  );
+
+  font-size: $small-font-size;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
+
 @include exports("paint-button") {
   @if $include-html-paint-button {
     button {
-      @extend %button;
+      @extend %button-base;
     }
   }
 }
