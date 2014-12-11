@@ -31,3 +31,9 @@ $grid-responsive-sizes: 'small', 'medium', 'large';
 %grid-row {
   @include grid-row;
 }
+
+%#{$grid-prefix}-centered {
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
+}
