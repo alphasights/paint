@@ -26,7 +26,7 @@ $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%)
 
 $layout-sidebar-nav-link-hover-background-color: $layout-sidebar-nav-title-background-color !default;
 $layout-sidebar-nav-link-active-background-color: lighten($layout-sidebar-nav-title-background-color, 5%) !default;
-$layout-sidebar-nav-link-active-text-color: $layout-sidebar-nav-text-color;
+$layout-sidebar-nav-link-active-text-color: $layout-sidebar-nav-text-color !default;
 
 $layout-sidebar-include-header: true !default;
 $layout-sidebar-header-block: 'header' !default;
