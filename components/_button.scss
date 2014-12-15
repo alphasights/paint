@@ -3,8 +3,8 @@
 $button-base-text-color: $jumbo !default;
 $button-base-background-color: $white !default;
 $button-text-color: $white !default;
-$button-background-color: $primary-button-color !default;
 $button-icon-size: 28px !default;
+$button-primary-background-color: #008fd9 !default;
 
 $include-html-paint-button: true !default;
 
@@ -43,7 +43,7 @@ $include-html-paint-button: true !default;
 
 %button-primary {
   @include button(
-    $bg: $button-background-color,
+    $bg: $button-primary-background-color,
     $padding: $column-gutter / 2,
     $radius: $global-radius
   );
