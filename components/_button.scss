@@ -1,8 +1,9 @@
 @import "icon";
 
-$button-text-color: #8c8c8c !default;
-$button-background-color: #ffffff !default;
+$button-base-background-color: $white !default;
+$button-base-text-color: $jumbo !default;
 $button-icon-size: 28px !default;
+$button-primary-background-color: #008fd9 !default;
 
 $include-html-paint-button: true !default;
 
@@ -25,18 +26,30 @@ $include-html-paint-button: true !default;
 %button {
   @include button-base;
 
-  background-color: $button-background-color;
-  color: $button-text-color;
-  border: 1px solid lighten($button-text-color, 20%);
+  background-color: $button-base-background-color;
+  color: $button-base-text-color;
+  border: 1px solid lighten($button-base-text-color, 20%);
   border-radius: $global-radius;
 
   &:hover {
-    color: darken($button-text-color, 20%);
+    color: darken($button-base-text-color, 20%);
   }
 
   &:focus {
     outline: 0;
   }
+}
+
+%button-primary {
+  @include button(
+    $bg: $button-primary-background-color,
+    $padding: $column-gutter / 2,
+    $radius: $global-radius
+  );
+
+  font-size: $small-font-size;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
 }
 
 @include exports("paint-button") {
