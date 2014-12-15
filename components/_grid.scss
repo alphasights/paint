@@ -12,6 +12,12 @@ $grid-responsive-sizes: 'small', 'medium', 'large';
       }
     }
   }
+
+  %#{$prefix}-centered {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @include grid-column-placeholders;
@@ -30,10 +36,4 @@ $grid-responsive-sizes: 'small', 'medium', 'large';
 
 %grid-row {
   @include grid-row;
-}
-
-%#{$grid-prefix}-centered {
-  float: none !important;
-  margin-left: auto;
-  margin-right: auto;
 }
