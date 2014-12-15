@@ -5,18 +5,16 @@ $grid-responsive-sizes: 'small', 'medium', 'large';
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
     %#{$prefix}-#{$i} {
-      @include grid-column($columns:$i, $collapse: false, $float: true);
+      @include grid-column($columns: $i, $collapse: false, $float: true);
 
       &:last-child {
-        @include grid-column($columns:$i, $collapse: false, $float: true, $last-column: true);
+        @include grid-column($columns: $i, $collapse: false, $float: true, $last-column: true);
       }
     }
-  }
 
-  %#{$prefix}-centered {
-    float: none !important;
-    margin-left: auto;
-    margin-right: auto;
+    %#{$prefix}-#{$i}-centered {
+      @include grid-column($columns: $i, $collapse: false, $float: false, $center: true);
+    }
   }
 }
 
