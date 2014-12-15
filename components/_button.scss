@@ -2,7 +2,6 @@
 
 $button-base-text-color: $jumbo !default;
 $button-base-background-color: $white !default;
-$button-text-color: $white !default;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
 
@@ -33,7 +32,7 @@ $include-html-paint-button: true !default;
   border-radius: $global-radius;
 
   &:hover {
-    color: darken($button-text-color, 20%);
+    color: darken($button-base-text-color, 20%);
   }
 
   &:focus {
