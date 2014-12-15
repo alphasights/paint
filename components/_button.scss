@@ -17,7 +17,6 @@ $include-html-paint-button: true !default;
   margin-bottom: 0;
   padding: 0;
 
-
   &:before {
     display: block;
     line-height: $button-icon-size;
@@ -25,7 +24,7 @@ $include-html-paint-button: true !default;
   }
 }
 
-%button-base {
+%button {
   @include button-base;
 
   background-color: $button-base-background-color;
@@ -42,7 +41,7 @@ $include-html-paint-button: true !default;
   }
 }
 
-%button {
+%button-primary {
   @include button(
     $bg: $button-background-color,
     $padding: $column-gutter / 2,
@@ -57,7 +56,7 @@ $include-html-paint-button: true !default;
 @include exports("paint-button") {
   @if $include-html-paint-button {
     button {
-      @extend %button-base;
+      @extend %button;
     }
   }
 }
