@@ -1,6 +1,6 @@
 $grid-prefix: 'grid-column';
-$grid-responsive-media-queries: $small-up, $medium-up, $large-up;
-$grid-responsive-sizes: 'small', 'medium', 'large';
+$grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
+$grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
