@@ -2,6 +2,7 @@ $include-html-classes: false;
 $include-html-form-classes: true;
 $include-html-global-classes: true;
 $include-html-type-classes: true;
+$include-html-tooltip-classes: true;
 
 $fa-font-path: $icon-font-folder-path;
 
@@ -52,3 +53,12 @@ $code-background-color: inherit;
 $code-border-size: 0px;
 $code-border-style: solid;
 $code-border-color: inherit;
+
+// Tooltips
+
+$has-tip-border-bottom-hover: inherit;
+$has-tip-border-bottom: inherit;
+$has-tip-cursor-type: inherit;
+$has-tip-font-color-hover: inherit;
+$has-tip-font-color: inherit;
+$has-tip-font-weight: inherit;
