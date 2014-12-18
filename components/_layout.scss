@@ -106,7 +106,7 @@ $include-html-paint-layout: true !default;
     > nav {
       bottom: $nav-bottom-margin;
       left: 0;
-      overflow-y: scroll;
+      overflow-y: auto;
       position: absolute;
       right: 0;
       top: $nav-top-margin;
@@ -259,7 +259,7 @@ $include-html-paint-layout: true !default;
 
       > #{$layout-content-block} {
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
     }
   }
