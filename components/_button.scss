@@ -1,7 +1,7 @@
 @import "icon";
 
 $button-base-background-color: $white !default;
-$button-base-text-color: $jumbo !default;
+$button-base-text-color: $grey-500 !default;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
 
@@ -24,7 +24,7 @@ $include-html-paint-button: true !default;
 }
 
 %button {
-  @include button-base;
+  // @include button-base;
 
   background-color: $button-base-background-color;
   color: $button-base-text-color;
@@ -41,11 +41,11 @@ $include-html-paint-button: true !default;
 }
 
 %button-primary {
-  @include button(
-    $bg: $button-primary-background-color,
-    $padding: $column-gutter / 2,
-    $radius: $global-radius
-  );
+  // @include button(
+  //   $bg: $button-primary-background-color,
+  //   $padding: $column-gutter / 2,
+  //   $radius: $global-radius
+  // );
 
   font-size: $small-font-size;
   font-weight: $font-weight-bold;

@@ -1,5 +1,5 @@
 %progress-bar {
-  @include progress-container;
+  // @include progress-container;
 
   border: 0;
   height: 3px;
@@ -7,7 +7,7 @@
   padding: 0;
 
   > div {
-    @include progress-meter;
+    // @include progress-meter;
 
     width: 0;
   }
