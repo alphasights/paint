@@ -87,8 +87,6 @@ $include-html-paint-layout: true !default;
         padding: 0 $layout-sidebar-nav-padding;
 
         img {
-          @include transition(padding, 150ms, linear);
-
           height: $layout-sidebar-header-logo-height;
           margin-right: $layout-sidebar-nav-padding / 2;
         }
@@ -239,6 +237,10 @@ $include-html-paint-layout: true !default;
         #{$layout-sidebar-footer-block} {
         }
       }
+    }
+
+    img {
+      vertical-align: middle;
     }
   }
 }

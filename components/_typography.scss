@@ -1,0 +1,87 @@
+body {
+  @include font-feature-settings("kern","liga","frac", "pnum");
+
+  -webkit-font-smoothing: antialiased;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: $font-weight-bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-font-color;
+  font-family: $header-font-family;
+  font-weight: $font-weight-normal;
+  line-height: $header-line-height;
+  margin: 0;
+}
+
+h1, %h1 {
+  font-size: $h1-font-size;
+}
+
+h2, %h2 {
+  font-size: $h2-font-size;
+}
+
+h3, %h3 {
+  font-size: $h3-font-size;
+}
+
+h4, %h4 {
+  font-size: $h4-font-size;
+}
+
+h5, %h5 {
+  font-size: $h5-font-size;
+}
+
+h6, %h6 {
+  font-size: $h6-font-size;
+}
+
+p {
+  margin: 0 0 ($base-spacing / 2);
+}
+
+a {
+  @include transition(color 0.1s linear);
+
+  color: $base-link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $hover-link-color;
+  }
+
+  &:active, &:focus {
+    color: $hover-link-color;
+    outline: none;
+  }
+}
+
+%heading-large-uppercase {
+  @extend %h1;
+
+  text-transform: uppercase;
+}
+
+%heading-medium-uppercase {
+  @extend %h3;
+
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
+
+%heading-small-uppercase {
+  @extend %h5;
+
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
