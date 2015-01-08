@@ -24,6 +24,7 @@
   "dependencies": {
     "fontawesome": "~4.2.0",
     "quantum-colors": "~1.0.1",
+    "modularized-normalize-scss": "~3.0.2",
     "sass-import-once": "wilsonpage/sass-import-once#master",
     "bourbon": "3.2.3",
     "neat": "~1.7.1"
