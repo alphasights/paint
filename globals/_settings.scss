@@ -13,8 +13,6 @@ $panel-bg: #EEEEEE;
 
 // Fonts
 
-$body-font-color: #111111;
-
 $font-weight-normal: 300;
 $font-weight-bold: 400;
 $font-weight-extrabold: 600;
@@ -35,16 +33,19 @@ $h5-font-size: $base-font-size * 1.25;
 $h6-font-size: $base-font-size;
 
 // Line height
+
 $base-line-height: 2;
 $header-line-height: 1.25;
 $base-spacing: $base-line-height * 1em;
 
 // Font Colors
+
 $base-font-color: $grey-900;
 $header-font-color: $grey-600;
 $subheader-font-color: $grey-500;
 
 // Link Colors
+
 $base-link-color: $primary-color;
 $hover-link-color: darken($primary-color, 15);
 $base-button-color: $blue-500;
@@ -75,6 +76,10 @@ $xxlarge-up: new-breakpoint(min-width $xxlarge-screen);
 $small-only: new-breakpoint(max-width $small-screen);
 $medium-only: new-breakpoint(min-width $small-screen max-width $medium-screen);
 $large-only: new-breakpoint(min-width $medium-screen max-width $large-screen);
+
+// Animation
+
+$base-transition-settings: 150ms ease;
 
 // GRID
 

@@ -148,7 +148,7 @@ $include-html-paint-layout: true !default;
         padding: 0;
 
         a {
-          @include transition(background-color, 150ms, linear);
+          @include transition(background-color $base-transition-settings);
 
           border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
           display: block;
@@ -178,7 +178,7 @@ $include-html-paint-layout: true !default;
         }
 
         i {
-          @include transition(margin, 150ms, linear);
+          @include transition(margin $base-transition-settings);
 
           border-radius: $layout-sidebar-nav-link-icon-roundness;
           color: $layout-sidebar-nav-link-text-color;
