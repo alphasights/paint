@@ -22,7 +22,10 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "~5.4.5",
-    "fontawesome": "~4.2.0"
+    "fontawesome": "~4.2.0",
+    "quantum-colors": "~1.0.1",
+    "sass-import-once": "wilsonpage/sass-import-once#master",
+    "bourbon": "3.2.3",
+    "neat": "~1.7.1"
   }
 }

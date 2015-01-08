@@ -1,3 +1,8 @@
+$max-width: 100%;
+
+$tablet: new-breakpoint(max-width 768px 8);
+$mobile: new-breakpoint(max-width 480px 3);
+
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
 $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
@@ -5,15 +10,11 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
     %#{$prefix}-#{$i} {
-      @include grid-column($columns: $i, $collapse: false, $float: true);
-
-      &:last-child {
-        @include grid-column($columns: $i, $collapse: false, $float: true, $last-column: true);
-      }
+      @include span-columns($i);
     }
 
     %#{$prefix}-#{$i}-centered {
-      @include grid-column($columns: $i, $collapse: false, $float: false, $center: true);
+       @include span-columns($i);
     }
   }
 }
@@ -33,5 +34,5 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 }
 
 %grid-row {
-  @include grid-row;
+  @include outer-container;
 }
