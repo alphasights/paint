@@ -1,8 +1,3 @@
-$max-width: 100%;
-
-$tablet: new-breakpoint(max-width 768px 8);
-$mobile: new-breakpoint(max-width 480px 3);
-
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
 $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
@@ -14,7 +9,12 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
     }
 
     %#{$prefix}-#{$i}-centered {
-       @include span-columns($i);
+      @include span-columns($i);
+
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      float: none;
     }
   }
 }
@@ -28,7 +28,7 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   $size: nth($grid-responsive-sizes, $i);
   $prefix: '#{$grid-prefix}-#{$size}';
 
-  @media #{$query} {
+  @include media-query($query) {
     @include grid-column-placeholders($prefix: $prefix);
   }
 }
