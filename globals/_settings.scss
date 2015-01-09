@@ -50,7 +50,7 @@ $subheader-font-color: $grey-500;
 $base-link-color: $primary-color;
 $hover-link-color: darken($primary-color, 15);
 $base-button-color: $blue-500;
-$hover-button-color: $blue-900;
+$base-hover-button-color: $blue-600;
 
 // Code
 
@@ -85,5 +85,6 @@ $base-transition-settings: 150ms ease;
 // GRID
 
 $total-columns: 12;
-$column-gutter: 1em;
+$column-gutter: 2em;
+
 $max-width: 100%;
