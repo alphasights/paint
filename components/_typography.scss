@@ -19,7 +19,8 @@ h6 {
   font-family: $header-font-family;
   font-weight: $font-weight-normal;
   line-height: $header-line-height;
-  margin: 0;
+  margin-top: 2 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
 }
 
 h1, %h1 {
@@ -40,10 +41,14 @@ h4, %h4 {
 
 h5, %h5 {
   font-size: $h5-font-size;
+  margin-top: 1 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
 }
 
 h6, %h6 {
   font-size: $h6-font-size;
+  margin-top: 1 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
 }
 
 p {
