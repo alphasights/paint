@@ -32,7 +32,7 @@ $include-html-paint-button: true !default;
   font-size: $base-font-size;
   font-weight: $font-weight-bold;
   line-height: $base-line-height;
-  padding: $column-gutter / 2;
+  padding: $column-gutter / 4 $column-gutter / 2;
   text-decoration: none;
 
 
