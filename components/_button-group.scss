@@ -1,0 +1,71 @@
+$button-group-background: $white;
+$button-group-color: lighten($base-font-color, 30);
+$button-group-border: 1px solid $grey-200;
+$button-group-inner-border: 1px solid $grey-100;
+$button-group-background-checked: $primary-color;
+$button-group-color-checked: $white;
+$button-group-border-checked: darken($button-group-background-checked, 15);
+
+@mixin button-group($item-wrapper: '> li', $item-container: 'button') {
+  input {
+    display: none;
+  }
+
+  #{$item-wrapper} {
+    float: left;
+    margin-bottom: 0;
+
+    #{$item-container} {
+      background: $button-group-background;
+      border-bottom: $button-group-border;
+      border-left: 0;
+      border-radius: 0;
+      border-right: $button-group-inner-border;
+      border-top: $button-group-border;
+      color: $button-group-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: $base-font-size;
+      font-weight: normal;
+      line-height: $base-line-height;
+      width: auto;
+
+      &:hover {
+        background-color: darken($button-group-background, 10);
+      }
+    }
+
+    &:first-child #{$item-container} {
+      border-top-left-radius: $global-radius;
+      border-top-right-radius: $global-radius;
+      border-top: $button-group-border;
+
+      @include media($large-screen) {
+        border-bottom-left-radius: $global-radius;
+        border-left: $button-group-border;
+        border-top-left-radius: $global-radius;
+        border-top-right-radius: 0;
+      }
+    }
+
+    &:last-child #{$item-container} {
+      border-bottom-left-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+      border-bottom: $button-group-border;
+
+      @include media($large-screen) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: $global-radius;
+        border-right: $button-group-border;
+        border-top-right-radius: $global-radius;
+      }
+    }
+
+    input:checked + #{$item-container} {
+      background: $button-group-background-checked;
+      border: 1px solid $button-group-border-checked;
+      box-shadow: inset 0 1px 2px darken($button-group-background-checked, 10);
+      color: $button-group-color-checked;
+    }
+  }
+}
