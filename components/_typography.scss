@@ -25,10 +25,12 @@ h6 {
 
 h1, %h1 {
   font-size: $h1-font-size;
+  letter-spacing: -1px;
 }
 
 h2, %h2 {
   font-size: $h2-font-size;
+  letter-spacing: -1px;
 }
 
 h3, %h3 {
@@ -69,24 +71,4 @@ a {
     color: $hover-link-color;
     outline: none;
   }
-}
-
-%heading-large-uppercase {
-  @extend %h1;
-
-  text-transform: uppercase;
-}
-
-%heading-medium-uppercase {
-  @extend %h3;
-
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
-}
-
-%heading-small-uppercase {
-  @extend %h5;
-
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
 }
