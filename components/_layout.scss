@@ -1,44 +1,37 @@
-$layout-main-block: '.application' !default;
-$layout-content-wrapper-block: 'main' !default;
-$layout-content-block: '.content' !default;
-$layout-sidebar-block: '.sidebar' !default;
-
+$layout-content-selector: '> .content' !default;
+$layout-content-wrapper-selector: 'main' !default;
+$layout-main-selector: '.application' !default;
 $layout-sidebar-font-weight: $font-weight-normal !default;
-$layout-sidebar-heading-font-size: $small-font-size !default;
-$layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
-
-$layout-sidebar-nav-width: rem-calc(260) !default;
-$layout-sidebar-nav-padding: $column-gutter / 2 !default;
-$layout-sidebar-nav-link-icon-width: rem-calc(36) !default;
-$layout-sidebar-nav-link-icon-padding: rem-calc(10) !default;
-$layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
-$layout-sidebar-nav-background-color: #191c1f !default;
-$layout-sidebar-nav-text-color: #f2f2f2 !default;
-
-$layout-sidebar-nav-title-background-color: lighten($layout-sidebar-nav-background-color, 5%) !default;
-$layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
-$layout-sidebar-nav-title-height: rem-calc(40) !default;
-
-$layout-sidebar-nav-link-height: rem-calc(60) !default;
-
-$layout-sidebar-nav-link-icon-roundness: rem-calc(10) !default;
-$layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
-
-$layout-sidebar-nav-link-hover-background-color: $layout-sidebar-nav-title-background-color !default;
-$layout-sidebar-nav-link-active-background-color: lighten($layout-sidebar-nav-title-background-color, 5%) !default;
-$layout-sidebar-nav-link-active-text-color: $layout-sidebar-nav-text-color !default;
-
-$layout-sidebar-include-header: true !default;
-$layout-sidebar-header-block: 'header' !default;
+$layout-sidebar-footer-height: rem-calc(60) !default;
+$layout-sidebar-footer-selector: 'footer' !default;
 $layout-sidebar-header-height: rem-calc(60) !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * 0.5 !default;
-
+$layout-sidebar-header-selector: '> header' !default;
+$layout-sidebar-heading-font-size: $small-font-size !default;
+$layout-sidebar-heading-font-weight: $font-weight-extrabold !default;
 $layout-sidebar-include-footer: true !default;
-$layout-sidebar-footer-block: 'footer' !default;
-$layout-sidebar-footer-height: rem-calc(60) !default;
-
+$layout-sidebar-include-header: true !default;
+$layout-sidebar-nav-background-color: #191c1f !default;
+$layout-sidebar-nav-title-background-color: lighten($layout-sidebar-nav-background-color, 5%) !default;
+$layout-sidebar-nav-text-color: #f2f2f2 !default;
 $layout-sidebar-nav-classes: dashboard, paint, settings !default;
 $layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
+$layout-sidebar-nav-link-active-background-color: lighten($layout-sidebar-nav-title-background-color, 5%) !default;
+$layout-sidebar-nav-link-active-text-color: $layout-sidebar-nav-text-color !default;
+$layout-sidebar-nav-link-height: rem-calc(60) !default;
+$layout-sidebar-nav-link-hover-background-color: $layout-sidebar-nav-title-background-color !default;
+$layout-sidebar-nav-link-icon-padding: rem-calc(10) !default;
+$layout-sidebar-nav-link-icon-roundness: rem-calc(10) !default;
+$layout-sidebar-nav-link-icon-width: rem-calc(36) !default;
+$layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
+$layout-sidebar-nav-padding: $column-gutter / 2 !default;
+$layout-sidebar-nav-selector: '> nav' !default;
+$layout-sidebar-nav-list-selector: '> ul' !default;
+$layout-sidebar-nav-title-height: rem-calc(40) !default;
+$layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
+$layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
+$layout-sidebar-nav-width: rem-calc(260) !default;
+$layout-sidebar-selector: '.sidebar' !default;
 
 $include-html-paint-layout: true !default;
 
@@ -72,7 +65,7 @@ $include-html-paint-layout: true !default;
     $nav-bottom-margin: $layout-sidebar-footer-height;
   }
 
-  #{$layout-sidebar-block} {
+  #{$layout-sidebar-selector} {
     background-color: $layout-sidebar-nav-background-color;
     float: left;
     height: 100%;
@@ -81,7 +74,7 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
 
     @if $layout-sidebar-include-header {
-      > #{$layout-sidebar-header-block} {
+      #{$layout-sidebar-header-selector} {
         height: $layout-sidebar-header-height;
         line-height: $layout-sidebar-header-height;
         padding: 0 $layout-sidebar-nav-padding;
@@ -103,7 +96,7 @@ $include-html-paint-layout: true !default;
       }
     }
 
-    > nav {
+    #{$layout-sidebar-nav-selector} {
       bottom: $nav-bottom-margin;
       left: 0;
       overflow-y: auto;
@@ -142,7 +135,7 @@ $include-html-paint-layout: true !default;
         }
       }
 
-      > ul {
+      #{$layout-sidebar-nav-list-selector} {
         @include layout-navigation-icons();
 
         list-style-type: none;
@@ -194,7 +187,7 @@ $include-html-paint-layout: true !default;
     }
 
     @if $layout-sidebar-include-footer {
-      #{$layout-sidebar-footer-block} {
+      #{$layout-sidebar-footer-selector} {
         background: $layout-sidebar-nav-title-background-color;
         bottom: 0;
         color: $layout-sidebar-nav-link-text-color;
@@ -209,13 +202,15 @@ $include-html-paint-layout: true !default;
     &.collapsed {
       width: $layout-sidebar-nav-width-collapsed;
 
-      > nav > ul a {
-        > i {
-          margin-right: 0;
-        }
+      #{$layout-sidebar-nav-selector} {
+        #{$layout-sidebar-nav-list-selector} a {
+          > i {
+            margin-right: 0;
+          }
 
-        > span {
-          display: none;
+          > span {
+            display: none;
+          }
         }
       }
 
@@ -234,11 +229,6 @@ $include-html-paint-layout: true !default;
           }
         }
       }
-
-      @if $layout-sidebar-include-footer {
-        #{$layout-sidebar-footer-block} {
-        }
-      }
     }
   }
 }
@@ -249,15 +239,15 @@ $include-html-paint-layout: true !default;
     overflow: hidden;
   }
 
-  #{$layout-main-block} {
+  #{$layout-main-selector} {
     height: 100%;
 
-    > #{$layout-content-wrapper-block} {
+    #{$layout-content-wrapper-selector} {
       height: 100%;
       overflow: hidden;
       position: relative;
 
-      > #{$layout-content-block} {
+      #{$layout-content-selector} {
         height: 100%;
         overflow-y: auto;
       }
