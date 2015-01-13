@@ -63,9 +63,9 @@ $code-border-color: inherit;
 // MQ
 
 $small-screen: em(480);
-$medium-screen: em(640);
-$large-screen: em(860);
-$xlarge-screen: em(1024);
+$medium-screen: em(768);
+$large-screen: em(960);
+$xlarge-screen: em(1280);
 $xxlarge-screen: em(1440);
 
 $small-up: new-breakpoint(min-width $small-screen);
