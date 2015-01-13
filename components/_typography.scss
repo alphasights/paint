@@ -7,6 +7,10 @@ body {
   font-size: $base-font-size;
   line-height: $base-line-height;
   font-weight: $font-weight-bold;
+
+  small {
+    color: lighten($base-font-color, 10%);
+  }
 }
 
 h1,
@@ -21,6 +25,10 @@ h6 {
   line-height: $header-line-height;
   margin-top: 2 * $header-line-height;
   margin-bottom: 1 * $header-line-height;
+
+  small {
+    color: lighten($header-font-color, 10%);
+  }
 }
 
 h1, %h1 {
