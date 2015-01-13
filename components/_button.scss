@@ -24,7 +24,10 @@ $include-html-paint-button: true !default;
 }
 
 %button {
-  @include transition(color $base-transition-settings);
+  @include transition(
+    color $base-transition-settings,
+    background-color $base-transition-settings
+  );
 
   -webkit-font-smoothing: $base-font-smoothing;
   background-color: $button-base-background-color;
