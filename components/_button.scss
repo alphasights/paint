@@ -24,6 +24,8 @@ $include-html-paint-button: true !default;
 }
 
 %button {
+  @include transition(color $base-transition-settings);
+
   -webkit-font-smoothing: $base-font-smoothing;
   background-color: $button-base-background-color;
   border-radius: $global-radius;
