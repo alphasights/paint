@@ -1,0 +1,42 @@
+$flash-alert-color: $blue-grey-50 !default;
+$flash-error-color: $red-100 !default;
+$flash-success-color: $light-green-100 !default;
+$flash-notice-color: $cyan-50 !default;
+$flash-base-spacing: $base-line-height * 1em !default;
+
+@mixin flash-alert($color) {
+  -webkit-font-smoothing: $base-font-smoothing;
+  background: $color;
+  color: darken($color, 60);
+  display: block;
+  font-weight: $font-weight-normal;
+  margin-bottom: $base-spacing / 2;
+  padding: $base-spacing / 2;
+  text-align: center;
+
+  a {
+    border-bottom: 1px solid transparentize(darken($color, 70), .7);
+    color: darken($color, 70);
+    text-decoration: none;
+
+    &:hover {
+      color: darken($color, 90);
+    }
+  }
+}
+
+%flash-alert {
+  @include flash-alert($flash-alert-color);
+}
+
+%flash-error {
+  @include flash-alert($flash-error-color);
+}
+
+%flash-notice {
+  @include flash-alert($flash-notice-color);
+}
+
+%flash-success {
+  @include flash-alert($flash-success-color);
+}
