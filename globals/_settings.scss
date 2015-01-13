@@ -8,8 +8,9 @@ $global-rounded: 100%;
 $primary-color: #f36b09;
 $secondary-color: #a42524;
 
-$panel-border-color: #F5F5F5;
-$panel-bg: #EEEEEE;
+$base-border-color: $blue-grey-50;
+$panel-border-color: $white;
+$panel-bg: $base-border-color;
 
 // Fonts
 
