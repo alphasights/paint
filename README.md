@@ -42,7 +42,10 @@ $include-html-paint-button: true !default;
   }
 }
 
-/* We declare the main placeholder. Every component should expose at least one placeholder that has the same name of the file it's contained in. Placeholders should "materialize" the most common usages of the mixin declared by the component. The declaration of the mixin is optional, since it could happen that nothing in the component is configurable, or that the mixin is already declared inside Foundation. */
+/* We declare the main placeholder.
+Every component should expose at least one placeholder that has the same name of the file it's contained in.
+Placeholders should "materialize" the most common usages of the mixin declared by the component.
+The declaration of the mixin is optional, since it could happen that nothing in the component is configurable, or that the mixin is already declared inside Foundation. */
 
 %button {
   // We include the mixin(s) we are materializing into a placeholder.
