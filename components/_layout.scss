@@ -2,9 +2,9 @@ $layout-content-selector: '> .content' !default;
 $layout-content-wrapper-selector: 'main' !default;
 $layout-main-selector: '.application' !default;
 $layout-sidebar-font-weight: $font-weight-normal !default;
-$layout-sidebar-footer-height: rem-calc(60) !default;
+$layout-sidebar-footer-height: em(60) !default;
 $layout-sidebar-footer-selector: 'footer' !default;
-$layout-sidebar-header-height: rem-calc(60) !default;
+$layout-sidebar-header-height: em(60) !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * 0.5 !default;
 $layout-sidebar-header-selector: '> header' !default;
 $layout-sidebar-heading-font-size: $small-font-size !default;
@@ -18,19 +18,19 @@ $layout-sidebar-nav-classes: dashboard, paint, settings !default;
 $layout-sidebar-nav-icons: dashboard, paint-brush, cog !default;
 $layout-sidebar-nav-link-active-background-color: lighten($layout-sidebar-nav-title-background-color, 5%) !default;
 $layout-sidebar-nav-link-active-text-color: $layout-sidebar-nav-text-color !default;
-$layout-sidebar-nav-link-height: rem-calc(60) !default;
+$layout-sidebar-nav-link-height: em(60) !default;
 $layout-sidebar-nav-link-hover-background-color: $layout-sidebar-nav-title-background-color !default;
-$layout-sidebar-nav-link-icon-padding: rem-calc(10) !default;
-$layout-sidebar-nav-link-icon-roundness: rem-calc(10) !default;
-$layout-sidebar-nav-link-icon-width: rem-calc(36) !default;
+$layout-sidebar-nav-link-icon-padding: em(10) !default;
+$layout-sidebar-nav-link-icon-roundness: em(10) !default;
+$layout-sidebar-nav-link-icon-width: em(36) !default;
 $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%) !default;
-$layout-sidebar-nav-padding: $column-gutter / 2 !default;
+$layout-sidebar-nav-padding: em(10) !default;
 $layout-sidebar-nav-selector: '> nav' !default;
 $layout-sidebar-nav-list-selector: '> ul' !default;
-$layout-sidebar-nav-title-height: rem-calc(40) !default;
+$layout-sidebar-nav-title-height: em(40) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
 $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
-$layout-sidebar-nav-width: rem-calc(260) !default;
+$layout-sidebar-nav-width: em(260) !default;
 $layout-sidebar-selector: '.sidebar' !default;
 
 $include-html-paint-layout: true !default;
@@ -80,8 +80,6 @@ $include-html-paint-layout: true !default;
         padding: 0 $layout-sidebar-nav-padding;
 
         img {
-          @include single-transition(padding, 150ms, linear);
-
           height: $layout-sidebar-header-logo-height;
           margin-right: $layout-sidebar-nav-padding / 2;
         }
@@ -143,11 +141,11 @@ $include-html-paint-layout: true !default;
         padding: 0;
 
         a {
-          @include single-transition(background-color, 150ms, linear);
+          @include transition(background-color $base-transition-settings);
 
           border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
           display: block;
-          font-size: $paragraph-font-size;
+          font-size: $base-font-size;
           line-height: $layout-sidebar-nav-link-height;
           padding: 0 $layout-sidebar-nav-padding;
           text-decoration: none;
@@ -173,7 +171,7 @@ $include-html-paint-layout: true !default;
         }
 
         i {
-          @include single-transition(margin, 150ms, linear);
+          @include transition(margin $base-transition-settings);
 
           border-radius: $layout-sidebar-nav-link-icon-roundness;
           color: $layout-sidebar-nav-link-text-color;
@@ -229,6 +227,10 @@ $include-html-paint-layout: true !default;
           }
         }
       }
+    }
+
+    img {
+      vertical-align: middle;
     }
   }
 }

@@ -1,7 +1,7 @@
 @import "icon";
 
 $button-base-background-color: $white !default;
-$button-base-text-color: $jumbo !default;
+$button-base-text-color: $grey-500 !default;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
 
@@ -24,15 +24,31 @@ $include-html-paint-button: true !default;
 }
 
 %button {
-  @include button-base;
+  @include transition(
+    color $base-transition-settings,
+    background-color $base-transition-settings
+  );
 
+  -webkit-font-smoothing: $base-font-smoothing;
   background-color: $button-base-background-color;
-  color: $button-base-text-color;
-  border: 1px solid lighten($button-base-text-color, 20%);
   border-radius: $global-radius;
+  border: 1px solid lighten($button-base-background-color, 20%);
+  display: inline-block;
+  font-size: $base-font-size;
+  font-weight: $font-weight-bold;
+  line-height: $base-line-height;
+  padding: $column-gutter / 4 $column-gutter / 2;
+  text-decoration: none;
+
 
   &:hover {
-    color: darken($button-base-text-color, 20%);
+    background-color: transparent;
+    border-color: $button-base-background-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &:focus {
@@ -41,15 +57,17 @@ $include-html-paint-button: true !default;
 }
 
 %button-primary {
-  @include button(
-    $bg: $button-primary-background-color,
-    $padding: $column-gutter / 2,
-    $radius: $global-radius
-  );
+  $hover-background-color: darken($button-primary-background-color, 15%);
+  @extend %button;
 
-  font-size: $small-font-size;
-  font-weight: $font-weight-bold;
   text-transform: uppercase;
+  background-color: $button-primary-background-color;
+  color: $white;
+
+  &:hover {
+    color: $hover-background-color;
+    border-color: $hover-background-color;
+  }
 }
 
 @include exports("paint-button") {

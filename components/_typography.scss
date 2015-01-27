@@ -1,0 +1,82 @@
+body {
+  @include font-feature-settings("kern","liga","frac", "pnum");
+
+  -webkit-font-smoothing: $base-font-smoothing;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: $font-weight-bold;
+
+  small {
+    color: lighten($base-font-color, 10%);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-font-color;
+  font-family: $header-font-family;
+  font-weight: $font-weight-normal;
+  line-height: $header-line-height;
+  margin-top: 2 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
+
+  small {
+    color: lighten($header-font-color, 10%);
+  }
+}
+
+h1, %h1 {
+  font-size: $h1-font-size;
+  letter-spacing: -1px;
+}
+
+h2, %h2 {
+  font-size: $h2-font-size;
+  letter-spacing: -1px;
+}
+
+h3, %h3 {
+  font-size: $h3-font-size;
+}
+
+h4, %h4 {
+  font-size: $h4-font-size;
+}
+
+h5, %h5 {
+  font-size: $h5-font-size;
+  margin-top: 1 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
+}
+
+h6, %h6 {
+  font-size: $h6-font-size;
+  margin-top: 1 * $header-line-height;
+  margin-bottom: 1 * $header-line-height;
+}
+
+p {
+  margin: 0 0 ($base-spacing / 2);
+}
+
+a {
+  @include transition(color $base-transition-settings);
+
+  color: $base-link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $hover-link-color;
+  }
+
+  &:active, &:focus {
+    color: $hover-link-color;
+    outline: none;
+  }
+}

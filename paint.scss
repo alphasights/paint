@@ -1,20 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,300");
 
-@import "bower_components/foundation/scss/foundation/functions";
+@import "bower_components/modularized-normalize-scss/normalize";
+@import "bower_components/fontawesome/scss/font-awesome";
+@import "bower_components/quantum-colors/quantum-colors";
+@import "bower_components/sass-import-once/sass-import-once";
+@import "bower_components/bourbon/dist/bourbon";
+@import "bower_components/neat/app/assets/stylesheets/neat";
 
 @import "globals/settings";
-
-@import "bower_components/foundation/scss/normalize";
-@import "bower_components/foundation/scss/foundation";
-@import "bower_components/fontawesome/scss/font-awesome";
-
 @import "globals/mixins";
 
 @import "components/button";
+@import "components/button-group";
 @import "components/dropdown";
+@import "components/flash-alert";
+@import "components/form";
 @import "components/grid";
-@import "components/heading";
 @import "components/icon";
 @import "components/label";
 @import "components/layout";
 @import "components/progress-bar";
+@import "components/typography";

@@ -1,18 +1,21 @@
+$opposite-direction: right;
+$default-float: left;
+
 %dropdown {
-  @include dropdown-container(list, bottom);
+  // @include dropdown-container(list, bottom);
 
   padding-left: 0;
 
   &.drop-#{$opposite-direction} {
-    @include dropdown-container(list, #{$default-float});
+    // @include dropdown-container(list, #{$default-float});
   }
 
   &.drop-#{$default-float} {
-    @include dropdown-container(list, #{$opposite-direction});
+    // @include dropdown-container(list, #{$opposite-direction});
   }
 
   &.drop-top {
-    @include dropdown-container(list, top);
+    // @include dropdown-container(list, top);
   }
 
   &.drop-#{$opposite-direction},
@@ -22,6 +25,6 @@
   }
 
   li {
-    @include dropdown-style;
+    // @include dropdown-style;
   }
 }
