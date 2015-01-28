@@ -26,25 +26,30 @@ $secondary-color: #a42524;
 
 // Fonts
 
-$body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+$body-font-family: "Helvetica Neue", Helvetica, sans-serif;
 $font-weight-normal: 300;
 $font-weight-bold: 400;
 $font-weight-extrabold: 600;
 
 $base-font-size: 14px;
+$base-line-height: 2;
 $small-font-size: 80%;
 
 // Headers
 
+$header-font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $header-font-weight: $font-weight-normal;
-$header-text-rendering: antialiased;
+$header-line-height: 2;
 
-$h1-font-size: rem-calc(37);
-$h2-font-size: rem-calc(27);
-$h3-font-size: rem-calc(23);
-$h4-font-size: rem-calc(20);
-$h5-font-size: rem-calc(18);
-$h6-font-size: 1rem;
+$h1-font-size: 3.6875rem;
+$h1-font-size: 2.3125rem;
+$h2-font-size: 1.4375rem;
+$h3-font-size: 0.875rem;
+$h4-font-size: 0.725rem;
+
+// Alerts
+
+$alert-font-size: $base-font-size;
 
 // Code
 
