@@ -1,0 +1,8 @@
+body {
+  -webkit-font-smoothing: $body-font-smoothing;
+}
+
+h1, h2 {
+  -webkit-font-smoothing: $heading-font-smoothing;
+  letter-spacing: -1px;
+}
