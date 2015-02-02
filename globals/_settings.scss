@@ -31,7 +31,7 @@ $font-weight-normal: 300;
 $font-weight-bold: 400;
 $font-weight-extrabold: 600;
 
-$base-font-size: 14px;
+$base-font-size: 16px;
 $rem-base: $base-font-size;
 $base-line-height: 2;
 $small-font-size: 80%;
@@ -47,16 +47,12 @@ $header-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
 $header-font-weight: $font-weight-normal;
 $header-line-height: 2;
 
-$h1-font-size: 2.625rem;
-$h2-font-size: 2.3125rem;
-$h3-font-size: 1.4375rem;
+$h1-font-size: 2.375rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.3125rem;
 $h4-font-size: 1rem;
 $h5-font-size: 0.875rem;
-$h6-font-size: 0.725rem;
-
-// Alerts
-
-$alert-font-size: $base-font-size;
+$h6-font-size: 0.75rem;
 
 // Code
 
