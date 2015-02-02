@@ -154,6 +154,7 @@ $include-html-paint-layout: true !default;
           padding: 0 $layout-sidebar-nav-padding;
           text-decoration: none;
           white-space: nowrap;
+          -webkit-font-smoothing: $header-font-smoothing;
 
           &, &:visited {
             color: $layout-sidebar-nav-link-text-color;
