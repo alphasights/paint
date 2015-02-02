@@ -68,10 +68,11 @@ $include-html-paint-layout: true !default;
   #{$layout-sidebar-selector} {
     background-color: $layout-sidebar-nav-background-color;
     float: left;
+    font-family: $header-font-family;
+    font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
     width: $layout-sidebar-nav-width;
-    font-weight: $layout-sidebar-font-weight;
 
     @if $layout-sidebar-include-header {
       #{$layout-sidebar-header-selector} {
@@ -92,6 +93,7 @@ $include-html-paint-layout: true !default;
           color: $white;
           display: inline-block;
           margin: 0;
+          -webkit-font-smoothing: $body-font-smoothing;
         }
       }
     }
@@ -152,6 +154,7 @@ $include-html-paint-layout: true !default;
           padding: 0 $layout-sidebar-nav-padding;
           text-decoration: none;
           white-space: nowrap;
+          -webkit-font-smoothing: $header-font-smoothing;
 
           &, &:visited {
             color: $layout-sidebar-nav-link-text-color;

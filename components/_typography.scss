@@ -1,0 +1,36 @@
+$typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote;
+$typography-condensed-header-tags: h1, h2, blockquote;
+$typography-condensed-letter-spacing: -2px;
+
+$include-html-paint-typography: true !default;
+
+@mixin typography-font-smoothing($header-tags: $typography-header-tags) {
+  body {
+    -webkit-font-smoothing: $body-font-smoothing;
+  }
+
+  @for $i from 1 through length($header-tags) {
+    $tag: nth($header-tags, $i);
+
+    #{$tag} {
+      -webkit-font-smoothing: $header-font-smoothing;
+    }
+  }
+}
+
+@mixin typography-condensed-header($tags: $typography-condensed-header-tags) {
+  @for $i from 1 through length($tags) {
+    $tag: nth($tags, $i);
+
+    #{$tag} {
+      letter-spacing: $typography-condensed-letter-spacing;
+    }
+  }
+}
+
+@include exports("paint-typography") {
+  @if $include-html-paint-typography {
+    @include typography-font-smoothing;
+    @include typography-condensed-header;
+  }
+}
