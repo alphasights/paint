@@ -1,6 +1,6 @@
-$typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote;
-$typography-condensed-header-tags: h1, h2, blockquote;
-$typography-condensed-letter-spacing: -2px;
+$typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote !default;
+$typography-condensed-header-tags: h1, h2, blockquote !default;
+$typography-condensed-letter-spacing: -1px !default;
 
 $include-html-paint-typography: true !default;
 
