@@ -42,14 +42,25 @@ $include-html-paint-button: true !default;
 
 %button-primary {
   @include button(
-    $bg: $button-primary-background-color,
+    $bg: $white,
     $padding: $column-gutter / 2,
     $radius: $global-radius
   );
 
+  border: 1px solid $button-primary-background-color;
+  color: $button-primary-background-color;
   font-size: $small-font-size;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
+
+  &:focus {
+    background-color: $white;
+  }
+
+  &:hover {
+    background-color: $button-primary-background-color;
+    color: $white;
+  }
 }
 
 @include exports("paint-button") {
