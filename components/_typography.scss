@@ -1,5 +1,4 @@
 $typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote !default;
-$typography-condensed-header-tags: h1, h2, blockquote !default;
 
 $include-html-paint-typography: true !default;
 
@@ -20,6 +19,5 @@ $include-html-paint-typography: true !default;
 @include exports("paint-typography") {
   @if $include-html-paint-typography {
     @include typography-font-smoothing;
-    @include typography-condensed-header;
   }
 }
