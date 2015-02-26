@@ -1,6 +1,5 @@
 $typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote !default;
 $typography-condensed-header-tags: h1, h2, blockquote !default;
-$typography-condensed-letter-spacing: -1px !default;
 
 $include-html-paint-typography: true !default;
 
@@ -14,16 +13,6 @@ $include-html-paint-typography: true !default;
 
     #{$tag} {
       -webkit-font-smoothing: $header-font-smoothing;
-    }
-  }
-}
-
-@mixin typography-condensed-header($tags: $typography-condensed-header-tags) {
-  @for $i from 1 through length($tags) {
-    $tag: nth($tags, $i);
-
-    #{$tag} {
-      letter-spacing: $typography-condensed-letter-spacing;
     }
   }
 }
