@@ -55,6 +55,7 @@ $include-html-paint-button: true !default;
 
   &:focus {
     background-color: $white;
+    color: $button-primary-background-color;
   }
 
   &:hover {
