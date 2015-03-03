@@ -1,9 +1,10 @@
-%vertically-aligned-container {
+%vertically-aligned {
   display: table !important;
+
+  > * {
+    display: table-cell;
+    float: none !important;
+    vertical-align: middle;
+  }
 }
 
-%vertically-aligned-child {
-  display: table-cell;
-  float: none !important;
-  vertical-align: middle;
-}
