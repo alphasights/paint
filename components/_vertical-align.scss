@@ -1,0 +1,9 @@
+%vertical-align {
+  display: table !important;
+
+  > * {
+    display: table-cell;
+    float: none !important;
+    vertical-align: middle;
+  }
+}
