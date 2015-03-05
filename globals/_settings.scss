@@ -26,7 +26,7 @@ $secondary-color: #a42524;
 
 // Fonts
 
-$body-font-family: "Helvetica Neue", Helvetica, sans-serif;
+$body-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $font-weight-normal: 300;
 $font-weight-bold: 400;
 $font-weight-extrabold: 600;
@@ -43,7 +43,7 @@ $paragraph-font-weight: $font-weight-bold;
 
 // Headers
 
-$header-font-family: "Helvetica Neue", Helvetica, sans-serif;
+$header-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $header-font-weight: $font-weight-normal;
 $header-line-height: 2;
 
