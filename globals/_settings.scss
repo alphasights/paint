@@ -4,9 +4,10 @@ $include-html-global-classes: true;
 $include-html-type-classes: true;
 $include-html-tooltip-classes: true;
 
+$icon-font-folder-path: '/assets/fonts' !default;
 $fa-font-path: $icon-font-folder-path;
 
-$global-radius: 6px;
+$global-radius: 6px !default;
 
 // Visibility
 
@@ -17,56 +18,56 @@ $include-table-visibility-classes: false;
 
 // Grid
 
-$row-width: 100%;
+$row-width: 100% !default;
 
 // Colors
 
-$primary-color: #f36b09;
-$secondary-color: #a42524;
+$primary-color: #f36b09 !default;
+$secondary-color: #a42524 !default;
 
 // Fonts
 
 $body-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$font-weight-normal: 300;
-$font-weight-bold: 400;
-$font-weight-extrabold: 600;
+$font-weight-normal: 300 !default;
+$font-weight-bold: 400 !default;
+$font-weight-extrabold: 600 !default;
 
 $base-font-size: 14px !default;
 $rem-base: 16px !default;
-$base-line-height: 2;
-$small-font-size: 80%;
+$base-line-height: 2 !default;
+$small-font-size: 80% !default;
 
-$body-font-smoothing: subpixel-antialiased;
-$header-font-smoothing: antialiased;
+$body-font-smoothing: subpixel-antialiased !default;
+$header-font-smoothing: antialiased !default;
 
-$paragraph-font-weight: $font-weight-bold;
+$paragraph-font-weight: $font-weight-bold !default;
 
 // Headers
 
 $header-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$header-font-weight: $font-weight-normal;
-$header-line-height: 2;
+$header-font-weight: $font-weight-normal !default;
+$header-line-height: 2 !default;
 
-$h1-font-size: 2.25rem;
-$h2-font-size: 1.75rem;
-$h3-font-size: 1.375rem;
-$h4-font-size: 1.125rem;
-$h5-font-size: 1rem;
-$h6-font-size: 0.875rem;
+$h1-font-size: 2.25rem !default;
+$h2-font-size: 1.75rem !default;
+$h3-font-size: 1.375rem !default;
+$h4-font-size: 1.125rem !default;
+$h5-font-size: 1rem !default;
+$h6-font-size: 0.875rem !default;
 
 // Code
 
-$code-color: inherit;
-$code-background-color: inherit;
-$code-border-size: 0px;
-$code-border-style: solid;
-$code-border-color: inherit;
+$code-color: inherit !default;
+$code-background-color: inherit !default;
+$code-border-size: 0px !default;
+$code-border-style: solid !default;
+$code-border-color: inherit !default;
 
 // Tooltips
 
-$has-tip-border-bottom-hover: inherit;
-$has-tip-border-bottom: inherit;
-$has-tip-cursor-type: inherit;
-$has-tip-font-color-hover: inherit;
-$has-tip-font-color: inherit;
-$has-tip-font-weight: inherit;
+$has-tip-border-bottom-hover: inherit !default;
+$has-tip-border-bottom: inherit !default;
+$has-tip-cursor-type: inherit !default;
+$has-tip-font-color-hover: inherit !default;
+$has-tip-font-color: inherit !default;
+$has-tip-font-weight: inherit !default;
