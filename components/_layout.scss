@@ -68,7 +68,6 @@ $include-html-paint-layout: true !default;
   #{$layout-sidebar-selector} {
     background-color: $layout-sidebar-nav-background-color;
     float: left;
-    font-family: $header-font-family;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
