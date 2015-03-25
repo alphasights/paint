@@ -201,18 +201,6 @@ $include-html-paint-dropdown: true !default;
   @if $include-html-paint-dropdown {
     .dropdown {
       @extend %dropdown;
-
-      &.inline {
-        @extend %dropdown-inline;
-      }
-
-      &.inverted {
-        @extend %dropdown-inverted;
-      }
-
-      &.over {
-        @extend %dropdown-over;
-      }
     }
   }
 }
