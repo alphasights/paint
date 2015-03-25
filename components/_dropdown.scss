@@ -202,5 +202,17 @@ $include-html-paint-dropdown: true !default;
     .dropdown {
       @extend %dropdown;
     }
+
+    .dropdown-inline {
+      @extend %dropdown;
+    }
+
+    .dropdown-inverted {
+      @extend %dropdown-inverted;
+    }
+
+    .dropdown-over {
+      @extend %dropdown-over;
+    }
   }
 }
