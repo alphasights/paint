@@ -196,8 +196,43 @@ $include-html-paint-layout: true !default;
         height: $layout-sidebar-footer-height;
         left: 0;
         line-height: $layout-sidebar-footer-height;
+        padding: 0 $layout-sidebar-nav-padding;
         position: absolute;
         right: 0;
+        white-space: nowrap;
+
+        .picture {
+          float: left;
+          margin-right: $layout-sidebar-nav-padding;
+
+          img {
+            border-radius: 50%;
+            height: $layout-sidebar-nav-link-icon-width;
+            width: $layout-sidebar-nav-link-icon-width;
+          }
+        }
+
+        .name {
+          color: $layout-sidebar-nav-link-text-color;
+          margin-right: $layout-sidebar-nav-padding / 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .toggle-actions {
+          display: inline-block;
+          float: right;
+          line-height: $layout-sidebar-footer-height;
+
+          button {
+            @include button-icon(cog);
+
+            background-color: transparent;
+            border: 0;
+            color: $layout-sidebar-nav-link-text-color;
+            margin-bottom: 0;
+          }
+        }
       }
     }
 
@@ -212,6 +247,30 @@ $include-html-paint-layout: true !default;
 
           > span {
             display: none;
+          }
+        }
+      }
+
+      .toggle-collapse {
+        float: none;
+        margin-bottom: 0;
+
+        button {
+          @include icon(caret-square-o-right);
+        }
+      }
+
+      @if $layout-sidebar-include-footer {
+        #{$layout-sidebar-footer-selector} {
+          .picture,
+          .name {
+            display: none;
+          }
+
+          .toggle-actions {
+            display: block;
+            float: none;
+            text-align: center;
           }
         }
       }
