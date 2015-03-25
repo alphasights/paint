@@ -1,27 +1,207 @@
+$dropdown-background-color: $white;
+$dropdown-border-color: $global-section-border-color;
+$dropdown-z-index: 100;
+$dropdown-link-color: $body-font-color;
+$dropdown-link-hover-color: $black;
+$dropdown-link-hover-background-color: $global-section-border-color;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%);
+$dropdown-link-disabled-color: lighten($dropdown-link-color, 50%);
+
+$include-html-paint-dropdown: true !default;
+
+@mixin dropdown-triangle($size, $color, $direction) {
+  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+  $foreground-color: nth($color, 1);
+  $height: nth($size, length($size));
+  $width: nth($size, 1);
+
+  content: '';
+  height: 0;
+  position: absolute;
+  width: 0;
+
+  @if ($direction == top) or ($direction == bottom) or ($direction == right) or ($direction == left) {
+
+    $width: $width / 2;
+    $height: if(length($size) > 1, $height, $height/2);
+
+    @if $direction == bottom {
+      border-bottom: $height solid $foreground-color;
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      left: $size;
+      top: - $size / 2;
+
+    } @else if $direction == right {
+      border-bottom: $width solid $background-color;
+      border-left: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+
+    } @else if $direction == top {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-top: $height solid $foreground-color;
+      bottom: - $size / 2;
+      left: $size;
+
+    } @else if $direction == left {
+      border-bottom: $width solid $background-color;
+      border-right: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+    }
+  }
+}
+
 %dropdown {
-  @include dropdown-container(list, bottom);
+  position: relative;
 
-  padding-left: 0;
-
-  &.drop-#{$opposite-direction} {
-    @include dropdown-container(list, #{$default-float});
+  .toggle:focus {
+    outline: 0;
   }
 
-  &.drop-#{$default-float} {
-    @include dropdown-container(list, #{$opposite-direction});
-  }
+  > ul {
+    background-clip: padding-box;
+    background-color: $dropdown-background-color;
+    border: 1px solid $dropdown-border-color;
+    border-radius: $global-radius / 2;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .175);
+    display: none;
+    float: left;
+    font-size: $base-font-size;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    min-width: 100px;
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    z-index: $dropdown-z-index;
 
-  &.drop-top {
-    @include dropdown-container(list, top);
-  }
+    .divider {
+      border-bottom: 1px solid $dropdown-border-color;
+      margin: $column-gutter / 4;
+    }
 
-  &.drop-#{$opposite-direction},
-  &.drop-#{$default-float},
-  &.drop-top {
-    width: auto;
-  }
+    > li {
+      border-bottom: 1px solid $dropdown-border-color;
 
-  li {
-    @include dropdown-style;
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      > a {
+        clear: both;
+        color: $dropdown-link-color;
+        cursor: pointer;
+        display: block;
+        font-weight: $font-weight-normal;
+        line-height: $base-line-height;
+        padding: 0 $column-gutter / 2;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus {
+          background-color: $dropdown-link-hover-background-color;
+          color: $dropdown-link-hover-color;
+          text-decoration: none;
+        }
+      }
+    }
+
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: $dropdown-link-active-background-color;
+        color: $dropdown-link-active-color;
+        outline: 0;
+        text-decoration: none;
+      }
+    }
+
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $dropdown-link-disabled-color;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        cursor: not-allowed;
+        text-decoration: none;
+      }
+    }
+
+    &.right {
+      left: auto;
+      right: 0;
+    }
+
+    &.left {
+      left: 0;
+      right: auto;
+    }
+
+    &.top {
+      bottom: 100%;
+      top: auto;
+
+      &:before {
+        @include dropdown-triangle(12px, $white, top);
+      }
+    }
+
+    &:not(.top):not(.left):not(.right) {
+      &:before {
+        @include dropdown-triangle(12px, $white, bottom);
+      }
+    }
+  }
+}
+
+%dropdown-inline {
+  > ul {
+    line-height: 0;
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+
+    > li {
+      display: inline-block;
+    }
+  }
+}
+
+%dropdown-inverted {
+  > ul {
+    background-color: $dropdown-link-hover-background-color;
+    color: $dropdown-link-hover-color;
+
+    > li:hover {
+      background-color: $dropdown-background-color;
+      color: $dropdown-link-color;
+    }
+  }
+}
+
+%dropdown-over {
+  > ul {
+    top: 0;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+@include exports("paint-dropdown") {
+  @if $include-html-paint-dropdown {
+    .dropdown {
+      @extend %dropdown;
+    }
   }
 }
