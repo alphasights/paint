@@ -1,12 +1,12 @@
-$dropdown-background-color: $white;
-$dropdown-border-color: $global-section-border-color;
-$dropdown-z-index: 100;
-$dropdown-link-color: $body-font-color;
-$dropdown-link-hover-color: $black;
-$dropdown-link-hover-background-color: $global-section-border-color;
-$dropdown-link-active-color: $dropdown-link-color;
-$dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%);
-$dropdown-link-disabled-color: lighten($dropdown-link-color, 50%);
+$dropdown-background-color: $white !default;
+$dropdown-border-color: $global-section-border-color !default;
+$dropdown-z-index: 100 !default;
+$dropdown-link-color: $body-font-color !default;
+$dropdown-link-hover-color: $black !default;
+$dropdown-link-hover-background-color: $global-section-border-color !default;
+$dropdown-link-active-color: $dropdown-link-color !default;
+$dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%) !default;
+$dropdown-link-disabled-color: lighten($dropdown-link-color, 50%) !default;
 
 $include-html-paint-dropdown: true !default;
 
@@ -22,7 +22,6 @@ $include-html-paint-dropdown: true !default;
   width: 0;
 
   @if ($direction == top) or ($direction == bottom) or ($direction == right) or ($direction == left) {
-
     $width: $width / 2;
     $height: if(length($size) > 1, $height, $height/2);
 
