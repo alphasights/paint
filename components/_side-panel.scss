@@ -4,7 +4,7 @@ $side-panel-small-screen-size: 45em;
 $side-panel-medium-screen-size: 75em;
 $side-panel-large-screen-size: 90em;
 $side-panel-xlarge-screen-size: 120em;
-$side-panel-custom-actions: (
+$side-panel-actions: (
   'navigation': (
     previous: angle-left,
     next: angle-right
@@ -128,8 +128,8 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@mixin side-panel-custom-actions {
-  @each $action-group, $actions in $side-panel-custom-actions {
+@mixin side-panel-actions {
+  @each $action-group, $actions in $side-panel-actions {
     .#{$action-group}-actions {
       @each $action, $icon in $actions {
         .#{$action} {
@@ -147,7 +147,7 @@ $include-html-paint-side-panel: true !default;
 
       .actions {
         @include side-panel-actions-bar;
-        @include side-panel-custom-actions;
+        @include side-panel-actions;
       }
     }
   }
