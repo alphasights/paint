@@ -1,0 +1,154 @@
+$side-panel-actions-button-size: 35px;
+$side-panel-actions-height: rem-calc(60);
+$side-panel-small-screen-size: 45em;
+$side-panel-medium-screen-size: 75em;
+$side-panel-large-screen-size: 90em;
+$side-panel-xlarge-screen-size: 120em;
+$side-panel-actions: (
+  'navigation': (
+    previous: angle-left,
+    next: angle-right
+  )
+);
+
+$include-html-paint-side-panel: true !default;
+
+@mixin side-panel-size($width) {
+  right: -$width;
+  width: $width;
+}
+
+@mixin side-panel {
+  @include single-transition(background-color, 150ms, linear);
+
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 200;
+
+  &.active {
+    background-color: $global-overlay-background-color;
+  }
+
+  > div {
+    @include single-transition(opacity, 150ms, linear);
+
+    background-color: $white;
+    float: right;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+
+    section {
+      @extend %grid-row;
+    }
+
+    @media #{$small-only} {
+      @include side-panel-size(100%);
+    }
+
+    @media #{$medium-only} {
+      @include side-panel-size($side-panel-small-screen-size);
+    }
+
+    @media #{$large-only} {
+      @include side-panel-size($side-panel-medium-screen-size);
+    }
+
+    @media #{$xlarge-only} {
+      @include side-panel-size($side-panel-large-screen-size);
+    }
+
+    @media #{$xxlarge-up} {
+      @include side-panel-size($side-panel-xlarge-screen-size);
+    }
+  }
+}
+
+@mixin side-panel-actions-bar {
+  @extend %grid-row;
+
+  background-color: $info-color;
+  height: $side-panel-actions-height;
+  line-height: $side-panel-actions-height;
+  padding: 0 $column-gutter;
+
+  .content {
+    @extend %grid-column-10;
+
+    min-height: $side-panel-actions-height;
+    padding: 0 !important;
+
+    > ul {
+      @include button-group-container;
+
+      display: inline-block;
+
+      &:not(:first-child) {
+        padding-left: $column-gutter / 2;
+      }
+
+      > li {
+        @include button-group-style($radius: $global-radius, $float: null);
+
+        button {
+          border-color: $global-section-border-color;
+          border-left: 0;
+        }
+
+        &:first-child button {
+          border-left: solid 1px $global-section-border-color;
+        }
+      }
+    }
+  }
+
+  .close {
+    @extend %grid-column-2;
+
+    padding: 0 !important;
+    text-align: right;
+
+    > button {
+      @include button-icon(close);
+
+      border-color: $global-section-border-color;
+    }
+  }
+
+  button {
+    &:before {
+      font-size: $h3-font-size;
+      line-height: $side-panel-actions-button-size !important;
+      width: $side-panel-actions-button-size !important;
+    }
+  }
+}
+
+@mixin side-panel-actions {
+  @each $action-group, $actions in $side-panel-actions {
+    .#{$action-group}-actions {
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon($icon);
+        }
+      }
+    }
+  }
+}
+
+@include exports("paint-side-panel") {
+  @if $include-html-paint-side-panel {
+    .side-panel {
+      @include side-panel;
+
+      .actions {
+        @include side-panel-actions-bar;
+        @include side-panel-actions;
+      }
+    }
+  }
+}
