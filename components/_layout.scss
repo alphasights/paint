@@ -31,6 +31,7 @@ $layout-sidebar-nav-link-text-color: darken($layout-sidebar-nav-text-color, 30%)
 $layout-sidebar-nav-padding: $column-gutter / 2 !default;
 $layout-sidebar-nav-selector: '> nav' !default;
 $layout-sidebar-nav-list-selector: '> ul' !default;
+$layout-sidebar-nav-list-item-selector: '> li' !default;
 $layout-sidebar-nav-title-height: rem-calc(40) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
 $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
@@ -60,6 +61,7 @@ $include-html-paint-layout: true !default;
 @mixin layout-sidebar {
   $nav-top-margin: 0;
   $nav-bottom-margin: 0;
+  $subnav-selector: '#{$layout-sidebar-nav-list-item-selector} #{$layout-sidebar-nav-list-selector}';
 
   @if $layout-sidebar-include-header {
     $nav-top-margin: $layout-sidebar-header-height;
@@ -188,6 +190,22 @@ $include-html-paint-layout: true !default;
           text-align: center;
           width: $layout-sidebar-nav-link-icon-width;
           font-size: $base-font-size;
+        }
+
+        #{$subnav-selector} {
+          background-color: darken($layout-sidebar-nav-background-color, 5%);
+          border-left: solid 3px lighten($layout-sidebar-nav-background-color, 5%);
+          margin: 0;
+          padding: 0;
+
+          a span {
+            color: darken($layout-sidebar-nav-link-text-color, 10%);
+          }
+
+          i {
+            color: transparentize($layout-sidebar-nav-link-text-color, .5);
+            font-size: $small-font-size !important;
+          }
         }
       }
     }
