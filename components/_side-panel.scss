@@ -1,19 +1,52 @@
-$side-panel-actions-button-size: 35px;
-$side-panel-actions-height: rem-calc(60);
-$side-panel-small-screen-size: 45em;
-$side-panel-medium-screen-size: 75em;
-$side-panel-large-screen-size: 90em;
-$side-panel-xlarge-screen-size: 120em;
-$side-panel-actions: (
+$side-panel-default-settings: (
+  screen-size: (
+    small: 100%,
+    medium: 45em,
+    large: 75em,
+    xlarge: 90em,
+    xxlarge: 120em
+  ),
+  actions-bar: (
+    background-color: #e1e5ea,
+    button-size: 35px,
+    height: rem-calc(60)
+  )
+);
+
+$side-panel-default-actions: (
   'navigation': (
     previous: angle-left,
     next: angle-right
   )
 );
 
+$side-panel:
+  if(global-variable-exists(side-panel),
+    map-merge($side-panel, $side-panel-default-settings),
+    $side-panel-default-settings
+);
+
+$side-panel-actions:
+  if(global-variable-exists(side-panel-actions),
+    map-merge($side-panel-actions, $side-panel-default-actions),
+    $side-panel-default-actions
+  );
+
 $include-html-paint-side-panel: true !default;
 
-@mixin side-panel-size($width) {
+@function side-panel-settings($setting, $property: null) {
+  $property-value:
+    if($property,
+      map-get(map-get($side-panel, $setting), $property),
+      map-get($side-panel, $setting)
+    );
+
+  @return $property-value;
+}
+
+@mixin side-panel-size($screen: large) {
+  $width: side-panel-settings(screen-size, $screen);
+
   right: -$width;
   width: $width;
 }
@@ -47,23 +80,23 @@ $include-html-paint-side-panel: true !default;
     }
 
     @media #{$small-only} {
-      @include side-panel-size(100%);
+      @include side-panel-size(small);
     }
 
     @media #{$medium-only} {
-      @include side-panel-size($side-panel-small-screen-size);
+      @include side-panel-size(medium);
     }
 
     @media #{$large-only} {
-      @include side-panel-size($side-panel-medium-screen-size);
+      @include side-panel-size(large);
     }
 
     @media #{$xlarge-only} {
-      @include side-panel-size($side-panel-large-screen-size);
+      @include side-panel-size(xlarge);
     }
 
     @media #{$xxlarge-up} {
-      @include side-panel-size($side-panel-xlarge-screen-size);
+      @include side-panel-size(xxlarge);
     }
   }
 }
@@ -71,15 +104,15 @@ $include-html-paint-side-panel: true !default;
 @mixin side-panel-actions-bar {
   @extend %grid-row;
 
-  background-color: $info-color;
-  height: $side-panel-actions-height;
-  line-height: $side-panel-actions-height;
+  background-color: side-panel-settings(actions-bar, background-color);
+  height: side-panel-settings(actions-bar, height);
+  line-height: side-panel-settings(actions-bar, height);
   padding: 0 $column-gutter;
 
   .content {
     @extend %grid-column-10;
 
-    min-height: $side-panel-actions-height;
+    min-height: side-panel-settings(actions-bar, height);
     padding: 0 !important;
 
     > ul {
@@ -122,8 +155,8 @@ $include-html-paint-side-panel: true !default;
   button {
     &:before {
       font-size: $h3-font-size;
-      line-height: $side-panel-actions-button-size !important;
-      width: $side-panel-actions-button-size !important;
+      line-height: side-panel-settings(actions-bar, button-size) !important;
+      width: side-panel-settings(actions-bar, button-size) !important;
     }
   }
 }
