@@ -69,10 +69,6 @@ $include-html-paint-side-panel: true !default;
     overflow-y: auto;
     position: relative;
 
-    section {
-      @extend %grid-row;
-    }
-
     @media #{$small-only} {
       @include side-panel-size(small);
     }
