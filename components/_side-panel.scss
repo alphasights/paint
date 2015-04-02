@@ -10,27 +10,21 @@ $side-panel-default-settings: (
     background-color: #e1e5ea,
     button-size: 35px,
     height: rem-calc(60)
-  )
-);
-
-$side-panel-default-actions: (
-  'navigation': (
-    previous: angle-left,
-    next: angle-right
+  ),
+  actions: (
+    navigation: (
+      previous: angle-left,
+      next: angle-right
+    )
   )
 );
 
 $side-panel:
   if(global-variable-exists(side-panel),
-    map-merge($side-panel, $side-panel-default-settings),
+    map-merge-settings($side-panel-default-settings, $side-panel),
     $side-panel-default-settings
-);
-
-$side-panel-actions:
-  if(global-variable-exists(side-panel-actions),
-    map-merge($side-panel-actions, $side-panel-default-actions),
-    $side-panel-default-actions
   );
+
 
 $include-html-paint-side-panel: true !default;
 
@@ -162,6 +156,8 @@ $include-html-paint-side-panel: true !default;
 }
 
 @mixin side-panel-actions {
+  $side-panel-actions: map-get($side-panel, actions);
+
   @each $action-group, $actions in $side-panel-actions {
     .#{$action-group}-actions {
       @each $action, $icon in $actions {
