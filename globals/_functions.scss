@@ -34,9 +34,7 @@
   $merged-map: $default-map;
 
   @each $settings-group, $settings in $map {
-
     @if type-of($settings) == "map" {
-
       @each $setting, $value in $settings {
         $merged-map: map-set($merged-map, $settings-group $setting, $value);
       }
