@@ -152,7 +152,7 @@ $include-html-paint-side-panel: true !default;
 }
 
 @mixin side-panel-actions {
-  $side-panel-actions: map-get($side-panel, actions);
+  $side-panel-actions: side-panel-settings(actions);
 
   @each $action-group, $actions in $side-panel-actions {
     .#{$action-group}-actions {
