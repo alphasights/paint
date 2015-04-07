@@ -1,47 +1,47 @@
-@function map-set($map, $keys, $value) {
-  $maps: ($map,);
-  $result: null;
+// @function map-set($map, $keys, $value) {
+//   $maps: ($map,);
+//   $result: null;
 
-  @if type-of(nth($keys, -1)) == 'map' {
-    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
-  }
+//   @if type-of(nth($keys, -1)) == 'map' {
+//     @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
+//   }
 
-  @if length($keys) == 1 {
-    @return map-merge($map, ($keys: $value));
-  }
+//   @if length($keys) == 1 {
+//     @return map-merge($map, ($keys: $value));
+//   }
 
-  @for $i from 1 through length($keys) - 1 {
-    $current-key: nth($keys, $i);
-    $current-map: nth($maps, -1);
-    $current-get: map-get($current-map, $current-key);
-    @if $current-get == null {
-      @warn "Key `#{$key}` doesn't exist at current level in map.";
-    }
-    $maps: append($maps, $current-get);
-  }
+//   @for $i from 1 through length($keys) - 1 {
+//     $current-key: nth($keys, $i);
+//     $current-map: nth($maps, -1);
+//     $current-get: map-get($current-map, $current-key);
+//     @if $current-get == null {
+//       @warn "Key `#{$key}` doesn't exist at current level in map.";
+//     }
+//     $maps: append($maps, $current-get);
+//   }
 
-  @for $i from length($maps) through 1 {
-    $current-map: nth($maps, $i);
-    $current-key: nth($keys, $i);
-    $current-val: if($i == length($maps), $value, $result);
-    $result: map-merge($current-map, ($current-key: $current-val));
-  }
+//   @for $i from length($maps) through 1 {
+//     $current-map: nth($maps, $i);
+//     $current-key: nth($keys, $i);
+//     $current-val: if($i == length($maps), $value, $result);
+//     $result: map-merge($current-map, ($current-key: $current-val));
+//   }
 
-  @return $result;
-}
+//   @return $result;
+// }
 
-@function map-merge-settings($default-map, $map) {
-  $merged-map: $default-map;
+// @function map-merge-settings($default-map, $map) {
+//   $merged-map: $default-map;
 
-  @each $settings-group, $settings in $map {
-    @if type-of($settings) == 'map' {
-      @each $setting, $value in $settings {
-        $merged-map: map-set($merged-map, $settings-group $setting, $value);
-      }
-    } @else {
-      $merged-map: map-set($merged-map, $settings-group, $settings);
-    }
-  }
+//   @each $settings-group, $settings in $map {
+//     @if type-of($settings) == 'map' {
+//       @each $setting, $value in $settings {
+//         $merged-map: map-set($merged-map, $settings-group $setting, $value);
+//       }
+//     } @else {
+//       $merged-map: map-set($merged-map, $settings-group, $settings);
+//     }
+//   }
 
-  @return $merged-map;
-}
+//   @return $merged-map;
+// }
