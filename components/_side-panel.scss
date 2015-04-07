@@ -25,7 +25,6 @@ $side-panel-default-settings: (
   $side-panel: $side-panel-default-settings;
 }
 
-
 $include-html-paint-side-panel: true !default;
 
 @function side-panel-settings($setting, $property: null) {
