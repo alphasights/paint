@@ -3,4 +3,4 @@
 set -e
 
 bin/lint
-
+node_modules/.bin/broccoli build dist
