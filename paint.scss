@@ -1,21 +1,21 @@
-@import "bower_components/foundation/scss/foundation/functions";
+@import 'bower_components/foundation/scss/foundation/functions';
 
-@import "globals/functions";
-@import "globals/settings";
+@import 'globals/functions';
+@import 'globals/settings';
 
-@import "bower_components/foundation/scss/normalize";
-@import "bower_components/foundation/scss/foundation";
-@import "bower_components/fontawesome/scss/font-awesome";
+@import 'bower_components/foundation/scss/normalize';
+@import 'bower_components/foundation/scss/foundation';
+@import 'bower_components/fontawesome/scss/font-awesome';
 
-@import "globals/mixins";
+@import 'globals/mixins';
 
-@import "components/button";
-@import "components/dropdown";
-@import "components/grid";
-@import "components/typography";
-@import "components/icon";
-@import "components/label";
-@import "components/layout";
-@import "components/progress-bar";
-@import "components/side-panel";
-@import "components/vertical-align";
+@import 'components/button';
+@import 'components/dropdown';
+@import 'components/grid';
+@import 'components/typography';
+@import 'components/icon';
+@import 'components/label';
+@import 'components/layout';
+@import 'components/progress-bar';
+@import 'components/side-panel';
+@import 'components/vertical-align';
