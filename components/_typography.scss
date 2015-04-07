@@ -16,7 +16,7 @@ $include-html-paint-typography: true !default;
   }
 }
 
-@include exports("paint-typography") {
+@include exports('paint-typography') {
   @if $include-html-paint-typography {
     @include typography-font-smoothing;
   }

@@ -83,55 +83,7 @@ $include-html-paint-dropdown: true !default;
     }
 
     > li {
-      border-bottom: 1px solid $dropdown-border-color;
-
-      &:last-child {
-        border-bottom: 0;
-      }
-
-      > a {
-        clear: both;
-        color: $dropdown-link-color;
-        cursor: pointer;
-        display: block;
-        font-weight: $font-weight-normal;
-        line-height: $base-line-height;
-        padding: 0 $column-gutter / 2;
-        white-space: nowrap;
-
-        &:hover,
-        &:focus {
-          background-color: $dropdown-link-hover-background-color;
-          color: $dropdown-link-hover-color;
-          text-decoration: none;
-        }
-      }
-    }
-
-    > .active > a {
-      &,
-      &:hover,
-      &:focus {
-        background-color: $dropdown-link-active-background-color;
-        color: $dropdown-link-active-color;
-        outline: 0;
-        text-decoration: none;
-      }
-    }
-
-    > .disabled > a {
-      &,
-      &:hover,
-      &:focus {
-        color: $dropdown-link-disabled-color;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: transparent;
-        cursor: not-allowed;
-        text-decoration: none;
-      }
+      @extend %dropdown-item;
     }
 
     &.right {
@@ -157,6 +109,58 @@ $include-html-paint-dropdown: true !default;
       &:before {
         @include dropdown-triangle(12px, $white, bottom);
       }
+    }
+  }
+}
+
+%dropdown-item {
+  border-bottom: 1px solid $dropdown-border-color;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &.active > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $dropdown-link-active-background-color;
+      color: $dropdown-link-active-color;
+      outline: 0;
+      text-decoration: none;
+    }
+  }
+
+  &.disabled > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $dropdown-link-disabled-color;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+  }
+
+  > a {
+    clear: both;
+    color: $dropdown-link-color;
+    cursor: pointer;
+    display: block;
+    font-weight: $font-weight-normal;
+    line-height: $base-line-height;
+    padding: 0 $column-gutter / 2;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      background-color: $dropdown-link-hover-background-color;
+      color: $dropdown-link-hover-color;
+      text-decoration: none;
     }
   }
 }
@@ -197,7 +201,7 @@ $include-html-paint-dropdown: true !default;
   }
 }
 
-@include exports("paint-dropdown") {
+@include exports('paint-dropdown') {
   @if $include-html-paint-dropdown {
     .dropdown {
       @extend %dropdown;

@@ -165,7 +165,7 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@include exports("paint-side-panel") {
+@include exports('paint-side-panel') {
   @if $include-html-paint-side-panel {
     .side-panel {
       @include side-panel;
