@@ -1,2 +1,11 @@
+# dependencies
+/node_modules
+/bower_components/*
+
+# misc
+/.sass-cache
 *.swp
-bower_components/*
+
+# compiled output
+/dist
+/tmp

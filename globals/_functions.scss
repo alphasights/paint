@@ -2,7 +2,7 @@
   $maps: ($map,);
   $result: null;
 
-  @if type-of(nth($keys, -1)) == "map" {
+  @if type-of(nth($keys, -1)) == 'map' {
     @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
   }
 
@@ -15,7 +15,7 @@
     $current-map: nth($maps, -1);
     $current-get: map-get($current-map, $current-key);
     @if $current-get == null {
-      @error "Key `#{$key}` doesn't exist at current level in map.";
+      @warn "Key `#{$key}` doesn't exist at current level in map.";
     }
     $maps: append($maps, $current-get);
   }
@@ -34,7 +34,7 @@
   $merged-map: $default-map;
 
   @each $settings-group, $settings in $map {
-    @if type-of($settings) == "map" {
+    @if type-of($settings) == 'map' {
       @each $setting, $value in $settings {
         $merged-map: map-set($merged-map, $settings-group $setting, $value);
       }
