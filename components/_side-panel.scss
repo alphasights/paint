@@ -19,23 +19,20 @@ $side-panel-default-settings: (
   )
 );
 
-$side-panel:
-  if(global-variable-exists(side-panel),
-    map-merge-settings($side-panel-default-settings, $side-panel),
-    $side-panel-default-settings
-  );
-
+@if global-variable-exists(side-panel) {
+  $side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
+} @else {
+  $side-panel: $side-panel-default-settings;
+}
 
 $include-html-paint-side-panel: true !default;
 
 @function side-panel-settings($setting, $property: null) {
-  $property-value:
-    if($property,
-      map-get(map-get($side-panel, $setting), $property),
-      map-get($side-panel, $setting)
-    );
-
-  @return $property-value;
+  @if $property {
+    @return map-get(map-get($side-panel, $setting), $property),
+  } @else {
+    @return map-get($side-panel, $setting)
+  }
 }
 
 @mixin side-panel-size($screen: large) {
@@ -165,7 +162,7 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@include exports("paint-side-panel") {
+@include exports('paint-side-panel') {
   @if $include-html-paint-side-panel {
     .side-panel {
       @include side-panel;

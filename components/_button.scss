@@ -1,4 +1,4 @@
-@import "icon";
+@import 'icon';
 
 $button-base-background-color: $white !default;
 $button-base-text-color: $jumbo !default;
@@ -27,9 +27,9 @@ $include-html-paint-button: true !default;
   @include button-base;
 
   background-color: $button-base-background-color;
-  color: $button-base-text-color;
   border: 1px solid lighten($button-base-text-color, 20%);
   border-radius: $global-radius;
+  color: $button-base-text-color;
 
   &:hover {
     color: darken($button-base-text-color, 20%);
@@ -64,7 +64,7 @@ $include-html-paint-button: true !default;
   }
 }
 
-@include exports("paint-button") {
+@include exports('paint-button') {
   @if $include-html-paint-button {
     button {
       @extend %button;
