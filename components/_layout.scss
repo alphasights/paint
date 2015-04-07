@@ -104,7 +104,7 @@ $include-html-paint-layout: true !default;
     }
 
     #{$layout-sidebar-nav-selector} {
-      @include layout-sidebar-nav;
+      @include layout-sidebar-nav($nav-bottom-margin, $nav-top-margin, $subnav-selector);
     }
 
     @if $layout-sidebar-include-footer {
@@ -159,7 +159,7 @@ $include-html-paint-layout: true !default;
   }
 }
 
-@mixin layout-sidebar-nav {
+@mixin layout-sidebar-nav($nav-bottom-margin: 0, $nav-top-margin: 0, $subnav-selector: '> li > ul') {
   bottom: $nav-bottom-margin;
   left: 0;
   overflow-y: auto;
@@ -267,7 +267,7 @@ $include-html-paint-layout: true !default;
   }
 }
 
-@layout-sidebar-nav-collapsed {
+@mixin layout-sidebar-nav-collapsed {
   width: $layout-sidebar-nav-width-collapsed;
 
   #{$layout-sidebar-nav-selector} #{$layout-sidebar-nav-list-selector} a {
