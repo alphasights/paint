@@ -26,154 +26,152 @@ $side-panel-default-settings: (
 }
 
 
-// $include-html-paint-side-panel: true !default;
+$include-html-paint-side-panel: true !default;
 
-// @function side-panel-settings($setting, $property: null) {
-//   $property-value:
-//     if($property,
-//       map-get(map-get($side-panel, $setting), $property),
-//       map-get($side-panel, $setting)
-//     );
+@function side-panel-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($side-panel, $setting), $property),
+  } @else {
+    @return map-get($side-panel, $setting)
+  }
+}
 
-//   @return $property-value;
-// }
+@mixin side-panel-size($screen: large) {
+  $width: side-panel-settings(screen-size, $screen);
 
-// @mixin side-panel-size($screen: large) {
-//   $width: side-panel-settings(screen-size, $screen);
+  right: -$width;
+  width: $width;
+}
 
-//   right: -$width;
-//   width: $width;
-// }
+@mixin side-panel {
+  @include single-transition(background-color, 150ms, linear);
 
-// @mixin side-panel {
-//   @include single-transition(background-color, 150ms, linear);
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 200;
 
-//   bottom: 0;
-//   left: 0;
-//   overflow: hidden;
-//   position: fixed;
-//   right: 0;
-//   top: 0;
-//   z-index: 200;
+  &.active {
+    background-color: $global-overlay-background-color;
+  }
 
-//   &.active {
-//     background-color: $global-overlay-background-color;
-//   }
+  > div {
+    @include single-transition(opacity, 150ms, linear);
 
-//   > div {
-//     @include single-transition(opacity, 150ms, linear);
+    background-color: $white;
+    float: right;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
 
-//     background-color: $white;
-//     float: right;
-//     height: 100%;
-//     overflow-y: auto;
-//     position: relative;
+    @media #{$small-only} {
+      @include side-panel-size(small);
+    }
 
-//     @media #{$small-only} {
-//       @include side-panel-size(small);
-//     }
+    @media #{$medium-only} {
+      @include side-panel-size(medium);
+    }
 
-//     @media #{$medium-only} {
-//       @include side-panel-size(medium);
-//     }
+    @media #{$large-only} {
+      @include side-panel-size(large);
+    }
 
-//     @media #{$large-only} {
-//       @include side-panel-size(large);
-//     }
+    @media #{$xlarge-only} {
+      @include side-panel-size(xlarge);
+    }
 
-//     @media #{$xlarge-only} {
-//       @include side-panel-size(xlarge);
-//     }
+    @media #{$xxlarge-up} {
+      @include side-panel-size(xxlarge);
+    }
+  }
+}
 
-//     @media #{$xxlarge-up} {
-//       @include side-panel-size(xxlarge);
-//     }
-//   }
-// }
+@mixin side-panel-actions-bar {
+  @extend %grid-row;
 
-// @mixin side-panel-actions-bar {
-//   @extend %grid-row;
+  background-color: side-panel-settings(actions-bar, background-color);
+  height: side-panel-settings(actions-bar, height);
+  line-height: side-panel-settings(actions-bar, height);
+  padding: 0 $column-gutter;
 
-//   background-color: side-panel-settings(actions-bar, background-color);
-//   height: side-panel-settings(actions-bar, height);
-//   line-height: side-panel-settings(actions-bar, height);
-//   padding: 0 $column-gutter;
+  .content {
+    @extend %grid-column-10;
 
-//   .content {
-//     @extend %grid-column-10;
+    min-height: side-panel-settings(actions-bar, height);
+    padding: 0 !important;
 
-//     min-height: side-panel-settings(actions-bar, height);
-//     padding: 0 !important;
+    > ul {
+      @include button-group-container;
 
-//     > ul {
-//       @include button-group-container;
+      display: inline-block;
 
-//       display: inline-block;
+      &:not(:first-child) {
+        padding-left: $column-gutter / 2;
+      }
 
-//       &:not(:first-child) {
-//         padding-left: $column-gutter / 2;
-//       }
+      > li {
+        @include button-group-style($radius: $global-radius, $float: null);
 
-//       > li {
-//         @include button-group-style($radius: $global-radius, $float: null);
+        button {
+          border-color: $global-section-border-color;
+          border-left: 0;
+        }
 
-//         button {
-//           border-color: $global-section-border-color;
-//           border-left: 0;
-//         }
+        &:first-child button {
+          border-left: solid 1px $global-section-border-color;
+        }
+      }
+    }
+  }
 
-//         &:first-child button {
-//           border-left: solid 1px $global-section-border-color;
-//         }
-//       }
-//     }
-//   }
+  .close {
+    @extend %grid-column-2;
 
-//   .close {
-//     @extend %grid-column-2;
+    padding: 0 !important;
+    text-align: right;
 
-//     padding: 0 !important;
-//     text-align: right;
+    > button {
+      @include button-icon(close);
 
-//     > button {
-//       @include button-icon(close);
+      border-color: $global-section-border-color;
+    }
+  }
 
-//       border-color: $global-section-border-color;
-//     }
-//   }
+  button {
+    &:before {
+      font-size: $h3-font-size;
+      line-height: side-panel-settings(actions-bar, button-size) !important;
+      width: side-panel-settings(actions-bar, button-size) !important;
+    }
+  }
+}
 
-//   button {
-//     &:before {
-//       font-size: $h3-font-size;
-//       line-height: side-panel-settings(actions-bar, button-size) !important;
-//       width: side-panel-settings(actions-bar, button-size) !important;
-//     }
-//   }
-// }
+@mixin side-panel-actions {
+  $side-panel-actions: side-panel-settings(actions);
 
-// @mixin side-panel-actions {
-//   $side-panel-actions: side-panel-settings(actions);
+  @each $action-group, $actions in $side-panel-actions {
+    .#{$action-group}-actions {
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon($icon);
+        }
+      }
+    }
+  }
+}
 
-//   @each $action-group, $actions in $side-panel-actions {
-//     .#{$action-group}-actions {
-//       @each $action, $icon in $actions {
-//         .#{$action} {
-//           @include button-icon($icon);
-//         }
-//       }
-//     }
-//   }
-// }
+@include exports('paint-side-panel') {
+  @if $include-html-paint-side-panel {
+    .side-panel {
+      @include side-panel;
 
-// @include exports('paint-side-panel') {
-//   @if $include-html-paint-side-panel {
-//     .side-panel {
-//       @include side-panel;
-
-//       .actions {
-//         @include side-panel-actions-bar;
-//         @include side-panel-actions;
-//       }
-//     }
-//   }
-// }
+      .actions {
+        @include side-panel-actions-bar;
+        @include side-panel-actions;
+      }
+    }
+  }
+}
