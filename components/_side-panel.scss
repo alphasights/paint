@@ -19,11 +19,11 @@ $side-panel-default-settings: (
   )
 );
 
-// $side-panel:
-//   if(global-variable-exists(side-panel),
-//     map-merge-settings($side-panel-default-settings, $side-panel),
-//     $side-panel-default-settings
-//   );
+$side-panel:
+  if(global-variable-exists(side-panel),
+    map-merge-settings($side-panel-default-settings, $side-panel),
+    $side-panel-default-settings
+  );
 
 
 // $include-html-paint-side-panel: true !default;
