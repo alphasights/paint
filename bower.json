@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "~5.5.1",
-    "fontawesome": "~4.3.0"
+    "foundation": "~5.4.5",
+    "fontawesome": "~4.2.0"
   }
 }
