@@ -5,3 +5,7 @@
 # misc
 /.sass-cache
 *.swp
+
+# compiled output
+/dist
+/tmp
