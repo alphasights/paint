@@ -32,10 +32,12 @@ $include-html-paint-dropdown: true !default;
       left: $size;
       top: - $size / 2;
 
-    } @else if $direction == right {
+    } @else if $direction == left {
       border-bottom: $width solid $background-color;
       border-left: $height solid $foreground-color;
       border-top: $width solid $background-color;
+      right: - $size / 2;
+      top: $size / 2;
 
     } @else if $direction == top {
       border-left: $width solid $background-color;
@@ -44,10 +46,57 @@ $include-html-paint-dropdown: true !default;
       bottom: - $size / 2;
       left: $size;
 
-    } @else if $direction == left {
+    } @else if $direction == right {
       border-bottom: $width solid $background-color;
       border-right: $height solid $foreground-color;
       border-top: $width solid $background-color;
+      left: - $size / 2;
+      top: $size / 2;
+    }
+  }
+}
+
+@mixin dropdown-directions {
+  $directions: (
+    bottom: (
+      left: 0,
+      top: 100%
+    ),
+    top: (
+      bottom: 100%,
+      top: auto
+    ),
+    left: (
+      left: 0,
+      right: auto,
+      top: 0
+    ),
+    right: (
+      left: auto,
+      right: 0,
+      top: 0
+    )
+  );
+
+  $other-directions-string: '';
+
+  @each $direction, $properties in $directions {
+    &.#{$direction} {
+      @each $property, $value in $properties {
+        #{$property}: #{$value};
+      }
+
+      &:before {
+        @include dropdown-triangle(12px, $white, $direction);
+      }
+    }
+
+    $other-directions-string: $other-directions-string + ':not(.#{$direction})';
+  }
+
+  &#{$other-directions-string} {
+    &:before {
+      @include dropdown-triangle(12px, $white, bottom);
     }
   }
 }
@@ -60,6 +109,8 @@ $include-html-paint-dropdown: true !default;
   }
 
   > ul {
+    @include dropdown-directions;
+
     background-clip: padding-box;
     background-color: $dropdown-background-color;
     border: 1px solid $dropdown-border-color;
@@ -68,13 +119,11 @@ $include-html-paint-dropdown: true !default;
     display: none;
     float: left;
     font-size: $base-font-size;
-    left: 0;
     list-style: none;
     margin: 0;
     min-width: 100px;
     position: absolute;
     text-align: left;
-    top: 100%;
     z-index: $dropdown-z-index;
 
     .divider {
@@ -86,29 +135,8 @@ $include-html-paint-dropdown: true !default;
       @extend %dropdown-item;
     }
 
-    &.right {
-      left: auto;
-      right: 0;
-    }
-
-    &.left {
-      left: 0;
-      right: auto;
-    }
-
-    &.top {
-      bottom: 100%;
-      top: auto;
-
-      &:before {
-        @include dropdown-triangle(12px, $white, top);
-      }
-    }
-
-    &:not(.top):not(.left):not(.right) {
-      &:before {
-        @include dropdown-triangle(12px, $white, bottom);
-      }
+    &.open {
+      display: block;
     }
   }
 }
@@ -184,7 +212,8 @@ $include-html-paint-dropdown: true !default;
     background-color: $dropdown-link-hover-background-color;
     color: $dropdown-link-hover-color;
 
-    > li:hover {
+    > li:hover,
+    > li a:hover {
       background-color: $dropdown-background-color;
       color: $dropdown-link-color;
     }
