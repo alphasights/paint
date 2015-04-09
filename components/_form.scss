@@ -158,12 +158,12 @@ $include-html-paint-form: true !default;
   @include single-transition(background-color, 150ms, linear);
 
   background-color: $white;
-  border-bottom-left-radius: $global-radius;
-  border-bottom-right-radius: $global-radius;
   border-top: 1px solid $global-section-border-color;
 
   @if $with-border {
     padding: $column-gutter !important;
+    border-bottom-left-radius: $global-radius;
+    border-bottom-right-radius: $global-radius;
   } @else {
     padding: $column-gutter $column-gutter / 2 !important;
   }
