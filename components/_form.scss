@@ -161,9 +161,9 @@ $include-html-paint-form: true !default;
   border-top: 1px solid $global-section-border-color;
 
   @if $with-border {
-    padding: $column-gutter !important;
     border-bottom-left-radius: $global-radius;
     border-bottom-right-radius: $global-radius;
+    padding: $column-gutter !important;
   } @else {
     padding: $column-gutter $column-gutter / 2 !important;
   }
