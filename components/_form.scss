@@ -1,4 +1,5 @@
 $form-with-border: true !default;
+$form-field-selector: '.form-field' !default;
 $form-field-with-errors: '.with-errors' !default;
 $form-field-error-selector: '.error' !default;
 $form-select-selector: '.form-select' !default;
@@ -14,7 +15,6 @@ $form-input-text-color: $small-font-color !default;
 $form-label-height: $form-input-height;
 $form-select-arrow-size: 4px !default;
 $form-select-background: linear-gradient(top, transparent, rgba($black, .03)) !default;
-$form-field-selector: '.form-field' !default;
 
 $include-html-paint-form: true !default;
 
