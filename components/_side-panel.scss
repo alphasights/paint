@@ -103,26 +103,7 @@ $include-html-paint-side-panel: true !default;
     padding: 0 !important;
 
     > ul {
-      @include button-group-container;
-
-      display: inline-block;
-
-      &:not(:first-child) {
-        padding-left: $column-gutter / 2;
-      }
-
-      > li {
-        @include button-group-style($radius: $global-radius, $float: null);
-
-        button {
-          border-color: $global-section-border-color;
-          border-left: 0;
-        }
-
-        &:first-child button {
-          border-left: solid 1px $global-section-border-color;
-        }
-      }
+      @extend %button-group;
     }
   }
 
