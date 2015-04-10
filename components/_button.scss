@@ -64,6 +64,39 @@ $include-html-paint-button: true !default;
   }
 }
 
+%button-group {
+  @include button-group-container;
+
+  display: inline-block;
+
+  &:not(:first-child) {
+    padding-left: $column-gutter / 2;
+  }
+
+  > li {
+    @include button-group-style($radius: $global-radius, $float: null);
+
+    button {
+      border-color: $global-section-border-color;
+      border-left: 0;
+      line-height: $button-icon-size;
+      padding: 0 $column-gutter / 2;
+
+      &:before {
+        display: inline-block;
+      }
+
+      &:not(:empty):before {
+        margin-left: -$column-gutter / 2;
+      }
+    }
+
+    &:first-child button {
+      border-left: solid 1px $global-section-border-color;
+    }
+  }
+}
+
 @include exports('paint-button') {
   @if $include-html-paint-button {
     button {
