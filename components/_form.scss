@@ -1,0 +1,321 @@
+$form-with-border: true !default;
+$form-field-selector: '.form-field' !default;
+$form-field-with-errors: '.with-errors' !default;
+$form-field-error-selector: '.error' !default;
+$form-select-selector: '.form-select' !default;
+$form-submission-with-confirm: '.with-confirm' !default;
+
+$form-confirm-border-color: transparentize($white, .65) !default;
+$form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
+$form-input-border-color: darken($white, 10%) !default;
+$form-input-height: 36px !default;
+$form-input-padding: $form-input-height - $base-font-size !default;
+$form-input-shadow-color: rgba($black, .08) !default;
+$form-input-text-color: $small-font-color !default;
+$form-label-height: $form-input-height;
+$form-select-arrow-size: 4px !default;
+$form-select-background: linear-gradient(top, transparent, rgba($black, .03)) !default;
+
+$include-html-paint-form: true !default;
+
+@mixin form($with-border: $form-with-border) {
+  @extend %grid-column-12;
+
+  padding: 0 !important;
+
+  @if $with-border {
+    background-color: lighten($panel-bg, 2%);
+    border: solid 1px $global-section-border-color;
+    border-radius: $global-radius;
+  }
+}
+
+@mixin form-fieldset($with-border: $form-with-border) {
+  border: 0;
+  margin-bottom: 0;
+
+  @if $with-border {
+    padding: $column-gutter / 2 $column-gutter / 2 0;
+  } @else {
+    padding: 0;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $global-section-border-color;
+  }
+
+  legend {
+    display: none;
+  }
+}
+
+@mixin form-field() {
+  @extend %grid-column-small-12;
+
+  min-height: $form-input-height * 3;
+
+  &#{$form-field-with-errors} {
+    #{$form-field-error-selector} {
+      color: $alert-color;
+      font-size: $small-font-size;
+      line-height: $form-input-height / 2;
+      padding-left: $column-gutter / 2;
+    }
+
+    input,
+    textarea,
+    &#{$form-select-selector} > div {
+      @include single-transition(border-color, 150ms, linear);
+
+      border-color: lighten($alert-color, 10%);
+    }
+  }
+}
+
+@mixin form-label() {
+  font-size: $h5-font-size;
+  font-weight: $font-weight-bold;
+  line-height: $form-label-height;
+  min-height: $form-label-height;
+}
+
+@mixin form-input() {
+  @include form-input-shared-properties();
+
+  font-size: $base-font-size;
+  line-height: $form-input-height;
+  margin-bottom: 0;
+  padding: 0 $form-input-padding / 2;
+
+  &::-webkit-input-placeholder {
+    color: lighten($form-input-text-color, 20%);
+  }
+}
+
+@mixin form-select($inner-wrapper: '.content', $inline: false) {
+  @if ($inner-wrapper == null) {
+    $inner-wrapper: '&';
+  }
+
+  #{$inner-wrapper} {
+    @include form-input-shared-properties();
+    @include form-select-arrow();
+
+    background: $white;
+    background-image: $form-select-background !important;
+    line-height: $form-input-height;
+    overflow: hidden;
+    position: relative;
+
+    @if $inline {
+      float: left;
+      padding-right: $column-gutter;
+    }
+
+    select {
+      -webkit-appearance: none;
+      background: rgba($black, 0);
+      border: 0;
+      border-radius: $global-radius;
+      color: $form-input-text-color;
+      font-size: $base-font-size;
+      margin: 0;
+      padding: 0 $form-input-padding / 2;
+      position: relative;
+      text-shadow: 0 1px $white;
+      width: 130%;
+
+      &:focus {
+        color: $anchor-font-color;
+        outline: none;
+        width: 100%;
+        z-index: 1;
+      }
+
+      > option {
+        background: darken($white, 10%);
+        border-radius: $global-radius;
+        cursor: pointer;
+        margin: 3px;
+        padding: 3px 8px;
+        text-shadow: none;
+      }
+    }
+  }
+}
+
+@mixin form-textarea() {
+  @include form-input-shared-properties();
+
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  min-height: $form-input-height * 3;
+  padding: $form-input-padding / 2;
+}
+
+@mixin form-submission($with-border: $form-with-border, $with-confirm: true) {
+  @extend %grid-column-12;
+  @include single-transition(background-color, 150ms, linear);
+
+  background-color: $white;
+  border-top: 1px solid $global-section-border-color;
+
+  @if $with-border {
+    border-bottom-left-radius: $global-radius;
+    border-bottom-right-radius: $global-radius;
+    padding: $column-gutter !important;
+  } @else {
+    padding: $column-gutter $column-gutter / 2 !important;
+  }
+
+  @if $with-confirm {
+    &#{$form-submission-with-confirm} {
+      background-color: lighten($alert-color, 0%);
+      color: $white;
+      text-align: right;
+
+      span {
+        float: left;
+        line-height: 100%;
+        padding: $column-gutter / 2 0;
+      }
+
+      button {
+        background-color: transparent;
+        border: solid 1px $form-confirm-border-color;
+        color: $white;
+
+        &:hover {
+          background-color: $form-confirm-border-color;
+        }
+      }
+
+      a {
+        color: $white;
+      }
+    }
+  }
+
+  button {
+    @include single-transition(background-color, 150ms, linear);
+
+    margin-bottom: 0 !important;
+
+    &[type="submit"] {
+      @extend %button-primary;
+    }
+
+    &:not([type="submit"]) {
+      padding: $column-gutter / 2;
+    }
+  }
+
+  a {
+    color: $small-font-color;
+    display: inline-block;
+    padding: 0 $column-gutter;
+
+    &:hover {
+      color: $body-font-color;
+    }
+  }
+}
+
+@mixin form-select-arrow() {
+  &:before,
+  &:after {
+    border: $form-select-arrow-size dashed;
+    border-color: $small-font-color transparent;
+    content: '';
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    right: $form-input-padding / 2;
+    top: ($form-input-padding + $form-select-arrow-size) / 2;
+    width: 0;
+    z-index: 1;
+  }
+
+  &:before {
+    border-bottom-style: solid;
+    border-top: 0;
+  }
+
+  &:after {
+    border-bottom: 0;
+    border-top-style: solid;
+    margin-top: $form-select-arrow-size * 2;
+  }
+}
+
+@mixin form-input-shared-properties() {
+  background-image: $form-input-background;
+  border: 1px solid;
+  border-color: $form-input-border-color darken($form-input-border-color, 5%);
+  border-radius: $global-radius;
+  box-shadow: 0 1px 1px $form-input-shadow-color;
+  color: $form-input-text-color;
+  height: auto;
+  text-shadow: 0 1px $white;
+
+
+  &:hover {
+    box-shadow: 0 1px 2px rgba($black, .1);
+  }
+
+  &:focus {
+    background-color: $white;
+    background-image: none;
+  }
+}
+
+@mixin form-item-small() {
+  @extend %grid-column-medium-6;
+  @extend %grid-column-large-4;
+}
+
+@mixin form-item-medium() {
+  @extend %grid-column-medium-6;
+  @extend %grid-column-large-6;
+}
+
+@mixin form-item-large() {
+  @extend %grid-column-medium-12;
+  @extend %grid-column-large-12;
+}
+
+@include exports('paint-form') {
+  @if $include-html-paint-form {
+    .form form {
+      @include form;
+
+      .form-fieldset {
+        @include form-fieldset;
+
+        .form-field {
+          @include form-field;
+
+          label {
+            @include form-label;
+          }
+
+          input {
+            @include form-input;
+          }
+
+          &.form-select {
+            @include form-select;
+          }
+
+          textarea {
+            @include form-textarea;
+          }
+        }
+      }
+    }
+
+    .form-submission {
+      @include form-submission;
+    }
+  }
+}
