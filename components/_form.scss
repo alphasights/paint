@@ -113,8 +113,6 @@ $include-html-paint-form: true !default;
     }
 
     select {
-      @include form-input-disabled;
-
       -webkit-appearance: none;
       background: rgba($black, 0);
       border: 0;
