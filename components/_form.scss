@@ -52,8 +52,6 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-field() {
-  @extend %grid-column-small-12;
-
   min-height: $form-input-height * 3;
 
   &#{$form-field-with-errors} {
