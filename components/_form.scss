@@ -8,10 +8,12 @@ $form-submission-with-confirm: '.with-confirm' !default;
 $form-confirm-border-color: transparentize($white, .65) !default;
 $form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
 $form-input-border-color: darken($white, 10%) !default;
+$form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
 $form-input-height: 36px !default;
 $form-input-padding: $form-input-height - $base-font-size !default;
 $form-input-shadow-color: rgba($black, .08) !default;
 $form-input-text-color: $small-font-color !default;
+$form-input-disabled-text-color: lighten($form-input-text-color, 20%) !default;
 $form-label-height: $form-input-height;
 $form-select-arrow-size: 4px !default;
 $form-select-background: linear-gradient(top, transparent, rgba($black, .03)) !default;
@@ -50,8 +52,6 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-field() {
-  @extend %grid-column-small-12;
-
   min-height: $form-input-height * 3;
 
   &#{$form-field-with-errors} {
@@ -80,7 +80,7 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-input() {
-  @include form-input-shared-properties();
+  @include form-input-shared-properties;
 
   font-size: $base-font-size;
   line-height: $form-input-height;
@@ -98,8 +98,8 @@ $include-html-paint-form: true !default;
   }
 
   #{$inner-wrapper} {
-    @include form-input-shared-properties();
-    @include form-select-arrow();
+    @include form-input-shared-properties;
+    @include form-select-arrow;
 
     background: $white;
     background-image: $form-select-background !important;
@@ -113,6 +113,8 @@ $include-html-paint-form: true !default;
     }
 
     select {
+      @include form-input-disabled;
+
       -webkit-appearance: none;
       background: rgba($black, 0);
       border: 0;
@@ -142,10 +144,18 @@ $include-html-paint-form: true !default;
       }
     }
   }
+
+  &.disabled,
+  &.disabled #{$inner-wrapper} {
+    &,
+    select {
+      @include form-input-disabled;
+    }
+  }
 }
 
 @mixin form-textarea() {
-  @include form-input-shared-properties();
+  @include form-input-shared-properties;
 
   font-size: $base-font-size;
   line-height: $base-line-height;
@@ -248,6 +258,12 @@ $include-html-paint-form: true !default;
   }
 }
 
+@mixin form-input-disabled() {
+  background-color: $form-input-disabled-bg;
+  cursor: not-allowed;
+  color: $form-input-disabled-text-color;
+}
+
 @mixin form-input-shared-properties() {
   background-image: $form-input-background;
   border: 1px solid;
@@ -258,7 +274,6 @@ $include-html-paint-form: true !default;
   height: auto;
   text-shadow: 0 1px $white;
 
-
   &:hover {
     box-shadow: 0 1px 2px rgba($black, .1);
   }
@@ -266,6 +281,12 @@ $include-html-paint-form: true !default;
   &:focus {
     background-color: $white;
     background-image: none;
+  }
+
+  &:disabled,
+  &[disabled],
+  &[readonly] {
+    @include form-input-disabled;
   }
 }
 
