@@ -5,8 +5,8 @@ $button-base-text-color: $jumbo !default;
 $button-base-padding: 15px !default;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
-$button-disabled-transparency: 0.4 !default;
-$button-disabled-hover-transparency: 0.2 !default;
+$button-disabled-transparency: .4 !default;
+$button-disabled-hover-transparency: .2 !default;
 
 $include-html-paint-button: true !default;
 
@@ -16,25 +16,21 @@ $include-html-paint-button: true !default;
 }
 
 @mixin button-disabled() {
-  background-color:
-    transparentize(
-      $button-base-background-color,
-      $button-disabled-transparency);
+  background-color: transparentize(
+    $button-base-background-color,
+    $button-disabled-transparency);
   box-shadow: none;
-  color:
-    transparentize(
-      $button-base-text-color,
-      $button-disabled-transparency);
+  color: transparentize(
+    $button-base-text-color,
+    $button-disabled-transparency);
   cursor: not-allowed;
 
   &:hover,
   &:focus {
-  background-color:
-    transparentize(
+    background-color: transparentize(
       $button-base-background-color,
       $button-disabled-hover-transparency);
-  color:
-    transparentize(
+    color: transparentize(
       $button-base-text-color,
       $button-disabled-hover-transparency);
   }
