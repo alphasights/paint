@@ -52,6 +52,7 @@ $include-html-paint-button: true !default;
 
 %button {
   @include button-base;
+  @include single-transition(color, 150ms, ease);
 
   background-color: $button-base-background-color;
   border: 1px solid lighten($button-base-text-color, 20%);
