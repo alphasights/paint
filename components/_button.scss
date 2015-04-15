@@ -2,6 +2,7 @@
 
 $button-base-background-color: $white !default;
 $button-base-text-color: $jumbo !default;
+$button-base-padding: 10px;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
 $button-disabled-transparency: 0.4 !default;
@@ -77,7 +78,6 @@ $include-html-paint-button: true !default;
 %button-primary {
   @include button(
     $bg: $white,
-    $padding: $column-gutter / 2,
     $radius: $global-radius
   );
 
@@ -85,6 +85,7 @@ $include-html-paint-button: true !default;
   color: $button-primary-background-color;
   font-size: $small-font-size;
   font-weight: $font-weight-bold;
+  padding: $button-base-padding;
   text-transform: uppercase;
 
   &:focus {
@@ -104,7 +105,7 @@ $include-html-paint-button: true !default;
   display: inline-block;
 
   &:not(:first-child) {
-    padding-left: $column-gutter / 2;
+    padding-left: $button-base-padding;
   }
 
   > li {
@@ -114,14 +115,14 @@ $include-html-paint-button: true !default;
       border-color: $global-section-border-color;
       border-left: 0;
       line-height: $button-icon-size;
-      padding: 0 $column-gutter / 2;
+      padding: 0 $button-base-padding;
 
       &:before {
         display: inline-block;
       }
 
       &:not(:empty):before {
-        margin-left: -$column-gutter / 2;
+        margin-left: -$button-base-padding;
       }
     }
 
