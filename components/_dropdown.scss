@@ -7,6 +7,9 @@ $dropdown-link-hover-background-color: $global-section-border-color !default;
 $dropdown-link-active-color: $dropdown-link-color !default;
 $dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%) !default;
 $dropdown-link-disabled-color: lighten($dropdown-link-color, 50%) !default;
+$dropdown-search-inner-padding: 3px;
+$dropdown-search-icon-size: 32px;
+$dropdown-search-results-height: 15em;
 
 $include-html-paint-dropdown: true !default;
 
@@ -97,6 +100,72 @@ $include-html-paint-dropdown: true !default;
   &#{$other-directions-string} {
     &:before {
       @include dropdown-triangle(12px, $white, bottom);
+    }
+  }
+}
+
+@mixin dropdown-with-search() {
+  .input {
+    cursor: auto;
+    padding:
+      $dropdown-search-inner-padding
+      $dropdown-search-inner-padding * 2;
+    position: relative;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    > div,
+    .icon {
+      height: $dropdown-search-icon-size;
+      left: $dropdown-search-inner-padding;
+      margin: $dropdown-search-inner-padding * 2 0;
+      overflow: hidden;
+      position: absolute;
+      text-align: center;
+      top: $dropdown-search-inner-padding;
+      width: $dropdown-search-icon-size;
+
+      i {
+        @include icon(search);
+
+        color: $primary-color;
+        line-height: $dropdown-search-icon-size;
+      }
+    }
+
+    > input {
+      @include form-input;
+
+      height: $dropdown-search-icon-size;
+      line-height: $dropdown-search-icon-size;
+      margin: $dropdown-search-inner-padding * 2 0;
+      padding-left: $dropdown-search-icon-size;
+    }
+  }
+
+  .results {
+    margin: 0;
+    max-height: $dropdown-search-results-height;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+
+    > ul {
+      margin: 0;
+      padding: 0;
+
+      > li {
+        cursor: pointer;
+        padding:
+          $dropdown-search-inner-padding * 2
+          $column-gutter / 4;
+
+        &:hover {
+          background-color: $global-section-border-color;
+        }
+      }
     }
   }
 }
@@ -249,6 +318,11 @@ $include-html-paint-dropdown: true !default;
     .dropdown-over {
       @extend %dropdown;
       @extend %dropdown-over;
+    }
+
+    .dropdown-search {
+      @extend %dropdown;
+      @include dropdown-with-search;
     }
   }
 }
