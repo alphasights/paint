@@ -107,8 +107,7 @@ $include-html-paint-dropdown: true !default;
 @mixin dropdown-with-search() {
   .input {
     cursor: auto;
-    padding:
-      $dropdown-search-inner-padding
+    padding: $dropdown-search-inner-padding
       $dropdown-search-inner-padding * 2;
     position: relative;
 
@@ -158,8 +157,7 @@ $include-html-paint-dropdown: true !default;
 
       > li {
         cursor: pointer;
-        padding:
-          $dropdown-search-inner-padding * 2
+        padding: $dropdown-search-inner-padding * 2
           $column-gutter / 4;
 
         &:hover {
