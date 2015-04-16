@@ -156,12 +156,14 @@ $include-html-paint-dropdown: true !default;
       padding: 0;
 
       > li {
+        @extend %dropdown-item;
+
         cursor: pointer;
-        padding: $dropdown-search-inner-padding * 2
+        padding: $dropdown-search-inner-padding
           $column-gutter / 4;
 
         &:hover {
-          background-color: $global-section-border-color;
+          background-color: $dropdown-link-hover-background-color;
         }
       }
     }
