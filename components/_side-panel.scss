@@ -66,6 +66,15 @@ $include-html-paint-side-panel: true !default;
     overflow-y: auto;
     position: relative;
 
+    > .content {
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      position: absolute;
+      right: 0;
+      top: side-panel-settings(actions-bar, height);
+    }
+
     @media #{$small-only} {
       @include side-panel-size(small);
     }
