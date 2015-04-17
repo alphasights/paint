@@ -141,6 +141,7 @@ $include-html-paint-dropdown: true !default;
       line-height: $dropdown-search-icon-size;
       margin: $dropdown-search-inner-padding * 2 0;
       padding-left: $dropdown-search-icon-size;
+      width: 100%;
     }
   }
 
