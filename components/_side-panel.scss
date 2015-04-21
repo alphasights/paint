@@ -43,19 +43,7 @@ $include-html-paint-side-panel: true !default;
 }
 
 @mixin side-panel {
-  @include single-transition(background-color, 150ms, linear);
-
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 200;
-
-  &.active {
-    background-color: $global-overlay-background-color;
-  }
+  @include overlay($position: fixed, $z-index: 200);
 
   > div {
     @include single-transition(opacity, 150ms, linear);
