@@ -119,7 +119,7 @@ $quick-jump-default-settings: (
 }
 
 %quick-jump-actions-section {
-  $actions-button-size: $button-icon-size;
+  $actions-button-size: quick-jump-settings(bar, icon-size);
 
   padding: 0 $column-gutter / 2;
   position: absolute;
