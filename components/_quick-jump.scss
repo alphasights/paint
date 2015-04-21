@@ -1,0 +1,257 @@
+$include-html-paint-quick-jump: true !default;
+
+$quick-jump-default-settings: (
+  bar: (
+    background-color: #e1e5ea,
+    active-background-color: $white,
+    icon-size: $button-icon-size,
+    height: $layout-sidebar-header-height
+  ),
+  results: (
+    background-color: #f2f2f2,
+    item-height: rem-calc(50)
+  ),
+  actions: (
+    navigation: (
+      change-app: th,
+      add: plus
+    )
+  )
+);
+
+@if global-variable-exists(quick-jump) {
+  $quick-jump: map-merge-settings($quick-jump-default-settings, $quick-jump);
+} @else {
+  $quick-jump: $quick-jump-default-settings;
+}
+
+@function quick-jump-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($quick-jump, $setting), $property);
+  } @else {
+    @return map-get($quick-jump, $setting);
+  }
+}
+
+@mixin quick-jump($overlay: true) {
+  @if $overlay {
+    @include overlay;
+  }
+
+  > .bar {
+    background-color: quick-jump-settings(bar, background-color);
+    display: block;
+    height: quick-jump-settings(bar, height);
+    line-height: quick-jump-settings(bar, height);
+    padding: 0 $column-gutter / 2;
+    position: relative;
+    width: 100%;
+
+    > div,
+    > .icon {
+      @include single-transition(all, 150ms, linear);
+
+      border-radius: $global-rounded;
+      color: $primary-color;
+      height: quick-jump-settings(bar, icon-size);
+      overflow: hidden;
+      position: absolute;
+      text-align: center;
+      top: (quick-jump-settings(bar, height) - quick-jump-settings(bar, icon-size)) / 2;
+      width: quick-jump-settings(bar, icon-size);
+
+      i {
+        @include icon(search);
+
+        display: block;
+        line-height: quick-jump-settings(bar, icon-size);
+      }
+    }
+
+    input {
+      $icon-size: quick-jump-settings(bar, icon-size);
+      $input-left-padding: $icon-size * 1.15;
+
+      @include single-transition(all, 150ms, linear);
+
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+      display: inline-block;
+      margin: 0;
+      text-indent: $input-left-padding;
+      width: 100%;
+    }
+  }
+
+  &.active {
+    > .bar {
+      background-color: quick-jump-settings(bar, active-background-color);
+      border-bottom: 1px solid quick-jump-settings(bar, background-color);
+
+      > div,
+      > .icon {
+        background-color: $primary-color;
+        color: quick-jump-settings(bar, active-background-color);
+      }
+    }
+  }
+
+  &.loading {
+    .results .content {
+      opacity: .7;
+    }
+  }
+}
+
+@mixin quick-jump-actions {
+  $quick-jump-actions: quick-jump-settings(actions);
+
+  @each $action-group, $actions in $quick-jump-actions {
+    .#{$action-group}-actions {
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon($icon);
+        }
+      }
+    }
+  }
+}
+
+%quick-jump-actions-section {
+  $actions-button-size: $button-icon-size;
+
+  padding: 0 $column-gutter / 2;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: (quick-jump-settings(bar, height) - $actions-button-size) / 2;
+
+  .close > button {
+    @include icon(times-circle);
+
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 0;
+    min-height: $actions-button-size;
+  }
+
+  .content {
+    @include quick-jump-actions;
+
+    ul {
+      white-space: nowrap;
+
+      > li {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+%quick-jump-results {
+  $background-color: quick-jump-settings(results, background-color);
+
+  @include single-transition(opacity, 150ms, linear);
+
+  background-color: $background-color;
+  position: relative;
+  width: 100%;
+
+  section {
+    @extend %grid-row;
+
+    padding-bottom: $column-gutter / 2;
+    padding-top: $column-gutter / 2;
+
+    > .title {
+      @extend .hide-for-small-only;
+      @extend %grid-column-2;
+
+      color: $primary-color;
+      line-height: quick-jump-settings(results, item-height);
+      margin-bottom: 0;
+      margin-top: 0;
+      text-align: right;
+    }
+
+    &:nth-of-type(even) {
+      background-color: darken($background-color, 3%);
+    }
+
+    ul {
+      @extend %grid-column-small-12;
+      @extend %grid-column-medium-10;
+      @extend .no-bullet;
+
+      margin-bottom: 0;
+    }
+
+    li {
+      line-height: quick-jump-settings(results, item-height);
+    }
+
+    article {
+      @extend %grid-column-12;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($background-color, 3%);
+      }
+
+      .title {
+        color: $body-font-color;
+        line-height: quick-jump-settings(results, item-height);
+      }
+    }
+  }
+
+  .empty-message {
+    height: quick-jump-settings(bar, height);
+    line-height: quick-jump-settings(bar, height);
+    padding-left: $column-gutter + rem-calc(quick-jump-settings(bar, icon-size));
+  }
+}
+
+%quick-jump-result {
+  .title,
+  .details {
+    line-height: quick-jump-settings(results, item-height);
+  }
+
+  .title {
+    @extend %grid-column-small-12;
+    @extend %grid-column-large-4;
+
+    font-size: $base-font-size;
+    margin: 0;
+  }
+
+  .details {
+    @extend %grid-column-small-12;
+    @extend %grid-column-large-8;
+
+    color: $small-font-color;
+  }
+}
+
+@include exports('paint-quick-jump') {
+  @if $include-html-paint-quick-jump {
+    .quick-jump {
+      @include quick-jump;
+
+      .actions {
+        @extend %quick-jump-actions-section;
+      }
+
+      .results {
+        @extend %quick-jump-results;
+
+        .result {
+          @extend %quick-jump-result;
+        }
+      }
+    }
+  }
+}
