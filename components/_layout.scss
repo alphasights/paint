@@ -8,7 +8,7 @@ $layout-sidebar-footer-avatar-selector: '.avatar' !default;
 $layout-sidebar-footer-title-selector: '.name' !default;
 $layout-sidebar-footer-actions-selector: '.actions' !default;
 $layout-sidebar-footer-actions-icon: cog !default;
-$layout-sidebar-header-height: rem-calc(60) !default;
+$layout-sidebar-header-height: 60px !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * .5 !default;
 $layout-sidebar-header-selector: '> header' !default;
 $layout-sidebar-heading-font-size: $small-font-size !default;
