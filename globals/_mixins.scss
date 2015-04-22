@@ -3,3 +3,25 @@
   box-shadow: 0 0 0 1px $color, 0 0 0 1px $white inset;
   padding: 1px;
 }
+
+@mixin overlay($position: absolute, $z-index: 100) {
+  @include single-transition(background-color, 150ms, linear);
+
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  pointer-events: none;
+  position: $position;
+  right: 0;
+  top: 0;
+  z-index: $z-index;
+
+  > * {
+    pointer-events: all;
+  }
+
+  &.active {
+    background-color: $global-overlay-background-color;
+    pointer-events: all;
+  }
+}
