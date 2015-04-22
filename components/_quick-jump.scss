@@ -4,7 +4,7 @@ $quick-jump-default-settings: (
   bar: (
     background-color: #e1e5ea,
     active-background-color: $white,
-    icon-size: $button-icon-size,
+    icon-size: rem-calc($button-icon-size),
     height: $layout-sidebar-header-height
   ),
   results: (
@@ -210,7 +210,7 @@ $quick-jump-default-settings: (
   .empty-message {
     height: quick-jump-settings(bar, height);
     line-height: quick-jump-settings(bar, height);
-    padding-left: $column-gutter + rem-calc(quick-jump-settings(bar, icon-size));
+    padding-left: $column-gutter + quick-jump-settings(bar, icon-size);
   }
 }
 
