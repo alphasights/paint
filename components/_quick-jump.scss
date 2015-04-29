@@ -95,6 +95,16 @@ $quick-jump-default-settings: (
         color: quick-jump-settings(bar, active-background-color);
       }
     }
+
+    > .actions {
+      .content {
+        display: none;
+      }
+
+      .close {
+        display: block;
+      }
+    }
   }
 
   &.loading {
@@ -127,24 +137,24 @@ $quick-jump-default-settings: (
   text-align: right;
   top: (quick-jump-settings(bar, height) - $actions-button-size) / 2;
 
-  .close > button {
-    @include icon(times-circle);
+  .close {
+    display: none;
 
-    background-color: transparent;
-    border: 0;
-    margin-bottom: 0;
-    min-height: $actions-button-size;
+    > button {
+      @include icon(times-circle);
+
+      background-color: transparent;
+      border: 0;
+      margin-bottom: 0;
+      min-height: $actions-button-size;
+    }
   }
 
   .content {
     @include quick-jump-actions;
 
     ul {
-      white-space: nowrap;
-
-      > li {
-        display: inline-block;
-      }
+      @extend %button-group;
     }
   }
 }
