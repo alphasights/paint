@@ -154,11 +154,7 @@ $quick-jump-default-settings: (
     @include quick-jump-actions;
 
     ul {
-      white-space: nowrap;
-
-      > li {
-        display: inline-block;
-      }
+      @extend %button-group;
     }
   }
 }
