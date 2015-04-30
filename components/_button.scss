@@ -105,6 +105,10 @@ $include-html-paint-button: true !default;
         background-color: $white;
         color: $button-color;
       }
+
+      &:hover {
+        color: $white;
+      }
     }
   }
 }
