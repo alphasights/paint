@@ -1,3 +1,5 @@
+@import 'button';
+
 $form-with-border: true !default;
 $form-field-selector: '.form-field' !default;
 $form-field-with-errors: '.with-errors' !default;
@@ -9,7 +11,7 @@ $form-confirm-border-color: transparentize($white, .65) !default;
 $form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
 $form-input-border-color: darken($white, 10%) !default;
 $form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
-$form-input-height: 36px !default;
+$form-input-height: $button-small-height !default;
 $form-input-padding: $form-input-height - $base-font-size !default;
 $form-input-shadow-color: rgba($black, .08) !default;
 $form-input-text-color: $small-font-color !default;
@@ -211,6 +213,10 @@ $include-html-paint-form: true !default;
 
     &[type="submit"] {
       @extend %button-primary;
+
+      &:disabled {
+        @include button-disabled;
+      }
     }
 
     &:not([type="submit"]) {
