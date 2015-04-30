@@ -7,6 +7,9 @@ $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;
 $button-disabled-transparency: .4 !default;
 $button-disabled-hover-transparency: .2 !default;
+$button-tiny-height: 24px !default;
+$button-small-height: 38px !default;
+$button-large-height: 50px !default;
 
 $include-html-paint-button: true !default;
 
@@ -74,7 +77,9 @@ $include-html-paint-button: true !default;
 %button-primary {
   @include button(
     $bg: $white,
-    $radius: $global-radius
+    $radius: $global-radius,
+    $bg-hover: $button-primary-background-color,
+    $border-color: $button-primary-background-color
   );
 
   border: 1px solid $button-primary-background-color;
@@ -88,11 +93,21 @@ $include-html-paint-button: true !default;
     background-color: $white;
     color: $button-primary-background-color;
   }
+}
 
-  &:hover {
-    background-color: $button-primary-background-color;
-    color: $white;
-  }
+%button-tiny {
+  padding: 0 $button-base-padding / 2;
+  line-height: $button-tiny-height;
+}
+
+%button-small {
+  padding: 0 $button-base-padding / 2;
+  line-height: $button-small-height;
+}
+
+%button-large {
+  padding: 0 $button-base-padding * 2;
+  line-height: $button-large-height;
 }
 
 %button-group {
