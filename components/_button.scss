@@ -30,6 +30,7 @@ $include-html-paint-button: true !default;
   background-color: transparentize(
     $button-base-background-color,
     $button-disabled-transparency);
+  border-color: darken($button-base-background-color, 5%);
   box-shadow: none;
   color: transparentize(
     $button-base-text-color,
