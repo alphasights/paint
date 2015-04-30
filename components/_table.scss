@@ -63,22 +63,22 @@ $table-column-padding: $column-gutter / 2 !default;
 %table-rounded {
   border-radius: $global-radius;
 
-  thead {
-    th:first-child {
+  thead th {
+    &:first-child {
       border-radius: $global-radius 0 0;
     }
 
-    th:last-child {
+    &:last-child {
       border-radius: 0 $global-radius 0 0;
     }
   }
 
-  tbody tr:last-child {
-    td:first-child {
+  tbody tr:last-child td {
+    &:first-child {
       border-radius: 0 0 0 $global-radius;
     }
 
-    td:last-child {
+    &:last-child {
       border-radius: 0 $global-radius 0 0;
     }
   }
