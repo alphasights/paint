@@ -10,23 +10,34 @@ $table-column-padding: $column-gutter / 2 !default;
 %table {
   width: 100%;
 
-  th {
-    background-color: darken($table-row-background-color, 5%);
-    color: $small-font-color;
-    font-size: $small-font-size;
-    font-weight: $font-weight-bold;
-    padding: $table-column-padding;
-    text-align: left;
-    text-transform: uppercase;
+  thead {
+    tr {
+      background-color: darken($table-row-background-color, 5%);
+    }
+
+    th {
+      color: $small-font-color;
+      font-size: $small-font-size;
+      font-weight: $font-weight-bold;
+      padding: $table-column-padding;
+      text-align: left;
+      text-transform: uppercase;
+    }
   }
 
-  tr {
-    background-color: $table-row-background-color;
-    border-bottom: 1px solid $table-odd-background-color;
+  tbody {
+    tr {
+      background-color: $table-row-background-color;
+      border-bottom: 1px solid $table-odd-background-color;
 
-    td {
-      line-height: $base-line-height;
-      padding: $table-column-padding;
+      &:last-child {
+        border: none;
+      }
+
+      td {
+        line-height: $base-line-height;
+        padding: $table-column-padding;
+      }
     }
   }
 }
