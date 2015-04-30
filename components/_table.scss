@@ -30,7 +30,7 @@ $table-column-padding: $column-gutter / 2 !default;
       border-bottom: 1px solid $table-odd-background-color;
 
       &:last-child {
-        border: none;
+        border: 0;
       }
 
       td {
