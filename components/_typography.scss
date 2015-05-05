@@ -1,8 +1,30 @@
-$typography-header-tags: h1, h2, h3, h4, h5, h6, blockquote !default;
+$typography-default-settings: (
+  header-tags: (
+    h1, h2, h3, h4, h5, h6, blockquote
+  ),
+
+  condensed-tags: ()
+);
+
+@if global-variable-exists(typography) {
+  $typography: map-merge-settings($typography-default-settings, $typography);
+} @else {
+  $typography: $typography-default-settings;
+}
 
 $include-html-paint-typography: true !default;
 
-@mixin typography-font-smoothing($header-tags: $typography-header-tags) {
+@function typography-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($typography, $setting), $property),
+  } @else {
+    @return map-get($typography, $setting)
+  }
+}
+
+@mixin typography-font-smoothing(
+  $header-tags: typography-settings(header-tags)
+) {
   body {
     -webkit-font-smoothing: $body-font-smoothing;
   }
@@ -16,8 +38,17 @@ $include-html-paint-typography: true !default;
   }
 }
 
+@mixin typography-condensed-tags {
+  @each $tag, $letter-spacing in typography-settings(condensed-tags) {
+    #{$tag} {
+      letter-spacing: $letter-spacing;
+    }
+  }
+}
+
 @include exports('paint-typography') {
   @if $include-html-paint-typography {
     @include typography-font-smoothing;
+    @include typography-condensed-tags;
   }
 }
