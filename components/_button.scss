@@ -4,9 +4,20 @@ $button-base-background-color: $white !default;
 $button-base-text-color: $jumbo !default;
 $button-base-padding: 15px !default;
 $button-icon-size: 28px !default;
-$button-primary-background-color: #008fd9 !default;
 $button-disabled-transparency: .4 !default;
 $button-disabled-hover-transparency: .2 !default;
+$button-tiny-height: 24px !default;
+$button-small-height: 38px !default;
+$button-large-height: 50px !default;
+
+$button-colours: (
+  primary: #008fd9,
+  secondary: $secondary-color,
+  error: $alert-color,
+  warning: $warning-color,
+  success: $success-color,
+  info: $info-color
+);
 
 $include-html-paint-button: true !default;
 
@@ -19,6 +30,7 @@ $include-html-paint-button: true !default;
   background-color: transparentize(
     $button-base-background-color,
     $button-disabled-transparency);
+  border-color: darken($button-base-background-color, 5%);
   box-shadow: none;
   color: transparentize(
     $button-base-text-color,
@@ -71,28 +83,49 @@ $include-html-paint-button: true !default;
   }
 }
 
-%button-primary {
-  @include button(
-    $bg: $white,
-    $radius: $global-radius
-  );
+@mixin button-color-placeholders {
+  @each $type, $button-color in $button-colours {
+    %button-#{$type} {
+      @include button(
+        $bg: $white,
+        $radius: $global-radius,
+        $bg-hover: $button-color,
+        $border-color: $button-color
+      );
 
-  border: 1px solid $button-primary-background-color;
-  color: $button-primary-background-color;
-  font-size: $small-font-size;
-  font-weight: $font-weight-bold;
-  padding: $button-base-padding;
-  text-transform: uppercase;
+      border: 1px solid $button-color;
+      color: $button-color;
+      font-size: $small-font-size;
+      font-weight: $font-weight-bold;
+      margin-bottom: 0;
+      padding: $button-base-padding;
+      text-transform: uppercase;
 
-  &:focus {
-    background-color: $white;
-    color: $button-primary-background-color;
+      &:focus {
+        background-color: $white;
+        color: $button-color;
+      }
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
+}
 
-  &:hover {
-    background-color: $button-primary-background-color;
-    color: $white;
-  }
+%button-tiny {
+  line-height: $button-tiny-height;
+  padding: 0 $button-base-padding / 2;
+}
+
+%button-small {
+  line-height: $button-small-height;
+  padding: 0 $button-base-padding / 2;
+}
+
+%button-large {
+  line-height: $button-large-height;
+  padding: 0 $button-base-padding * 2;
 }
 
 %button-group {
@@ -129,6 +162,8 @@ $include-html-paint-button: true !default;
 }
 
 @include exports('paint-button') {
+  @include button-color-placeholders;
+
   @if $include-html-paint-button {
     button {
       @extend %button;
