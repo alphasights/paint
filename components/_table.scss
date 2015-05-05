@@ -1,0 +1,105 @@
+$include-html-paint-table: true !default;
+
+$table-row-background-color: $white !default;
+$table-odd-background-color: darken($white, 3%) !default;
+$table-highlighted-row-background-color: lighten($primary-color, 47%) !default;
+$table-highlighted-row-color: $jet !default;
+$table-column-padding: $column-gutter / 2 !default;
+
+%table {
+  width: 100%;
+
+  thead {
+    tr {
+      background-color: darken($table-row-background-color, 5%);
+    }
+
+    th {
+      color: $small-font-color;
+      font-size: $small-font-size;
+      font-weight: $font-weight-bold;
+      padding: $table-column-padding;
+      text-align: left;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: $table-row-background-color;
+      border-bottom: 1px solid $table-odd-background-color;
+
+      &:last-child {
+        border: 0;
+      }
+
+      td {
+        line-height: $base-line-height;
+        padding: $table-column-padding;
+      }
+    }
+  }
+}
+
+%table-stripped {
+  tr {
+    &:nth-of-type(2n) {
+      background-color: $table-odd-background-color;
+    }
+  }
+}
+
+%table-highlighted-row {
+  background-color: $table-highlighted-row-background-color;
+  color: $table-highlighted-row-color;
+
+  td {
+    border-bottom: 1px solid darken($table-highlighted-row-background-color, 7%);
+    border-top: 1px solid darken($table-highlighted-row-background-color, 7%);
+    font-weight: $font-weight-bold;
+  }
+}
+
+%table-rounded {
+  border-radius: $global-radius;
+
+  thead th {
+    &:first-child {
+      border-radius: $global-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 $global-radius 0 0;
+    }
+  }
+
+  tbody tr:last-child td {
+    &:first-child {
+      border-radius: 0 0 0 $global-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $global-radius 0 0;
+    }
+  }
+}
+
+@include exports('paint-table') {
+  @if $include-html-paint-table {
+    .table {
+      @extend %table;
+
+      &.stripped {
+        @extend %table-stripped;
+      }
+
+      &.rounded {
+        @extend %table-rounded;
+      }
+
+      .highlighted-row {
+        @extend %table-highlighted-row;
+      }
+    }
+  }
+}
