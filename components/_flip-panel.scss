@@ -1,0 +1,184 @@
+$flip-panel-default-settings: (
+  header-height: $h1-font-size + $column-gutter,
+  footer-height: $h1-font-size + $column-gutter / 2
+);
+
+@if global-variable-exists(flip-panel) {
+  $flip-panel: map-merge-settings($flip-panel-default-settings, $flip-panel);
+} @else {
+  $flip-panel: $flip-panel-default-settings;
+}
+
+$include-html-paint-flip-panel: true !default;
+
+@function flip-panel-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($flip-panel, $setting), $property),
+  } @else {
+    @return map-get($flip-panel, $setting)
+  }
+}
+
+@mixin flip-panel-scroll-content($with-header: true, $with-footer: false) {
+  @if $with-header {
+    top: flip-panel-settings(header-height);
+  } @else {
+    top: 0;
+  }
+  @if $with-footer {
+    bottom: flip-panel-settings(footer-height);
+  } @else {
+    bottom: 0;
+  }
+
+  left: 0;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+}
+
+@mixin flip-panel(
+  $with-front-header: true,
+  $with-front-footer: true,
+  $with-back-header: true,
+  $with-back-footer: false,
+  $min-height: false) {
+
+  @extend %grid-row;
+
+  @if $min-height {
+    min-height: $min-height;
+  }
+
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+
+  .front,
+  .back {
+    @if $min-height {
+      position: absolute;
+    } @else {
+      position: relative;
+    }
+
+    backface-visibility: hidden;
+    background-color: $white;
+    border-radius: $global-radius;
+    border: 1px solid $global-section-border-color;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    transition: all .6s ease-in-out;
+
+    > header,
+    > footer {
+      background-color: lighten($global-section-border-color, 5%);
+    }
+
+    > header {
+      h1 {
+        color: $small-font-color;
+        font-size: $h4-font-size;
+        font-weight: $font-weight-bold;
+        line-height: flip-panel-settings(header-height);
+        margin: 0;
+        padding: 0 $column-gutter / 2;
+      }
+    }
+
+    > footer {
+      @if $min-height {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      span {
+        border-top: 1px solid $global-section-border-color;
+        display: block;
+        font-weight: $font-weight-bold;
+        line-height: flip-panel-settings(footer-height);
+        padding: 0 $column-gutter / 2;
+      }
+    }
+
+    > .content {
+      > section {
+        @extend %grid-row;
+
+        border-top: 1px solid $global-section-border-color;
+        padding: $column-gutter / 4 $column-gutter / 2;
+      }
+    }
+  }
+
+  .front {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.025);
+    transform: rotateX(0deg) rotateY(0deg);
+    z-index: 300;
+
+    @if $min-height {
+      > .content {
+        @include flip-panel-scroll-content(
+          $with-header: $with-front-header,
+          $with-footer: $with-front-footer);
+      }
+    }
+  }
+
+  .back {
+    position: absolute;
+    transform: rotateY(-180deg);
+    z-index: 200;
+
+    > .content {
+      @include flip-panel-scroll-content(
+        $with-header: $with-back-header,
+        $with-footer: $with-back-footer);
+    }
+  }
+
+  &.flipped {
+    .front,
+    .back {
+      box-shadow: 0 5px 10px rgba(0,0,0,0.075);
+    }
+
+    .front {
+      z-index: 200;
+      transform: rotateY(180deg);
+    }
+
+    .back {
+      z-index: 300;
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+  }
+
+  &.no-css-transform {
+    .back {
+      opacity: 0;
+    }
+
+    &.flipped {
+      .front,
+      .back {
+        box-shadow:0;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@include exports('paint-flip-panel') {
+  @if $include-html-paint-flip-panel {
+    .flip-panel {
+      @include flip-panel;
+    }
+  }
+}
