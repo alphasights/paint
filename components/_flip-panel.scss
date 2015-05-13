@@ -79,6 +79,14 @@ $include-html-paint-flip-panel: true !default;
     > header,
     > footer {
       background-color: lighten($global-section-border-color, 5%);
+
+      a {
+        font-weight: $font-weight-bold;
+      }
+
+      i {
+        margin-right: $column-gutter / 4;
+      }
     }
 
     > header {
