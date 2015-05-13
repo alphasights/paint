@@ -72,7 +72,9 @@ $include-html-paint-flip-panel: true !default;
     right: 0;
     top: 0;
     transform-style: preserve-3d;
-    transition: all .6s ease-in-out;
+    transition:
+      transform .6s ease-in-out,
+      box-shadow .6s ease-in-out;
 
     > header,
     > footer {
