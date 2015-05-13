@@ -37,7 +37,7 @@ $include-html-paint-flip-panel: true !default;
   right: 0;
 }
 
-@mixin flip-panel(
+@mixin flip-panel (
   $with-front-header: true,
   $with-front-footer: true,
   $with-back-header: true,
@@ -64,8 +64,8 @@ $include-html-paint-flip-panel: true !default;
 
     backface-visibility: hidden;
     background-color: $white;
-    border-radius: $global-radius;
     border: 1px solid $global-section-border-color;
+    border-radius: $global-radius;
     bottom: 0;
     left: 0;
     overflow: hidden;
@@ -118,13 +118,13 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .front {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.025);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .025);
     transform: rotateX(0deg) rotateY(0deg);
     z-index: 300;
 
     @if $min-height {
       > .content {
-        @include flip-panel-scroll-content(
+        @include flip-panel-scroll-content (
           $with-header: $with-front-header,
           $with-footer: $with-front-footer);
       }
@@ -146,17 +146,17 @@ $include-html-paint-flip-panel: true !default;
   &.flipped {
     .front,
     .back {
-      box-shadow: 0 5px 10px rgba(0,0,0,0.075);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, .075);
     }
 
     .front {
-      z-index: 200;
       transform: rotateY(180deg);
+      z-index: 200;
     }
 
     .back {
-      z-index: 300;
       transform: rotateX(0deg) rotateY(0deg);
+      z-index: 300;
     }
   }
 
@@ -168,7 +168,7 @@ $include-html-paint-flip-panel: true !default;
     &.flipped {
       .front,
       .back {
-        box-shadow:0;
+        box-shadow: 0;
         opacity: 1;
       }
     }
