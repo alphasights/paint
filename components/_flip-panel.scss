@@ -4,7 +4,8 @@ $flip-panel-default-settings: (
   icons: (
     back: long-arrow-left,
     forward: long-arrow-right
-  )
+  ),
+  transition-settings: .3s ease-in-out
 );
 
 @if global-variable-exists(flip-panel) {
@@ -86,7 +87,9 @@ $include-html-paint-flip-panel: true !default;
     right: 0;
     top: 0;
     transform-style: preserve-3d;
-    transition: transform .6s ease-in-out, box-shadow .6s ease-in-out;
+    transition: 
+      transform flip-panel-settings(transition-settings),
+      box-shadow flip-panel-settings(transition-settings);
 
     > header,
     > footer {
