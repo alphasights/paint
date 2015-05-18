@@ -36,6 +36,9 @@ $layout-sidebar-nav-title-height: rem-calc(40) !default;
 $layout-sidebar-nav-title-text-color: darken($layout-sidebar-nav-text-color, 50%) !default;
 $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $layout-sidebar-nav-padding !default;
 $layout-sidebar-nav-width: rem-calc(260) !default;
+$layout-sidebar-nav-bubble-selector: '.bubble' !default;
+$layout-sidebar-nav-bubble-width: rem-calc(24) !default;
+$layout-sidebar-nav-bubble-background-color: $steel !default;
 $layout-sidebar-selector: '.sidebar' !default;
 
 $include-html-paint-layout: true !default;
@@ -249,13 +252,28 @@ $include-html-paint-layout: true !default;
       width: $layout-sidebar-nav-link-icon-width;
     }
 
+    #{$layout-sidebar-nav-bubble-selector} {
+      background-color: $layout-sidebar-nav-bubble-background-color;
+      border-radius: $global-rounded;
+      color: $white;
+      float: right;
+      font-size: $small-font-size * .8;
+      font-weight: $font-weight-extrabold;
+      letter-spacing: -1px;
+      line-height: $layout-sidebar-nav-bubble-width;
+      margin-right: $layout-sidebar-nav-link-icon-padding / 2;
+      margin-top: ($layout-sidebar-nav-link-height - $layout-sidebar-nav-bubble-width) / 2;
+      min-width: $layout-sidebar-nav-bubble-width;
+      text-align: center;
+    }
+
     #{$subnav-selector} {
       background-color: darken($layout-sidebar-nav-background-color, 5%);
       border-left: solid 3px lighten($layout-sidebar-nav-background-color, 5%);
       margin: 0;
       padding: 0;
 
-      a span {
+      a span:not(#{$layout-sidebar-nav-bubble-selector}) {
         color: darken($layout-sidebar-nav-link-text-color, 10%);
       }
 
@@ -271,12 +289,20 @@ $include-html-paint-layout: true !default;
   width: $layout-sidebar-nav-width-collapsed;
 
   #{$layout-sidebar-nav-selector} #{$layout-sidebar-nav-list-selector} a {
+    position: relative;
+
     > i {
       margin-right: 0;
     }
 
-    > span {
+    > span:not(#{$layout-sidebar-nav-bubble-selector}) {
       display: none;
+    }
+
+    > #{$layout-sidebar-nav-bubble-selector} {
+      left: $layout-sidebar-nav-link-icon-width;
+      position: absolute;
+      top: - $layout-sidebar-nav-link-icon-padding / 2;
     }
   }
 
