@@ -5,6 +5,7 @@ $form-field-selector: '.form-field' !default;
 $form-field-with-errors: '.with-errors' !default;
 $form-field-error-selector: '.error' !default;
 $form-select-selector: '.form-select' !default;
+$form-multi-select-selector: '.form-multi-select' !default;
 $form-submission-with-confirm: '.with-confirm' !default;
 
 $form-confirm-border-color: transparentize($white, .65) !default;
@@ -21,6 +22,48 @@ $form-select-arrow-size: 4px !default;
 $form-select-background: linear-gradient(top, transparent, rgba($black, .03)) !default;
 
 $include-html-paint-form: true !default;
+
+$form-multiselect-control-background: $white !default;
+$form-multiselect-control-padding: 0 52px 0 $base-font-size !default;
+
+$form-multiselect-input-color: $monsoon !default;
+$form-multiselect-input-border: 1px solid $smoke !default;
+$form-multiselect-input-border-color: $iron !default;
+$form-multiselect-input-border-color-focus: lighten($primary-color, 30%) !default;
+$form-multiselect-input-font-size: 12px !default;
+
+$form-multiselect-text-color: $steel !default;
+$form-multiselect-padding-vertical: $column-gutter / 3 !default;
+$form-multiselect-padding-horizontal: $column-gutter / 2 !default;
+
+$form-multiselect-item-border: none !default;
+$form-multiselect-item-background: $jet !default;
+$form-multiselect-item-color: $white !default;
+$form-multiselect-item-font-size: 11px !default;
+$form-multiselect-item-margin: $form-multiselect-control-padding !default;
+$form-multiselect-item-icon-background-color: $primary-color !default;
+$form-multiselect-item-hover-background: rgba($white, 0.1) !default;
+
+$form-multiselect-placeholder-padding: $column-gutter / 4 52px $column-gutter / 4  $column-gutter / 2  !default;
+$form-multiselect-placeholder-color: $iron;
+$form-multiselect-placeholder-has-value-color: $form-multiselect-input-color !default;
+
+$form-multiselect-menu-border: 1px solid $form-multiselect-input-border-color-focus !default;
+$form-multiselect-menu-border-radius: 0 0 $global-radius $global-radius !default;
+$form-multiselect-option-color: $form-multiselect-input-color !default;
+$form-multiselect-option-padding: $form-input-height / 2 - $base-font-size / 2 $column-gutter / 2  $form-input-height / 2 - $base-font-size / 2  $column-gutter / 2  !default;
+$form-multiselect-option-focused-background: $primary-color !default;
+$form-multiselect-option-focused-color: $white !default;
+
+$form-multiselect-dropdown-icon: plus !default;
+$form-multiselect-dropdown-icon-size: 5px !default;
+$form-multiselect-dropdown-icon-color: $iron !default;
+$form-multiselect-max-height: 200px !default;
+$form-multiselect-loader-width: 16px !default;
+$form-multiselect-class: 'Select' !default;
+
+$multi-select-item-height: 30px !default;
+$multi-select-icon-width: 15px !default;
 
 @mixin form($with-border: $form-with-border) {
   @extend %grid-column-12;
@@ -161,6 +204,312 @@ $include-html-paint-form: true !default;
   line-height: $base-line-height;
   min-height: $form-input-height * 3;
   padding: $form-input-padding / 2;
+}
+
+@mixin form-multi-select() {
+  position: relative;
+
+  .content {
+    &:not(.is-open) > .menu-outer {
+      display: none;
+    }
+
+    &.is-searchable.is-open > .control {
+      cursor: text;
+    }
+
+    &.is-searchable.is-focused:not(.is-open) > .control {
+      cursor: text;
+    }
+
+    &.is-open > .control {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-color: $form-multiselect-input-border-color-focus;
+
+      > .arrow {
+        @if $form-multiselect-dropdown-icon == arrow {
+          border-color: transparent transparent $primary-color;
+          border-width: 0 $form-multiselect-dropdown-icon-size $form-multiselect-dropdown-icon-size;
+        }
+      }
+    }
+
+    &.multi {
+      .placeholder {
+        color: transparent;
+
+        &:before {
+          content: 'Type your source';
+          color: $form-multiselect-placeholder-color;
+        }
+      }
+
+      .control {
+        color: $ghost;
+      }
+    }
+
+    .control {
+      background-color: $form-multiselect-control-background;
+      border-radius: $global-radius;
+      border: $form-multiselect-input-border;
+      box-sizing: border-box;
+      color: $form-multiselect-input-color;
+      cursor: default;
+      outline: none;
+      overflow: hidden;
+      padding: $form-multiselect-control-padding;
+      position: relative;
+      transition: all 200ms ease;
+
+      &:hover {
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    &.is-focused .control {
+      border-color: $form-multiselect-input-border-color;
+    }
+
+    &.is-multi .input {
+      border: 1px solid transparent;
+      color: black;
+      vertical-align: middle;
+    }
+
+    .option {
+      border-bottom: $form-multiselect-menu-border;
+      box-sizing: border-box;
+      color: $form-multiselect-option-color;
+      cursor: pointer;
+      display: block;
+      font-size: $form-multiselect-input-font-size;
+      padding: $form-multiselect-option-padding;
+      width: 101%;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    .input > input {
+      -webkit-appearance: none;
+      line-height: $form-input-height;
+      background: none !important;
+      border: 0;
+      box-shadow: none !important;
+      cursor: default;
+      display: inline-block;
+      font-family: inherit;
+      margin: 0;
+      outline: none;
+      padding: 0 !important;
+      width: 100%;
+    }
+
+    &.is-focused .input > input {
+      cursor: text;
+    }
+
+    .placeholder {
+      color: $form-multiselect-placeholder-color;
+      font-size: $form-multiselect-input-font-size;
+      left: 0;
+      line-height: $base-font-size * 2;
+      max-width: 100%;
+      overflow: hidden;
+      padding: $form-multiselect-control-padding;
+      position: absolute;
+      text-overflow: ellipsis;
+      top: 0;
+      white-space: nowrap;
+    }
+
+    &.has-value > .control {
+      padding-top: $base-font-size / 2;
+      padding-bottom: $base-font-size / 2;
+      color: $form-multiselect-placeholder-has-value-color;
+    }
+
+    .control:not(.is-searchable) > .input {
+      outline: none;
+    }
+
+    .loading {
+      animation: spin 400ms infinite linear;
+      border-radius: 50%;
+      border-right-color: #333333;
+      border: 2px solid #cccccc;
+      box-sizing: border-box;
+      display: inline-block;
+      height: $form-multiselect-loader-width;
+      margin-top: -$form-multiselect-loader-width / 2;
+      position: relative;
+      right: $column-gutter;
+      top: 50%;
+      width: $form-multiselect-loader-width;
+    }
+
+    .item {
+      background-color: $form-multiselect-item-background;
+      border-radius: $global-radius;
+      border: $form-multiselect-item-border;
+      color: $form-multiselect-item-color;
+      display: inline-block;
+      font-size: $form-multiselect-item-font-size;
+      margin: $column-gutter / 5;
+      padding: 0;
+      position: relative;
+      transition: color 300ms ease;
+
+      &:hover {
+        .item-label {
+          padding: 0 20px 0 10px;
+        }
+
+        .item-icon {
+          display: block;
+        }
+      }
+    }
+
+    .item-icon,
+    .item-label {
+      vertical-align: middle;
+    }
+
+    .item-label {
+      border-bottom-right-radius: $form-multiselect-input-border;
+      border-top-right-radius: $form-multiselect-input-border;
+      cursor: default;
+      display: block;
+      line-height: $multi-select-item-height;
+      padding:  0 15px;
+      transition: padding 300ms ease;
+    }
+
+    .item-label .item-label__a {
+      color: #0088cc;
+      cursor: pointer;
+    }
+
+    .item-icon {
+      @include icon(times);
+
+      cursor: pointer;
+      display: none;
+      height: $multi-select-item-height;
+      line-height: $multi-select-item-height;
+      position: absolute;
+      right: -$multi-select-icon-width * 1000;
+      transition: color 300ms ease-in;
+      width: $multi-select-icon-width;
+
+      &:hover {
+        color: $alert-color;
+      }
+
+      &:before {
+        font-size: $form-multiselect-item-font-size;
+        left: -$multi-select-icon-width * 1000;
+        line-height: $multi-select-item-height;
+        position: absolute;
+      }
+    }
+
+    &.has-value > .control > .loading {
+      right: $column-gutter;
+    }
+
+    .clear {
+      color: $form-multiselect-dropdown-icon-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: $h2-font-size;
+      line-height: $h2-font-size;
+      padding: $base-font-size / 2 $base-font-size;
+      position: absolute;
+      right: $multi-select-icon-width;
+      top: 0;
+
+      &:hover {
+        color: lighten($alert-color, 7%);
+      }
+    }
+
+    .clear > span {
+      font-size: 1.1em;
+    }
+
+    .arrow {
+      @include button-icon($form-multiselect-dropdown-icon);
+
+      color: $form-multiselect-dropdown-icon-color;
+      content: " ";
+      cursor: pointer;
+      display: block;
+      height: 0;
+      margin: $column-gutter / 4  $column-gutter;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+
+      &:hover {
+        color: lighten($secondary-color, 7%);
+      }
+    }
+
+    .menu-outer {
+      -webkit-overflow-scrolling: touch;
+      background-color: white;
+      border-radius: $form-multiselect-menu-border-radius;
+      border: $form-multiselect-menu-border;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+      margin-top: -1px;
+      max-height: $form-multiselect-max-height;
+      //position: absolute;
+      top: 100%;
+      width: 100%;
+      z-index: 1000;
+
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .menu {
+      max-height: $form-multiselect-max-height;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .option:last-child {
+      border-radius: $form-multiselect-menu-border-radius;
+    }
+
+    .option.is-focused, .option:hover {
+      background-color: $form-multiselect-option-focused-background;
+      color: $form-multiselect-option-focused-color;
+      transition: background 0.3s ease;
+
+      &:last-child {
+        margin-bottom: -1px;
+      }
+    }
+
+    .noresults {
+      box-sizing: border-box;
+      color: #999999;
+      cursor: default;
+      display: block;
+      padding: $form-multiselect-placeholder-padding;
+      padding-right: $column-gutter / 3;
+    }
+  }
 }
 
 @mixin form-submission($with-border: $form-with-border, $with-confirm: true) {
@@ -337,6 +686,10 @@ $include-html-paint-form: true !default;
           }
         }
       }
+    }
+
+    &.form-multi-select {
+      @include form-multi-select;
     }
 
     .form-submission {
