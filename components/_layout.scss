@@ -80,8 +80,10 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
-    transition: width .175s ease-out;
+    transition: width .175s ease-in-out;
+    transition-delay: .015s;
     width: $layout-sidebar-nav-width;
+    transform: translate3d(0, 0, 0);
 
     @if $layout-sidebar-include-header {
       #{$layout-sidebar-header-selector} {
