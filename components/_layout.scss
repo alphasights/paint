@@ -87,6 +87,7 @@ $include-html-paint-layout: true !default;
         height: $layout-sidebar-header-height;
         line-height: $layout-sidebar-header-height;
         padding: 0 $layout-sidebar-nav-padding;
+        position: relative;
 
         img {
           @include single-transition(padding, 150ms, linear);
@@ -102,6 +103,10 @@ $include-html-paint-layout: true !default;
           display: inline-block;
           -webkit-font-smoothing: $body-font-smoothing;
           margin: 0;
+        }
+
+        .logo {
+          @extend %header-logo;
         }
       }
     }
