@@ -8,6 +8,7 @@ $layout-sidebar-footer-avatar-selector: '.avatar' !default;
 $layout-sidebar-footer-title-selector: '.name' !default;
 $layout-sidebar-footer-actions-selector: '.actions' !default;
 $layout-sidebar-footer-actions-icon: cog !default;
+$layout-sidebar-collapse-duration: .325s;
 $layout-sidebar-header-height: 60px !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * .5 !default;
 $layout-sidebar-header-selector: '> header' !default;
@@ -80,7 +81,7 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
-    transition: width .175s ease-in-out;
+    transition: width $layout-sidebar-collapse-duration / 2 ease-in-out;
     transition-delay: .015s;
     width: $layout-sidebar-nav-width;
     transform: translate3d(0, 0, 0);
@@ -107,8 +108,8 @@ $include-html-paint-layout: true !default;
           margin: 0;
           opacity: 1;
           transition: 
-            opacity .175s ease-in,
-            width .075s ease-in;
+            opacity $layout-sidebar-collapse-duration / 2 ease-in,
+            width $layout-sidebar-collapse-duration / 1.5 ease-in;
           width: auto;
         }
       }
@@ -247,7 +248,7 @@ $include-html-paint-layout: true !default;
       }
 
       > span {
-        transition: opacity .075s ease-in;
+        transition: opacity $layout-sidebar-collapse-duration / 2 ease-in;
       }
     }
 
