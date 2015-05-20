@@ -197,15 +197,6 @@ $multi-select-icon-width: 15px !default;
   }
 }
 
-@mixin form-textarea() {
-  @include form-input-shared-properties;
-
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  min-height: $form-input-height * 3;
-  padding: $form-input-padding / 2;
-}
-
 @mixin form-multi-select() {
   position: relative;
 
@@ -258,7 +249,6 @@ $multi-select-icon-width: 15px !default;
       color: $form-multiselect-input-color;
       cursor: default;
       outline: none;
-      overflow: hidden;
       padding: $form-multiselect-control-padding;
       position: relative;
       transition: all 200ms ease;
@@ -294,13 +284,13 @@ $multi-select-icon-width: 15px !default;
     }
 
     .input {
-      display: inline-block;
+      display: block;
       width: auto;
 
       > input {
         -webkit-appearance: none;
         background: none !important;
-        border: 0;
+        border: 0 !important;
         box-shadow: none !important;
         cursor: default;
         display: inline-block;
@@ -515,6 +505,15 @@ $multi-select-icon-width: 15px !default;
       padding-right: $column-gutter / 3;
     }
   }
+}
+
+@mixin form-textarea() {
+  @include form-input-shared-properties;
+
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  min-height: $form-input-height * 3;
+  padding: $form-input-padding / 2;
 }
 
 @mixin form-submission($with-border: $form-with-border, $with-confirm: true) {
