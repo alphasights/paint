@@ -81,7 +81,7 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
-    transition: width $layout-sidebar-collapse-duration / 2 ease-in-out;
+    transition: width $layout-sidebar-collapse-duration cubic-bezier(.78,.01,.27,1);
     transition-delay: .015s;
     width: $layout-sidebar-nav-width;
     transform: translate3d(0, 0, 0);
