@@ -33,6 +33,7 @@ $form-input-item-background: $jet !default;
 $form-input-item-color: $white !default;
 $form-input-option-focused-background: $primary-color !default;
 $form-input-option-focused-color: $white !default;
+
 $form-input-dropdown-icon: plus !default;
 $form-input-menu-max-height: 200px !default;
 
@@ -225,7 +226,7 @@ $form-input-menu-max-height: 200px !default;
       cursor: pointer;
       display: block;
       font-size: $small-font-size;
-      padding: $form-input-height / 2 - $base-font-size / 2 $column-gutter / 2  $form-input-height / 2 - $base-font-size / 2  $column-gutter / 2;
+      padding: $form-input-height / 2 - $base-font-size / 2 $column-gutter / 2;
       width: 101%;
 
       &:last-child {
@@ -291,28 +292,28 @@ $form-input-menu-max-height: 200px !default;
     }
 
     .items {
-      margin:$column-gutter / 3 0;
+      margin: $column-gutter / 3 0;
+    }
 
-      .item {
-        background-color: $form-input-item-background;
-        border: $form-input-item-border;
-        border-radius: $global-radius;
-        color: $form-input-item-color;
-        display: inline-block;
-        font-size: $small-font-size;
-        margin: $column-gutter / 5;
-        padding: 0;
-        position: relative;
-        transition: color 300ms ease;
+    .item {
+      background-color: $form-input-item-background;
+      border: $form-input-item-border;
+      border-radius: $global-radius;
+      color: $form-input-item-color;
+      display: inline-block;
+      font-size: $small-font-size;
+      margin: $column-gutter / 5;
+      padding: 0;
+      position: relative;
+      transition: color 300ms ease;
 
-        &:hover {
-          .item-label {
-            padding: 0 20px 0 10px;
-          }
+      &:hover {
+        .item-label {
+          padding: 0 20px 0 10px;
+        }
 
-          .item-icon {
-            display: block;
-          }
+        .item-icon {
+          display: block;
         }
       }
     }
@@ -327,8 +328,8 @@ $form-input-menu-max-height: 200px !default;
       display: block;
       line-height: $form-input-icon-size * 2;
       padding: 0 15px;
-      transition: padding 300ms ease;
       text-shadow: none;
+      transition: padding 300ms ease;
     }
 
     .item-icon {
@@ -362,9 +363,9 @@ $form-input-menu-max-height: 200px !default;
       cursor: pointer;
       height: $form-input-height;
       line-height: $form-input-height;
+      margin: $column-gutter / 4  $column-gutter / 2;
       position: absolute;
       right: $form-input-icon-size;
-      margin: $column-gutter / 4  $column-gutter / 2;
       text-align: center;
       top: 0;
 
@@ -386,8 +387,8 @@ $form-input-menu-max-height: 200px !default;
       margin: $column-gutter / 4  0;
       position: absolute;
       right: 0;
-      top: 0;
       text-align: center;
+      top: 0;
 
       &:hover {
         color: $info-color;
@@ -401,8 +402,8 @@ $form-input-menu-max-height: 200px !default;
       border-radius: 0 0 $global-radius $global-radius;
       box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
       box-sizing: border-box;
-      margin-top: -1px;
       margin-bottom: $column-gutter / 2;
+      margin-top: -1px;
       max-height: $form-input-menu-max-height;
       -webkit-overflow-scrolling: touch;
       top: 100%;
