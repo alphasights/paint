@@ -81,10 +81,10 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
-    transition: width $layout-sidebar-collapse-duration cubic-bezier(.78,.01,.27,1);
+    transform: translate3d(0, 0, 0);
+    transition: width $layout-sidebar-collapse-duration cubic-bezier(.78, .01, .27, 1);
     transition-delay: .015s;
     width: $layout-sidebar-nav-width;
-    transform: translate3d(0, 0, 0);
 
     @if $layout-sidebar-include-header {
       #{$layout-sidebar-header-selector} {
