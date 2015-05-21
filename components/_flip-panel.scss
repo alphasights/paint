@@ -119,7 +119,6 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .front {
-    box-shadow: 0 2px 1px $global-section-border-color;
     transform: rotateX(0deg) rotateY(0deg);
     z-index: 300;
 
