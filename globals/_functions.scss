@@ -45,3 +45,25 @@
 
   @return $merged-map;
 }
+
+@function brightness($color) {
+  @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+@function contrast(
+  $color,
+  $dark: $small-font-color,
+  $light: $white
+) {
+  $color-brightness: brightness($color);
+  $dark-text-brightness: brightness($dark);
+  $light-text-brightness: brightness($light);
+
+  @if abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness) {
+    $output: $light;
+  } @else {
+    $output: $dark;
+  }
+
+  @return $output;
+}
