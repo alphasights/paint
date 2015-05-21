@@ -22,20 +22,18 @@ $form-input-disabled-text-color: lighten($form-input-text-color, 20%) !default;
 $form-label-height: $form-input-height;
 $form-select-arrow-size: 4px !default;
 $form-select-background: linear-gradient(top, transparent, rgba($black, .03)) !default;
+$form-multi-select-icon-color: $small-font-color !default;
+$form-multi-select-icon-size: 14px !default;
+$form-multi-select-option-color: $form-input-text-color !default;
+$form-multi-select-item-border: 0 !default;
+$form-multi-select-item-background: $jet !default;
+$form-multi-select-item-color: $white !default;
+$form-multi-select-option-focused-background: $primary-color !default;
+$form-multi-select-option-focused-color: $white !default;
+$form-multi-select-dropdown-icon: plus !default;
+$form-multi-select-menu-max-height: 200px !default;
 
 $include-html-paint-form: true !default;
-
-$form-input-icon-color: $iron !default;
-$form-input-icon-size: 15px !default;
-$form-input-option-color: $monsoon !default;
-$form-input-item-border: 0 !default;
-$form-input-item-background: $jet !default;
-$form-input-item-color: $white !default;
-$form-input-option-focused-background: $primary-color !default;
-$form-input-option-focused-color: $white !default;
-
-$form-input-dropdown-icon: plus !default;
-$form-input-menu-max-height: 200px !default;
 
 @mixin form($with-border: $form-with-border) {
   @extend %grid-column-12;
@@ -173,65 +171,43 @@ $form-input-menu-max-height: 200px !default;
   position: relative;
 
   .content {
-    &:not(.is-open) > .menu-outer {
-      display: none;
-    }
-
-    &.is-searchable.is-open > .control {
-      cursor: text;
-    }
-
-    &.is-searchable.is-focused:not(.is-open) > .control {
-      cursor: text;
-    }
+    position: relative;
 
     &.is-open > .control {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       border-color: $form-input-border-color-focused;
+    }
 
-      > .arrow {
-        @if $form-input-dropdown-icon == arrow {
-          border-color: transparent transparent $primary-color;
-          border-width: 0 $form-select-arrow-size $form-select-arrow-size;
-        }
+    &:not(.is-open) > .options-selector {
+      display: none;
+    }
+
+    &.is-focused > .control,
+    &.is-focused > .options-selector {
+      border-color: $form-input-border-color-focused;
+    }
+
+    &.has-value > .control {
+      > .loading {
+        right: $column-gutter;
       }
+
+      input {
+        width: 3px;
+      }
+    }
+
+    &.is-open .input {
+      display: block;
+      width: 100%;
     }
 
     .control {
       @include form-input;
-      @include form-input-shared-properties;
-
 
       background-color: $form-input-background-color;
       position: relative;
-      transition: border-color 200ms ease;
-    }
-
-    &.is-focused .control,
-    &.is-focused .menu-outer {
-      border-color: $form-input-border-color-focused;
-    }
-
-    &.is-multi .input {
-      border: 1px solid transparent;
-      color: $black;
-      vertical-align: middle;
-    }
-
-    .option {
-      border-bottom: 1px solid $form-input-border-color;
-      box-sizing: border-box;
-      color: $form-input-option-color;
-      cursor: pointer;
-      display: block;
-      font-size: $small-font-size;
-      padding: $form-input-height / 2 - $base-font-size / 2 $column-gutter / 2;
-      width: 101%;
-
-      &:last-child {
-        border: 0;
-      }
     }
 
     .input {
@@ -254,67 +230,31 @@ $form-input-menu-max-height: 200px !default;
       }
     }
 
-    &.is-focused .input > input {
-      cursor: text;
-    }
-
-    &.has-value > .control {
-      padding-bottom: $base-font-size / 2;
-      padding-top: $base-font-size / 2;
-
-      > .loading {
-        right: $column-gutter;
-      }
-    }
-
-    &.is-open .input {
-      display: block;
-      width: 100%;
-    }
-
-    .control:not(.is-searchable) > .input {
-      outline: none;
-    }
-
-    .loading {
-      animation: spin 400ms infinite linear;
-      border: 2px solid #cccccc;
-      border-radius: 50%;
-      border-right-color: #333333;
-      box-sizing: border-box;
-      display: inline-block;
-      height: $form-input-icon-size;
-      margin-top: -$form-input-icon-size / 2;
-      position: relative;
-      right: $column-gutter;
-      top: 50%;
-      width: $form-input-icon-size;
-    }
-
-    .items {
-      margin: $column-gutter / 3 0;
-    }
-
     .item {
-      background-color: $form-input-item-background;
-      border: $form-input-item-border;
+      // @include fonm-multi-select-item;
+
+      background-color: $form-multi-select-item-background;
+      border: $form-multi-select-item-border;
       border-radius: $global-radius;
-      color: $form-input-item-color;
-      display: inline-block;
+      color: $form-multi-select-item-color;
+      float: left;
       font-size: $small-font-size;
-      margin: $column-gutter / 5;
+      margin: $column-gutter / 5 $column-gutter / 5 $column-gutter / 5 0;
       padding: 0;
       position: relative;
-      transition: color 300ms ease;
 
       &:hover {
         .item-label {
-          padding: 0 20px 0 10px;
+          padding: 0 $form-multi-select-icon-size * 1.5 0 $form-multi-select-icon-size / 2;
         }
 
         .item-icon {
           display: block;
         }
+      }
+
+      &:first-child {
+        margin-left: - $column-gutter / 5;
       }
     }
 
@@ -322,14 +262,15 @@ $form-input-menu-max-height: 200px !default;
     .item-label {
       vertical-align: middle;
     }
-
+  
+      // inside item mixin define item-height: $form-multi-select-icon-size * 2;
     .item-label {
       cursor: default;
       display: block;
-      line-height: $form-input-icon-size * 2;
-      padding: 0 15px;
+      line-height: $form-multi-select-icon-size * 2;
+      padding: 0 $form-multi-select-icon-size;
       text-shadow: none;
-      transition: padding 300ms ease;
+      transition: padding .125s ease;
     }
 
     .item-icon {
@@ -337,12 +278,12 @@ $form-input-menu-max-height: 200px !default;
 
       cursor: pointer;
       display: none;
-      height: $form-input-icon-size * 2;
-      line-height: $form-input-icon-size * 2;
+      height: $form-multi-select-icon-size * 2;
+      line-height: $form-multi-select-icon-size * 2;
       position: absolute;
-      right: -$form-input-icon-size * 1000;
+      right: -$form-multi-select-icon-size * 1000;
       transition: color 300ms ease-in;
-      width: $form-input-icon-size;
+      width: $form-multi-select-icon-size;
 
       &:hover {
         color: $alert-color;
@@ -350,8 +291,8 @@ $form-input-menu-max-height: 200px !default;
 
       &:before {
         font-size: $small-font-size;
-        left: -$form-input-icon-size * 1000;
-        line-height: $form-input-icon-size * 2;
+        left: -$form-multi-select-icon-size * 1000;
+        line-height: $form-multi-select-icon-size * 2;
         position: absolute;
       }
     }
@@ -359,29 +300,29 @@ $form-input-menu-max-height: 200px !default;
     .clear {
       @include button-icon(trash-o);
 
-      color: $form-input-icon-color;
+      color: $form-multi-select-icon-color;
       cursor: pointer;
       height: $form-input-height;
       line-height: $form-input-height;
-      margin: $column-gutter / 4  $column-gutter / 2;
+      margin: 
+        $column-gutter / 4
+        0
+        $column-gutter / 4
+        $column-gutter / 4;
       position: absolute;
-      right: $form-input-icon-size;
+      right: $form-multi-select-icon-size;
       text-align: center;
       top: 0;
 
       &:hover {
         color: lighten($alert-color, 7%);
       }
-
-      > span {
-        font-size: 1.1em;
-      }
     }
 
-    .arrow {
-      @include button-icon($form-input-dropdown-icon);
+    .add {
+      @include button-icon($form-multi-select-dropdown-icon);
 
-      color: $form-input-icon-color;
+      color: $form-multi-select-icon-color;
       content: ' ';
       cursor: pointer;
       margin: $column-gutter / 4  0;
@@ -395,7 +336,8 @@ $form-input-menu-max-height: 200px !default;
       }
     }
 
-    .menu-outer {
+    // extract to separate mixin
+    .options-selector {
       background-color: $white;
       border: 1px solid;
       border-color: $form-input-border-color;
@@ -404,38 +346,47 @@ $form-input-menu-max-height: 200px !default;
       box-sizing: border-box;
       margin-bottom: $column-gutter / 2;
       margin-top: -1px;
-      max-height: $form-input-menu-max-height;
+      max-height: $form-multi-select-menu-max-height;
       -webkit-overflow-scrolling: touch;
+      position: absolute;
       top: 100%;
       width: 100%;
-      z-index: 1000;
-
-      ul {
-        margin: 0;
-        padding: 0;
-      }
     }
 
-    .menu {
-      max-height: $form-input-menu-max-height;
+    .options {
+      margin: 0;
+      max-height: $form-multi-select-menu-max-height;
       overflow-x: hidden;
       overflow-y: auto;
+      padding: 0;
     }
 
-    .option:last-child {
-      border-radius: 0 0 $global-radius $global-radius;
-    }
-
-    .option.is-focused,
-    .option:hover {
-      background-color: $form-input-option-focused-background;
-      color: $form-input-option-focused-color;
-      transition: background .3s ease;
+    .option {
+      border-bottom: 1px solid $form-input-border-color;
+      box-sizing: border-box;
+      color: $form-multi-select-option-color;
+      cursor: pointer;
+      display: block;
+      font-size: $small-font-size;
+      padding: $column-gutter / 4 $column-gutter / 2;
 
       &:last-child {
-        margin-bottom: -1px;
+        border: 0;
+        border-radius: 0 0 $global-radius $global-radius;
+      }
+
+      &.is-focused,
+      &:hover {
+        background-color: $form-multi-select-option-focused-background;
+        color: $form-multi-select-option-focused-color;
+        transition: background .125s ease;
+
+        &:last-child {
+          margin-bottom: -1px;
+        }
       }
     }
+
 
     .noresults {
       box-sizing: border-box;
@@ -444,6 +395,22 @@ $form-input-menu-max-height: 200px !default;
       display: block;
       line-height: $form-input-height;
       padding-right: $column-gutter / 3;
+    }
+
+    // refactor and showcase
+    .loading {
+      animation: spin 400ms infinite linear;
+      border: 2px solid #cccccc;
+      border-radius: 50%;
+      border-right-color: #333333;
+      box-sizing: border-box;
+      display: inline-block;
+      height: $form-multi-select-icon-size;
+      margin-top: -$form-multi-select-icon-size / 2;
+      position: relative;
+      right: $column-gutter;
+      top: 50%;
+      width: $form-multi-select-icon-size;
     }
   }
 }
