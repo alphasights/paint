@@ -1,6 +1,8 @@
+@import 'panel';
+
 $flip-panel-default-settings: (
-  header-height: $h1-font-size + $column-gutter,
-  footer-height: $h1-font-size + $column-gutter / 2,
+  header-height: panel-settings(header-height),
+  footer-height: panel-settings(footer-height),
   icons: (
     back: long-arrow-left,
     forward: long-arrow-right
@@ -71,16 +73,14 @@ $include-html-paint-flip-panel: true !default;
 
   .front,
   .back {
+    @extend %panel-default;
+
     @if $min-height {
       position: absolute;
     } @else {
       position: relative;
     }
 
-    backface-visibility: hidden;
-    background-color: $white;
-    border: 1px solid $global-section-border-color;
-    border-radius: $global-radius;
     bottom: 0;
     left: 0;
     overflow: hidden;
@@ -90,30 +90,6 @@ $include-html-paint-flip-panel: true !default;
     transition: 
       transform flip-panel-settings(transition-settings),
       box-shadow flip-panel-settings(transition-settings);
-
-    > header,
-    > footer {
-      background-color: lighten($global-section-border-color, 5%);
-
-      a {
-        font-weight: $font-weight-bold;
-      }
-
-      i {
-        margin-right: $column-gutter / 4;
-      }
-    }
-
-    > header {
-      h1 {
-        color: $small-font-color;
-        font-size: $h4-font-size;
-        font-weight: $font-weight-bold;
-        line-height: flip-panel-settings(header-height);
-        margin: 0;
-        padding: 0 $column-gutter / 2;
-      }
-    }
 
     > footer {
       @if $min-height {
@@ -143,7 +119,6 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .front {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .025);
     transform: rotateX(0deg) rotateY(0deg);
     z-index: 300;
 
@@ -157,6 +132,8 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .back {
+    @include panel-background($white);
+
     position: absolute;
     transform: rotateY(-180deg);
     z-index: 200;
@@ -171,7 +148,7 @@ $include-html-paint-flip-panel: true !default;
   &.flipped {
     .front,
     .back {
-      box-shadow: 0 5px 10px rgba(0, 0, 0, .075);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, .075);
     }
 
     .front {
