@@ -64,10 +64,10 @@ $include-html-paint-panel: true !default;
     h1 {
       font-size: $base-font-size;
       font-weight: $font-weight-bold;
+      letter-spacing: 0;
       line-height: panel-settings(header-height);
       margin: 0;
       padding: 0 $column-gutter / 2;
-      letter-spacing: 0;
     }
   }
 }
