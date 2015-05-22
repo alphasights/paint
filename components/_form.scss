@@ -31,7 +31,7 @@ $form-multi-select-item-color: $white !default;
 $form-multi-select-option-focused-background: $primary-color !default;
 $form-multi-select-option-focused-color: $white !default;
 $form-multi-select-dropdown-icon: plus !default;
-$form-multi-select-menu-max-height: 200px !default;
+$form-multi-select-options-max-height: 200px !default;
 
 $include-html-paint-form: true !default;
 
@@ -182,11 +182,11 @@ $include-html-paint-form: true !default;
   position: relative;
 
   &:hover {
-    .item-label {
+    .label {
       padding: 0 $form-multi-select-icon-size * 1.5 0 $form-multi-select-icon-size / 2;
     }
 
-    .item-icon {
+    .icon {
       display: block;
     }
   }
@@ -195,12 +195,12 @@ $include-html-paint-form: true !default;
     margin-left: - $column-gutter / 5;
   }
 
-  .item-icon,
-  .item-label {
+  .icon,
+  .label {
     vertical-align: middle;
   }
 
-  .item-label {
+  .label {
     cursor: default;
     display: block;
     line-height: $item-height;
@@ -209,7 +209,7 @@ $include-html-paint-form: true !default;
     transition: padding .125s ease;
   }
 
-  .item-icon {
+  .icon {
     @include icon(times);
 
     cursor: pointer;
@@ -261,9 +261,10 @@ $include-html-paint-form: true !default;
   border-radius: 0 0 $global-radius $global-radius;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
   box-sizing: border-box;
+  display: none;
   margin-bottom: $column-gutter / 2;
   margin-top: -1px;
-  max-height: $form-multi-select-menu-max-height;
+  max-height: $form-multi-select-options-max-height;
   -webkit-overflow-scrolling: touch;
   position: absolute;
   top: 100%;
@@ -272,7 +273,7 @@ $include-html-paint-form: true !default;
 
   .options {
     margin: 0;
-    max-height: $form-multi-select-menu-max-height;
+    max-height: $form-multi-select-options-max-height;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0;
@@ -317,8 +318,8 @@ $include-html-paint-form: true !default;
       border-color: $form-input-border-color-focused;
     }
 
-    &:not(.is-open) > .options-selector {
-      display: none;
+    &.is-open > .options-selector {
+      display: block;
     }
 
     &.is-focused > .control,
@@ -601,15 +602,15 @@ $include-html-paint-form: true !default;
             @include form-select;
           }
 
+          &.form-multi-select {
+            @include form-multi-select;
+          }
+
           textarea {
             @include form-textarea;
           }
         }
       }
-    }
-
-    &.form-multi-select {
-      @include form-multi-select;
     }
 
     .form-submission {
