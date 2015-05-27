@@ -167,77 +167,82 @@ $include-html-paint-form: true !default;
   }
 }
 
+@mixin form-multi-select-item-label($item-height) {
+  line-height: $item-height;
+  padding: 0 $form-multi-select-icon-size;
+  text-shadow: none;
+  transition: padding .125s ease;  
+}
 
-@mixin form-multi-select-item() {
+@mixin form-multi-select-item($item, $label, $icon) {
   $item-height: $form-multi-select-icon-size * 2;
 
-  background-color: $form-multi-select-item-background;
-  border: $form-multi-select-item-border;
-  border-radius: $global-radius;
-  color: $form-multi-select-item-color;
-  float: left;
-  font-size: $small-font-size;
-  margin: $column-gutter / 5 $column-gutter / 5 $column-gutter / 5 0;
-  padding: 0;
-  position: relative;
+  #{$item} {
+    background-color: $form-multi-select-item-background;
+    border: $form-multi-select-item-border;
+    border-radius: $global-radius;
+    color: $form-multi-select-item-color;
+    float: left;
+    font-size: $small-font-size;
+    margin: $column-gutter / 5 $column-gutter / 5 $column-gutter / 5 0;
+    position: relative;
 
-  &:hover {
-    .label {
-      padding: 0 $form-multi-select-icon-size * 1.5 0 $form-multi-select-icon-size / 2;
+    &:first-child {
+      margin-left: - $column-gutter / 5;
     }
 
-    .icon {
-      display: block;
-    }
-  }
+    @if $label == false {
+      @include form-multi-select-item-label($item-height);
+    } @else {
+      &:hover {
+        #{$label} {
+          padding: 0 $form-multi-select-icon-size * 1.5 0 $form-multi-select-icon-size / 2;
+        }
 
-  &:first-child {
-    margin-left: - $column-gutter / 5;
-  }
+        #{$icon} {
+          display: block;
+        }
+      }
 
-  .icon,
-  .label {
-    vertical-align: middle;
-  }
+      #{$label},
+      #{$icon} {
+        vertical-align: middle;
+      }
 
-  .label {
-    cursor: default;
-    display: block;
-    line-height: $item-height;
-    padding: 0 $form-multi-select-icon-size;
-    text-shadow: none;
-    transition: padding .125s ease;
-  }
+      #{$label} {
+        @include form-multi-select-item-label($item-height);
 
-  .icon {
-    @include icon(times);
+        display: block;
+      }
 
-    cursor: pointer;
-    display: none;
-    height: $item-height;
-    line-height: $item-height;
-    position: absolute;
-    right: -$form-multi-select-icon-size * 1000;
-    transition: color 300ms ease-in;
-    width: $form-multi-select-icon-size;
+      #{$icon} {
+        @include icon(times);
 
-    &:hover {
-      color: $alert-color;
-    }
+        cursor: pointer;
+        display: none;
+        height: $item-height;
+        line-height: $item-height;
+        position: absolute;
+        right: -$form-multi-select-icon-size * 1000;
+        transition: color 300ms ease-in;
+        width: $form-multi-select-icon-size;
 
-    &:before {
-      font-size: $small-font-size;
-      left: -$form-multi-select-icon-size * 1000;
-      line-height: $item-height;
-      position: absolute;
+        &:hover {
+          color: $alert-color;
+        }
+
+        &:before {
+          font-size: $small-font-size;
+          left: -$form-multi-select-icon-size * 1000;
+          line-height: $item-height;
+          position: absolute;
+        }
+      }
     }
   }
 }
 
 @mixin form-multi-select-input() {
-  display: block;
-  width: auto;
-
   > input {
     -webkit-appearance: none;
     background: none !important;
@@ -254,7 +259,20 @@ $include-html-paint-form: true !default;
   }
 }
 
-@mixin form-multi-select-options() {
+@mixin form-multi-select-input-selector($selector: false) {
+  @if $selector {
+    #{$selector} {
+      @include form-multi-select-input;
+
+      display: block;
+      width: auto;
+    }
+  } @else {
+    @include form-multi-select-input;
+  }
+}
+
+@mixin form-multi-select-options($options, $option) {
   background-color: $white;
   border: 1px solid;
   border-color: $form-input-border-color;
@@ -271,7 +289,7 @@ $include-html-paint-form: true !default;
   width: 100%;
   z-index: 1;
 
-  .options {
+  #{$options} {
     margin: 0;
     max-height: $form-multi-select-options-max-height;
     overflow-x: hidden;
@@ -279,7 +297,7 @@ $include-html-paint-form: true !default;
     padding: 0;
   }
 
-  .option {
+  #{$option} {
     border-bottom: 1px solid $form-input-border-color;
     box-sizing: border-box;
     color: $form-multi-select-option-color;
@@ -306,122 +324,126 @@ $include-html-paint-form: true !default;
   }
 }
 
-@mixin form-multi-select() {
+@mixin form-multi-select(
+  $control: '.control',
+  $item: '.item',
+  $item-label: '.label',
+  $item-icon: '.icon',
+  $input-selector: false,
+  $arrow-selector: false,
+  $clear-all-selector: false,
+  $options-selector: '.options-selector',
+  $options: '.options',
+  $option: '.option'
+) {
   position: relative;
 
-  .content {
-    position: relative;
+  &.is-open > #{$control} {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: $form-input-border-color-focused;
+  }
 
-    &.is-open > .control {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-color: $form-input-border-color-focused;
-    }
+  &.is-open > #{$options-selector} {
+    display: block;
+  }
 
-    &.is-open > .options-selector {
-      display: block;
-    }
+  &.is-focused > #{$control},
+  &.is-focused > #{$options-selector} {
+    border-color: $form-input-border-color-focused;
+  }
 
-    &.is-focused > .control,
-    &.is-focused > .options-selector {
-      border-color: $form-input-border-color-focused;
-    }
-
-    &.has-value > .control {
-      > .loading {
-        right: $column-gutter;
-      }
-
-      input {
-        width: 3px;
-      }
-    }
-
-    &.is-open .input {
-      display: block;
-      width: 100%;
-    }
-
-    .control {
-      @include form-input;
-
-      background-color: $form-input-background-color;
-      position: relative;
-    }
-
-    .input {
-      @include form-multi-select-input;
-    }
-
-    .item {
-      @include form-multi-select-item;
-    }
-
-    .add,
-    .clear {
-      color: $form-multi-select-icon-color;
-      cursor: pointer;
-      height: $form-input-height;
-      line-height: $form-input-height;
-      position: absolute;
-      text-align: center;
-      top: 0;
-    }
-
-    .clear {
-      @include button-icon(trash-o);
-
-      margin: 
-        $column-gutter / 4
-        $column-gutter / 6
-        $column-gutter / 4
-        $column-gutter / 4;
-      right: $form-multi-select-icon-size;
-
-      &:hover {
-        color: lighten($alert-color, 7%);
-      }
-    }
-
-    .add {
-      @include button-icon($form-multi-select-dropdown-icon);
-
-      margin: $column-gutter / 4  0;
-      right: 0;
-
-      &:hover {
-        color: $info-color;
-      }
-    }
-
-    .options-selector {
-      @include form-multi-select-options;
-    }
-
-    .noresults {
-      box-sizing: border-box;
-      color: $iron;
-      cursor: default;
-      display: block;
-      line-height: $form-input-height;
-      padding-right: $column-gutter / 3;
-    }
-
-    // refactor and showcase
-    .loading {
-      animation: spin 400ms infinite linear;
-      border: 2px solid #cccccc;
-      border-radius: 50%;
-      border-right-color: #333333;
-      box-sizing: border-box;
-      display: inline-block;
-      height: $form-multi-select-icon-size;
-      margin-top: -$form-multi-select-icon-size / 2;
-      position: relative;
+  &.has-value > #{$control} {
+    > .loading {
       right: $column-gutter;
-      top: 50%;
-      width: $form-multi-select-icon-size;
     }
+
+    input {
+      width: 3px;
+    }
+  }
+
+  &.is-open .input {
+    display: block;
+    width: 100%;
+  }
+
+  #{$control} {
+    @include form-input;
+    @include form-multi-select-input-selector($selector: $input-selector);
+    @include form-multi-select-item(
+      $item: $item,
+      $label: $item-label,
+      $icon: $item-icon
+    );
+
+    background-color: $form-input-background-color;
+    position: relative;
+  }
+
+  .add,
+  .clear {
+    color: $form-multi-select-icon-color;
+    cursor: pointer;
+    height: $form-input-height;
+    line-height: $form-input-height;
+    position: absolute;
+    text-align: center;
+    top: 0;
+  }
+
+  .clear {
+    @include button-icon(trash-o);
+
+    margin:$column-gutter / 4
+      $column-gutter / 6
+      $column-gutter / 4
+      $column-gutter / 4;
+    right: $form-multi-select-icon-size;
+
+    &:hover {
+      color: lighten($alert-color, 7%);
+    }
+  }
+
+  .add {
+    @include button-icon($form-multi-select-dropdown-icon);
+
+    margin: $column-gutter / 4  0;
+    right: 0;
+
+    &:hover {
+      color: $info-color;
+    }
+  }
+
+  #{$options-selector} {
+    @include form-multi-select-options($options: $options, $option: $option);
+  }
+
+  .noresults {
+    box-sizing: border-box;
+    color: $iron;
+    cursor: default;
+    display: block;
+    line-height: $form-input-height;
+    padding-right: $column-gutter / 3;
+  }
+
+  // refactor and showcase
+  .loading {
+    animation: spin 400ms infinite linear;
+    border: 2px solid #cccccc;
+    border-radius: 50%;
+    border-right-color: #333333;
+    box-sizing: border-box;
+    display: inline-block;
+    height: $form-multi-select-icon-size;
+    margin-top: -$form-multi-select-icon-size / 2;
+    position: relative;
+    right: $column-gutter;
+    top: 50%;
+    width: $form-multi-select-icon-size;
   }
 }
 
@@ -603,8 +625,11 @@ $include-html-paint-form: true !default;
             @include form-select;
           }
 
-          &.form-multi-select {
-            @include form-multi-select;
+          &.form-multi-select .content {
+            @include form-multi-select(
+              $control: '.control',
+              $input-selector: '.input'
+            );
           }
 
           textarea {
