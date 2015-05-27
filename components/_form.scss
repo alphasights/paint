@@ -395,7 +395,7 @@ $include-html-paint-form: true !default;
   .clear {
     @include button-icon(trash-o);
 
-    margin:$column-gutter / 4
+    margin: $column-gutter / 4
       $column-gutter / 6
       $column-gutter / 4
       $column-gutter / 4;
