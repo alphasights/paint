@@ -171,7 +171,7 @@ $include-html-paint-form: true !default;
   line-height: $item-height;
   padding: 0 $form-multi-select-icon-size;
   text-shadow: none;
-  transition: padding .125s ease;  
+  transition: padding .125s ease;
 }
 
 @mixin form-multi-select-item($item, $label, $icon) {
@@ -272,7 +272,7 @@ $include-html-paint-form: true !default;
   }
 }
 
-@mixin form-multi-select-options($options, $option) {
+@mixin form-multi-select-options($options, $option, $is-focused-selector) {
   background-color: $white;
   border: 1px solid;
   border-color: $form-input-border-color;
@@ -311,7 +311,7 @@ $include-html-paint-form: true !default;
       border-radius: 0 0 $global-radius $global-radius;
     }
 
-    &.is-focused,
+    &#{$is-focused-selector},
     &:hover {
       background-color: $form-multi-select-option-focused-background;
       color: $form-multi-select-option-focused-color;
@@ -330,40 +330,49 @@ $include-html-paint-form: true !default;
   $item-label: '.label',
   $item-icon: '.icon',
   $input-selector: false,
-  $arrow-selector: false,
+  $add-selector: '.add',
   $clear-all-selector: false,
   $options-selector: '.options-selector',
   $options: '.options',
-  $option: '.option'
+  $option: '.option',
+  $is-open-selector: '.is-open',
+  $has-items-selector: '.has-value',
+  $is-focused-selector: '.is-focused'
 ) {
   position: relative;
 
-  &.is-open > #{$control} {
+  &#{$is-open-selector} > #{$control},
+  #{$is-open-selector}#{$control} {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-color: $form-input-border-color-focused;
   }
 
-  &.is-open > #{$options-selector} {
+  &#{$is-open-selector} > #{$options-selector},
+  #{$is-open-selector} + #{$options-selector} {
     display: block;
   }
 
-  &.is-focused > #{$control},
-  &.is-focused > #{$options-selector} {
+  &#{$is-focused-selector} > #{$control},
+  &#{$is-focused-selector} > #{$options-selector},
+  #{$is-focused-selector}#{$control},
+  #{$is-focused-selector} + #{$options-selector} {
     border-color: $form-input-border-color-focused;
   }
 
-  &.has-value > #{$control} {
+  &#{$has-items-selector} > #{$control},
+  #{$has-items-selector}#{$control} {
     > .loading {
       right: $column-gutter;
     }
 
-    input {
-      width: 3px;
+    #{$input-selector} input,
+    > input {
+      width: auto;
     }
   }
 
-  &.is-open .input {
+  &#{$is-open-selector} #{$input-selector} {
     display: block;
     width: 100%;
   }
@@ -381,18 +390,21 @@ $include-html-paint-form: true !default;
     position: relative;
   }
 
-  .add,
-  .clear {
+  #{$add-selector},
+  #{$clear-all-selector} {
     color: $form-multi-select-icon-color;
     cursor: pointer;
     height: $form-input-height;
     line-height: $form-input-height;
     position: absolute;
-    text-align: center;
+    text-align: right;
+    text-shadow: none;
     top: 0;
+    width: $form-input-height;
+    overflow: hidden;
   }
 
-  .clear {
+  #{$clear-all-selector} {
     @include button-icon(trash-o);
 
     margin: $column-gutter / 4
@@ -406,7 +418,7 @@ $include-html-paint-form: true !default;
     }
   }
 
-  .add {
+  #{$add-selector} {
     @include button-icon($form-multi-select-dropdown-icon);
 
     margin: $column-gutter / 4  0;
@@ -418,7 +430,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$options-selector} {
-    @include form-multi-select-options($options: $options, $option: $option);
+    @include form-multi-select-options($options: $options, $option: $option, $is-focused-selector: $is-focused-selector);
   }
 
   .noresults {
