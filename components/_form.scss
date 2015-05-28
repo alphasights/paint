@@ -182,8 +182,8 @@ $include-html-paint-form: true !default;
     right: 0;
     text-align: right;
     top: 0;
-    transform-style: preserve-3d;
     transform: rotateX(180deg) rotateY(0deg);
+    transform-style: preserve-3d;
     transition: transform .250s ease-in-out;
     z-index: 300;
 
@@ -251,10 +251,10 @@ $include-html-paint-form: true !default;
       padding: $column-gutter $column-gutter / 2 !important;
     }
   } @else {
-    padding: 0 $column-gutter / 2 !important;
+    background-color: transparent;
     border: 0 !important;
     border-radius: 0 !important;
-    background-color: transparent;
+    padding: 0 $column-gutter / 2 !important;
   }
 
   @if $height {
