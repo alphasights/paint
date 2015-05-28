@@ -6,7 +6,6 @@ $form-field-with-errors: '.with-errors' !default;
 $form-field-error-selector: '.error' !default;
 $form-select-selector: '.form-select' !default;
 $form-submission-with-confirm: '.with-confirm' !default;
-
 $form-confirm-border-color: transparentize($white, .65) !default;
 $form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
 $form-input-border-color: darken($white, 10%) !default;
@@ -163,26 +162,45 @@ $include-html-paint-form: true !default;
   padding: $form-input-padding / 2;
 }
 
-@mixin form-submission($with-border: $form-with-border, $with-confirm: true) {
+@mixin form-submission($with-border: $form-with-border, $with-confirm: true, $standalone: false) {
   @extend %grid-column-12;
   @include single-transition(background-color, 150ms, linear);
 
-  background-color: $white;
-  border-top: 1px solid $global-section-border-color;
+  @if $standalone == false {
+    background-color: $white;
+    border-top: 1px solid $global-section-border-color;
 
-  @if $with-border {
-    border-bottom-left-radius: $global-radius;
-    border-bottom-right-radius: $global-radius;
-    padding: $column-gutter !important;
+    @if $with-border {
+      border-bottom-left-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+      padding: $column-gutter !important;
+    } @else {
+      padding: $column-gutter $column-gutter / 2 !important;
+    }
   } @else {
-    padding: $column-gutter $column-gutter / 2 !important;
+    padding: 0 $column-gutter / 2 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background-color: transparent;
   }
 
   @if $with-confirm {
     &#{$form-submission-with-confirm} {
-      background-color: lighten($alert-color, 0%);
+      background-color: $alert-color;
       color: $white;
       text-align: right;
+
+      &.warning {
+        background-color: $warning-color;
+      }
+
+      &.info {
+        background-color: $info-color;
+      }
+
+      &.success {
+        background-color: $success-color;
+      }
 
       span {
         float: left;
