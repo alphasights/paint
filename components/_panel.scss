@@ -1,0 +1,91 @@
+$panel-default-settings: (
+  header-height: $h1-font-size + $column-gutter,
+  footer-height: $h1-font-size + $column-gutter / 2,
+  styles: (
+    default: lighten($global-section-border-color, 5%),
+    primary: $primary-color,
+    widget: $anchor-font-color
+  ),
+);
+
+@if global-variable-exists(panel) {
+  $panel: map-merge-settings($panel-default-settings, $panel);
+} @else {
+  $panel: $panel-default-settings;
+}
+
+$include-html-paint-panel: true !default;
+
+@function panel-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($panel, $setting), $property),
+  } @else {
+    @return map-get($panel, $setting)
+  }
+}
+
+@mixin panel-background(
+  $background-color: lighten($global-section-border-color, 5%)
+) {
+  $dark-background-color: desaturate(adjust-hue($background-color, 10%), 15%);
+  $light-background-color: saturate(adjust-hue($background-color, 10%), 15%);
+
+  > header {
+    background: linear-gradient(to right, $dark-background-color, $background-color);
+
+    h1 {
+      color: contrast($background-color);
+    }
+  }
+
+  > footer {
+    background-color: lighten($global-section-border-color, 5%);
+  }
+}
+
+%panel {
+  backface-visibility: hidden;
+  background-color: $white;
+  border: 1px solid $global-section-border-color;
+  border-radius: $global-radius;
+  box-shadow: 0 2px 1px $global-section-border-color;
+
+  > header,
+  > footer {
+    a {
+      font-weight: $font-weight-bold;
+    }
+
+    i {
+      margin-right: $column-gutter / 4;
+    }
+  }
+
+  > header {
+    border-radius: $global-radius $global-radius 0 0;
+
+    h1 {
+      font-size: $base-font-size;
+      font-weight: $font-weight-bold;
+      letter-spacing: 0;
+      line-height: panel-settings(header-height);
+      margin: 0;
+      padding: 0 $column-gutter / 2;
+    }
+  }
+}
+
+@mixin panel-placeholders(
+  $styles: panel-settings(styles)
+) {
+  @each $style, $background-color in $styles {
+    %panel-#{$style} {
+      @extend %panel;
+      @include panel-background($background-color);
+    }
+  }
+}
+
+@include exports('paint-panel') {
+  @include panel-placeholders;
+}

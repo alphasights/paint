@@ -8,6 +8,7 @@ $layout-sidebar-footer-avatar-selector: '.avatar' !default;
 $layout-sidebar-footer-title-selector: '.name' !default;
 $layout-sidebar-footer-actions-selector: '.actions' !default;
 $layout-sidebar-footer-actions-icon: cog !default;
+$layout-sidebar-collapse-duration: .325s;
 $layout-sidebar-header-height: 60px !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * .5 !default;
 $layout-sidebar-header-selector: '> header' !default;
@@ -80,6 +81,9 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
+    transform: translate3d(0, 0, 0);
+    transition: width $layout-sidebar-collapse-duration cubic-bezier(.78, .01, .27, 1);
+    transition-delay: .015s;
     width: $layout-sidebar-nav-width;
 
     @if $layout-sidebar-include-header {
@@ -102,6 +106,11 @@ $include-html-paint-layout: true !default;
           display: inline-block;
           -webkit-font-smoothing: $body-font-smoothing;
           margin: 0;
+          opacity: 1;
+          transition: 
+            opacity $layout-sidebar-collapse-duration / 2 ease-in,
+            width $layout-sidebar-collapse-duration / 1.5 ease-in;
+          width: auto;
         }
       }
     }
@@ -187,7 +196,6 @@ $include-html-paint-layout: true !default;
 
     .toggle-collapse {
       color: $layout-sidebar-nav-link-text-color;
-      display: inline-block;
       float: right;
       line-height: $layout-sidebar-nav-title-height;
 
@@ -237,6 +245,10 @@ $include-html-paint-layout: true !default;
           background-color: lighten($layout-sidebar-nav-link-active-background-color, 5%);
           color: lighten($layout-sidebar-nav-link-active-text-color, 5%);
         }
+      }
+
+      > span {
+        transition: opacity $layout-sidebar-collapse-duration / 2 ease-in;
       }
     }
 
@@ -296,7 +308,8 @@ $include-html-paint-layout: true !default;
     }
 
     > span:not(#{$layout-sidebar-nav-bubble-selector}) {
-      display: none;
+      opacity: 0;
+      width: 0;
     }
 
     > #{$layout-sidebar-nav-bubble-selector} {
@@ -304,6 +317,11 @@ $include-html-paint-layout: true !default;
       position: absolute;
       top: - $layout-sidebar-nav-link-icon-padding / 2;
     }
+  }
+
+  h1 {
+    opacity: 0;
+    width: 0;
   }
 
   .toggle-collapse {
@@ -315,7 +333,7 @@ $include-html-paint-layout: true !default;
     }
   }
 
-  header {
+  #{$layout-sidebar-nav-selector} header {
     h1 {
       display: none;
     }
