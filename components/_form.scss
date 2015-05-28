@@ -186,49 +186,49 @@ $include-html-paint-form: true !default;
     transform: rotateX(180deg) rotateY(0deg);
     transition: transform .250s ease-in-out;
     z-index: 300;
+
+    &.warning {
+      background-color: $warning-color;
+    }
+
+    &.info {
+      background-color: $anchor-font-color;
+    }
+
+    &.success {
+      background-color: $success-color;
+    }
+
+    span {
+      float: left;
+      line-height: $button-large-height;
+      padding: 0;
+    }
+
+    @if $height {
+      span {
+        line-height: $height !important;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: solid 1px $form-confirm-border-color;
+      color: $white;
+
+      &:hover {
+        background-color: $form-confirm-border-color;
+      }
+    }
+
+    a {
+      color: $white;
+    }
   }
 
   &#{$form-submission-action-active} {
     #{$form-submission-action-confirmation-selector} {
       transform: rotateX(0deg);
-
-      &.warning {
-        background-color: $warning-color;
-      }
-
-      &.info {
-        background-color: $info-color;
-      }
-
-      &.success {
-        background-color: $success-color;
-      }
-
-      span {
-        float: left;
-        line-height: $button-large-height;
-        padding: 0;
-      }
-
-      @if $height {
-        span {
-          line-height: $height !important;
-        }
-      }
-
-      button {
-        background-color: transparent;
-        border: solid 1px $form-confirm-border-color;
-        color: $white;
-
-        &:hover {
-          background-color: $form-confirm-border-color;
-        }
-      }
-
-      a {
-        color: $white;
-      }
     }
   }
 }
