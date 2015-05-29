@@ -283,6 +283,27 @@ $include-html-paint-form: true !default;
     &:not([type="submit"]) {
       padding: $column-gutter / 2;
     }
+
+    &.secondary {
+      @extend %button-secondary;
+    }
+
+    &.error {
+      @extend %button-error;
+    }
+
+    &.warning {
+      @extend %button-warning;
+    }
+
+    &.info {
+      @extend %button-info;
+    }
+
+    &.success {
+      @extend %button-success;
+    }
+
   }
 
   a {
