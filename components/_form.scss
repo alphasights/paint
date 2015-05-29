@@ -430,19 +430,13 @@ $include-html-paint-form: true !default;
   }
 
   #{$options-selector} {
-    @include form-multi-select-options($options: $options, $option: $option, $is-focused-selector: $is-focused-selector);
+    @include form-multi-select-options(
+      $options: $options,
+      $option: $option,
+      $is-focused-selector: $is-focused-selector
+    );
   }
 
-  .noresults {
-    box-sizing: border-box;
-    color: $iron;
-    cursor: default;
-    display: block;
-    line-height: $form-input-height;
-    padding-right: $column-gutter / 3;
-  }
-
-  // refactor and showcase
   .loading {
     animation: spin 400ms infinite linear;
     border: 2px solid #cccccc;
