@@ -251,7 +251,6 @@ $include-html-paint-form: true !default;
       padding: $column-gutter $column-gutter / 2 !important;
     }
   } @else {
-    background-color: transparent;
     border: 0 !important;
     border-radius: 0 !important;
     padding: 0 $column-gutter / 2 !important;
