@@ -9,7 +9,6 @@ $form-multi-select-selector: '.form-multi-select' !default;
 $form-submission-action-selector: '.action' !default;
 $form-submission-action-active: '.active' !default;
 $form-submission-action-confirmation-selector: '.confirmation' !default;
-$form-submission-with-confirm: '.with-confirm' !default;
 $form-confirm-border-color: transparentize($white, .65) !default;
 $form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
 $form-input-background-color: $white !default;
@@ -580,10 +579,6 @@ $include-html-paint-form: true !default;
       }
     }
 
-    &:not([type='submit']) {
-      padding: $column-gutter / 2;
-    }
-
     &.secondary {
       @extend %button-secondary;
     }
@@ -608,7 +603,7 @@ $include-html-paint-form: true !default;
   a {
     color: $small-font-color;
     display: inline-block;
-    padding: 0 $column-gutter;
+    padding: $column-gutter / 3 $column-gutter;
 
     &:hover {
       color: $body-font-color;
