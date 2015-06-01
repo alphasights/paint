@@ -603,7 +603,12 @@ $include-html-paint-form: true !default;
   a {
     color: $small-font-color;
     display: inline-block;
-    padding: $column-gutter / 3 $column-gutter;
+
+    @if $height {
+      padding: 0 $column-gutter;
+    } @else {
+      padding: $column-gutter / 3 $column-gutter;
+    }
 
     &:hover {
       color: $body-font-color;
