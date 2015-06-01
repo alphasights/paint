@@ -6,8 +6,9 @@ $form-field-with-errors: '.with-errors' !default;
 $form-field-error-selector: '.error' !default;
 $form-select-selector: '.form-select' !default;
 $form-multi-select-selector: '.form-multi-select' !default;
-$form-submission-with-confirm: '.with-confirm' !default;
-
+$form-submission-action-selector: '.action' !default;
+$form-submission-action-active: '.active' !default;
+$form-submission-action-confirmation-selector: '.confirmation' !default;
 $form-confirm-border-color: transparentize($white, .65) !default;
 $form-input-background: linear-gradient(bottom, transparent, rgba($black, .03)) !default;
 $form-input-background-color: $white !default;
@@ -462,47 +463,107 @@ $include-html-paint-form: true !default;
   padding: $form-input-padding / 2;
 }
 
-@mixin form-submission($with-border: $form-with-border, $with-confirm: true) {
+@mixin form-submission-action($height: false) {
+  float: left;
+
+  &:not(:first-child) {
+    margin-left: $column-gutter / 2;
+  }
+
+  #{$form-submission-action-confirmation-selector} {
+    backface-visibility: hidden;
+    background-color: $alert-color;
+    bottom: 0;
+    color: $white;
+    left: 0;
+    padding: $column-gutter !important;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    transform: rotateX(180deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform .250s ease-in-out;
+    z-index: 300;
+
+    &.warning {
+      background-color: $warning-color;
+    }
+
+    &.info {
+      background-color: $anchor-font-color;
+    }
+
+    &.success {
+      background-color: $success-color;
+    }
+
+    span {
+      float: left;
+      line-height: $button-large-height;
+      padding: 0;
+    }
+
+    @if $height {
+      span {
+        line-height: $height !important;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: solid 1px $form-confirm-border-color;
+      color: $white;
+
+      &:hover {
+        background-color: $form-confirm-border-color;
+      }
+    }
+
+    a {
+      color: $white;
+    }
+  }
+
+  &#{$form-submission-action-active} {
+    #{$form-submission-action-confirmation-selector} {
+      transform: rotateX(0deg);
+    }
+  }
+}
+
+@mixin form-submission($with-border: $form-with-border, $standalone: false, $height: false) {
   @extend %grid-column-12;
   @include single-transition(background-color, 150ms, linear);
 
-  background-color: $white;
-  border-top: 1px solid $global-section-border-color;
+  position: relative;
 
-  @if $with-border {
-    border-bottom-left-radius: $global-radius;
-    border-bottom-right-radius: $global-radius;
-    padding: $column-gutter !important;
+  @if $standalone == false {
+    background-color: $white;
+    border-top: 1px solid $global-section-border-color;
+
+    @if $with-border {
+      border-bottom-left-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+      padding: $column-gutter !important;
+    } @else {
+      padding: $column-gutter $column-gutter / 2 !important;
+    }
   } @else {
-    padding: $column-gutter $column-gutter / 2 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 $column-gutter / 2 !important;
   }
 
-  @if $with-confirm {
-    &#{$form-submission-with-confirm} {
-      background-color: lighten($alert-color, 0%);
-      color: $white;
-      text-align: right;
+  @if $height {
+    height: $height;
+    line-height: $height;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
 
-      span {
-        float: left;
-        line-height: 100%;
-        padding: $column-gutter / 2 0;
-      }
-
-      button {
-        background-color: transparent;
-        border: solid 1px $form-confirm-border-color;
-        color: $white;
-
-        &:hover {
-          background-color: $form-confirm-border-color;
-        }
-      }
-
-      a {
-        color: $white;
-      }
-    }
+  #{$form-submission-action-selector} {
+    @include form-submission-action($height: $height);
   }
 
   button {
@@ -518,15 +579,36 @@ $include-html-paint-form: true !default;
       }
     }
 
-    &:not([type='submit']) {
-      padding: $column-gutter / 2;
+    &.secondary {
+      @extend %button-secondary;
+    }
+
+    &.error {
+      @extend %button-error;
+    }
+
+    &.warning {
+      @extend %button-warning;
+    }
+
+    &.info {
+      @extend %button-info;
+    }
+
+    &.success {
+      @extend %button-success;
     }
   }
 
   a {
     color: $small-font-color;
     display: inline-block;
-    padding: 0 $column-gutter;
+
+    @if $height {
+      padding: 0 $column-gutter;
+    } @else {
+      padding: $column-gutter / 3 $column-gutter;
+    }
 
     &:hover {
       color: $body-font-color;
