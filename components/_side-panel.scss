@@ -50,8 +50,8 @@ $include-html-paint-side-panel: true !default;
 
   @if $scaled {
     $ratio: side-panel-settings(scaled-ratio, $size);
-    $width: "calc(#{$width} * #{$ratio})";
     $right: "calc(#{$width} * #{$ratio} * -1)";
+    $width: "calc(#{$width} * #{$ratio})";
   }
 
   right: #{$right};
