@@ -59,7 +59,6 @@ $include-html-paint-side-panel: true !default;
 }
 
 @mixin side-panel($overlay: true, $scaled: false) {
-
   @if $overlay {
     @include overlay($position: fixed, $z-index: 200);
   }
@@ -112,7 +111,7 @@ $include-html-paint-side-panel: true !default;
   line-height: side-panel-settings(actions-bar, height);
   padding: 0 $column-gutter;
 
-  .content {
+  > .content {
     @extend %grid-column-10;
 
     min-height: side-panel-settings(actions-bar, height);
