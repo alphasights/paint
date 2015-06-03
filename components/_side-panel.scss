@@ -1,11 +1,20 @@
 $side-panel-default-settings: (
-  screen-size: (
+  size: (
     small: 100%,
     medium: 45em,
     large: 75em,
     xlarge: 90em,
     xxlarge: 120em
   ),
+
+  scaled-ratio: (
+    small: 1,
+    medium: 1,
+    large: .5,
+    xlarge: .5,
+    xxlarge: .5
+  ),
+
   actions-bar: (
     background-color: #e1e5ea,
     button-size: 35px,
@@ -35,15 +44,25 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@mixin side-panel-size($screen: large) {
-  $width: side-panel-settings(screen-size, $screen);
+@mixin side-panel-size($size: large, $scaled: false) {
+  $width: side-panel-settings(size, $size);
+  $right: -$width;
 
-  right: -$width;
-  width: $width;
+  @if $scaled {
+    $ratio: side-panel-settings(scaled-ratio, $size);
+    $width: "calc(#{$width} * #{$ratio})";
+    $right: "calc(#{$width} * #{$ratio} * -1)";
+  }
+
+  right: #{$right};
+  width: #{$width};
 }
 
-@mixin side-panel {
-  @include overlay($position: fixed, $z-index: 200);
+@mixin side-panel($overlay: true, $scaled: false) {
+
+  @if $overlay {
+    @include overlay($position: fixed, $z-index: 200);
+  }
 
   > div {
     @include single-transition(opacity, 150ms, linear);
@@ -64,23 +83,23 @@ $include-html-paint-side-panel: true !default;
     }
 
     @media #{$small-only} {
-      @include side-panel-size(small);
+      @include side-panel-size(small, $scaled);
     }
 
     @media #{$medium-only} {
-      @include side-panel-size(medium);
+      @include side-panel-size(medium, $scaled);
     }
 
     @media #{$large-only} {
-      @include side-panel-size(large);
+      @include side-panel-size(large, $scaled);
     }
 
     @media #{$xlarge-only} {
-      @include side-panel-size(xlarge);
+      @include side-panel-size(xlarge, $scaled);
     }
 
     @media #{$xxlarge-up} {
-      @include side-panel-size(xxlarge);
+      @include side-panel-size(xxlarge, $scaled);
     }
   }
 }
