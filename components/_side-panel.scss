@@ -46,31 +46,51 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
-  $right: -$width;
 
   @if $scaled {
     $ratio: side-panel-settings(scaled-ratio, $size);
-    $right: "calc(#{$width} * #{$ratio} * -1)";
     $width: "calc(#{$width} * #{$ratio})";
   }
 
-  right: #{$right};
   width: #{$width};
 }
 
 @mixin side-panel($overlay: true, $scaled: false) {
   @if $overlay {
     @include overlay($position: fixed, $z-index: 200);
+
+    transition-delay: 0.125s;
+  }
+
+  &.active {
+    > div:first-child {
+      transform: translate(0, 0);
+    }
+
+    &.nested {
+      > div {
+        transform: translate(0, 0);
+      }
+
+      > div:first-child {
+        transform: translate(-100%, 0);
+      }
+    }
   }
 
   > div {
-    @include single-transition(opacity, 150ms, linear);
+    &:first-child {
+      z-index: 1;
+    }
 
     background-color: $white;
-    float: right;
+    box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.125);
     height: 100%;
-    overflow-y: auto;
-    position: relative;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    transform: translate(100%, 0);
+    transition: transform 0.325s cubic-bezier(.78, .01, .27, 1);
 
     > .content {
       bottom: 0;

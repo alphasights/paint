@@ -5,8 +5,7 @@
 }
 
 @mixin overlay($position: absolute, $z-index: 100) {
-  @include single-transition(background-color, 150ms, linear);
-
+  background-color: transparent;
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -14,6 +13,7 @@
   position: $position;
   right: 0;
   top: 0;
+  transition: background-color .125s ease-in-out;
   z-index: $z-index;
 
   > * {
