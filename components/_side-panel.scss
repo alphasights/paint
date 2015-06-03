@@ -79,10 +79,6 @@ $include-html-paint-side-panel: true !default;
   }
 
   > div {
-    &:first-child {
-      z-index: 1;
-    }
-
     background-color: $white;
     box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
     height: 100%;
@@ -91,6 +87,10 @@ $include-html-paint-side-panel: true !default;
     right: 0;
     transform: translate(100%, 0);
     transition: transform .325s cubic-bezier(.78, .01, .27, 1);
+
+    &:first-child {
+      z-index: 1;
+    }
 
     > .content {
       bottom: 0;
