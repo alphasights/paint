@@ -76,6 +76,10 @@ $include-html-paint-side-panel: true !default;
         transform: translate(-100%, 0);
       }
     }
+
+    .actions {
+      top: 0;
+    }
   }
 
   > div {
@@ -85,6 +89,7 @@ $include-html-paint-side-panel: true !default;
     overflow: hidden;
     position: absolute;
     right: 0;
+    top: 0;
     transform: translate(100%, 0);
     transition: transform .325s cubic-bezier(.78, .01, .27, 1);
 
@@ -99,6 +104,11 @@ $include-html-paint-side-panel: true !default;
       position: absolute;
       right: 0;
       top: side-panel-settings(actions-bar, height);
+    }
+
+    > .actions {
+      @include side-panel-actions-bar;
+      @include side-panel-actions;
     }
 
     @media #{$small-only} {
@@ -130,6 +140,9 @@ $include-html-paint-side-panel: true !default;
   height: side-panel-settings(actions-bar, height);
   line-height: side-panel-settings(actions-bar, height);
   padding: 0 $column-gutter;
+  top: -#{side-panel-settings(actions-bar, height)};
+  transition: top .325s .325s;
+  position: absolute;
 
   > .content {
     @extend %grid-column-10;
@@ -182,11 +195,6 @@ $include-html-paint-side-panel: true !default;
   @if $include-html-paint-side-panel {
     .side-panel {
       @include side-panel;
-
-      .actions {
-        @include side-panel-actions-bar;
-        @include side-panel-actions;
-      }
     }
   }
 }
