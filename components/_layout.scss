@@ -8,7 +8,7 @@ $layout-sidebar-footer-avatar-selector: '.avatar' !default;
 $layout-sidebar-footer-title-selector: '.name' !default;
 $layout-sidebar-footer-actions-selector: '.actions' !default;
 $layout-sidebar-footer-actions-icon: cog !default;
-$layout-sidebar-collapse-duration: .325s;
+$layout-sidebar-collapse-duration: $global-transition-duration !default;
 $layout-sidebar-header-height: 60px !default;
 $layout-sidebar-header-logo-height: $layout-sidebar-header-height * .5 !default;
 $layout-sidebar-header-selector: '> header' !default;
@@ -82,7 +82,7 @@ $include-html-paint-layout: true !default;
     height: 100%;
     position: relative;
     transform: translate3d(0, 0, 0);
-    transition: width $layout-sidebar-collapse-duration cubic-bezier(.78, .01, .27, 1);
+    transition: width $layout-sidebar-collapse-duration $global-transition-easing;
     transition-delay: .015s;
     width: $layout-sidebar-nav-width;
 

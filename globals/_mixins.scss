@@ -14,7 +14,7 @@
   position: $position;
   right: 0;
   top: 0;
-  transition: background-color .125s ease-in-out;
+  transition: background-color $global-transition-duration ease;
   z-index: $z-index;
 
   > * {

@@ -58,8 +58,6 @@ $include-html-paint-side-panel: true !default;
 @mixin side-panel($overlay: true, $scaled: false) {
   @if $overlay {
     @include overlay($position: fixed, $z-index: 200);
-
-    transition-delay: .125s;
   }
 
   &.active {
@@ -91,7 +89,7 @@ $include-html-paint-side-panel: true !default;
     right: 0;
     top: 0;
     transform: translate(100%, 0);
-    transition: transform .325s cubic-bezier(.78, .01, .27, 1);
+    transition: transform $global-transition-duration $global-transition-easing;
 
     &:first-child {
       z-index: 1;
@@ -141,7 +139,7 @@ $include-html-paint-side-panel: true !default;
   line-height: side-panel-settings(actions-bar, height);
   padding: 0 $column-gutter;
   top: -#{side-panel-settings(actions-bar, height)};
-  transition: top .325s .325s;
+  transition: top $global-transition-duration $global-transition-duration;
   position: absolute;
 
   > .content {
