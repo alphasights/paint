@@ -2,9 +2,9 @@ $panel-default-settings: (
   header-height: $h1-font-size + $column-gutter,
   footer-height: $h1-font-size + $column-gutter / 2,
   styles: (
-    default: lighten($global-section-border-color, 5%),
-    primary: $primary-color,
-    widget: $anchor-font-color
+    default: color(border, light),
+    primary: color(primary),
+    widget: color(link)
   ),
 );
 
@@ -25,7 +25,7 @@ $include-html-paint-panel: true !default;
 }
 
 @mixin panel-background(
-  $background-color: lighten($global-section-border-color, 5%)
+  $background-color: color(border, light)
 ) {
   $dark-background-color: desaturate(adjust-hue($background-color, 10%), 15%);
   $light-background-color: saturate(adjust-hue($background-color, 10%), 15%);
@@ -39,16 +39,16 @@ $include-html-paint-panel: true !default;
   }
 
   > footer {
-    background-color: lighten($global-section-border-color, 5%);
+    background-color: color(border, light);
   }
 }
 
 %panel {
   backface-visibility: hidden;
-  background-color: $white;
-  border: 1px solid $global-section-border-color;
+  background-color: color(white);
+  border: 1px solid color(border);
   border-radius: $global-radius;
-  box-shadow: 0 2px 1px $global-section-border-color;
+  box-shadow: 0 2px 1px color(border);
 
   > header,
   > footer {
