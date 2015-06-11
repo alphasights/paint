@@ -20,6 +20,11 @@ $side-panel-default-settings: (
     button-size: 35px,
     height: rem-calc(60)
   ),
+
+  footer-bar: (
+    height: rem-calc(90)
+  ),
+
   actions: (
     navigation: (
       previous: angle-left,
@@ -80,6 +85,12 @@ $include-html-paint-side-panel: true !default;
     }
   }
 
+  &.has-footer {
+    > div > .content {
+      bottom: side-panel-settings(footer-bar, height);
+    }
+  }
+
   > div {
     background-color: $white;
     box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
@@ -95,6 +106,14 @@ $include-html-paint-side-panel: true !default;
       z-index: 1;
     }
 
+    > header {
+      @include side-panel-header;
+
+      .actions {
+        @include side-panel-actions;
+      }
+    }
+
     > .content {
       bottom: 0;
       left: 0;
@@ -104,9 +123,24 @@ $include-html-paint-side-panel: true !default;
       top: side-panel-settings(actions-bar, height);
     }
 
-    > .actions {
-      @include side-panel-actions-bar;
-      @include side-panel-actions;
+    > footer {
+      background-color: side-panel-settings(actions-bar, background-color);
+      bottom: 0;
+      height: side-panel-settings(footer-bar, height);
+      left: 0;
+      line-height: side-panel-settings(footer-bar, height);
+      padding: 0 $column-gutter;
+      margin: 0;
+      position: absolute;
+      right: 0;
+
+      .actions {
+        padding: 0 !important;
+        border: 0 !important;
+        margin: 0 !important;
+        background-color: transparent;
+        line-height: side-panel-settings(footer-bar, height) !important;
+      }
     }
 
     @media #{$small-only} {
@@ -131,25 +165,35 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@mixin side-panel-actions-bar {
+@mixin side-panel-header {
   @extend %grid-row;
 
   background-color: side-panel-settings(actions-bar, background-color);
   height: side-panel-settings(actions-bar, height);
   line-height: side-panel-settings(actions-bar, height);
-  padding: 0 $column-gutter;
+  min-height: side-panel-settings(actions-bar, height);
+  padding: 0;
   top: -#{side-panel-settings(actions-bar, height)};
   transition: top $global-transition-duration $global-transition-duration;
   position: absolute;
+}
+
+@mixin side-panel-actions {
+  $side-panel-actions: side-panel-settings(actions);
 
   > .content {
     @extend %grid-column-10;
 
-    min-height: side-panel-settings(actions-bar, height);
     padding: 0 !important;
 
     > ul {
       @extend %button-group;
+
+      line-height: inherit !important;
+
+      > li {
+        margin: 0 !important;
+      }
     }
   }
 
@@ -167,16 +211,14 @@ $include-html-paint-side-panel: true !default;
   }
 
   button {
+    line-height: side-panel-settings(actions-bar, height);
+
     &:before {
       font-size: $h3-font-size;
       line-height: side-panel-settings(actions-bar, button-size) !important;
       width: side-panel-settings(actions-bar, button-size) !important;
     }
   }
-}
-
-@mixin side-panel-actions {
-  $side-panel-actions: side-panel-settings(actions);
 
   @each $action-group, $actions in $side-panel-actions {
     .#{$action-group}-actions {
