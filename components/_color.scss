@@ -1,0 +1,120 @@
+$colors-default-settings: (
+  text: (
+    base: #222222,
+    small: #888888
+  ),
+
+  link: #008fd9,
+
+  border: (
+    base: #ececec,
+    dark: border (darken: 10%),
+    light: border (lighten: 5%)
+  ),
+
+  primary: (
+    base: #f36b09,
+    dark: primary (darken: 10%),
+    light: primary (lighten: 40%)
+  ),
+
+  secondary: (
+    base: #a42524,
+    dark: secondary (darken: 10%),
+    light: secondary (lighten: 20%)
+  ),
+
+  alert: (
+    base: #ff7f7d,
+    dark: alert (darken: 10%),
+    light: alert (lighten: 18%)
+  ),
+
+  warning: (
+    base: #ffcc7a,
+    dark: warning (darken: 10%),
+    light: warning (lighten: 20%)
+  ),
+
+  success: (
+    base: #43AC6A,
+    dark: success (darken: 10%),
+    light: success (lighten: 20%)
+  ),
+
+  info: (
+    base: #ffffff,
+    dark: info (darken: 10%),
+    light: info (lighten: 20%),
+    glue: #333333
+  ),
+
+  white: #FFFFFF,
+  black: #000000,
+
+  gray: (
+    ghost: #FAFAFA,
+    snow: #F9F9F9,
+    vapor: #F6F6F6,
+    white-smoke: #F5F5F5,
+    silver: #EFEFEF,
+    smoke: #EEEEEE,
+    gainsboro: #DDDDDD,
+    iron: #CCCCCC,
+    base: #AAAAAA,
+    aluminum: #999999,
+    jumbo: #888888,
+    monsoon: #777777,
+    steel: #666666,
+    charcoal: #555555,
+    tuatara: #444444,
+    oil: #333333,
+    jet: #222222
+  )
+);
+
+@if global-variable-exists(colors) {
+  $colors: map-merge-settings($colors-default-settings, $colors);
+} @else {
+  $colors: $colors-default-settings;
+}
+
+@function color($color, $variant: base) {
+  $color: map-get($colors, $color);
+  $is-map: false;
+
+  @if type-of($color) == "map" {
+    $color: map-get($color, $variant);
+    $is-map: true;
+  }
+
+  $base: nth($color, 1);
+
+  @if length($color) > 1 {
+    $adjust: nth($color, 2);
+  } @else {
+    $adjust: ();
+  }
+
+  @if $is-map {
+    @if map-has-key($colors, $base) {
+      $color: color($base);
+    } @else {
+      $color: $base;
+    }
+
+    @each $function, $value in $adjust {
+      @if function-exists($function) {
+        $color: call($function, $color, $value);
+      } @else {
+        @error "Boo, function '#{$function}' is not defined.";
+      }
+    }
+  }
+
+  @return $color;
+}
+
+@include exports('paint-color') {
+
+}
