@@ -37,31 +37,30 @@ $colors-default-settings: (
   ),
 
   success: (
-    base: #43AC6A,
+    base: #43ac6a,
     dark: success (darken: 10%),
     light: success (lighten: 20%)
   ),
 
   info: (
-    base: #ffffff,
+    base: #a0d3e8,
     dark: info (darken: 10%),
-    light: info (lighten: 20%),
-    glue: #333333
+    light: info (lighten: 20%)
   ),
 
-  white: #FFFFFF,
+  white: #ffffff,
   black: #000000,
 
   gray: (
-    ghost: #FAFAFA,
-    snow: #F9F9F9,
-    vapor: #F6F6F6,
-    white-smoke: #F5F5F5,
-    silver: #EFEFEF,
-    smoke: #EEEEEE,
-    gainsboro: #DDDDDD,
-    iron: #CCCCCC,
-    base: #AAAAAA,
+    ghost: #fafafa,
+    snow: #f9f9f9,
+    vapor: #f6f6f6,
+    white-smoke: #f5f5f5,
+    silver: #efefef,
+    smoke: #eeeeee,
+    gainsboro: #dddddd,
+    iron: #cccccc,
+    base: #aaaaaa,
     aluminum: #999999,
     jumbo: #888888,
     monsoon: #777777,
@@ -83,7 +82,7 @@ $colors-default-settings: (
   $color: map-get($colors, $color);
   $is-map: false;
 
-  @if type-of($color) == "map" {
+  @if type-of($color) == 'map' {
     $color: map-get($color, $variant);
     $is-map: true;
   }
