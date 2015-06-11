@@ -3,12 +3,12 @@ $include-html-paint-quick-jump: true !default;
 $quick-jump-default-settings: (
   bar: (
     background-color: #e1e5ea,
-    active-background-color: $white,
+    active-background-color: color(white),
     icon-size: $button-icon-size,
     height: $layout-sidebar-header-height
   ),
   results: (
-    background-color: #f2f2f2,
+    background-color: color(gray, white-smoke),
     item-height: rem-calc(50)
   ),
   actions: (
@@ -52,7 +52,7 @@ $quick-jump-default-settings: (
       @include single-transition(all, 150ms, linear);
 
       border-radius: $global-rounded;
-      color: $primary-color;
+      color: color(primary);
       height: quick-jump-settings(bar, icon-size);
       overflow: hidden;
       position: absolute;
@@ -91,7 +91,7 @@ $quick-jump-default-settings: (
 
       > div,
       > .icon {
-        background-color: $primary-color;
+        background-color: color(primary);
         color: quick-jump-settings(bar, active-background-color);
       }
     }
@@ -178,7 +178,7 @@ $quick-jump-default-settings: (
       @extend .hide-for-small-only;
       @extend %grid-column-2;
 
-      color: $primary-color;
+      color: color(primary);
       line-height: quick-jump-settings(results, item-height);
       margin-bottom: 0;
       margin-top: 0;
