@@ -129,17 +129,17 @@ $include-html-paint-side-panel: true !default;
       height: side-panel-settings(footer-bar, height);
       left: 0;
       line-height: side-panel-settings(footer-bar, height);
-      padding: 0 $column-gutter;
       margin: 0;
+      padding: 0 $column-gutter;
       position: absolute;
       right: 0;
 
       .actions {
-        padding: 0 !important;
-        border: 0 !important;
-        margin: 0 !important;
         background-color: transparent;
+        border: 0 !important;
         line-height: side-panel-settings(footer-bar, height) !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
     }
 
