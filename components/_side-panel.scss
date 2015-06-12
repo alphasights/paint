@@ -135,10 +135,10 @@ $include-html-paint-side-panel: true !default;
       right: 0;
 
       .actions {
-        background-color: transparent;
-        border: 0 !important;
-        margin: 0 !important;
-        padding: 0 $column-gutter !important;
+        float: left;
+        height: side-panel-settings(footer-bar, height);
+        line-height: side-panel-settings(footer-bar, height);
+        width: 100%;
       }
     }
 
