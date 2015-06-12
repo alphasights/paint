@@ -80,7 +80,7 @@ $include-html-paint-side-panel: true !default;
       }
     }
 
-    .actions {
+    header {
       top: 0;
     }
   }
@@ -110,7 +110,7 @@ $include-html-paint-side-panel: true !default;
       @include side-panel-header;
 
       .actions {
-        @include side-panel-actions;
+        @include side-panel-header-actions;
       }
     }
 
@@ -124,22 +124,21 @@ $include-html-paint-side-panel: true !default;
     }
 
     > footer {
-      background-color: side-panel-settings(actions-bar, background-color);
+      border-top: solid 1px $global-section-border-color;
       bottom: 0;
       height: side-panel-settings(footer-bar, height);
       left: 0;
       line-height: side-panel-settings(footer-bar, height);
       margin: 0;
-      padding: 0 $column-gutter;
+      padding: 0;
       position: absolute;
       right: 0;
 
       .actions {
         background-color: transparent;
         border: 0 !important;
-        line-height: side-panel-settings(footer-bar, height) !important;
         margin: 0 !important;
-        padding: 0 !important;
+        padding: 0 $column-gutter !important;
       }
     }
 
@@ -172,13 +171,13 @@ $include-html-paint-side-panel: true !default;
   height: side-panel-settings(actions-bar, height);
   line-height: side-panel-settings(actions-bar, height);
   min-height: side-panel-settings(actions-bar, height);
-  padding: 0;
   top: -#{side-panel-settings(actions-bar, height)};
   transition: top $global-transition-duration $global-transition-duration;
+  padding: 0 $column-gutter;
   position: absolute;
 }
 
-@mixin side-panel-actions {
+@mixin side-panel-header-actions {
   $side-panel-actions: side-panel-settings(actions);
 
   > .content {
@@ -192,6 +191,7 @@ $include-html-paint-side-panel: true !default;
       line-height: inherit !important;
 
       > li {
+        float: left;
         margin: 0 !important;
       }
     }
