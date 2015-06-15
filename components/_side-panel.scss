@@ -80,18 +80,23 @@ $include-html-paint-side-panel: true !default;
       }
     }
 
-    header {
-      top: 0;
+    > .main,
+    > .drawer {
+      > header {
+        top: 0;
+      }
     }
   }
 
-  &.has-footer {
-    > div > .content {
+  > .main,
+  > .drawer {
+    &.has-footer > .content {
       bottom: side-panel-settings(footer-bar, height);
     }
   }
 
-  > div {
+  > .main,
+  > .drawer {
     background-color: $white;
     box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
     height: 100%;
@@ -101,10 +106,6 @@ $include-html-paint-side-panel: true !default;
     top: 0;
     transform: translate(100%, 0);
     transition: transform $global-transition-duration $global-transition-easing;
-
-    &.main {
-      z-index: 1;
-    }
 
     > header {
       @include side-panel-header;
@@ -161,6 +162,10 @@ $include-html-paint-side-panel: true !default;
     @media #{$xxlarge-up} {
       @include side-panel-size(xxlarge, $scaled);
     }
+  }
+
+  > .main {
+    z-index: 1;
   }
 }
 
