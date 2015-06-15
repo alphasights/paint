@@ -66,17 +66,17 @@ $include-html-paint-side-panel: true !default;
   }
 
   &.active {
-    > div:first-child {
+    > .main {
       transform: translate(0, 0);
     }
 
-    &.nested {
-      > div {
-        transform: translate(0, 0);
+    &.drawer-active {
+      > .main {
+        transform: translate(-100%, 0);
       }
 
-      > div:first-child {
-        transform: translate(-100%, 0);
+      > .drawer {
+        transform: translate(0, 0);
       }
     }
 
@@ -102,7 +102,7 @@ $include-html-paint-side-panel: true !default;
     transform: translate(100%, 0);
     transition: transform $global-transition-duration $global-transition-easing;
 
-    &:first-child {
+    &.main {
       z-index: 1;
     }
 
