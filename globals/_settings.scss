@@ -62,6 +62,11 @@ $h4-font-size: 1.125rem !default;
 $h5-font-size: 1rem !default;
 $h6-font-size: .875rem !default;
 
+// Misc
+
+$global-transition-easing: cubic-bezier(.78, .01, .27, 1);
+$global-transition-duration: .325s;
+
 // Code
 
 $code-color: inherit !default;

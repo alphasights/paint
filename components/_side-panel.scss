@@ -20,6 +20,11 @@ $side-panel-default-settings: (
     button-size: 35px,
     height: rem-calc(60)
   ),
+
+  footer-bar: (
+    height: rem-calc(90)
+  ),
+
   actions: (
     navigation: (
       previous: angle-left,
@@ -46,15 +51,12 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
-  $right: -$width;
 
   @if $scaled {
     $ratio: side-panel-settings(scaled-ratio, $size);
-    $right: "calc(#{$width} * #{$ratio} * -1)";
     $width: "calc(#{$width} * #{$ratio})";
   }
 
-  right: #{$right};
   width: #{$width};
 }
 
@@ -63,14 +65,56 @@ $include-html-paint-side-panel: true !default;
     @include overlay($position: fixed, $z-index: 200);
   }
 
-  > div {
-    @include single-transition(opacity, 150ms, linear);
+  &.active {
+    > .main {
+      transform: translate(0, 0);
+    }
 
+    &.drawer-active {
+      > .main {
+        transform: translate(-100%, 0);
+      }
+
+      > .drawer {
+        transform: translate(0, 0);
+      }
+    }
+
+    > .main,
+    > .drawer {
+      > header {
+        top: 0;
+      }
+    }
+  }
+
+  > .main,
+  > .drawer {
     background-color: $white;
-    float: right;
+    box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
     height: 100%;
-    overflow-y: auto;
-    position: relative;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(100%, 0);
+    transition: transform $global-transition-duration $global-transition-easing;
+
+    &.has-footer > .content {
+      bottom: side-panel-settings(footer-bar, height);
+    }
+
+    &.has-header > .content {
+      top: side-panel-settings(actions-bar, height);
+    }
+
+    > header {
+      @include side-panel-header;
+
+      .actions {
+        @include side-panel-header-actions;
+      }
+    }
 
     > .content {
       bottom: 0;
@@ -78,7 +122,26 @@ $include-html-paint-side-panel: true !default;
       overflow-y: auto;
       position: absolute;
       right: 0;
-      top: side-panel-settings(actions-bar, height);
+      top: 0;
+    }
+
+    > footer {
+      border-top: solid 1px $global-section-border-color;
+      bottom: 0;
+      height: side-panel-settings(footer-bar, height);
+      left: 0;
+      line-height: side-panel-settings(footer-bar, height);
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+
+      .actions {
+        float: left;
+        height: side-panel-settings(footer-bar, height);
+        line-height: side-panel-settings(footer-bar, height);
+        width: 100%;
+      }
     }
 
     @media #{$small-only} {
@@ -101,24 +164,42 @@ $include-html-paint-side-panel: true !default;
       @include side-panel-size(xxlarge, $scaled);
     }
   }
+
+  > .main {
+    z-index: 1;
+  }
 }
 
-@mixin side-panel-actions-bar {
+@mixin side-panel-header {
   @extend %grid-row;
 
   background-color: side-panel-settings(actions-bar, background-color);
   height: side-panel-settings(actions-bar, height);
   line-height: side-panel-settings(actions-bar, height);
+  min-height: side-panel-settings(actions-bar, height);
+  top: -#{side-panel-settings(actions-bar, height)};
+  transition: top $global-transition-duration $global-transition-duration;
   padding: 0 $column-gutter;
+  position: absolute;
+}
+
+@mixin side-panel-header-actions {
+  $side-panel-actions: side-panel-settings(actions);
 
   > .content {
     @extend %grid-column-10;
 
-    min-height: side-panel-settings(actions-bar, height);
     padding: 0 !important;
 
     > ul {
       @extend %button-group;
+
+      line-height: inherit !important;
+
+      > li {
+        float: left;
+        margin: 0 !important;
+      }
     }
   }
 
@@ -136,16 +217,14 @@ $include-html-paint-side-panel: true !default;
   }
 
   button {
+    line-height: side-panel-settings(actions-bar, height);
+
     &:before {
       font-size: $h3-font-size;
       line-height: side-panel-settings(actions-bar, button-size) !important;
       width: side-panel-settings(actions-bar, button-size) !important;
     }
   }
-}
-
-@mixin side-panel-actions {
-  $side-panel-actions: side-panel-settings(actions);
 
   @each $action-group, $actions in $side-panel-actions {
     .#{$action-group}-actions {
@@ -162,11 +241,6 @@ $include-html-paint-side-panel: true !default;
   @if $include-html-paint-side-panel {
     .side-panel {
       @include side-panel;
-
-      .actions {
-        @include side-panel-actions-bar;
-        @include side-panel-actions;
-      }
     }
   }
 }
