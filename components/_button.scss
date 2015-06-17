@@ -69,7 +69,8 @@ $include-html-paint-button: true !default;
   border-radius: $global-radius;
   color: $button-base-text-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: darken($button-base-text-color, 20%);
   }
 
@@ -108,6 +109,7 @@ $include-html-paint-button: true !default;
       }
 
       &:hover {
+        background-color: $button-color;
         color: color(white);
       }
     }
