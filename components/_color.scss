@@ -14,38 +14,38 @@ $colors-default-settings: (
 
   primary: (
     base: #f36b09,
-    dark: primary (darken: 10%),
+    dark: primary (darken: 20%),
     light: primary (lighten: 40%)
   ),
 
   secondary: (
     base: #a42524,
-    dark: secondary (darken: 10%),
-    light: secondary (lighten: 20%)
+    dark: secondary (darken: 15%),
+    light: secondary (lighten: 45%)
   ),
 
   alert: (
     base: #ff7f7d,
-    dark: alert (darken: 10%),
+    dark: alert (darken: 35%),
     light: alert (lighten: 18%)
   ),
 
   warning: (
     base: #ffcc7a,
-    dark: warning (darken: 10%),
-    light: warning (lighten: 20%)
+    dark: warning (darken: 30%),
+    light: warning (lighten: 15%)
   ),
 
   success: (
     base: #43ac6a,
-    dark: success (darken: 10%),
-    light: success (lighten: 20%)
+    dark: success (darken: 20%, saturate: 20%),
+    light: success (lighten: 30%)
   ),
 
   info: (
     base: #a0d3e8,
-    dark: info (darken: 10%),
-    light: info (lighten: 20%)
+    dark: info (darken: 35%, saturate: 30%),
+    light: info (lighten: 10%)
   ),
 
   white: #ffffff,
