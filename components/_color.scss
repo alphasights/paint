@@ -106,7 +106,7 @@ $colors-default-settings: (
       @if function-exists($function) {
         $color: call($function, $color, $value);
       } @else {
-        @error "Boo, function '#{$function}' is not defined.";
+        @error "Function '#{$function}' in #{$adjust} doesn't exist.";
       }
     }
   }
