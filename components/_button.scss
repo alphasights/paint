@@ -10,7 +10,7 @@ $button-tiny-height: 24px !default;
 $button-small-height: 38px !default;
 $button-large-height: 50px !default;
 
-$button-colours: (
+$button-colors: (
   primary: color(link),
   secondary: color(secondary),
   alert: color(alert),
@@ -86,7 +86,7 @@ $include-html-paint-button: true !default;
 }
 
 @mixin button-color-placeholders {
-  @each $type, $button-color in $button-colours {
+  @each $type, $button-color in $button-colors {
     %button-#{$type} {
       @include button(
         $bg: color(white),
