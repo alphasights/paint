@@ -1,0 +1,89 @@
+@keyframes notificationSlideIn {
+  0% {
+    transform: translate(0, -100%);
+  }
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+@keyframes notificationFade {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+$notification-colors: (
+  primary: #008fd9,
+  secondary: $secondary-color,
+  error: $alert-color,
+  warning: $warning-color,
+  success: $success-color,
+  info: $info-color
+);
+
+@mixin notification-animation(
+  $animation: notificationSlideIn,
+  $duration: $global-transition-duration,
+  $direction: normal
+) {
+  animation: $animation;
+  animation-duration: $duration;
+  animation-timing-function: $global-transition-easing;
+  animation-fill-mode: forwards;
+  animation-direction: $direction;
+  transition-duration: $duration;
+}
+
+@mixin notification($color: $primary-color) {
+  $contrast-text-dark: darken($color, 40%);
+  $contrast-text-light: lighten($color, 15%);
+  $text-color: contrast($color, $contrast-text-dark, $contrast-text-light);
+  $text-shadow-color: contrast($text-color, $contrast-text-dark, $contrast-text-light);
+
+  @include notification-animation;
+
+  background-color: $color;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+
+  &.is-closing {
+    @include notification-animation(animFade, $direction: reverse);
+  }
+
+  > span,
+  > .close {
+    @include notification-animation(animFade, $global-transition-duration * 2);
+
+    color: $text-color;
+    display: inline-block;
+    font-size: $h4-font-size;
+    font-weight: $font-weight-bold;
+    padding: $column-gutter / 2 $column-gutter;
+    text-shadow: -1px 0px $text-shadow-color;
+  }
+
+  > .close {
+    @include button-icon(times);
+
+    color: transparentize($text-color, .4);
+    position: absolute;
+    right: $column-gutter / 2;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@mixin notification-placeholders {
+  @each $type, $notification-color in $notification-colors {
+    %notification-#{$type} {
+      @include notification($color: $notification-color);
+    }
+  }
+}
+
+@include exports('paint-notification') {
+  @include notification-placeholders;
+}
