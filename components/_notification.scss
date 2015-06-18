@@ -1,15 +1,21 @@
 @keyframes notificationSlideIn {
   0% {
-    transform: translate(0, -100%);
+    transform: rotateX(-90deg);
   }
+
   100% {
-    transform: translate(0,0);
+    transform: rotateX(0deg);
   }
 }
 
 @keyframes notificationFade {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 $notification-colors: (
@@ -22,7 +28,7 @@ $notification-colors: (
 );
 
 @mixin notification-animation(
-  $animation: notificationSlideIn,
+  $animation: 'notificationSlideIn',
   $duration: $global-transition-duration,
   $direction: normal
 ) {
@@ -32,9 +38,17 @@ $notification-colors: (
   animation-fill-mode: forwards;
   animation-direction: $direction;
   transition-duration: $duration;
+  transform-style: preserve-3d;
+  transform-origin: center top;
+  perspective: 1000px;
 }
 
-@mixin notification($color: $primary-color) {
+@mixin notification(
+  $color: $primary-color,
+  $content-selector: '> span',
+  $close-selector: '> .close',
+  $is-closing-class: 'is-closing'
+) {
   $contrast-text-dark: darken($color, 40%);
   $contrast-text-light: lighten($color, 15%);
   $text-color: contrast($color, $contrast-text-dark, $contrast-text-light);
@@ -43,28 +57,29 @@ $notification-colors: (
   @include notification-animation;
 
   background-color: $color;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(255, 255, 255, .3);
   left: 0;
   position: relative;
   top: 0;
   width: 100%;
 
-  &.is-closing {
-    @include notification-animation(animFade, $direction: reverse);
+  &.#{$is-closing-class} {
+    @include notification-animation('notificationFade', $direction: reverse);
   }
 
-  > span,
-  > .close {
-    @include notification-animation(animFade, $global-transition-duration * 2);
+  #{$content-selector},
+  #{$close-selector} {
+    @include notification-animation('notificationFade', $global-transition-duration * 2);
 
     color: $text-color;
     display: inline-block;
     font-size: $h4-font-size;
     font-weight: $font-weight-bold;
     padding: $column-gutter / 2 $column-gutter;
-    text-shadow: -1px 0px $text-shadow-color;
+    text-shadow: -1px 0 $text-shadow-color;
   }
 
-  > .close {
+  #{$close-selector} {
     @include button-icon(times);
 
     color: transparentize($text-color, .4);
