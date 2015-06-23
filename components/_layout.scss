@@ -81,7 +81,6 @@ $include-html-paint-layout: true !default;
     font-weight: $layout-sidebar-font-weight;
     height: 100%;
     position: relative;
-    transform: translate3d(0, 0, 0);
     transition: width $layout-sidebar-collapse-duration $global-transition-easing;
     transition-delay: .015s;
     width: $layout-sidebar-nav-width;
