@@ -1,7 +1,7 @@
 @import 'icon';
 
-$button-base-background-color: $white !default;
-$button-base-text-color: $jumbo !default;
+$button-base-background-color: color(white) !default;
+$button-base-text-color: color(gray, jumbo) !default;
 $button-base-padding: 15px !default;
 $button-icon-size: 28px !default;
 $button-disabled-transparency: .4 !default;
@@ -10,13 +10,14 @@ $button-tiny-height: 24px !default;
 $button-small-height: 38px !default;
 $button-large-height: 50px !default;
 
-$button-colours: (
-  primary: #008fd9,
-  secondary: $secondary-color,
-  error: $alert-color,
-  warning: $warning-color,
-  success: $success-color,
-  info: $info-color
+$button-colors: (
+  primary: color(link),
+  secondary: color(secondary),
+  alert: color(alert),
+  error: color(alert),
+  warning: color(warning),
+  success: color(success),
+  info: color(info)
 );
 
 $include-html-paint-button: true !default;
@@ -85,10 +86,10 @@ $include-html-paint-button: true !default;
 }
 
 @mixin button-color-placeholders {
-  @each $type, $button-color in $button-colours {
+  @each $type, $button-color in $button-colors {
     %button-#{$type} {
       @include button(
-        $bg: $white,
+        $bg: color(white),
         $radius: $global-radius,
         $bg-hover: $button-color,
         $border-color: $button-color
@@ -103,13 +104,13 @@ $include-html-paint-button: true !default;
       text-transform: uppercase;
 
       &:focus {
-        background-color: $white;
+        background-color: color(white);
         color: $button-color;
       }
 
       &:hover {
         background-color: $button-color;
-        color: $white;
+        color: color(white);
       }
     }
   }
@@ -143,7 +144,7 @@ $include-html-paint-button: true !default;
     @include button-group-style($radius: $global-radius, $float: null);
 
     button {
-      border-color: $global-section-border-color;
+      border-color: color(border);
       border-left: 0;
       line-height: $button-icon-size;
       padding: 0 $button-base-padding;
@@ -158,7 +159,7 @@ $include-html-paint-button: true !default;
     }
 
     &:first-child button {
-      border-left: solid 1px $global-section-border-color;
+      border-left: solid 1px color(border);
     }
   }
 }
