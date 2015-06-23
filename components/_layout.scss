@@ -224,8 +224,8 @@ $include-html-paint-layout: true !default;
 
     list-style-type: none;
     margin: 0;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
 
     a {
       @include single-transition(background-color, 150ms, linear);
