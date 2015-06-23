@@ -19,12 +19,13 @@
 }
 
 $notification-colors: (
-  primary: #008fd9,
-  secondary: $secondary-color,
-  error: $alert-color,
-  warning: $warning-color,
-  success: $success-color,
-  info: $info-color
+  primary: link,
+  secondary: secondary,
+  alert: alert,
+  error: alert,
+  warning: warning,
+  success: success,
+  info: info
 );
 
 @mixin notification-animation(
@@ -44,15 +45,16 @@ $notification-colors: (
 }
 
 @mixin notification(
-  $color: $primary-color,
+  $type: info,
   $content-selector: '> span',
   $close-selector: '> .close',
   $is-closing-class: 'is-closing'
 ) {
-  $contrast-text-dark: darken($color, 40%);
-  $contrast-text-light: lighten($color, 15%);
+  $color: color($type, light);
+  $contrast-text-dark: color($type, dark);
+  $contrast-text-light: color($type, light);
   $text-color: contrast($color, $contrast-text-dark, $contrast-text-light);
-  $text-shadow-color: contrast($text-color, $contrast-text-dark, $contrast-text-light);
+  $text-shadow-color: contrast($text-color, color(black), color(white));
 
   @include notification-animation;
 
@@ -92,9 +94,9 @@ $notification-colors: (
 }
 
 @mixin notification-placeholders {
-  @each $type, $notification-color in $notification-colors {
+  @each $type, $palette in $notification-colors {
     %notification-#{$type} {
-      @include notification($color: $notification-color);
+      @include notification($palette);
     }
   }
 }
