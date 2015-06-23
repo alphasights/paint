@@ -27,10 +27,10 @@ $form-multi-select-icon-color: $small-font-color !default;
 $form-multi-select-icon-size: 14px !default;
 $form-multi-select-option-color: $form-input-text-color !default;
 $form-multi-select-item-border: 0 !default;
-$form-multi-select-item-background: $jet !default;
-$form-multi-select-item-color: $white !default;
-$form-multi-select-option-focused-background: $primary-color !default;
-$form-multi-select-option-focused-color: $white !default;
+$form-multi-select-item-background: color(gray, jet) !default;
+$form-multi-select-item-color: color(white) !default;
+$form-multi-select-option-focused-background: color(primary) !default;
+$form-multi-select-option-focused-color: color(white) !default;
 $form-multi-select-dropdown-icon: plus !default;
 $form-multi-select-options-max-height: 200px !default;
 
@@ -43,7 +43,7 @@ $include-html-paint-form: true !default;
 
   @if $with-border {
     background-color: lighten($panel-bg, 2%);
-    border: solid 1px $global-section-border-color;
+    border: solid 1px color(border);
     border-radius: $global-radius;
   }
 }
@@ -59,7 +59,7 @@ $include-html-paint-form: true !default;
   }
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid $global-section-border-color;
+    border-bottom: 1px solid color(border);
   }
 
   legend {
@@ -72,7 +72,7 @@ $include-html-paint-form: true !default;
 
   &#{$form-field-with-errors} {
     #{$form-field-error-selector} {
-      color: $alert-color;
+      color: color(alert);
       font-size: $small-font-size;
       line-height: $form-input-height / 2;
       padding-left: $column-gutter / 2;
@@ -83,7 +83,7 @@ $include-html-paint-form: true !default;
     &#{$form-select-selector} > div {
       @include single-transition(border-color, 150ms, linear);
 
-      border-color: lighten($alert-color, 10%);
+      border-color: color(alert, light);
     }
   }
 }
@@ -142,14 +142,14 @@ $include-html-paint-form: true !default;
       width: 130%;
 
       &:focus {
-        color: $anchor-font-color;
+        color: color(link);
         outline: none;
         width: 100%;
         z-index: 1;
       }
 
       > option {
-        background: darken($white, 10%);
+        background: color(gray, silver);
         border-radius: $global-radius;
         cursor: pointer;
         margin: 3px;
@@ -229,7 +229,7 @@ $include-html-paint-form: true !default;
         width: $form-multi-select-icon-size;
 
         &:hover {
-          color: $alert-color;
+          color: color(alert);
         }
 
         &:before {
@@ -274,7 +274,7 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
-  background-color: $white;
+  background-color: color(white);
   border: 1px solid;
   border-color: $form-input-border-color;
   border-radius: 0 0 $global-radius $global-radius;
@@ -415,7 +415,7 @@ $include-html-paint-form: true !default;
     right: $form-multi-select-icon-size;
 
     &:hover {
-      color: lighten($alert-color, 7%);
+      color: color(alert, light);
     }
   }
 
@@ -426,7 +426,7 @@ $include-html-paint-form: true !default;
     right: 0;
 
     &:hover {
-      color: $info-color;
+      color: color(info);
     }
   }
 
@@ -440,9 +440,9 @@ $include-html-paint-form: true !default;
 
   .loading {
     animation: spin 400ms infinite linear;
-    border: 2px solid #cccccc;
+    border: 2px solid color(gray, iron);
     border-radius: 50%;
-    border-right-color: #333333;
+    border-right-color: color(gray, oil);
     box-sizing: border-box;
     display: inline-block;
     height: $form-multi-select-icon-size;
@@ -472,9 +472,9 @@ $include-html-paint-form: true !default;
 
   #{$form-submission-action-confirmation-selector} {
     backface-visibility: hidden;
-    background-color: $alert-color;
+    background-color: color(alert);
     bottom: 0;
-    color: $white;
+    color: color(white);
     left: 0;
     padding: $column-gutter !important;
     position: absolute;
@@ -487,15 +487,15 @@ $include-html-paint-form: true !default;
     z-index: 300;
 
     &.warning {
-      background-color: $warning-color;
+      background-color: color(warning);
     }
 
     &.info {
-      background-color: $anchor-font-color;
+      background-color: color(link);
     }
 
     &.success {
-      background-color: $success-color;
+      background-color: color(success);
     }
 
     span {
@@ -539,8 +539,8 @@ $include-html-paint-form: true !default;
   position: relative;
 
   @if $standalone == false {
-    background-color: $white;
-    border-top: 1px solid $global-section-border-color;
+    background-color: color(white);
+    border-top: 1px solid color(border);
 
     @if $with-border {
       border-bottom-left-radius: $global-radius;
@@ -601,7 +601,7 @@ $include-html-paint-form: true !default;
   }
 
   a {
-    color: $small-font-color;
+    color: color(text, small);
     display: inline-block;
 
     @if $height {
@@ -611,7 +611,7 @@ $include-html-paint-form: true !default;
     }
 
     &:hover {
-      color: $body-font-color;
+      color: color(text);
     }
   }
 }
@@ -620,7 +620,7 @@ $include-html-paint-form: true !default;
   &:before,
   &:after {
     border: $form-select-arrow-size dashed;
-    border-color: $small-font-color transparent;
+    border-color: color(text, small) transparent;
     content: '';
     height: 0;
     pointer-events: none;

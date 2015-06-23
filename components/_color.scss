@@ -1,0 +1,115 @@
+$colors-default-settings: (
+  text: (
+    base: #222222,
+    small: #888888
+  ),
+
+  link: #008fd9,
+
+  border: (
+    base: #ececec,
+    dark: border (darken: 10%),
+    light: border (lighten: 5%)
+  ),
+
+  primary: (
+    base: #f36b09,
+    dark: primary (darken: 20%),
+    light: primary (lighten: 40%)
+  ),
+
+  secondary: (
+    base: #a42524,
+    dark: secondary (darken: 15%),
+    light: secondary (lighten: 45%)
+  ),
+
+  alert: (
+    base: #ff7f7d,
+    dark: alert (darken: 35%),
+    light: alert (lighten: 18%)
+  ),
+
+  warning: (
+    base: #ffcc7a,
+    dark: warning (darken: 30%),
+    light: warning (lighten: 15%)
+  ),
+
+  success: (
+    base: #43ac6a,
+    dark: success (darken: 20%, saturate: 20%),
+    light: success (lighten: 30%)
+  ),
+
+  info: (
+    base: #a0d3e8,
+    dark: info (darken: 35%, saturate: 30%),
+    light: info (lighten: 10%)
+  ),
+
+  white: #ffffff,
+  black: #000000,
+
+  gray: (
+    ghost: #fafafa,
+    snow: #f9f9f9,
+    vapor: #f6f6f6,
+    white-smoke: #f5f5f5,
+    silver: #efefef,
+    smoke: #eeeeee,
+    gainsboro: #dddddd,
+    iron: #cccccc,
+    base: #aaaaaa,
+    aluminum: #999999,
+    jumbo: #888888,
+    monsoon: #777777,
+    steel: #666666,
+    charcoal: #555555,
+    tuatara: #444444,
+    oil: #333333,
+    jet: #222222
+  )
+);
+
+@if global-variable-exists(colors) {
+  $colors: map-merge-settings($colors-default-settings, $colors);
+} @else {
+  $colors: $colors-default-settings;
+}
+
+@function color($color, $variant: base) {
+  $color: map-get($colors, $color);
+  $is-map: false;
+
+  @if type-of($color) == 'map' {
+    $color: map-get($color, $variant);
+    $is-map: true;
+  }
+
+  $base: nth($color, 1);
+
+  @if length($color) > 1 {
+    $adjust: nth($color, 2);
+  } @else {
+    $adjust: ();
+  }
+
+  @if $is-map {
+    @if map-has-key($colors, $base) {
+      $color: color($base);
+    } @else {
+      $color: $base;
+    }
+
+    @each $function, $value in $adjust {
+      @if function-exists($function) {
+        $color: call($function, $color, $value);
+      } @else {
+        @error "Function '#{$function}' in #{$adjust} doesn't exist.";
+      }
+    }
+  }
+
+  @return $color;
+}

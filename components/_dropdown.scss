@@ -1,9 +1,9 @@
-$dropdown-background-color: $white !default;
-$dropdown-border-color: $global-section-border-color !default;
+$dropdown-background-color: color(white) !default;
+$dropdown-border-color: color(border) !default;
 $dropdown-z-index: 100 !default;
-$dropdown-link-color: $body-font-color !default;
-$dropdown-link-hover-color: $black !default;
-$dropdown-link-hover-background-color: $global-section-border-color !default;
+$dropdown-link-color: color(text) !default;
+$dropdown-link-hover-color: color(black) !default;
+$dropdown-link-hover-background-color: color(border) !default;
 $dropdown-link-active-color: $dropdown-link-color !default;
 $dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%) !default;
 $dropdown-link-disabled-color: lighten($dropdown-link-color, 50%) !default;
@@ -129,7 +129,7 @@ $include-html-paint-dropdown: true !default;
       i {
         @include icon(search);
 
-        color: $primary-color;
+        color: color(primary);
         line-height: $dropdown-search-icon-size;
       }
     }

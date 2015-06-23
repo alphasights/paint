@@ -90,7 +90,7 @@ $include-html-paint-side-panel: true !default;
 
   > .main,
   > .drawer {
-    background-color: $white;
+    background-color: color(white);
     box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
     height: 100%;
     overflow: hidden;
@@ -212,7 +212,7 @@ $include-html-paint-side-panel: true !default;
     > button {
       @include button-icon(close);
 
-      border-color: $global-section-border-color;
+      border-color: color(border);
     }
   }
 
