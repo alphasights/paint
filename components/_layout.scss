@@ -181,22 +181,33 @@ $include-html-paint-layout: true !default;
   header {
     background-color: $layout-sidebar-nav-title-background-color;
     color: $layout-sidebar-nav-title-text-color;
-    line-height: $layout-sidebar-nav-title-height;
+    height: $layout-sidebar-nav-title-height;
+    overflow: hidden;
     padding: 0 $layout-sidebar-nav-padding;
+    position: relative;
     white-space: nowrap;
 
     h1 {
       @extend %layout-sidebar-heading;
 
       color: $layout-sidebar-nav-link-text-color;
-      display: inline-block;
+      line-height: $layout-sidebar-nav-title-height;
       margin: 0;
+      transform: translate(0, 0);
+      transition: 
+        transform $layout-sidebar-collapse-duration $global-transition-easing,
+        opacity $layout-sidebar-collapse-duration ease-out;
+      transition-delay: $global-transition-easing;
+      width: 80%;
     }
 
     .toggle-collapse {
       color: $layout-sidebar-nav-link-text-color;
-      float: right;
+      height: $layout-sidebar-nav-title-height;
       line-height: $layout-sidebar-nav-title-height;
+      position: absolute;
+      right: $layout-sidebar-nav-padding;
+      z-index: 1;
 
       button {
         @include icon(chevron-circle-left);
@@ -320,7 +331,6 @@ $include-html-paint-layout: true !default;
 
   h1 {
     opacity: 0;
-    width: 0;
   }
 
   .toggle-collapse {
@@ -334,17 +344,13 @@ $include-html-paint-layout: true !default;
 
   #{$layout-sidebar-nav-selector} header {
     h1 {
-      display: none;
+      transform: translate(-200%, 0);
     }
 
-    .toggle-collapse {
-      float: none;
+    .toggle-collapse button {
+      @include icon(chevron-circle-right);
 
-      button {
-        @include icon(chevron-circle-right);
-
-        width: $layout-sidebar-nav-link-icon-width;
-      }
+      width: $layout-sidebar-nav-link-icon-width;
     }
   }
 }
