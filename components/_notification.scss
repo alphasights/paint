@@ -93,7 +93,24 @@ $notification-colors: (
   }
 }
 
+@mixin notifications($position: fixed) {
+  @if $position == fixed {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  } @else {
+    position: $position;
+    width: 100%;
+  }
+}
+
 @mixin notification-placeholders {
+  %notifications {
+    @include notifications;
+  }
   @each $type, $palette in $notification-colors {
     %notification-#{$type} {
       @include notification($palette);
