@@ -1,0 +1,106 @@
+@keyframes notificationSlideIn {
+  0% {
+    transform: rotateX(-90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes notificationFade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+$notification-colors: (
+  primary: primary,
+  secondary: secondary,
+  alert: alert,
+  error: alert,
+  warning: warning,
+  success: success,
+  info: info
+);
+
+@mixin notification-animation(
+  $animation: 'notificationSlideIn',
+  $duration: $global-transition-duration,
+  $direction: normal
+) {
+  animation: $animation;
+  animation-duration: $duration;
+  animation-timing-function: $global-transition-easing;
+  animation-fill-mode: forwards;
+  animation-direction: $direction;
+  transition-duration: $duration;
+  transform-style: preserve-3d;
+  transform-origin: center top;
+  perspective: 1000px;
+}
+
+@mixin notification(
+  $type: info,
+  $content-selector: '> span',
+  $close-selector: '> .close',
+  $is-closing-class: 'is-closing'
+) {
+  $background-color: color($type, light);
+  $contrast-text-dark: color($type, dark);
+  $contrast-text-light: color($type, light);
+  $text-color: contrast($background-color, $contrast-text-light, $contrast-text-dark);
+  $text-shadow-color: contrast($text-color, color(black), color(white));
+
+  @include notification-animation;
+
+  background-color: $background-color;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(255, 255, 255, .3);
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+
+  &.#{$is-closing-class} {
+    @include notification-animation('notificationFade', $direction: reverse);
+  }
+
+  #{$content-selector},
+  #{$close-selector} {
+    @include notification-animation('notificationFade', $global-transition-duration * 2);
+
+    color: $text-color;
+    display: inline-block;
+    font-size: $h4-font-size;
+    font-weight: $font-weight-bold;
+    padding: $column-gutter / 2 $column-gutter;
+    text-shadow: -1px 0 $text-shadow-color;
+  }
+
+  #{$close-selector} {
+    @include button-icon(times);
+
+    color: transparentize($text-color, .4);
+    position: absolute;
+    right: $column-gutter / 2;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@mixin notification-placeholders {
+  @each $type, $palette in $notification-colors {
+    %notification-#{$type} {
+      @include notification($palette);
+    }
+  }
+}
+
+@include exports('paint-notification') {
+  @include notification-placeholders;
+}
