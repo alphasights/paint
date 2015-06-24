@@ -19,7 +19,7 @@
 }
 
 $notification-colors: (
-  primary: link,
+  primary: primary,
   secondary: secondary,
   alert: alert,
   error: alert,
@@ -50,15 +50,15 @@ $notification-colors: (
   $close-selector: '> .close',
   $is-closing-class: 'is-closing'
 ) {
-  $color: color($type, light);
+  $background-color: color($type, light);
   $contrast-text-dark: color($type, dark);
   $contrast-text-light: color($type, light);
-  $text-color: contrast($color, $contrast-text-dark, $contrast-text-light);
+  $text-color: contrast($background-color, $contrast-text-light, $contrast-text-dark);
   $text-shadow-color: contrast($text-color, color(black), color(white));
 
   @include notification-animation;
 
-  background-color: $color;
+  background-color: $background-color;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(255, 255, 255, .3);
   left: 0;
   position: relative;
