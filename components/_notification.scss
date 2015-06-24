@@ -111,7 +111,7 @@ $notification-colors: (
   %notifications {
     @include notifications;
   }
-  
+
   @each $type, $palette in $notification-colors {
     %notification-#{$type} {
       @include notification($palette);
