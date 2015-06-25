@@ -51,18 +51,21 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
+  $ratio: side-panel-settings(scaled-ratio, $size);
 
   @if $scaled {
-    $ratio: side-panel-settings(scaled-ratio, $size);
     $width: "calc(#{$width} * #{$ratio})";
+    $drawer-width: $width;
+  } @else {
+    $drawer-width: "calc(#{$width} * #{$ratio})";
   }
 
-  width: #{$width};
-}
+  > .main {
+    width: #{$width};
+  }
 
-@mixin side-panel($overlay: true, $scaled: false) {
-  @if $overlay {
-    @include overlay($position: fixed, $z-index: 200);
+  > .drawer {
+    width: #{$drawer-width};
   }
 
   &.active {
@@ -72,14 +75,28 @@ $include-html-paint-side-panel: true !default;
 
     &.drawer-active {
       > .main {
-        transform: translate(-100%, 0);
+        transform: translate(#{-$drawer-width}, 0);
       }
 
       > .drawer {
         transform: translate(0, 0);
       }
     }
+  }
+}
 
+@mixin side-panel($overlay: true, $scaled: false) {
+  @if $scaled {
+    $ratio: 1;
+  } @else {
+    $ratio: 0.5;
+  }
+
+  @if $overlay {
+    @include overlay($position: fixed, $z-index: 200);
+  }
+
+  &.active {
     > .main,
     > .drawer {
       > header {
@@ -143,26 +160,26 @@ $include-html-paint-side-panel: true !default;
         width: 100%;
       }
     }
+  }
 
-    @media #{$small-only} {
-      @include side-panel-size(small, $scaled);
-    }
+  @media #{$small-only} {
+    @include side-panel-size(small, $scaled);
+  }
 
-    @media #{$medium-only} {
-      @include side-panel-size(medium, $scaled);
-    }
+  @media #{$medium-only} {
+    @include side-panel-size(medium, $scaled);
+  }
 
-    @media #{$large-only} {
-      @include side-panel-size(large, $scaled);
-    }
+  @media #{$large-only} {
+    @include side-panel-size(large, $scaled);
+  }
 
-    @media #{$xlarge-only} {
-      @include side-panel-size(xlarge, $scaled);
-    }
+  @media #{$xlarge-only} {
+    @include side-panel-size(xlarge, $scaled);
+  }
 
-    @media #{$xxlarge-up} {
-      @include side-panel-size(xxlarge, $scaled);
-    }
+  @media #{$xxlarge-up} {
+    @include side-panel-size(xxlarge, $scaled);
   }
 
   > .main {
