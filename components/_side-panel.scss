@@ -56,16 +56,12 @@ $include-html-paint-side-panel: true !default;
   }
 
   @if $scaled {
-    $transform-percentage: -100%;
-  } @else {
-    $transform-percentage: -100% * $ratio;
-  }
-
-  @if $scaled {
     $width: "calc(#{$width} * #{$ratio})";
     $drawer-width: $width;
+    $main-translation: -100%;
   } @else {
     $drawer-width: "calc(#{$width} * #{$ratio})";
+    $main-translation: -100% * $ratio;
   }
 
   > .main {
@@ -85,7 +81,7 @@ $include-html-paint-side-panel: true !default;
       // Animating the width of the drawer seems more natural. However, we must
       // use percentages otherwise the transform is wonky (not fluid).
       > .main {
-        transform: translate($transform-percentage, 0);
+        transform: translate($main-translation, 0);
       }
 
       > .drawer {
