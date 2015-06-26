@@ -1,3 +1,8 @@
+// Variables are needed here since libsass cannot currently multiply values
+// fetched via map-get. http://git.io/vtC5i
+$scaled-ratio-small: 1;
+$scaled-ratio-large: .5;
+
 $side-panel-default-settings: (
   size: (
     small: 100%,
@@ -5,14 +10,6 @@ $side-panel-default-settings: (
     large: 75em,
     xlarge: 90em,
     xxlarge: 120em
-  ),
-
-  scaled-ratio: (
-    small: 1,
-    medium: 1,
-    large: .5,
-    xlarge: .5,
-    xxlarge: .5
   ),
 
   actions-bar: (
@@ -51,7 +48,18 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
-  $ratio: side-panel-settings(scaled-ratio, $size);
+
+  @if ($size == small or $size == medium) {
+    $ratio: $scaled-ratio-small;
+  } @else {
+    $ratio: $scaled-ratio-large;
+  }
+
+  @if $scaled {
+    $transform-percentage: -100%;
+  } @else {
+    $transform-percentage: -100% * $ratio;
+  }
 
   @if $scaled {
     $width: "calc(#{$width} * #{$ratio})";
@@ -74,8 +82,10 @@ $include-html-paint-side-panel: true !default;
     }
 
     &.drawer-active {
+      // Animating the width of the drawer seems more natural. However, we must
+      // use percentages otherwise the transform is wonky (not fluid).
       > .main {
-        transform: translate(#{-$drawer-width}, 0);
+        transform: translate($transform-percentage, 0);
       }
 
       > .drawer {
@@ -86,12 +96,6 @@ $include-html-paint-side-panel: true !default;
 }
 
 @mixin side-panel($overlay: true, $scaled: false) {
-  @if $scaled {
-    $ratio: 1;
-  } @else {
-    $ratio: 0.5;
-  }
-
   @if $overlay {
     @include overlay($position: fixed, $z-index: 200);
   }
