@@ -33,7 +33,7 @@ $include-html-paint-panel: true !default;
   > header {
     background: linear-gradient(to right, $dark-background-color, $background-color);
 
-    h1 {
+    * {
       color: contrast($background-color);
     }
   }
