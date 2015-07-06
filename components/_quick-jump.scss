@@ -206,7 +206,8 @@ $quick-jump-default-settings: (
 
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &.focused {
         background-color: lighten($background-color, 3%);
       }
 
