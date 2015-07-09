@@ -1,0 +1,291 @@
+@import "https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css";
+
+$navigation-default-settings: (
+  background-color: #191c1f,
+  text-color: #a5a5a5,
+  item-background-color: lighten(#191c1f, 5%),
+  height: 60px,
+  width: 300px,
+  width-collapsed: 60px,
+  logo-width: 32px,
+
+  selectors: (
+    main: '.main-navigation'
+  )
+);
+
+$no-touch-selector: '.no-touch';
+
+@if global-variable-exists(navigation) {
+  $navigation: map-merge-settings($navigation-default-settings, $navigation);
+} @else {
+  $navigation: $navigation-default-settings;
+}
+
+$include-html-paint-navigation: true !default;
+
+@function navigation-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($navigation, $setting), $property),
+  } @else {
+    @return map-get($navigation, $setting)
+  }
+}
+
+.application {
+  &.with-sidebar {
+    margin-left: 60px;
+  }
+  &.with-topbar {
+    margin-top: 60px;
+  }
+}
+
+.main-navigation {
+  background: color(white);
+  color: navigation-settings(background-color);
+  font-size: $base-font-size;
+  height: 60px;
+  left: 0;
+  line-height: 60px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-transform: none;
+  top: 0;
+  z-index: 101;
+
+  &.with-topbar {
+    width: 100%;
+  }
+
+  a {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  > .item {
+    border-right: 1px solid lighten(navigation-settings(text-color), 25%);
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+
+    &.with-sidebar {
+      -webkit-touch-callout: none;
+      position: relative;
+      user-select: none;
+      width: 60px;
+    }
+
+    &:last-child:not(.with-sidebar) {
+      border-left: 1px solid lighten(navigation-settings(text-color), 25%);
+      border-right: none;
+      float: right;
+    }
+
+     > a {
+      color: navigation-settings(background-color);
+      font-weight: $font-weight-normal;
+      padding: 0 30px;
+      text-transform: uppercase;
+
+      &[class^='icon-'] {
+        @extend %paint-icon;
+
+        &:before {
+          display: block !important;
+          height: 0 !important;
+          overflow: hidden;
+          width: 0 !important;
+        }
+      }
+    }
+
+    .logo {
+      background: navigation-settings(background-color) url('#{$images-path}logo.png') 50% 50% no-repeat;
+      background-size: 28px 28px;
+
+      &:before {
+        content: '';
+        height: 3px;
+        margin-left: -15px;
+        vertical-align: -2px;
+        width: 30px;
+      }
+
+      span {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        width: 0;
+      }
+    }
+  }
+}
+
+#{$no-touch-selector} {
+  .main-navigation .item a:hover {
+    background-color: navigation-settings(item-background-color);
+    color: color(white);
+  }
+}
+
+.sidebar {
+  background: navigation-settings(background-color);
+  border-top: 1px solid navigation-settings(item-background-color);
+  bottom: 0;
+  color: navigation-settings(text-color);
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 60px;
+  transform: translateX(-60px);
+  transition-delay: 0.3s;
+  transition: transform 0.3s, width 0.3s;
+  width: 60px;
+
+
+  .scroller {
+    height: 100%;
+    overflow-y: scroll;
+    position: absolute;
+    width: 370px;
+  }
+
+  .menu,
+  .menu ul {
+    background: navigation-settings(background-color);
+    border-bottom: 1px solid navigation-settings(item-background-color);
+    color: color(white);
+    font-size: $base-font-size;
+    line-height: 60px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-transform: none;
+
+
+    li:not(:first-child),
+    li li {
+      box-shadow: inset 0 1px navigation-settings(item-background-color);
+    }
+
+    a {
+      color: navigation-settings(text-color);
+      text-transform: uppercase;
+
+      span {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        width: 0;
+      }
+    }
+
+    .submenu li {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.3s;
+
+      a {
+        color: darken(navigation-settings(text-color), 20%);
+      }
+    }
+
+    a[class^='icon-'] {
+      @extend %paint-icon;
+    }
+  }
+}
+
+%paint-icon {
+  &:before {
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-family: 'Paint';
+    font-size: $h4-font-size;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-align: center;
+    text-transform: none;
+    width: 60px;
+  }
+}
+
+.hamburger-icon::before {
+  background-color: navigation-settings(background-color);
+  box-shadow: 0 3px color(white), 0 -6px navigation-settings(background-color), 0 -9px color(white), 0 -12px navigation-settings(background-color);
+  content: '';
+  height: 3px;
+  margin-left: -15px;
+  vertical-align: -2px;
+  width: 30px;
+}
+
+$sidebar-part-open: '.part-open';
+$sidebar-full-open: '.part-open:hover';
+
+.sidebar {
+  &#{$sidebar-full-open},
+  &#{$sidebar-part-open} {
+    transform: translateX(0px);
+  }
+
+  &#{$sidebar-full-open} {
+    width: 300px;
+    transition-delay: 0s;
+
+    .submenu li {
+      height: 60px;
+    }
+  }
+}
+
+@media #{$small-only} {
+  .application {
+    &.with-sidebar {
+      margin-left: 0;
+    }
+  }
+
+  .main-navigation {
+    .item.with-sidebar:hover .sidebar {
+      transform: translateX(0px);
+    }
+
+    .sidebar {
+      &#{$sidebar-part-open} {
+        transform: translateX(-60px);
+      }
+
+      &#{$sidebar-full-open} {
+        transform: translateX(0px);
+        width: 100%;
+
+        .scroller {
+          width: 130%
+        }
+      }
+    }
+
+    .item {
+      > a[class^='icon-']::before {
+        display: inline-block !important;
+        height: auto !important;
+        width: 30px !important;
+      }
+
+      span {
+        display: none;
+      }
+    }
+  }
+}
