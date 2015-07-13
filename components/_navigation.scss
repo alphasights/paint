@@ -5,16 +5,17 @@ $navigation-default-settings: (
   text-color: #a5a5a5,
   item-background-color: lighten(#191c1f, 5%),
   height: 60px,
+  height-negative: -60px,
   width: 300px,
   width-collapsed: 60px,
-  logo-width: 32px,
+  logo-width: 28px,
+  transition-duration: 0.3s,
+  z-index: 101,
 
   selectors: (
     main: '.main-navigation'
   )
 );
-
-$no-touch-selector: '.no-touch';
 
 @if global-variable-exists(navigation) {
   $navigation: map-merge-settings($navigation-default-settings, $navigation);
@@ -22,6 +23,7 @@ $no-touch-selector: '.no-touch';
   $navigation: $navigation-default-settings;
 }
 
+$no-touch-selector: '.no-touch' !default;
 $include-html-paint-navigation: true !default;
 
 @function navigation-settings($setting, $property: null) {
@@ -34,10 +36,10 @@ $include-html-paint-navigation: true !default;
 
 .application {
   &.with-sidebar {
-    margin-left: 60px;
+    margin-left: navigation-settings(height);
   }
   &.with-topbar {
-    margin-top: 60px;
+    margin-top: navigation-settings(height);
   }
 }
 
@@ -45,16 +47,16 @@ $include-html-paint-navigation: true !default;
   background: color(white);
   color: navigation-settings(background-color);
   font-size: $base-font-size;
-  height: 60px;
+  height: navigation-settings(height);
   left: 0;
-  line-height: 60px;
+  line-height: navigation-settings(height);
   list-style: none;
   margin: 0;
   padding: 0;
   position: absolute;
   text-transform: none;
   top: 0;
-  z-index: 101;
+  z-index: navigation-settings(z-index);
 
   &.with-topbar {
     width: 100%;
@@ -78,7 +80,7 @@ $include-html-paint-navigation: true !default;
       -webkit-touch-callout: none;
       position: relative;
       user-select: none;
-      width: 60px;
+      width: navigation-settings(height);
     }
 
     &:last-child:not(.with-sidebar) {
@@ -90,7 +92,7 @@ $include-html-paint-navigation: true !default;
      > a {
       color: navigation-settings(background-color);
       font-weight: $font-weight-normal;
-      padding: 0 30px;
+      padding: 0 navigation-settings(height) / 2;
       text-transform: uppercase;
 
       &[class^='icon-'] {
@@ -107,15 +109,7 @@ $include-html-paint-navigation: true !default;
 
     .logo {
       background: navigation-settings(background-color) url('#{$images-path}logo.png') 50% 50% no-repeat;
-      background-size: 28px 28px;
-
-      &:before {
-        content: '';
-        height: 3px;
-        margin-left: -15px;
-        vertical-align: -2px;
-        width: 30px;
-      }
+      background-size: navigation-settings(logo-width) navigation-settings(logo-width);
 
       span {
         display: block;
@@ -142,18 +136,18 @@ $include-html-paint-navigation: true !default;
   left: 0;
   overflow: hidden;
   position: fixed;
-  top: 60px;
-  transform: translateX(-60px);
-  transition-delay: 0.3s;
-  transition: transform 0.3s, width 0.3s;
-  width: 60px;
+  top: navigation-settings(height);
+  transform: translateX(navigation-settings(height-negative));
+  transition-delay: navigation-settings(transition-duration);
+  transition: transform navigation-settings(transition-duration), width navigation-settings(transition-duration);
+  width: navigation-settings(width-collapsed);
 
 
   .scroller {
     height: 100%;
     overflow-y: scroll;
     position: absolute;
-    width: 370px;
+    width: navigation-settings(width);
   }
 
   .menu,
@@ -162,7 +156,7 @@ $include-html-paint-navigation: true !default;
     border-bottom: 1px solid navigation-settings(item-background-color);
     color: color(white);
     font-size: $base-font-size;
-    line-height: 60px;
+    line-height: navigation-settings(height);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -190,7 +184,7 @@ $include-html-paint-navigation: true !default;
     .submenu li {
       height: 0;
       overflow: hidden;
-      transition: height 0.3s;
+      transition: height navigation-settings(transition-duration);
 
       a {
         color: darken(navigation-settings(text-color), 20%);
@@ -216,18 +210,8 @@ $include-html-paint-navigation: true !default;
     speak: none;
     text-align: center;
     text-transform: none;
-    width: 60px;
+    width: navigation-settings(height);
   }
-}
-
-.hamburger-icon::before {
-  background-color: navigation-settings(background-color);
-  box-shadow: 0 3px color(white), 0 -6px navigation-settings(background-color), 0 -9px color(white), 0 -12px navigation-settings(background-color);
-  content: '';
-  height: 3px;
-  margin-left: -15px;
-  vertical-align: -2px;
-  width: 30px;
 }
 
 $sidebar-part-open: '.part-open';
@@ -240,11 +224,11 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   &#{$sidebar-full-open} {
-    width: 300px;
+    width: navigation-settings(width);
     transition-delay: 0s;
 
     .submenu li {
-      height: 60px;
+      height: navigation-settings(height);
     }
   }
 }
@@ -263,7 +247,7 @@ $sidebar-full-open: '.part-open:hover';
 
     .sidebar {
       &#{$sidebar-part-open} {
-        transform: translateX(-60px);
+        transform: translateX(navigation-settings(height-negative));
       }
 
       &#{$sidebar-full-open} {
