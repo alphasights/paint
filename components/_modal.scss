@@ -1,0 +1,118 @@
+$modal-default-settings: (
+  size: (
+    small: 98%,
+    medium: 90%,
+    large: 80%,
+    xlarge: 50%,
+    xxlarge: 50%
+  )
+);
+
+@if global-variable-exists(modal) {
+  $modal: map-merge-settings($modal-default-settings, $modal);
+} @else {
+  $modal: $modal-default-settings;
+}
+
+$include-html-paint-modal: true !default;
+
+@function modal-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($modal, $setting), $property),
+  } @else {
+    @return map-get($modal, $setting)
+  }
+}
+
+@mixin modal-size($size: large) {
+  width: modal-settings(size, $size);
+}
+
+@mixin modal-close-button {
+  @include button-icon(close);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: panel-settings(header-height);
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0 $column-gutter / 2;
+
+  &:before {
+    display: inline-block;
+  }
+}
+
+@mixin modal-panel {
+  @extend %panel-default;
+  @include panel-background(color(gray, smoke));
+
+  > header {
+    font-size: $small-font-size;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+
+    > .close {
+      @include modal-close-button;
+    }
+  }
+
+  > .content {
+    @extend %grid-row;
+  }
+
+  @media #{$small-only} {
+    @include modal-size(small);
+  }
+
+  @media #{$medium-only} {
+    @include modal-size(medium);
+  }
+
+  @media #{$large-only} {
+    @include modal-size(large);
+  }
+
+  @media #{$xlarge-only} {
+    @include modal-size(xlarge);
+  }
+
+  @media #{$xxlarge-up} {
+    @include modal-size(xxlarge);
+  }
+}
+
+%modal {
+  @include overlay;
+
+  height: 100%;
+  transform-style: preserve-3d;
+
+  > div {
+    @include modal-panel;
+
+    margin: 0 auto;
+    max-height: 98%;
+    overflow-y: auto;
+    position: relative;
+    top: -100%;
+    transform: translateY(-100%);
+    transition: 
+      top $global-transition-duration $global-transition-easing,
+      transform $global-transition-duration;
+  }
+
+  &.active > div {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@include exports('paint-modal') {
+  @if $include-html-paint-modal {
+    .modal {
+      @extend %modal;
+    }
+  }
+}
