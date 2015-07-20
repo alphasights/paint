@@ -1,10 +1,10 @@
 $modal-default-settings: (
   size: (
     small: 98%,
-    medium: 90%,
-    large: 80%,
-    xlarge: 50%,
-    xxlarge: 50%
+    medium: 40em,
+    large: 60em,
+    xlarge: 80em,
+    xxlarge: 100em
   )
 );
 
@@ -24,8 +24,14 @@ $include-html-paint-modal: true !default;
   }
 }
 
-@mixin modal-size($size: large) {
-  width: modal-settings(size, $size);
+@mixin modal-size($size: large, $use-content-size: false) {
+  $width: modal-settings(size, $size);
+
+  max-width: 98%;
+
+  @if not($use-content-size) {
+    min-width: $width;
+  }
 }
 
 @mixin modal-close-button {
@@ -44,7 +50,7 @@ $include-html-paint-modal: true !default;
   }
 }
 
-@mixin modal-panel {
+@mixin modal-panel($use-content-size: false) {
   @extend %panel-default;
   @include panel-background(color(gray, smoke));
 
@@ -63,35 +69,37 @@ $include-html-paint-modal: true !default;
   }
 
   @media #{$small-only} {
-    @include modal-size(small);
+    @include modal-size(small, $use-content-size);
   }
 
   @media #{$medium-only} {
-    @include modal-size(medium);
+    @include modal-size(medium, $use-content-size);
   }
 
   @media #{$large-only} {
-    @include modal-size(large);
+    @include modal-size(large, $use-content-size);
   }
 
   @media #{$xlarge-only} {
-    @include modal-size(xlarge);
+    @include modal-size(xlarge, $use-content-size);
   }
 
   @media #{$xxlarge-up} {
-    @include modal-size(xxlarge);
+    @include modal-size(xxlarge, $use-content-size);
   }
 }
 
-%modal {
+@mixin modal($use-content-size: false) {
   @include overlay;
 
   height: 100%;
   transform-style: preserve-3d;
+  text-align: center;
 
   > div {
-    @include modal-panel;
+    @include modal-panel($use-content-size);
 
+    display: inline-block;
     margin: 0 auto;
     max-height: 98%;
     overflow-y: auto;
@@ -112,7 +120,7 @@ $include-html-paint-modal: true !default;
 @include exports('paint-modal') {
   @if $include-html-paint-modal {
     .modal {
-      @extend %modal;
+      @include modal;
     }
   }
 }
