@@ -13,7 +13,8 @@ $navigation-default-settings: (
   z-index: 101,
 
   selectors: (
-    main: '.main-navigation'
+    main: '.main-navigation',
+    sidebar: '.sidebar'
   )
 );
 
@@ -34,7 +35,7 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-.application {
+#{$layout-main-selector} {
   &.with-sidebar {
     margin-left: navigation-settings(height);
   }
@@ -43,7 +44,7 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-.main-navigation {
+#{navigation-settings(selectors, main)} {
   background: color(white);
   color: navigation-settings(background-color);
   font-size: $base-font-size;
@@ -128,7 +129,8 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-.sidebar {
+#{navigation-settings(selectors, main)}
+#{navigation-settings(selectors, sidebar)} {
   background: navigation-settings(background-color);
   border-top: 1px solid navigation-settings(item-background-color);
   bottom: 0;
