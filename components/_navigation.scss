@@ -35,6 +35,29 @@ $include-html-paint-navigation: true !default;
   }
 }
 
+@mixin navigation-logo {
+  $logo-padding: navigation-settings(width-collapsed) - navigation-settings(logo-width);
+
+  background:
+    url('#{$images-path}logo.png')
+    $logo-padding / 2 50%
+    no-repeat;
+
+  background-size:
+    navigation-settings(logo-width)
+    navigation-settings(logo-width);
+
+  min-width: navigation-settings(width-collapsed);
+  padding-left: 0;
+
+  span {
+    display: block;
+    padding-left: navigation-settings(width-collapsed);
+    font-weight: $font-weight-extrabold;
+    font-size: $small-font-size;
+  }
+}
+
 #{$layout-main-selector} {
   &.with-sidebar {
     margin-left: navigation-settings(height);
@@ -81,7 +104,6 @@ $include-html-paint-navigation: true !default;
       -webkit-touch-callout: none;
       position: relative;
       user-select: none;
-      width: navigation-settings(height);
     }
 
     &:last-child:not(.with-sidebar) {
@@ -109,15 +131,7 @@ $include-html-paint-navigation: true !default;
     }
 
     .logo {
-      background: navigation-settings(background-color) url('#{$images-path}logo.png') 50% 50% no-repeat;
-      background-size: navigation-settings(logo-width) navigation-settings(logo-width);
-
-      span {
-        display: block;
-        height: 0;
-        overflow: hidden;
-        width: 0;
-      }
+      @include navigation-logo;
     }
   }
 }
@@ -219,7 +233,8 @@ $include-html-paint-navigation: true !default;
 $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
 
-.sidebar {
+#{navigation-settings(selectors, main)}
+#{navigation-settings(selectors, sidebar)} {
   &#{$sidebar-full-open},
   &#{$sidebar-part-open} {
     transform: translateX(0px);
@@ -242,12 +257,13 @@ $sidebar-full-open: '.part-open:hover';
     }
   }
 
-  .main-navigation {
-    .item.with-sidebar:hover .sidebar {
+  #{navigation-settings(selectors, main)} {
+    .item.with-sidebar:hover
+    #{navigation-settings(selectors, sidebar)} {
       transform: translateX(0px);
     }
 
-    .sidebar {
+    #{navigation-settings(selectors, sidebar)} {
       &#{$sidebar-part-open} {
         transform: translateX(navigation-settings(height-negative));
       }
@@ -263,14 +279,18 @@ $sidebar-full-open: '.part-open:hover';
     }
 
     .item {
-      > a[class^='icon-']::before {
-        display: inline-block !important;
-        height: auto !important;
-        width: 30px !important;
-      }
+      > a[class^='icon-'] {
+        padding: $column-gutter / 4;
 
-      span {
-        display: none;
+        &:before {
+          display: inline-block !important;
+          height: auto !important;
+          width: 30px !important;
+        }
+
+        span {
+          display: none;
+        }
       }
     }
   }
