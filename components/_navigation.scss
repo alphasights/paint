@@ -80,6 +80,7 @@ $include-html-paint-navigation: true !default;
 
 #{navigation-settings(selectors, main)} {
   background: navigation-settings(topbar, background-color);
+  border-bottom: solid 1px navigation-settings(topbar, hover-color);
   color: navigation-settings(topbar, text-color);
   font-size: $base-font-size;
   height: navigation-settings(height);
@@ -95,7 +96,11 @@ $include-html-paint-navigation: true !default;
 
   &.with-topbar {
     width: 100%;
-    border-bottom: solid 1px navigation-settings(topbar, hover-color);
+  }
+
+  &:not(.with-topbar)
+  .item.with-sidebar .logo span {
+    display: none;
   }
 
   a {
@@ -270,6 +275,7 @@ $sidebar-full-open: '.part-open:hover';
   .application {
     &.with-sidebar {
       margin-left: 0;
+      margin-top: navigation-settings(height);
     }
   }
 
