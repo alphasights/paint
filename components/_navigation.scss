@@ -278,8 +278,8 @@ $sidebar-full-open: '.part-open:hover';
       }
     }
 
-    .item {
-      > a[class^='icon-'] {
+    .item > a {
+      &[class^='icon-'] {
         padding: $column-gutter / 4;
 
         &:before {
@@ -287,10 +287,10 @@ $sidebar-full-open: '.part-open:hover';
           height: auto !important;
           width: 30px !important;
         }
+      }
 
-        span {
-          display: none;
-        }
+      span {
+        display: none !important;
       }
     }
   }
