@@ -1,16 +1,27 @@
 @import "https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css";
 
 $navigation-default-settings: (
-  background-color: #191c1f,
-  text-color: #a5a5a5,
-  item-background-color: lighten(#191c1f, 5%),
   height: 60px,
   height-negative: -60px,
-  width: 300px,
-  width-collapsed: 60px,
   logo-width: 28px,
+  sidebar-width: 300px,
+  sidebar-min-width: 60px,
   transition-duration: 0.3s,
   z-index: 101,
+
+  topbar: (
+    background-color: color(white),
+    hover-color: color(border,light),
+    text-color: #191c1f,
+    text-hover-color: #191c1f
+  ),
+
+  sidebar: (
+    background-color: #191c1f,
+    hover-color: lighten(#191c1f, 10%),
+    text-color: #a5a5a5,
+    submenu-text-color: darken(#a5a5a5, 20%)
+  ),
 
   selectors: (
     main: '.main-navigation',
@@ -36,23 +47,23 @@ $include-html-paint-navigation: true !default;
 }
 
 @mixin navigation-logo {
-  $logo-padding: navigation-settings(width-collapsed) - navigation-settings(logo-width);
+  $logo-padding: (navigation-settings(sidebar-min-width) - navigation-settings(logo-width)) / 2;
 
   background:
     url('#{$images-path}logo.png')
-    $logo-padding / 2 50%
+    $logo-padding 50%
     no-repeat;
 
   background-size:
     navigation-settings(logo-width)
     navigation-settings(logo-width);
 
-  min-width: navigation-settings(width-collapsed);
+  min-width: navigation-settings(sidebar-min-width);
   padding-left: 0;
 
   span {
     display: block;
-    padding-left: navigation-settings(width-collapsed);
+    padding-left: navigation-settings(sidebar-min-width);
     font-weight: $font-weight-extrabold;
     font-size: $small-font-size;
   }
@@ -68,8 +79,8 @@ $include-html-paint-navigation: true !default;
 }
 
 #{navigation-settings(selectors, main)} {
-  background: color(white);
-  color: navigation-settings(background-color);
+  background: navigation-settings(topbar, background-color);
+  color: navigation-settings(topbar, text-color);
   font-size: $base-font-size;
   height: navigation-settings(height);
   left: 0;
@@ -84,6 +95,7 @@ $include-html-paint-navigation: true !default;
 
   &.with-topbar {
     width: 100%;
+    border-bottom: solid 1px navigation-settings(topbar, hover-color);
   }
 
   a {
@@ -94,7 +106,7 @@ $include-html-paint-navigation: true !default;
   }
 
   > .item {
-    border-right: 1px solid lighten(navigation-settings(text-color), 25%);
+    border-right: 1px solid navigation-settings(topbar, hover-color);
     display: block;
     float: left;
     height: 100%;
@@ -107,13 +119,13 @@ $include-html-paint-navigation: true !default;
     }
 
     &:last-child:not(.with-sidebar) {
-      border-left: 1px solid lighten(navigation-settings(text-color), 25%);
+      border-left: 1px solid navigation-settings(topbar, hover-color);
       border-right: none;
       float: right;
     }
 
      > a {
-      color: navigation-settings(background-color);
+      color: navigation-settings(topbar, text-color);
       font-weight: $font-weight-normal;
       padding: 0 navigation-settings(height) / 2;
       text-transform: uppercase;
@@ -137,18 +149,18 @@ $include-html-paint-navigation: true !default;
 }
 
 #{$no-touch-selector} {
-  .main-navigation .item a:hover {
-    background-color: navigation-settings(item-background-color);
-    color: color(white);
+  .main-navigation .item > a:hover {
+    background-color: navigation-settings(topbar, hover-color);
+    color: navigation-settings(topbar, text-hover-color);
   }
 }
 
 #{navigation-settings(selectors, main)}
 #{navigation-settings(selectors, sidebar)} {
-  background: navigation-settings(background-color);
-  border-top: 1px solid navigation-settings(item-background-color);
+  background: navigation-settings(sidebar, background-color);
+  border-top: 1px solid navigation-settings(sidebar, hover-color);
   bottom: 0;
-  color: navigation-settings(text-color);
+  color: navigation-settings(sidebar, text-color);
   left: 0;
   overflow: hidden;
   position: fixed;
@@ -156,20 +168,20 @@ $include-html-paint-navigation: true !default;
   transform: translateX(navigation-settings(height-negative));
   transition-delay: navigation-settings(transition-duration);
   transition: transform navigation-settings(transition-duration), width navigation-settings(transition-duration);
-  width: navigation-settings(width-collapsed);
+  width: navigation-settings(sidebar-min-width);
 
 
   .scroller {
     height: 100%;
     overflow-y: scroll;
     position: absolute;
-    width: navigation-settings(width);
+    width: navigation-settings(sidebar-width);
   }
 
   .menu,
   .menu ul {
-    background: navigation-settings(background-color);
-    border-bottom: 1px solid navigation-settings(item-background-color);
+    background: navigation-settings(sidebar, background-color);
+    border-bottom: 1px solid navigation-settings(sidebar, hover-color);
     color: color(white);
     font-size: $base-font-size;
     line-height: navigation-settings(height);
@@ -182,12 +194,16 @@ $include-html-paint-navigation: true !default;
 
     li:not(:first-child),
     li li {
-      box-shadow: inset 0 1px navigation-settings(item-background-color);
+      box-shadow: inset 0 1px navigation-settings(sidebar, hover-color);
     }
 
     a {
-      color: navigation-settings(text-color);
+      color: navigation-settings(sidebar, text-color);
       text-transform: uppercase;
+
+      &:hover {
+        background-color: navigation-settings(sidebar, hover-color);
+      }
 
       span {
         display: block;
@@ -203,7 +219,7 @@ $include-html-paint-navigation: true !default;
       transition: height navigation-settings(transition-duration);
 
       a {
-        color: darken(navigation-settings(text-color), 20%);
+        color: navigation-settings(sidebar, submenu-text-color);
       }
     }
 
@@ -241,7 +257,7 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   &#{$sidebar-full-open} {
-    width: navigation-settings(width);
+    width: navigation-settings(sidebar-width);
     transition-delay: 0s;
 
     .submenu li {
@@ -280,12 +296,13 @@ $sidebar-full-open: '.part-open:hover';
 
     .item > a {
       &[class^='icon-'] {
-        padding: $column-gutter / 4;
+        padding: 0 $column-gutter / 4 !important;
 
         &:before {
           display: inline-block !important;
           height: auto !important;
           width: 30px !important;
+          line-height: navigation-settings(height) !important;
         }
       }
 
