@@ -321,7 +321,11 @@ $sidebar-full-open: '.part-open:hover';
         }
       }
     }
+  }
+}
 
+@media #{$medium-down} {
+  #{navigation-settings(selectors, main)} {
     .item > a {
       &[class^='icon-'] {
         padding: 0 $column-gutter / 4 !important;
