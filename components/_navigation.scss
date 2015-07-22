@@ -185,6 +185,7 @@ $include-html-paint-navigation: true !default;
     background-color: navigation-settings(topbar, background-color);
     padding: 0;
     transition: background-color navigation-settings(transition-duration);
+    transition-delay: navigation-settings(transition-duration);
 
     span {
       color: color(white);
@@ -282,6 +283,7 @@ $sidebar-full-open: '.part-open:hover';
 
     > header {
       background-color: navigation-settings(sidebar, background-color);
+      transition-delay: 0s;
     }
 
     .submenu li {
@@ -328,7 +330,7 @@ $sidebar-full-open: '.part-open:hover';
           display: inline-block !important;
           height: auto !important;
           line-height: navigation-settings(height) !important;
-          width: 30px !important;
+          width: navigation-settings(sidebar-min-width) / 2 !important;
         }
       }
 
