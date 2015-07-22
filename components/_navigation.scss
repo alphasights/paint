@@ -6,12 +6,12 @@ $navigation-default-settings: (
   logo-width: 28px,
   sidebar-width: 300px,
   sidebar-min-width: 60px,
-  transition-duration: 0.3s,
+  transition-duration: .3s,
   z-index: 101,
 
   topbar: (
     background-color: color(white),
-    hover-color: color(border,light),
+    hover-color: color(border, light),
     text-color: #191c1f,
     text-hover-color: #191c1f
   ),
@@ -49,23 +49,29 @@ $include-html-paint-navigation: true !default;
 @mixin navigation-logo {
   $logo-padding: (navigation-settings(sidebar-min-width) - navigation-settings(logo-width)) / 2;
 
-  background:
+  background: 
     url('#{$images-path}logo.png')
     $logo-padding 50%
     no-repeat;
 
-  background-size:
+  background-size: 
     navigation-settings(logo-width)
     navigation-settings(logo-width);
 
   min-width: navigation-settings(sidebar-min-width);
   padding-left: 0;
 
+  &:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+
   span {
     display: block;
-    padding-left: navigation-settings(sidebar-min-width);
-    font-weight: $font-weight-extrabold;
     font-size: $small-font-size;
+    font-weight: $font-weight-extrabold;
+    padding-left: navigation-settings(sidebar-min-width);
+    text-align: left;
+    text-transform: uppercase;
   }
 }
 
@@ -73,6 +79,7 @@ $include-html-paint-navigation: true !default;
   &.with-sidebar {
     margin-left: navigation-settings(height);
   }
+
   &.with-topbar {
     margin-top: navigation-settings(height);
   }
@@ -99,7 +106,7 @@ $include-html-paint-navigation: true !default;
   }
 
   &:not(.with-topbar)
-  .item.with-sidebar .logo span {
+  .item.with-sidebar > .logo span {
     display: none;
   }
 
@@ -118,18 +125,18 @@ $include-html-paint-navigation: true !default;
     text-align: center;
 
     &.with-sidebar {
-      -webkit-touch-callout: none;
       position: relative;
+      -webkit-touch-callout: none;
       user-select: none;
     }
 
     &:last-child:not(.with-sidebar) {
       border-left: 1px solid navigation-settings(topbar, hover-color);
-      border-right: none;
+      border-right: 0;
       float: right;
     }
 
-     > a {
+    > a {
       color: navigation-settings(topbar, text-color);
       font-weight: $font-weight-normal;
       padding: 0 navigation-settings(height) / 2;
@@ -163,18 +170,26 @@ $include-html-paint-navigation: true !default;
 #{navigation-settings(selectors, main)}
 #{navigation-settings(selectors, sidebar)} {
   background: navigation-settings(sidebar, background-color);
-  border-top: 1px solid navigation-settings(sidebar, hover-color);
   bottom: 0;
   color: navigation-settings(sidebar, text-color);
   left: 0;
   overflow: hidden;
   position: fixed;
-  top: navigation-settings(height);
+  top: 0;
   transform: translateX(navigation-settings(height-negative));
-  transition-delay: navigation-settings(transition-duration);
   transition: transform navigation-settings(transition-duration), width navigation-settings(transition-duration);
+  transition-delay: navigation-settings(transition-duration);
   width: navigation-settings(sidebar-min-width);
 
+  > header {
+    background-color: navigation-settings(topbar, background-color);
+    padding: 0;
+    transition: background-color navigation-settings(transition-duration);
+
+    span {
+      color: color(white);
+    }
+  }
 
   .scroller {
     height: 100%;
@@ -236,10 +251,10 @@ $include-html-paint-navigation: true !default;
 
 %paint-icon {
   &:before {
-    -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-family: 'Paint';
     font-size: $h4-font-size;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
@@ -258,12 +273,16 @@ $sidebar-full-open: '.part-open:hover';
 #{navigation-settings(selectors, sidebar)} {
   &#{$sidebar-full-open},
   &#{$sidebar-part-open} {
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 
   &#{$sidebar-full-open} {
-    width: navigation-settings(sidebar-width);
     transition-delay: 0s;
+    width: navigation-settings(sidebar-width);
+
+    > header {
+      background-color: navigation-settings(sidebar, background-color);
+    }
 
     .submenu li {
       height: navigation-settings(height);
@@ -282,7 +301,7 @@ $sidebar-full-open: '.part-open:hover';
   #{navigation-settings(selectors, main)} {
     .item.with-sidebar:hover
     #{navigation-settings(selectors, sidebar)} {
-      transform: translateX(0px);
+      transform: translateX(0);
     }
 
     #{navigation-settings(selectors, sidebar)} {
@@ -291,12 +310,12 @@ $sidebar-full-open: '.part-open:hover';
       }
 
       &#{$sidebar-full-open} {
-        transform: translateX(0px);
-        width: 100%;
         min-width: navigation-settings(sidebar-width);
+        transform: translateX(0);
+        width: 100%;
 
         .scroller {
-          width: 130%
+          width: 130%;
         }
       }
     }
@@ -308,8 +327,8 @@ $sidebar-full-open: '.part-open:hover';
         &:before {
           display: inline-block !important;
           height: auto !important;
-          width: 30px !important;
           line-height: navigation-settings(height) !important;
+          width: 30px !important;
         }
       }
 
