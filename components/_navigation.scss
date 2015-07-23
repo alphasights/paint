@@ -75,6 +75,17 @@ $include-html-paint-navigation: true !default;
   }
 }
 
+@mixin navigation-item-icon {
+  @extend %paint-icon;
+
+  &:before {
+    display: block !important;
+    height: 0 !important;
+    overflow: hidden;
+    width: 0 !important;
+  }
+}
+
 #{$layout-main-selector} {
   &.with-sidebar {
     margin-left: navigation-settings(height);
@@ -143,14 +154,7 @@ $include-html-paint-navigation: true !default;
       text-transform: uppercase;
 
       &[class^='icon-'] {
-        @extend %paint-icon;
-
-        &:before {
-          display: block !important;
-          height: 0 !important;
-          overflow: hidden;
-          width: 0 !important;
-        }
+        @include navigation-item-icon;
       }
     }
 
