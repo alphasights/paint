@@ -12,6 +12,7 @@ $navigation-default-settings: (
   topbar: (
     background-color: color(white),
     hover-color: color(border, light),
+    border-color: color(border),
     text-color: #191c1f,
     text-hover-color: #191c1f
   ),
@@ -98,7 +99,7 @@ $include-html-paint-navigation: true !default;
 
 #{navigation-settings(selectors, main)} {
   background: navigation-settings(topbar, background-color);
-  border-bottom: solid 1px navigation-settings(topbar, hover-color);
+  border-bottom: solid 1px navigation-settings(topbar, border-color);
   color: navigation-settings(topbar, text-color);
   font-size: $base-font-size;
   height: navigation-settings(height);
