@@ -231,6 +231,10 @@ $include-html-paint-navigation: true !default;
         background-color: navigation-settings(sidebar, hover-color);
       }
 
+      &[class^='icon-'] {
+        @extend %paint-icon;
+      }
+
       span {
         display: block;
         height: 0;
@@ -247,10 +251,6 @@ $include-html-paint-navigation: true !default;
       a {
         color: navigation-settings(sidebar, submenu-text-color);
       }
-    }
-
-    a[class^='icon-'] {
-      @extend %paint-icon;
     }
   }
 }
