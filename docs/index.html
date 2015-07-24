@@ -1,0 +1,722 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Paint</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Paint - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>Our CSS Framework</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">Paint</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="button"><a href="#button">Buttons</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="button-variable"><a href="#button-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="button-colors" data-type="variable"><a href="#variable-button-colors">button-colors</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="button-mixin"><a href="#button-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="button-icon" data-type="mixin"><a href="#mixin-button-icon">button-icon</a></li><li class="sidebar__item sassdoc__item" data-name="button-disabled" data-type="mixin"><a href="#mixin-button-disabled">button-disabled</a></li><li class="sidebar__item sassdoc__item" data-name="button-color-placeholders" data-type="mixin"><a href="#mixin-button-color-placeholders">button-color-placeholders</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="button-placeholder"><a href="#button-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="button-icon" data-type="placeholder"><a href="#placeholder-button-icon">button-icon</a></li><li class="sidebar__item sassdoc__item" data-name="button" data-type="placeholder"><a href="#placeholder-button">button</a></li><li class="sidebar__item sassdoc__item" data-name="button-tiny" data-type="placeholder"><a href="#placeholder-button-tiny">button-tiny</a></li><li class="sidebar__item sassdoc__item" data-name="button-small" data-type="placeholder"><a href="#placeholder-button-small">button-small</a></li><li class="sidebar__item sassdoc__item" data-name="button-large" data-type="placeholder"><a href="#placeholder-button-large">button-large</a></li><li class="sidebar__item sassdoc__item" data-name="button-group" data-type="placeholder"><a href="#placeholder-button-group">button-group</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="color"><a href="#color">Colors / Pallettes</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-variable"><a href="#color-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="colors-default-settings" data-type="variable"><a href="#variable-colors-default-settings">colors-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-function"><a href="#color-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="color" data-type="function"><a href="#function-color">color</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="grid"><a href="#grid">Grid</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="grid-mixin"><a href="#grid-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="grid-column-placeholders" data-type="mixin"><a href="#mixin-grid-column-placeholders">grid-column-placeholders</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="grid-placeholder"><a href="#grid-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="grid-row" data-type="placeholder"><a href="#placeholder-grid-row">grid-row</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="icon"><a href="#icon">Icons</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="icon-mixin"><a href="#icon-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="icon" data-type="mixin"><a href="#mixin-icon">icon</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="layout"><a href="#layout">Layout</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-variable"><a href="#layout-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="layout-content-selector" data-type="variable"><a href="#variable-layout-content-selector">layout-content-selector</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-placeholder"><a href="#layout-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="layout-sidebar-heading" data-type="placeholder"><a href="#placeholder-layout-sidebar-heading">layout-sidebar-heading</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-mixin"><a href="#layout-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="layout-navigation-icons" data-type="mixin"><a href="#mixin-layout-navigation-icons">layout-navigation-icons</a></li><li class="sidebar__item sassdoc__item" data-name="layout-sidebar" data-type="mixin"><a href="#mixin-layout-sidebar">layout-sidebar</a></li><li class="sidebar__item sassdoc__item" data-name="layout" data-type="mixin"><a href="#mixin-layout">layout</a></li><li class="sidebar__item sassdoc__item" data-name="layout-sidebar-nav" data-type="mixin"><a href="#mixin-layout-sidebar-nav">layout-sidebar-nav</a></li><li class="sidebar__item sassdoc__item" data-name="layout-sidebar-nav-collapsed" data-type="mixin"><a href="#mixin-layout-sidebar-nav-collapsed">layout-sidebar-nav-collapsed</a></li><li class="sidebar__item sassdoc__item" data-name="layout-sidebar-footer-with-actions" data-type="mixin"><a href="#mixin-layout-sidebar-footer-with-actions">layout-sidebar-footer-with-actions</a></li><li class="sidebar__item sassdoc__item" data-name="layout-sidebar-footer-with-actions-collapsed" data-type="mixin"><a href="#mixin-layout-sidebar-footer-with-actions-collapsed">layout-sidebar-footer-with-actions-collapsed</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="modal"><a href="#modal">Modals</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="modal-variable"><a href="#modal-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="modal-default-settings" data-type="variable"><a href="#variable-modal-default-settings">modal-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="modal-function"><a href="#modal-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="modal-settings" data-type="function"><a href="#function-modal-settings">modal-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="modal-mixin"><a href="#modal-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="modal-size" data-type="mixin"><a href="#mixin-modal-size">modal-size</a></li><li class="sidebar__item sassdoc__item" data-name="modal-close-button" data-type="mixin"><a href="#mixin-modal-close-button">modal-close-button</a></li><li class="sidebar__item sassdoc__item" data-name="modal-panel" data-type="mixin"><a href="#mixin-modal-panel">modal-panel</a></li><li class="sidebar__item sassdoc__item" data-name="modal" data-type="mixin"><a href="#mixin-modal">modal</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><div class="container"><h1 id="paint">Paint</h1><h2 id="alphasights-styles-library">AlphaSights styles library</h2></div></section><section class="main__section"><h1 class="main__heading" id="button"><div class="container">Buttons</div></h1><section class="main__sub-section" id="button-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-button-colors"><h3 class="item__heading"><a class="item__name" href="#variable-button-colors">button-colors</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$button-colors: (
+  primary: color(link),
+  secondary: color(secondary),
+  alert: color(alert),
+  error: color(alert),
+  warning: color(warning),
+  success: color(success),
+  info: color(info)
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default button styles</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-color-placeholders"><code>button-color-placeholders</code></a></li></ul></section></section><section class="main__sub-section" id="button-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-button-icon"><h3 class="item__heading"><a class="item__name" href="#mixin-button-icon">button-icon</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin button-icon($icon) { 
+  @extend %button-icon;
+  @include icon($icon);
+ }" data-collapsed="@mixin button-icon($icon) { ... }"><code>@mixin button-icon($icon) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generate a button with icon</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$icon</code></th><td data-label="desc"><p>The icon name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.dasboard-button {
+  @include button-icon(dashboard);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-icon"><code>icon</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button-icon"><code>button-icon</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-footer-with-actions"><code>layout-sidebar-footer-with-actions</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-close-button"><code>modal-close-button</code></a></li></ul></section><section class="main__item container item" id="mixin-button-disabled"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-button-disabled">button-disabled</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin button-disabled() { 
+  background-color: transparentize(
+    $button-base-background-color,
+    $button-disabled-transparency);
+  border-color: darken($button-base-background-color, 5%);
+  box-shadow: none;
+  color: transparentize(
+    $button-base-text-color,
+    $button-disabled-transparency);
+  cursor: not-allowed;
+
+  &amp;:hover,
+  &amp;:focus {
+    background-color: transparentize(
+      $button-base-background-color,
+      $button-disabled-hover-transparency);
+    color: transparentize(
+      $button-base-text-color,
+      $button-disabled-hover-transparency);
+  }
+ }" data-collapsed="@mixin button-disabled() { ... }"><code>@mixin button-disabled() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Disabled button styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button"><code>button</code></a></li></ul></section><section class="main__item container item" id="mixin-button-color-placeholders"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-button-color-placeholders">button-color-placeholders</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin button-color-placeholders() { 
+  @each $type, $button-color in $button-colors {
+    %button-#{$type} {
+      @include button(
+        $bg: color(white),
+        $radius: $global-radius,
+        $bg-hover: $button-color,
+        $border-color: $button-color
+      );
+
+      border: 1px solid $button-color;
+      color: $button-color;
+      font-size: $small-font-size;
+      font-weight: $font-weight-bold;
+      margin-bottom: 0;
+      padding: $button-base-padding;
+      text-transform: uppercase;
+
+      &amp;:focus {
+        background-color: color(white);
+        color: $button-color;
+      }
+
+      &amp;:hover {
+        background-color: $button-color;
+        color: color(white);
+      }
+    }
+  }
+ }" data-collapsed="@mixin button-color-placeholders() { ... }"><code>@mixin button-color-placeholders() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generate all button styles placeholders</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-color"><code>color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-button-colors"><code>button-colors</code></a></li></ul></section></section><section class="main__sub-section" id="button-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-button-icon"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#placeholder-button-icon">button-icon</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button-icon { 
+  margin-bottom: 0;
+  padding: 0;
+
+  &amp;:before {
+    display: block;
+    line-height: $button-icon-size;
+    width: $button-icon-size;
+  }
+ }" data-collapsed="%button-icon { ... }"><code>%button-icon { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Button with icon placeholder</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-icon"><code>button-icon</code></a></li></ul></section><section class="main__item container item" id="placeholder-button"><h3 class="item__heading"><a class="item__name" href="#placeholder-button">button</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button { 
+  @include button-base;
+  @include single-transition(color, 150ms, ease);
+
+  background-color: $button-base-background-color;
+  border: 1px solid lighten($button-base-text-color, 20%);
+  border-radius: $global-radius;
+  color: $button-base-text-color;
+
+  &amp;:hover,
+  &amp;:focus {
+    color: darken($button-base-text-color, 20%);
+  }
+
+  &amp;:focus {
+    outline: 0;
+  }
+
+  &amp;:disabled,
+  &amp;.disabled,
+  &amp;[disabled] {
+    @include button-disabled;
+  }
+ }" data-collapsed="%button { ... }"><code>%button { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default button styles</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-disabled"><code>button-disabled</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button-tiny"><code>button-tiny</code></a></li><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button-small"><code>button-small</code></a></li><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button-large"><code>button-large</code></a></li></ul></section><section class="main__item container item" id="placeholder-button-tiny"><h3 class="item__heading"><a class="item__name" href="#placeholder-button-tiny">button-tiny</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button-tiny { 
+  line-height: $button-tiny-height;
+  padding: 0 $button-base-padding / 2;
+ }" data-collapsed="%button-tiny { ... }"><code>%button-tiny { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Tiny button styles</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button"><code>button</code></a></li></ul></section><section class="main__item container item" id="placeholder-button-small"><h3 class="item__heading"><a class="item__name" href="#placeholder-button-small">button-small</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button-small { 
+  line-height: $button-small-height;
+  padding: 0 $button-base-padding / 2;
+ }" data-collapsed="%button-small { ... }"><code>%button-small { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Small button styles</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button"><code>button</code></a></li></ul></section><section class="main__item container item" id="placeholder-button-large"><h3 class="item__heading"><a class="item__name" href="#placeholder-button-large">button-large</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button-large { 
+  line-height: $button-large-height;
+  padding: 0 $button-base-padding * 2;
+ }" data-collapsed="%button-large { ... }"><code>%button-large { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Large button styles</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button"><code>button</code></a></li></ul></section><section class="main__item container item" id="placeholder-button-group"><h3 class="item__heading"><a class="item__name" href="#placeholder-button-group">button-group</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%button-group { 
+  @include button-group-container;
+
+  display: inline-block;
+
+  &amp;:not(:first-child) {
+    padding-left: $button-base-padding;
+  }
+
+  &gt; li {
+    @include button-group-style($radius: $global-radius, $float: null);
+
+    button {
+      border-color: color(border);
+      border-left: 0;
+      line-height: $button-icon-size;
+      padding: 0 $button-base-padding;
+
+      &amp;:before {
+        display: inline-block;
+      }
+
+      &amp;:not(:empty):before {
+        margin-left: -$button-base-padding;
+      }
+    }
+
+    &amp;:first-child button {
+      border-left: solid 1px color(border);
+    }
+  }
+ }" data-collapsed="%button-group { ... }"><code>%button-group { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Button Group</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.button-group {
+  @extend %button-group;
+}</code></pre></div><div class="item__example example"><pre class="example__code language-scss"><code>&lt;ul class=&quot;button-group&quot;&gt;
+  &lt;li&gt;&lt;button class=&quot;cog&quot;&gt;&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button class=&quot;dashboard&quot;&gt;Dashboard&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button class=&quot;clock&quot;&gt;&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-color"><code>color</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="color"><div class="container">Colors / Pallettes</div></h1><section class="main__sub-section" id="color-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-colors-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-colors-default-settings">colors-default-settings</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$colors-default-settings: (
+  text: (
+    base: #222222,
+    small: #888888
+  ),
+
+  link: #008fd9,
+
+  border: (
+    base: #ececec,
+    dark: border (darken: 10%),
+    light: border (lighten: 5%)
+  ),
+
+  primary: (
+    base: #f36b09,
+    dark: primary (darken: 20%),
+    light: primary (lighten: 40%)
+  ),
+
+  secondary: (
+    base: #a42524,
+    dark: secondary (darken: 15%),
+    light: secondary (lighten: 45%)
+  ),
+
+  alert: (
+    base: #ff7f7d,
+    dark: alert (darken: 35%),
+    light: alert (lighten: 18%)
+  ),
+
+  warning: (
+    base: #ffcc7a,
+    dark: warning (darken: 35%),
+    light: warning (lighten: 15%)
+  ),
+
+  success: (
+    base: #43ac6a,
+    dark: success (darken: 20%, saturate: 20%),
+    light: success (lighten: 30%)
+  ),
+
+  info: (
+    base: #a0d3e8,
+    dark: info (darken: 35%, saturate: 30%),
+    light: info (lighten: 10%)
+  ),
+
+  white: #ffffff,
+  black: #000000,
+
+  gray: (
+    ghost: #fafafa,
+    snow: #f9f9f9,
+    vapor: #f6f6f6,
+    white-smoke: #f5f5f5,
+    silver: #efefef,
+    smoke: #eeeeee,
+    gainsboro: #dddddd,
+    iron: #cccccc,
+    base: #aaaaaa,
+    aluminum: #999999,
+    jumbo: #888888,
+    monsoon: #777777,
+    steel: #666666,
+    charcoal: #555555,
+    tuatara: #444444,
+    oil: #333333,
+    jet: #222222
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default color pallettes and general color settings</p></div></section></section><section class="main__sub-section" id="color-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="function-color"><h3 class="item__heading"><a class="item__name" href="#function-color">color</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function color($color) { 
+  $color: map-get($colors, $color);
+  $is-map: false;
+
+  @if type-of($color) == &#39;map&#39; {
+    $color: map-get($color, $variant);
+    $is-map: true;
+  }
+
+  $base: nth($color, 1);
+
+  @if length($color) &gt; 1 {
+    $adjust: nth($color, 2);
+  } @else {
+    $adjust: ();
+  }
+
+  @if $is-map {
+    @if map-has-key($colors, $base) {
+      $color: color($base);
+    } @else {
+      $color: $base;
+    }
+
+    @each $function, $value in $adjust {
+      @if function-exists($function) {
+        $color: call($function, $color, $value);
+      } @else {
+        @error &quot;Function &#39;#{$function}&#39; in #{$adjust} doesn&#39;t exist.&quot;;
+      }
+    }
+  }
+
+  @return $color;
+ }" data-collapsed="@function color($color) { ... }"><code>@function color($color) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Fetch a color code for a pallette / component / setting</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>Single color or pallette variant</p></td><td data-label="type"><code>Color</code> or <code>Pallette</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Color</code></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>  text-color: color(primary);
+  background-color: color(primary, light);
+  border-color: color(primary, dark);
+
+Custom pallettes</code></pre></div><div class="item__example example"><pre class="example__code language-scss"><code>// Include in your app&#39;s `paint-settings.scss`
+$colors: (
+  text: (
+    base: #111111,
+    funky: link
+  ),
+  link: #f8f8f8
+);
+// color(text, funky); returns `#f8f8f8`</code></pre></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p>Function</p></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-color-placeholders"><code>button-color-placeholders</code></a></li><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-button-group"><code>button-group</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="grid"><div class="container">Grid</div></h1><section class="main__sub-section" id="grid-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-grid-column-placeholders"><h3 class="item__heading"><a class="item__name" href="#mixin-grid-column-placeholders">grid-column-placeholders</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid-column-placeholders() { 
+  @for $i from 1 through $total-columns {
+    %#{$prefix}-#{$i} {
+      @include grid-column($columns: $i, $collapse: false, $float: true);
+
+      &amp;:last-child {
+        @include grid-column($columns: $i, $collapse: false, $float: true, $last-column: true);
+      }
+    }
+
+    %#{$prefix}-#{$i}-centered {
+      @include grid-column($columns: $i, $collapse: false, $float: false, $center: true);
+    }
+  }
+ }" data-collapsed="@mixin grid-column-placeholders() { ... }"><code>@mixin grid-column-placeholders() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generate grid column placeholders</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section></section><section class="main__sub-section" id="grid-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-grid-row"><h3 class="item__heading"><a class="item__name" href="#placeholder-grid-row">grid-row</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%grid-row { 
+  @include grid-row;
+ }" data-collapsed="%grid-row { ... }"><code>%grid-row { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generate grid column placeholders</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="icon"><div class="container">Icons</div></h1><section class="main__sub-section" id="icon-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-icon"><h3 class="item__heading"><a class="item__name" href="#mixin-icon">icon</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin icon($name) { 
+  @include fa-icon;
+  @extend .fa-#{$name};
+ }" data-collapsed="@mixin icon($name) { ... }"><code>@mixin icon($name) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Extends font-awesome icons</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$name</code></th><td data-label="desc"><p>The name of the icon</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-icon"><code>button-icon</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-navigation-icons"><code>layout-navigation-icons</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav"><code>layout-sidebar-nav</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav-collapsed"><code>layout-sidebar-nav-collapsed</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="layout"><div class="container">Layout</div></h1><section class="main__sub-section" id="layout-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-layout-content-selector"><h3 class="item__heading"><a class="item__name" href="#variable-layout-content-selector">layout-content-selector</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$layout-content-selector: &#39;&gt; .content&#39; !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Variables</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout"><code>layout</code></a></li></ul></section></section><section class="main__sub-section" id="layout-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-layout-sidebar-heading"><h3 class="item__heading"><a class="item__name" href="#placeholder-layout-sidebar-heading">layout-sidebar-heading</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%layout-sidebar-heading { 
+  font-size: $layout-sidebar-heading-font-size;
+  font-weight: $layout-sidebar-heading-font-weight;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+ }" data-collapsed="%layout-sidebar-heading { ... }"><code>%layout-sidebar-heading { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sidebar text heading properties</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar"><code>layout-sidebar</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav"><code>layout-sidebar-nav</code></a></li></ul></section></section><section class="main__sub-section" id="layout-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-layout-navigation-icons"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-navigation-icons">layout-navigation-icons</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-navigation-icons() { 
+  @for $i from 1 through length($layout-sidebar-nav-classes) {
+    $class-name: nth($layout-sidebar-nav-classes, $i);
+    $icon-name: nth($layout-sidebar-nav-icons, $i);
+
+    .#{$class-name} i {
+      @include icon($icon-name);
+    }
+  }
+ }" data-collapsed="@mixin layout-navigation-icons() { ... }"><code>@mixin layout-navigation-icons() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sidebar navigation icons generator</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-icon"><code>icon</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav"><code>layout-sidebar-nav</code></a></li></ul></section><section class="main__item container item" id="mixin-layout-sidebar"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-sidebar">layout-sidebar</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-sidebar() { 
+  $nav-top-margin: 0;
+  $nav-bottom-margin: 0;
+  $subnav-selector: &#39;#{$layout-sidebar-nav-list-item-selector} #{$layout-sidebar-nav-list-selector}&#39;;
+
+  @if $layout-sidebar-include-header {
+    $nav-top-margin: $layout-sidebar-header-height;
+  }
+
+  @if $layout-sidebar-include-footer {
+    $nav-bottom-margin: $layout-sidebar-footer-height;
+  }
+
+  #{$layout-sidebar-selector} {
+    background-color: $layout-sidebar-nav-background-color;
+    float: left;
+    font-weight: $layout-sidebar-font-weight;
+    height: 100%;
+    position: relative;
+    transition: width $layout-sidebar-collapse-duration $global-transition-easing;
+    transition-delay: .015s;
+    width: $layout-sidebar-nav-width;
+
+    @if $layout-sidebar-include-header {
+      #{$layout-sidebar-header-selector} {
+        height: $layout-sidebar-header-height;
+        line-height: $layout-sidebar-header-height;
+        padding: 0 $layout-sidebar-nav-padding;
+
+        img {
+          @include single-transition(padding, 150ms, linear);
+
+          height: $layout-sidebar-header-logo-height;
+          margin-right: $layout-sidebar-nav-padding / 2;
+        }
+
+        h1 {
+          @extend %layout-sidebar-heading;
+
+          color: $white;
+          display: inline-block;
+          -webkit-font-smoothing: $body-font-smoothing;
+          margin: 0;
+          opacity: 1;
+          transition: 
+            opacity $layout-sidebar-collapse-duration / 2 ease-in,
+            width $layout-sidebar-collapse-duration / 1.5 ease-in;
+          width: auto;
+        }
+      }
+    }
+
+    #{$layout-sidebar-nav-selector} {
+      @include layout-sidebar-nav($nav-bottom-margin, $nav-top-margin, $subnav-selector);
+    }
+
+    @if $layout-sidebar-include-footer {
+      #{$layout-sidebar-footer-selector} {
+        @include layout-sidebar-footer-with-actions;
+
+        background: $layout-sidebar-nav-title-background-color;
+        bottom: 0;
+        color: $layout-sidebar-nav-link-text-color;
+        height: $layout-sidebar-footer-height;
+        left: 0;
+        line-height: $layout-sidebar-footer-height;
+        padding: 0 $layout-sidebar-nav-padding;
+        position: absolute;
+        right: 0;
+        white-space: nowrap;
+      }
+    }
+
+    &amp;.collapsed {
+      @include layout-sidebar-nav-collapsed;
+
+      @if $layout-sidebar-include-footer {
+        #{$layout-sidebar-footer-selector} {
+          @include layout-sidebar-footer-with-actions-collapsed;
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin layout-sidebar() { ... }"><code>@mixin layout-sidebar() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Layout sidebar</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav"><code>layout-sidebar-nav</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-footer-with-actions"><code>layout-sidebar-footer-with-actions</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-nav-collapsed"><code>layout-sidebar-nav-collapsed</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar-footer-with-actions-collapsed"><code>layout-sidebar-footer-with-actions-collapsed</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-layout-sidebar-heading"><code>layout-sidebar-heading</code></a></li></ul></section><section class="main__item container item" id="mixin-layout"><h3 class="item__heading"><a class="item__name" href="#mixin-layout">layout</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout() { 
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #{$layout-main-selector} {
+    height: 100%;
+
+    #{$layout-content-wrapper-selector} {
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+
+      #{$layout-content-selector} {
+        height: 100%;
+        overflow-y: auto;
+      }
+    }
+  }
+ }" data-collapsed="@mixin layout() { ... }"><code>@mixin layout() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Global application layout styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-layout-content-selector"><code>layout-content-selector</code></a></li></ul></section><section class="main__item container item" id="mixin-layout-sidebar-nav"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-sidebar-nav">layout-sidebar-nav</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-sidebar-nav() { 
+  bottom: $nav-bottom-margin;
+  left: 0;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+  top: $nav-top-margin;
+
+  header {
+    background-color: $layout-sidebar-nav-title-background-color;
+    color: $layout-sidebar-nav-title-text-color;
+    height: $layout-sidebar-nav-title-height;
+    overflow: hidden;
+    padding: 0 $layout-sidebar-nav-padding;
+    position: relative;
+    white-space: nowrap;
+
+    h1 {
+      @extend %layout-sidebar-heading;
+
+      color: $layout-sidebar-nav-link-text-color;
+      line-height: $layout-sidebar-nav-title-height;
+      margin: 0;
+      transform: translate(0, 0);
+      transition: 
+        transform $layout-sidebar-collapse-duration $global-transition-easing,
+        opacity $layout-sidebar-collapse-duration ease-out;
+      transition-delay: $global-transition-easing;
+      width: 80%;
+    }
+
+    .toggle-collapse {
+      color: $layout-sidebar-nav-link-text-color;
+      height: $layout-sidebar-nav-title-height;
+      line-height: $layout-sidebar-nav-title-height;
+      position: absolute;
+      right: $layout-sidebar-nav-padding;
+      z-index: 1;
+
+      button {
+        @include icon(chevron-circle-left);
+
+        background-color: transparent;
+        border-width: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  #{$layout-sidebar-nav-list-selector} {
+    @include layout-navigation-icons();
+
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+
+    a {
+      @include single-transition(background-color, 150ms, linear);
+
+      border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
+      display: block;
+      font-size: $paragraph-font-size;
+      -webkit-font-smoothing: $header-font-smoothing;
+      line-height: $layout-sidebar-nav-link-height;
+      padding: 0 $layout-sidebar-nav-padding;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &amp;,
+      &amp;:visited {
+        color: $layout-sidebar-nav-link-text-color;
+      }
+
+      &amp;:hover {
+        background-color: $layout-sidebar-nav-link-hover-background-color;
+      }
+
+      &amp;.active {
+        background-color: $layout-sidebar-nav-link-active-background-color;
+        color: $layout-sidebar-nav-link-active-text-color;
+
+        &amp;:hover {
+          background-color: lighten($layout-sidebar-nav-link-active-background-color, 5%);
+          color: lighten($layout-sidebar-nav-link-active-text-color, 5%);
+        }
+      }
+
+      &gt; span {
+        transition: opacity $layout-sidebar-collapse-duration / 2 ease-in;
+      }
+    }
+
+    i {
+      @include single-transition(margin, 150ms, linear);
+
+      border-radius: $layout-sidebar-nav-link-icon-roundness;
+      color: $layout-sidebar-nav-link-text-color;
+      font-size: $base-font-size;
+      margin-right: $layout-sidebar-nav-padding;
+      padding: $layout-sidebar-nav-link-icon-padding 0;
+      text-align: center;
+      width: $layout-sidebar-nav-link-icon-width;
+    }
+
+    #{$layout-sidebar-nav-bubble-selector} {
+      background-color: $layout-sidebar-nav-bubble-background-color;
+      border-radius: $global-rounded;
+      color: $white;
+      float: right;
+      font-size: $small-font-size * .8;
+      font-weight: $font-weight-extrabold;
+      letter-spacing: -1px;
+      line-height: $layout-sidebar-nav-bubble-width;
+      margin-right: $layout-sidebar-nav-link-icon-padding / 2;
+      margin-top: ($layout-sidebar-nav-link-height - $layout-sidebar-nav-bubble-width) / 2;
+      min-width: $layout-sidebar-nav-bubble-width;
+      text-align: center;
+    }
+
+    #{$subnav-selector} {
+      background-color: darken($layout-sidebar-nav-background-color, 5%);
+      border-left: solid 3px lighten($layout-sidebar-nav-background-color, 5%);
+      margin: 0;
+      padding: 0;
+
+      a span:not(#{$layout-sidebar-nav-bubble-selector}) {
+        color: darken($layout-sidebar-nav-link-text-color, 10%);
+      }
+
+      i {
+        color: transparentize($layout-sidebar-nav-link-text-color, .5);
+        font-size: $small-font-size !important;
+      }
+    }
+  }
+ }" data-collapsed="@mixin layout-sidebar-nav() { ... }"><code>@mixin layout-sidebar-nav() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Layout sidebar navigation styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-icon"><code>icon</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-navigation-icons"><code>layout-navigation-icons</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-layout-sidebar-heading"><code>layout-sidebar-heading</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar"><code>layout-sidebar</code></a></li></ul></section><section class="main__item container item" id="mixin-layout-sidebar-nav-collapsed"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-sidebar-nav-collapsed">layout-sidebar-nav-collapsed</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-sidebar-nav-collapsed() { 
+  width: $layout-sidebar-nav-width-collapsed;
+
+  #{$layout-sidebar-nav-selector} #{$layout-sidebar-nav-list-selector} a {
+    position: relative;
+
+    &gt; i {
+      margin-right: 0;
+    }
+
+    &gt; span:not(#{$layout-sidebar-nav-bubble-selector}) {
+      opacity: 0;
+      width: 0;
+    }
+
+    &gt; #{$layout-sidebar-nav-bubble-selector} {
+      left: $layout-sidebar-nav-link-icon-width;
+      position: absolute;
+      top: - $layout-sidebar-nav-link-icon-padding / 2;
+    }
+  }
+
+  h1 {
+    opacity: 0;
+  }
+
+  .toggle-collapse {
+    float: none;
+    margin-bottom: 0;
+
+    button {
+      @include icon(caret-square-o-right);
+    }
+  }
+
+  #{$layout-sidebar-nav-selector} header {
+    h1 {
+      transform: translate(-200%, 0);
+    }
+
+    .toggle-collapse button {
+      @include icon(chevron-circle-right);
+
+      width: $layout-sidebar-nav-link-icon-width;
+    }
+  }
+ }" data-collapsed="@mixin layout-sidebar-nav-collapsed() { ... }"><code>@mixin layout-sidebar-nav-collapsed() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Layout sidebar collapsed navigation styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-icon"><code>icon</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar"><code>layout-sidebar</code></a></li></ul></section><section class="main__item container item" id="mixin-layout-sidebar-footer-with-actions"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-sidebar-footer-with-actions">layout-sidebar-footer-with-actions</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-sidebar-footer-with-actions() { 
+  #{$layout-sidebar-footer-avatar-selector} {
+    float: left;
+    margin-right: $layout-sidebar-nav-padding;
+
+    img {
+      border-radius: 50%;
+      height: $layout-sidebar-nav-link-icon-width;
+      width: $layout-sidebar-nav-link-icon-width;
+    }
+  }
+
+  #{$layout-sidebar-footer-title-selector} {
+    color: $layout-sidebar-nav-link-text-color;
+    margin-right: $layout-sidebar-nav-padding / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #{$layout-sidebar-footer-actions-selector} {
+    display: inline-block;
+    float: right;
+    line-height: $layout-sidebar-footer-height;
+
+    button {
+      @include button-icon($layout-sidebar-footer-actions-icon);
+
+      background-color: transparent;
+      border: 0;
+      color: $layout-sidebar-nav-link-text-color;
+      margin-bottom: 0;
+    }
+  }
+ }" data-collapsed="@mixin layout-sidebar-footer-with-actions() { ... }"><code>@mixin layout-sidebar-footer-with-actions() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sidebar navigation footer with actions</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-icon"><code>button-icon</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar"><code>layout-sidebar</code></a></li></ul></section><section class="main__item container item" id="mixin-layout-sidebar-footer-with-actions-collapsed"><h3 class="item__heading"><a class="item__name" href="#mixin-layout-sidebar-footer-with-actions-collapsed">layout-sidebar-footer-with-actions-collapsed</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin layout-sidebar-footer-with-actions-collapsed() { 
+  #{$layout-sidebar-footer-avatar-selector},
+  #{$layout-sidebar-footer-title-selector} {
+    display: none;
+  }
+
+  #{$layout-sidebar-footer-actions-selector} {
+    display: block;
+    float: none;
+    text-align: center;
+  }
+ }" data-collapsed="@mixin layout-sidebar-footer-with-actions-collapsed() { ... }"><code>@mixin layout-sidebar-footer-with-actions-collapsed() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sidebar navigation collapsed footer with actions</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-layout-sidebar"><code>layout-sidebar</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="modal"><div class="container">Modals</div></h1><section class="main__sub-section" id="modal-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-modal-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-modal-default-settings">modal-default-settings</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$modal-default-settings: (
+  size: (
+    small: 98%,
+    medium: 40em,
+    large: 60em,
+    xlarge: 80em,
+    xxlarge: 100em
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default settings</p></div></section></section><section class="main__sub-section" id="modal-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="function-modal-settings"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#function-modal-settings">modal-settings</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function modal-settings() { 
+  @if $property {
+    @return map-get(map-get($modal, $setting), $property),
+  } @else {
+    @return map-get($modal, $setting)
+  }
+ }" data-collapsed="@function modal-settings() { ... }"><code>@function modal-settings() { ... }</code></pre></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-size"><code>modal-size</code></a></li></ul></section></section><section class="main__sub-section" id="modal-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-modal-size"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-modal-size">modal-size</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-size($size: large, $use-content-size: false) { 
+  $width: modal-settings(size, $size);
+
+  max-width: 98%;
+
+  @if not($use-content-size) {
+    min-width: $width;
+  }
+ }" data-collapsed="@mixin modal-size($size: large, $use-content-size: false) { ... }"><code>@mixin modal-size($size: large, $use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Calculate the size of the modal based on the screen size</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Screen size</p></td><td data-label="type"><code>Value</code></td><td data-label="default"><code>large</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-modal-settings"><code>modal-settings</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section><section class="main__item container item" id="mixin-modal-close-button"><h3 class="item__heading"><a class="item__name" href="#mixin-modal-close-button">modal-close-button</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-close-button() { 
+  @include button-icon(close);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: panel-settings(header-height);
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0 $column-gutter / 2;
+
+  &amp;:before {
+    display: inline-block;
+  }
+ }" data-collapsed="@mixin modal-close-button() { ... }"><code>@mixin modal-close-button() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Close button styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-button-icon"><code>button-icon</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section><section class="main__item container item" id="mixin-modal-panel"><h3 class="item__heading"><a class="item__name" href="#mixin-modal-panel">modal-panel</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-panel($use-content-size: false) { 
+  @extend %panel-default;
+  @include panel-background(color(gray, smoke));
+
+  &gt; header {
+    font-size: $small-font-size;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+
+    &gt; .close {
+      @include modal-close-button;
+    }
+  }
+
+  &gt; .content {
+    @extend %grid-row;
+  }
+
+  @media #{$small-only} {
+    @include modal-size(small, $use-content-size);
+  }
+
+  @media #{$medium-only} {
+    @include modal-size(medium, $use-content-size);
+  }
+
+  @media #{$large-only} {
+    @include modal-size(large, $use-content-size);
+  }
+
+  @media #{$xlarge-only} {
+    @include modal-size(xlarge, $use-content-size);
+  }
+
+  @media #{$xxlarge-up} {
+    @include modal-size(xxlarge, $use-content-size);
+  }
+ }" data-collapsed="@mixin modal-panel($use-content-size: false) { ... }"><code>@mixin modal-panel($use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Modal panel styles, including responsive media queries</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-close-button"><code>modal-close-button</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-size"><code>modal-size</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-color"><code>color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-grid-row"><code>grid-row</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal"><code>modal</code></a></li></ul></section><section class="main__item container item" id="mixin-modal"><h3 class="item__heading"><a class="item__name" href="#mixin-modal">modal</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal($use-content-size: false) { 
+  @include overlay;
+
+  height: 100%;
+  transform-style: preserve-3d;
+  text-align: center;
+
+  &gt; div {
+    @include modal-panel($use-content-size);
+
+    display: inline-block;
+    margin: 0 auto;
+    max-height: 98%;
+    overflow-y: auto;
+    position: relative;
+    top: -100%;
+    transform: translateY(-100%);
+    transition: 
+      top $global-transition-duration $global-transition-easing,
+      transform $global-transition-duration;
+  }
+
+  &amp;.active &gt; div {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+ }" data-collapsed="@mixin modal($use-content-size: false) { ... }"><code>@mixin modal($use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Modal styles</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><span class="project-info__name">Paint</span><!-- Version --><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

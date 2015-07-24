@@ -1,3 +1,14 @@
+////
+/// Generate icons
+/// @group icon
+/// @since v0.8.5
+////
+
+/// @todo Include custom Paint icons generator
+
+/// Extends font-awesome icons
+/// @param {string} $name - The name of the icon
+
 @mixin icon($name) {
   @include fa-icon;
   @extend .fa-#{$name};

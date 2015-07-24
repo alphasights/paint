@@ -1,6 +1,14 @@
+////
+/// Grid placeholders generator
+/// @group grid
+/// @since v0.8.5
+////
+
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
 $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
+
+/// Generate grid column placeholders
 
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
@@ -20,7 +28,7 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 
 @include grid-column-placeholders;
 
-// Generate placeholders for different media queries, e.g. %grid-column-small-4
+/// Generate placeholders for different media queries, e.g. %grid-column-small-4
 
 @for $i from 1 through length($grid-responsive-media-queries) {
   $query: nth($grid-responsive-media-queries, $i);
@@ -31,6 +39,8 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
     @include grid-column-placeholders($prefix: $prefix);
   }
 }
+
+/// Generate grid column placeholders
 
 %grid-row {
   @include grid-row;

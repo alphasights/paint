@@ -1,3 +1,11 @@
+////
+/// This is a poster comment.
+/// It will apply annotations to all items from file.
+/// @group layout
+/// @since v0.8.5
+////
+
+/// Variables
 $layout-content-selector: '> .content' !default;
 $layout-content-wrapper-selector: 'main' !default;
 $layout-main-selector: '.application' !default;
@@ -44,12 +52,16 @@ $layout-sidebar-selector: '.sidebar' !default;
 
 $include-html-paint-layout: true !default;
 
+/// Sidebar text heading properties
+
 %layout-sidebar-heading {
   font-size: $layout-sidebar-heading-font-size;
   font-weight: $layout-sidebar-heading-font-weight;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+/// Sidebar navigation icons generator
 
 @mixin layout-navigation-icons {
   @for $i from 1 through length($layout-sidebar-nav-classes) {
@@ -61,6 +73,8 @@ $include-html-paint-layout: true !default;
     }
   }
 }
+
+/// Layout sidebar
 
 @mixin layout-sidebar {
   $nav-top-margin: 0;
@@ -147,6 +161,8 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Global application layout styles
+
 @mixin layout {
   html,
   body {
@@ -169,6 +185,8 @@ $include-html-paint-layout: true !default;
     }
   }
 }
+
+/// Layout sidebar navigation styles
 
 @mixin layout-sidebar-nav($nav-bottom-margin: 0, $nav-top-margin: 0, $subnav-selector: '> li > ul') {
   bottom: $nav-bottom-margin;
@@ -308,6 +326,8 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Layout sidebar collapsed navigation styles
+
 @mixin layout-sidebar-nav-collapsed {
   width: $layout-sidebar-nav-width-collapsed;
 
@@ -356,6 +376,8 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Sidebar navigation footer with actions
+
 @mixin layout-sidebar-footer-with-actions {
   #{$layout-sidebar-footer-avatar-selector} {
     float: left;
@@ -391,6 +413,8 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Sidebar navigation collapsed footer with actions
+
 @mixin layout-sidebar-footer-with-actions-collapsed {
   #{$layout-sidebar-footer-avatar-selector},
   #{$layout-sidebar-footer-title-selector} {
@@ -403,6 +427,8 @@ $include-html-paint-layout: true !default;
     text-align: center;
   }
 }
+
+/// Generate default layout classes
 
 @include exports('paint-layout') {
   @if $include-html-paint-layout {

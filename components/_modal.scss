@@ -1,3 +1,11 @@
+////
+/// Modal component
+/// @group modal
+/// @since v0.8.5
+////
+
+/// Default settings
+
 $modal-default-settings: (
   size: (
     small: 98%,
@@ -8,13 +16,17 @@ $modal-default-settings: (
   )
 );
 
+$include-html-paint-modal: true !default;
+
+/// @access private
+
 @if global-variable-exists(modal) {
   $modal: map-merge-settings($modal-default-settings, $modal);
 } @else {
   $modal: $modal-default-settings;
 }
 
-$include-html-paint-modal: true !default;
+/// @access private
 
 @function modal-settings($setting, $property: null) {
   @if $property {
@@ -23,6 +35,11 @@ $include-html-paint-modal: true !default;
     @return map-get($modal, $setting)
   }
 }
+
+/// Calculate the size of the modal based on the screen size
+/// @access private
+/// @param {value} $size [large] - Screen size
+/// @param {Boolean} $use-content-size [false] - Set to `true` to resize based on the modal content
 
 @mixin modal-size($size: large, $use-content-size: false) {
   $width: modal-settings(size, $size);
@@ -33,6 +50,8 @@ $include-html-paint-modal: true !default;
     min-width: $width;
   }
 }
+
+/// Close button styles
 
 @mixin modal-close-button {
   @include button-icon(close);
@@ -49,6 +68,9 @@ $include-html-paint-modal: true !default;
     display: inline-block;
   }
 }
+
+/// Modal panel styles, including responsive media queries
+/// @param {Boolean} $use-content-size [false] - Set to `true` to resize based on the modal content
 
 @mixin modal-panel($use-content-size: false) {
   @extend %panel-default;
@@ -89,6 +111,9 @@ $include-html-paint-modal: true !default;
   }
 }
 
+/// Modal styles
+/// @param {Boolean} $use-content-size [false] - Set to `true` to resize based on the modal content
+
 @mixin modal($use-content-size: false) {
   @include overlay;
 
@@ -116,6 +141,8 @@ $include-html-paint-modal: true !default;
     transform: translateY(-50%);
   }
 }
+
+/// Default classes including component implementation
 
 @include exports('paint-modal') {
   @if $include-html-paint-modal {

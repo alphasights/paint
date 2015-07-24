@@ -1,3 +1,12 @@
+////
+/// Colours / Pallettes
+///
+/// @group color
+/// @since v0.8.5
+////
+
+/// Default color pallettes and general color settings
+
 $colors-default-settings: (
   text: (
     base: #222222,
@@ -77,6 +86,29 @@ $colors-default-settings: (
 } @else {
   $colors: $colors-default-settings;
 }
+
+/// Fetch a color code for a pallette / component / setting
+/// @param {color | pallette} $color - Single color or pallette variant
+///
+/// @example scss
+///   text-color: color(primary);
+///   background-color: color(primary, light);
+///   border-color: color(primary, dark);
+///
+/// Custom pallettes
+///
+/// @example scss
+/// // Include in your app's `paint-settings.scss`
+/// $colors: (
+///   text: (
+///     base: #111111,
+///     funky: link
+///   ),
+///   link: #f8f8f8
+/// );
+/// // color(text, funky); returns `#f8f8f8`
+///
+/// @return {color}
 
 @function color($color, $variant: base) {
   $color: map-get($colors, $color);

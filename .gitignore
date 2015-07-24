@@ -5,6 +5,7 @@
 # misc
 /.sass-cache
 *.swp
+/.divshot-cache
 
 # compiled output
 /dist

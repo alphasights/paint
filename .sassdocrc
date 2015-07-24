@@ -1,0 +1,16 @@
+dest: './docs'
+src: ['components']
+
+description: |
+  # Paint
+  ## AlphaSights styles library
+
+groups:
+  color: Colors / Pallettes
+  button: Buttons
+  grid: Grid
+  layout: Layout
+  icon: Icons
+  modal: Modals
+  dropdown: Dropdowns
+  undefined: Misc
