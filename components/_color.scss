@@ -80,6 +80,7 @@ $colors-default-settings: (
 
 @function color($color, $variant: base) {
   $color: map-get($colors, $color);
+  $adjust: ();
   $is-map: false;
 
   @if type-of($color) == 'map' {
@@ -91,8 +92,6 @@ $colors-default-settings: (
 
   @if length($color) > 1 {
     $adjust: nth($color, 2);
-  } @else {
-    $adjust: ();
   }
 
   @if $is-map {
