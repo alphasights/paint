@@ -1,0 +1,95 @@
+$app-switcher-default-settings: (
+  icon-width: 48px,
+
+  apps: (
+    pistachio: primary,
+    phoenix: link,
+    reporting: secondary,
+    dragon: success
+  )
+);
+
+@if global-variable-exists(app-switcher) {
+  $app-switcher: map-merge-settings($app-switcher-default-settings, $app-switcher);
+} @else {
+  $app-switcher: $app-switcher-default-settings;
+}
+
+@function app-switcher-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($app-switcher, $setting), $property),
+  } @else {
+    @return map-get($app-switcher, $setting)
+  }
+}
+
+@mixin app-switcher-icon(
+  $background-color: primary,
+  $width: app-switcher-settings(icon-width)
+) {
+  $background-color: color($background-color);
+  $dark-background-color: saturate($background-color, 10%);
+
+  background: linear-gradient(to right, $dark-background-color, $background-color);
+  border-radius: $global-radius;
+  display: block;
+  height: $width;
+  margin: $column-gutter auto $column-gutter / 2;
+  width: $width;
+}
+
+@mixin app-switcher-icons {
+  @each $app, $background-color in app-switcher-settings(apps) {
+    &.#{$app} {
+      > a > i {
+        @include app-switcher-icon($background-color);
+      }
+    }
+  }
+}
+
+%app-switcher-label {
+  color: color(text, small);
+  display: block;
+  font-size: $small-font-size;
+  font-weight: $font-weight-bold;
+  margin-bottom: $column-gutter / 2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+@include exports('paint-app-switcher') {
+  %app-switcher-list {
+    > ul {
+      @extend %grid-row;
+
+      > li {
+        @extend %grid-column-4;
+        @include app-switcher-icons;
+
+        text-align: center;
+
+        > span {
+          @extend %app-switcher-label;            
+        }
+      }
+    }    
+  }
+  
+  .app-switcher {
+    @include modal($use-content-size: true);
+
+    > div {
+      > header {
+        text-align: center;
+      }
+
+      > .content {
+        @extend %app-switcher-list;
+
+        padding: 0 $column-gutter;
+      }
+    }
+  }
+}
