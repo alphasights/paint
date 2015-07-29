@@ -50,8 +50,8 @@ $table-column-padding: $column-gutter / 2 !default;
 }
 
 %table-highlighted-row {
-  background-color: $table-highlighted-row-background-color;
-  color: $table-highlighted-row-color;
+  background-color: $table-highlighted-row-background-color !important;
+  color: $table-highlighted-row-color !important;
 
   td {
     border-bottom: 1px solid color(border);
