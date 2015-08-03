@@ -1,8 +1,4 @@
-// Variables are needed here since libsass cannot currently multiply values
-// fetched via map-get. http://git.io/vtC5i
-$scaled-ratio-small: 1;
-$scaled-ratio-large: .5;
-
+$side-panel: () !default;
 $side-panel-default-settings: (
   size: (
     small: 100%,
@@ -30,11 +26,12 @@ $side-panel-default-settings: (
   )
 );
 
-@if global-variable-exists(side-panel) {
-  $side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
-} @else {
-  $side-panel: $side-panel-default-settings;
-}
+$side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
+
+// Variables are needed here since libsass cannot currently multiply values
+// fetched via map-get. http://git.io/vtC5i
+$scaled-ratio-small: 1;
+$scaled-ratio-large: .5;
 
 $include-html-paint-side-panel: true !default;
 

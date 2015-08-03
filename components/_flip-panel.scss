@@ -1,5 +1,6 @@
 @import 'panel';
 
+$flip-panel: () !default;
 $flip-panel-default-settings: (
   header-height: panel-settings(header-height),
   footer-height: panel-settings(footer-height),
@@ -10,11 +11,7 @@ $flip-panel-default-settings: (
   transition-settings: .3s ease-in-out
 );
 
-@if global-variable-exists(flip-panel) {
-  $flip-panel: map-merge-settings($flip-panel-default-settings, $flip-panel);
-} @else {
-  $flip-panel: $flip-panel-default-settings;
-}
+$flip-panel: map-merge-settings($flip-panel-default-settings, $flip-panel);
 
 $include-html-paint-flip-panel: true !default;
 
