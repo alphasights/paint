@@ -1,3 +1,4 @@
+$colors: () !default;
 $colors-default-settings: (
   text: (
     base: #222222,
@@ -72,11 +73,7 @@ $colors-default-settings: (
   )
 );
 
-@if global-variable-exists(colors) {
-  $colors: map-merge-settings($colors-default-settings, $colors);
-} @else {
-  $colors: $colors-default-settings;
-}
+$colors: map-merge-settings($colors-default-settings, $colors);
 
 @function color($color, $variant: base) {
   $color: map-get($colors, $color);
