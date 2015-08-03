@@ -45,20 +45,18 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
+  $ratio: $scaled-ratio-large;
+  $main-translation: -100% * $ratio;
+  $drawer-width: "calc(#{$width} * #{$ratio})";
 
   @if ($size == small or $size == medium) {
     $ratio: $scaled-ratio-small;
-  } @else {
-    $ratio: $scaled-ratio-large;
   }
 
   @if $scaled {
     $width: "calc(#{$width} * #{$ratio})";
     $drawer-width: $width;
     $main-translation: -100%;
-  } @else {
-    $drawer-width: "calc(#{$width} * #{$ratio})";
-    $main-translation: -100% * $ratio;
   }
 
   > .main {
