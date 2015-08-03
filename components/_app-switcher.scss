@@ -1,3 +1,4 @@
+$app-switcher: () !default;
 $app-switcher-default-settings: (
   icon-width: 48px,
 
@@ -9,11 +10,7 @@ $app-switcher-default-settings: (
   )
 );
 
-@if global-variable-exists(app-switcher) {
-  $app-switcher: map-merge-settings($app-switcher-default-settings, $app-switcher);
-} @else {
-  $app-switcher: $app-switcher-default-settings;
-}
+$app-switcher: map-merge-settings($app-switcher-default-settings, $app-switcher);
 
 @function app-switcher-settings($setting, $property: null) {
   @if $property {
