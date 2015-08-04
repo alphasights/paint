@@ -23,7 +23,6 @@
   ],
   "dependencies": {
     "foundation": "~5.5.1",
-    "fontawesome": "~4.3.0",
-    "paint-app-switcher": "~0.0.2"
+    "fontawesome": "~4.3.0"
   }
 }
