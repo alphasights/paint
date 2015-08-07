@@ -122,6 +122,7 @@ $include-html-paint-form: true !default;
   @if $inline {
     width: auto !important;
   }
+  
   min-height: $form-input-height * 2;
 
   label {
@@ -130,9 +131,9 @@ $include-html-paint-form: true !default;
   }
 
   #{$inner-wrapper} {
-    line-height: $form-input-height;
-    float: $float;
     display: inline-block;
+    float: $float;
+    line-height: $form-input-height;
   }
 }
 
