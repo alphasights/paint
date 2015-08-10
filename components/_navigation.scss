@@ -2,10 +2,9 @@ $navigation-default-settings: (
   height: 60px,
   height-negative: -60px,
   logo-width: 28px,
-  sidebar-width: 300px,
-  sidebar-min-width: 60px,
   transition-duration: .3s,
   icon-class-selector: '[class^="icon-"]',
+  selector: '.main-navigation',
   z-index: 101,
 
   topbar: (
@@ -17,15 +16,13 @@ $navigation-default-settings: (
   ),
 
   sidebar: (
+    selector: '.sidebar',
     background-color: #191c1f,
     hover-color: lighten(#191c1f, 10%),
     text-color: #a5a5a5,
-    submenu-text-color: darken(#a5a5a5, 20%)
-  ),
-
-  selectors: (
-    main: '.main-navigation',
-    sidebar: '.sidebar'
+    submenu-text-color: darken(#a5a5a5, 20%),
+    min-width: 60px,
+    width: 300px
   )
 );
 
@@ -40,14 +37,14 @@ $include-html-paint-navigation: true !default;
 
 @function navigation-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($navigation, $setting), $property),
+    @return map-get(map-get($navigation, $setting), $property);
   } @else {
-    @return map-get($navigation, $setting)
+    @return map-get($navigation, $setting);
   }
 }
 
 @mixin navigation-logo {
-  $logo-padding: (navigation-settings(sidebar-min-width) - navigation-settings(logo-width)) / 2;
+  $logo-padding: (navigation-settings(sidebar, min-width) - navigation-settings(logo-width)) / 2;
 
   background: 
     url('#{$images-path}/logo.png')
@@ -58,7 +55,7 @@ $include-html-paint-navigation: true !default;
     navigation-settings(logo-width)
     navigation-settings(logo-width);
 
-  min-width: navigation-settings(sidebar-min-width);
+  min-width: navigation-settings(sidebar, min-width);
   padding-left: 0;
 
   &:hover {
@@ -69,7 +66,7 @@ $include-html-paint-navigation: true !default;
     display: block;
     font-size: $small-font-size;
     font-weight: $font-weight-extrabold;
-    padding-left: navigation-settings(sidebar-min-width);
+    padding-left: navigation-settings(sidebar, min-width);
     text-align: left;
     text-transform: uppercase;
   }
@@ -96,7 +93,7 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-#{navigation-settings(selectors, main)} {
+#{navigation-settings(selector)} {
   background: navigation-settings(topbar, background-color);
   border-bottom: solid 1px navigation-settings(topbar, border-color);
   color: navigation-settings(topbar, text-color);
@@ -172,8 +169,8 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-#{navigation-settings(selectors, main)}
-#{navigation-settings(selectors, sidebar)} {
+#{navigation-settings(selector)}
+#{navigation-settings(sidebar, selector)} {
   background: navigation-settings(sidebar, background-color);
   bottom: 0;
   color: navigation-settings(sidebar, text-color);
@@ -184,7 +181,7 @@ $include-html-paint-navigation: true !default;
   transform: translateX(navigation-settings(height-negative));
   transition: transform navigation-settings(transition-duration), width navigation-settings(transition-duration);
   transition-delay: navigation-settings(transition-duration);
-  width: navigation-settings(sidebar-min-width);
+  width: navigation-settings(sidebar, min-width);
 
   > header {
     background-color: navigation-settings(topbar, background-color);
@@ -201,7 +198,7 @@ $include-html-paint-navigation: true !default;
     height: 100%;
     overflow-y: scroll;
     position: absolute;
-    width: navigation-settings(sidebar-width);
+    width: navigation-settings(sidebar, width);
   }
 
   .menu,
@@ -243,7 +240,7 @@ $include-html-paint-navigation: true !default;
       @extend %paint-icon;
 
       &:before {
-        width: navigation-settings(sidebar-min-width);
+        width: navigation-settings(sidebar, min-width);
       }
     }
 
@@ -263,8 +260,8 @@ $include-html-paint-navigation: true !default;
 $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
 
-#{navigation-settings(selectors, main)}
-#{navigation-settings(selectors, sidebar)} {
+#{navigation-settings(selector)}
+#{navigation-settings(sidebar, selector)} {
   &#{$sidebar-full-open},
   &#{$sidebar-part-open} {
     transform: translateX(0);
@@ -272,7 +269,7 @@ $sidebar-full-open: '.part-open:hover';
 
   &#{$sidebar-full-open} {
     transition-delay: 0s;
-    width: navigation-settings(sidebar-width);
+    width: navigation-settings(sidebar, width);
 
     > header {
       background-color: navigation-settings(sidebar, background-color);
@@ -293,19 +290,19 @@ $sidebar-full-open: '.part-open:hover';
     }
   }
 
-  #{navigation-settings(selectors, main)} {
+  #{navigation-settings(selector)} {
     .item.with-sidebar:hover
-    #{navigation-settings(selectors, sidebar)} {
+    #{navigation-settings(sidebar, selector)} {
       transform: translateX(0);
     }
 
-    #{navigation-settings(selectors, sidebar)} {
+    #{navigation-settings(sidebar, selector)} {
       &#{$sidebar-part-open} {
         transform: translateX(navigation-settings(height-negative));
       }
 
       &#{$sidebar-full-open} {
-        min-width: navigation-settings(sidebar-width);
+        min-width: navigation-settings(sidebar, width);
         transform: translateX(0);
         width: 100%;
 
@@ -318,7 +315,7 @@ $sidebar-full-open: '.part-open:hover';
 }
 
 @media #{$medium-down} {
-  #{navigation-settings(selectors, main)} {
+  #{navigation-settings(selector)} {
     .item > a {
       &#{navigation-settings(icon-class-selector)} {
         padding: 0 $column-gutter / 4 !important;
@@ -327,7 +324,7 @@ $sidebar-full-open: '.part-open:hover';
           display: inline-block !important;
           height: auto !important;
           line-height: navigation-settings(height) !important;
-          width: navigation-settings(sidebar-min-width) / 2 !important;
+          width: navigation-settings(sidebar, min-width) / 2 !important;
         }
       }
 
