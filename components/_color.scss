@@ -1,3 +1,4 @@
+$colors: () !default;
 $colors-default-settings: (
   text: (
     base: #222222,
@@ -72,44 +73,43 @@ $colors-default-settings: (
   )
 );
 
-@if global-variable-exists(colors) {
-  $colors: map-merge-settings($colors-default-settings, $colors);
-} @else {
-  $colors: $colors-default-settings;
-}
+$colors: map-merge-settings($colors-default-settings, $colors);
 
 @function color($color, $variant: base) {
-  $color: map-get($colors, $color);
+  $output-color: map-get($colors, $color);
+  $adjust: ();
   $is-map: false;
 
-  @if type-of($color) == 'map' {
-    $color: map-get($color, $variant);
+  @if type-of($output-color) == 'map' {
+    $output-color: map-get($output-color, $variant);
     $is-map: true;
   }
 
-  $base: nth($color, 1);
+  $base: nth($output-color, 1);
 
-  @if length($color) > 1 {
-    $adjust: nth($color, 2);
-  } @else {
-    $adjust: ();
+  @if length($output-color) > 1 {
+    $adjust: nth($output-color, 2);
   }
 
   @if $is-map {
     @if map-has-key($colors, $base) {
-      $color: color($base);
+      $output-color: color($base);
     } @else {
-      $color: $base;
+      $output-color: $base;
     }
 
     @each $function, $value in $adjust {
       @if function-exists($function) {
-        $color: call($function, $color, $value);
+        $output-color: call($function, $output-color, $value);
       } @else {
         @error "Function '#{$function}' in #{$adjust} doesn't exist.";
       }
     }
   }
 
-  @return $color;
+  @if not $output-color {
+    $output-color: $color;
+  }
+
+  @return $output-color;
 }

@@ -1,3 +1,4 @@
+$panel: () !default;
 $panel-default-settings: (
   header-height: $h1-font-size + $column-gutter,
   footer-height: $h1-font-size + $column-gutter / 2,
@@ -8,19 +9,15 @@ $panel-default-settings: (
   ),
 );
 
-@if global-variable-exists(panel) {
-  $panel: map-merge-settings($panel-default-settings, $panel);
-} @else {
-  $panel: $panel-default-settings;
-}
+$panel: map-merge-settings($panel-default-settings, $panel);
 
 $include-html-paint-panel: true !default;
 
 @function panel-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($panel, $setting), $property),
+    @return map-get(map-get($panel, $setting), $property);
   } @else {
-    @return map-get($panel, $setting)
+    @return map-get($panel, $setting);
   }
 }
 

@@ -1,3 +1,4 @@
+$typography: () !default;
 $typography-default-settings: (
   header-tags: (
     h1, h2, h3, h4, h5, h6, blockquote
@@ -6,19 +7,15 @@ $typography-default-settings: (
   condensed-tags: ()
 );
 
-@if global-variable-exists(typography) {
-  $typography: map-merge-settings($typography-default-settings, $typography);
-} @else {
-  $typography: $typography-default-settings;
-}
+$typography: map-merge-settings($typography-default-settings, $typography);
 
 $include-html-paint-typography: true !default;
 
 @function typography-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($typography, $setting), $property),
+    @return map-get(map-get($typography, $setting), $property);
   } @else {
-    @return map-get($typography, $setting)
+    @return map-get($typography, $setting);
   }
 }
 
