@@ -1,5 +1,3 @@
-@import "https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css";
-
 $navigation-default-settings: (
   height: 60px,
   height-negative: -60px,
@@ -7,6 +5,7 @@ $navigation-default-settings: (
   sidebar-width: 300px,
   sidebar-min-width: 60px,
   transition-duration: .3s,
+  icon-class-selector: '[class^="icon-"]',
   z-index: 101,
 
   topbar: (
@@ -51,7 +50,7 @@ $include-html-paint-navigation: true !default;
   $logo-padding: (navigation-settings(sidebar-min-width) - navigation-settings(logo-width)) / 2;
 
   background: 
-    url('#{$images-path}logo.png')
+    url('#{$images-path}/logo.png')
     $logo-padding 50%
     no-repeat;
 
@@ -142,7 +141,8 @@ $include-html-paint-navigation: true !default;
       user-select: none;
     }
 
-    &:last-child:not(.with-sidebar) {
+    &:last-child:not(.with-sidebar),
+    &.right {
       border-left: 1px solid navigation-settings(topbar, hover-color);
       border-right: 0;
       float: right;
@@ -154,7 +154,7 @@ $include-html-paint-navigation: true !default;
       padding: 0 navigation-settings(height) / 2;
       text-transform: uppercase;
 
-      &[class^='icon-'] {
+      &#{navigation-settings(icon-class-selector)} {
         @include navigation-item-icon;
       }
     }
@@ -231,10 +231,6 @@ $include-html-paint-navigation: true !default;
         background-color: navigation-settings(sidebar, hover-color);
       }
 
-      &[class^='icon-'] {
-        @extend %paint-icon;
-      }
-
       span {
         display: block;
         height: 0;
@@ -242,6 +238,15 @@ $include-html-paint-navigation: true !default;
         width: 0;
       }
     }
+
+    a#{navigation-settings(icon-class-selector)} {
+      @extend %paint-icon;
+
+      &:before {
+        width: navigation-settings(sidebar-min-width);
+      }
+    }
+
 
     .submenu li {
       height: 0;
@@ -252,23 +257,6 @@ $include-html-paint-navigation: true !default;
         color: navigation-settings(sidebar, submenu-text-color);
       }
     }
-  }
-}
-
-%paint-icon {
-  &:before {
-    display: inline-block;
-    font-family: 'Paint';
-    font-size: $h4-font-size;
-    -webkit-font-smoothing: antialiased;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    line-height: 1;
-    speak: none;
-    text-align: center;
-    text-transform: none;
-    width: navigation-settings(height);
   }
 }
 
@@ -332,7 +320,7 @@ $sidebar-full-open: '.part-open:hover';
 @media #{$medium-down} {
   #{navigation-settings(selectors, main)} {
     .item > a {
-      &[class^='icon-'] {
+      &#{navigation-settings(icon-class-selector)} {
         padding: 0 $column-gutter / 4 !important;
 
         &:before {
