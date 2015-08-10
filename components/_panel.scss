@@ -15,9 +15,9 @@ $include-html-paint-panel: true !default;
 
 @function panel-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($panel, $setting), $property),
+    @return map-get(map-get($panel, $setting), $property);
   } @else {
-    @return map-get($panel, $setting)
+    @return map-get($panel, $setting);
   }
 }
 

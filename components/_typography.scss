@@ -13,9 +13,9 @@ $include-html-paint-typography: true !default;
 
 @function typography-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($typography, $setting), $property),
+    @return map-get(map-get($typography, $setting), $property);
   } @else {
-    @return map-get($typography, $setting)
+    @return map-get($typography, $setting);
   }
 }
 

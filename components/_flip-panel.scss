@@ -17,9 +17,9 @@ $include-html-paint-flip-panel: true !default;
 
 @function flip-panel-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($flip-panel, $setting), $property),
+    @return map-get(map-get($flip-panel, $setting), $property);
   } @else {
-    @return map-get($flip-panel, $setting)
+    @return map-get($flip-panel, $setting);
   }
 }
 
