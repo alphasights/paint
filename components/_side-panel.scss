@@ -8,6 +8,11 @@ $side-panel-default-settings: (
     xxlarge: 120em
   ),
 
+  scale-ratio: (
+    small: .5,
+    large: 1
+  ),
+
   actions-bar: (
     background-color: #e1e5ea,
     button-size: 35px,
@@ -28,29 +33,24 @@ $side-panel-default-settings: (
 
 $side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
 
-// Variables are needed here since libsass cannot currently multiply values
-// fetched via map-get. http://git.io/vtC5i
-$scaled-ratio-small: 1;
-$scaled-ratio-large: .5;
-
 $include-html-paint-side-panel: true !default;
 
 @function side-panel-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($side-panel, $setting), $property),
+    @return map-get(map-get($side-panel, $setting), $property);
   } @else {
-    @return map-get($side-panel, $setting)
+    @return map-get($side-panel, $setting);
   }
 }
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
-  $ratio: $scaled-ratio-large;
+  $ratio: side-panel-settings(scale-ratio, large);
   $main-translation: -100% * $ratio;
   $drawer-width: "calc(#{$width} * #{$ratio})";
 
   @if ($size == small or $size == medium) {
-    $ratio: $scaled-ratio-small;
+    $ratio: side-panel-settings(scale-ratio, small);
   }
 
   @if $scaled {
