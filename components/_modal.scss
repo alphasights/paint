@@ -15,9 +15,9 @@ $include-html-paint-modal: true !default;
 
 @function modal-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($modal, $setting), $property),
+    @return map-get(map-get($modal, $setting), $property);
   } @else {
-    @return map-get($modal, $setting)
+    @return map-get($modal, $setting);
   }
 }
 
