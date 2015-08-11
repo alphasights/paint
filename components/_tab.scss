@@ -54,6 +54,11 @@ $include-html-paint-tabs: true !default;
         @include tab-item;
       }
     }
+
+    @media #{$small-only} {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
   }  
 }
 
@@ -95,6 +100,10 @@ $include-html-paint-tabs: true !default;
       transform tab-settings(transition-duration),
       background-color tab-settings(transition-duration);
     width: 100%;
+  }
+
+  @media #{$small-only} {
+    margin: 0;
   }
 }
 
