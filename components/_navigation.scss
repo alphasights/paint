@@ -1,3 +1,4 @@
+$navigation: () !default;
 $navigation-default-settings: (
   height: 60px,
   height-negative: -60px,
@@ -26,11 +27,7 @@ $navigation-default-settings: (
   )
 );
 
-@if global-variable-exists(navigation) {
-  $navigation: map-merge-settings($navigation-default-settings, $navigation);
-} @else {
-  $navigation: $navigation-default-settings;
-}
+$navigation: map-merge-settings($navigation-default-settings, $navigation);
 
 $no-touch-selector: '.no-touch' !default;
 $include-html-paint-navigation: true !default;
