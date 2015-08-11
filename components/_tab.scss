@@ -63,7 +63,7 @@ $include-html-paint-tabs: true !default;
   font-size: $h4-font-size;
   line-height: tab-settings(height);
   margin: 0 $column-gutter / 2;
-    bottom: -1px;
+  margin-bottom: -1px;
   overflow: hidden;
   padding: 0 $column-gutter / 2;
   position: relative;
