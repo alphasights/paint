@@ -5,7 +5,11 @@ $colors-default-settings: (
     small: #888888
   ),
 
-  link: #008fd9,
+  link: (
+    base: #008fd9,
+    dark: link (darken: 10%),
+    light: link (lighten: 10%)
+  ),
 
   border: (
     base: #ececec,
