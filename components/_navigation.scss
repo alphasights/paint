@@ -282,7 +282,7 @@ $sidebar-full-open: '.part-open:hover';
 }
 
 @media #{$small-only} {
-  .application {
+  #{$layout-main-selector} {
     &.with-sidebar {
       margin-left: 0;
       margin-top: navigation-settings(height);
