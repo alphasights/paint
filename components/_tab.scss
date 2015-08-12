@@ -1,0 +1,116 @@
+$tab: () !default;
+$tab-default-settings: (
+  background-color: color(white),
+  border-color: color(border),
+  border-color-active: color(link),
+  height: 60px,
+  text-color: color(text, small),
+  text-color-active: color(text),
+  transition-duration: $global-transition-duration / 2
+);
+
+$tab: map-merge-settings($tab-default-settings, $tab);
+
+$include-html-paint-tabs: true !default;
+
+@function tab-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($tab, $setting), $property);
+  } @else {
+    @return map-get($tab, $setting);
+  }
+}
+
+@mixin tabs() {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  nav {
+    @include tabs-nav;
+  }
+
+  .content {
+    @extend %grid-column-12;
+  }  
+}
+
+@mixin tabs-nav() {
+  background-color: tab-settings(background-color);
+  border-bottom: 1px solid tab-settings(border-color);
+
+  ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    li {
+      display: inline-block;
+      list-style: none;
+      position: relative;
+      vertical-align: top;
+
+      a {
+        @include tab-item;
+      }
+    }
+
+    @media #{$small-only} {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }  
+}
+
+@mixin tab-item() {
+  color: tab-settings(text-color);
+  display: block;
+  font-size: $h4-font-size;
+  line-height: tab-settings(height);
+  margin: 0 $column-gutter / 2;
+  margin-bottom: -1px;
+  overflow: hidden;
+  padding: 0 $column-gutter / 2;
+  position: relative;
+  transition: color tab-settings(transition-duration);
+  white-space: nowrap;
+
+  &:hover,
+  &.active {
+    color: tab-settings(text-color-active);
+
+    &:after {
+      transform: translate(0, 0);
+    }
+  }
+
+  &.active::after {
+    background-color: tab-settings(border-color-active);
+  }
+
+  &:after {
+    background-color: tab-settings(border-color);
+    bottom: 0;
+    content: '';
+    height: 3px;
+    left: 0;
+    position: absolute;
+    transform: translate(0, 150%);
+    transition: 
+      transform tab-settings(transition-duration),
+      background-color tab-settings(transition-duration);
+    width: 100%;
+  }
+
+  @media #{$small-only} {
+    margin: 0;
+  }
+}
+
+@include exports('paint-tabs') {
+  @if $include-html-paint-tabs {
+    .tabs {
+      @include tabs;
+    }
+  }
+}
