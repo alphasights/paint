@@ -213,7 +213,6 @@ $include-html-paint-navigation: true !default;
     text-align: left;
     text-transform: none;
 
-
     li:not(:first-child),
     li li {
       box-shadow: inset 0 1px navigation-settings(sidebar, hover-color);
@@ -242,7 +241,6 @@ $include-html-paint-navigation: true !default;
         width: navigation-settings(sidebar, min-width);
       }
     }
-
 
     .submenu li {
       height: 0;
