@@ -1,4 +1,74 @@
+@import "https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css";
+
+$paint-icons: (
+  archive: '\f016',
+  chart: '\f017',
+  check: '\f018',
+  circle-check: '\f019',
+  circle-cross: '\f01a',
+  circle-minus: '\f01b',
+  circle-plus: '\f01c',
+  clip: '\f01d',
+  clock: '\f01e',
+  cog: '\f01f',
+  cross: '\f020',
+  dashboard: '\f014',
+  delete: '\f021',
+  download: '\f022',
+  file: '\f023',
+  flag: '\f024',
+  folder: '\f025',
+  globe: '\f026',
+  head: '\f027',
+  heart: '\f028',
+  image: '\f029',
+  left-arrow: '\f02a',
+  link: '\f02b',
+  lock: '\f02c',
+  mail: '\f02d',
+  menu: '\f02e',
+  // Libsass bug sass/libsass#934
+  'notification': '\f02f',
+  printer: '\f030',
+  right-arrow: '\f015',
+  search: '\f031',
+  share: '\f032',
+  toggle: '\f033',
+  upload: '\f034',
+  video: '\f035',
+);
+
 @mixin icon($name) {
   @include fa-icon;
   @extend .fa-#{$name};
+}
+
+%paint-icon {
+  &:before {
+    display: inline-block;
+    font-family: 'Paint';
+    font-size: $h4-font-size;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-align: center;
+    text-transform: none;
+  }
+}
+
+@mixin paint-icon($name) {
+  @extend %paint-icon;
+
+  $content: map-get($paint-icons, $name);
+
+  @if not $content {
+    @error "Icon #{$name} doesn't exist"
+  }
+
+  &:before {
+    content: $content;
+  }
 }
