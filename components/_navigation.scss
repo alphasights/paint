@@ -176,7 +176,9 @@ $include-html-paint-navigation: true !default;
   position: fixed;
   top: 0;
   transform: translateX(navigation-settings(height-negative));
-  transition: transform navigation-settings(transition-duration), width navigation-settings(transition-duration);
+  transition: 
+    transform navigation-settings(transition-duration),
+    width navigation-settings(transition-duration);
   transition-delay: navigation-settings(transition-duration);
   width: navigation-settings(sidebar, min-width);
 
