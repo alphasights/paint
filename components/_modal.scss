@@ -6,7 +6,6 @@
 
 /// Default settings
 
-$modal: () !default;
 $modal-default-settings: (
   size: (
     small: 98%,
@@ -17,8 +16,7 @@ $modal-default-settings: (
   )
 );
 
-/// @access private
-
+$modal: () !default;
 $modal: map-merge-settings($modal-default-settings, $modal);
 
 $include-html-paint-modal: true !default;
