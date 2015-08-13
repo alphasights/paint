@@ -2,8 +2,9 @@ dest: './docs'
 src: ['components']
 
 description: |
-  # Paint
-  ## AlphaSights styles library
+  ## Paint
+
+descriptionPath: './README.md'
 
 groups:
   color: Colors / Palettes
