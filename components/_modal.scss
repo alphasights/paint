@@ -21,8 +21,6 @@ $modal: map-merge-settings($modal-default-settings, $modal);
 
 $include-html-paint-modal: true !default;
 
-/// @access private
-
 @function modal-settings($setting, $property: null) {
   @if $property {
     @return map-get(map-get($modal, $setting), $property);
@@ -65,6 +63,7 @@ $include-html-paint-modal: true !default;
 }
 
 /// Modal panel styles, including responsive media queries
+/// @access private
 /// @param {Boolean} $use-content-size [false] - Set to `true` to resize based on the modal content
 
 @mixin modal-panel($use-content-size: false) {
@@ -106,8 +105,22 @@ $include-html-paint-modal: true !default;
   }
 }
 
-/// Modal styles
+/// Modal Component
 /// @param {Boolean} $use-content-size [false] - Set to `true` to resize based on the modal content
+/// @example scss - Usage
+///    .custom-modal {
+///      @include modal;
+///    }
+///
+/// @example haml - Markup
+///   .modal[.active]
+///     %div
+///       %header
+///         %button.close
+///         %h1 Modal Title
+///
+///       .content
+///         // Modal content
 
 @mixin modal($use-content-size: false) {
   @include overlay;
