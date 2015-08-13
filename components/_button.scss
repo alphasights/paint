@@ -174,11 +174,11 @@ $include-html-paint-button: true !default;
 /// }
 ///
 /// @example
-/// <ul class="button-group">
-///   <li><button class="cog"></button></li>
-///   <li><button class="dashboard">Dashboard</button></li>
-///   <li><button class="clock"></button></li>
-/// </ul>
+///   <ul class="button-group">
+///     <li><button class="cog"></button></li>
+///     <li><button class="dashboard">Dashboard</button></li>
+///     <li><button class="clock"></button></li>
+///   </ul>
 
 %button-group {
   @include button-group-container;

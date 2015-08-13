@@ -161,14 +161,19 @@ $include-html-paint-layout: true !default;
 
 /// Global application layout styles
 /// 
-/// @example haml - Default Usage
-///   %body
-///     .application
-///       .sidebar
-///         // ...
-///       %main
-///         .content
-///           // ...
+/// @example - Default Usage
+///   <body>
+///     <div class="application">
+///       <div class="sidebar">
+///         //...
+///       </div>
+///       <main>
+///         <div class="content">
+///           //...
+///         </div>
+///       </main>
+///     </div>
+///   </body>
 
 @mixin layout {
   html,

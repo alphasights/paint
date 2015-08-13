@@ -112,15 +112,19 @@ $include-html-paint-modal: true !default;
 ///      @include modal;
 ///    }
 ///
-/// @example haml - Markup
-///   .modal[.active]
-///     %div
-///       %header
-///         %button.close
-///         %h1 Modal Title
+/// @example - Markup
+///   <div class="modal [active]">
+///     <div>
+///       <header>
+///         <h1>Modal Title</h1>
+///         <button class="close"></button>
+///       </header>
 ///
-///       .content
-///         // Modal content
+///       <div class="content">
+///         //..
+///       </div>
+///     </div>
+///   </div>
 
 @mixin modal($use-content-size: false) {
   @include overlay;

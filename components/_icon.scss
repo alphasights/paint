@@ -50,6 +50,10 @@ $paint-icons: (
 
 /// Renders font-awesome icons
 /// @param {string} $name - The name of the icon
+/// @example scss - Usage
+///   .dashboard-icon {
+///     @include icon(dashboard);
+///   }
 
 @mixin icon($name) {
   @include fa-icon;
@@ -76,6 +80,10 @@ $paint-icons: (
 
 /// Renders custom Paint icons
 /// @param {string} $name - The name of the icon
+/// @example scss - Usage
+///   .dashboard-icon {
+///     @include paint-icon(dashboard);
+///   }
 
 @mixin paint-icon($name) {
   @extend %paint-icon;
