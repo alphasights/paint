@@ -4,6 +4,8 @@
 /// @since v0.8.5
 ////
 
+/// Grid placeholder prefix
+
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
 $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
@@ -12,6 +14,7 @@ $medium-down: "#{$screen} and (max-width:#{upper-bound($medium-range)})" !defaul
 $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
 
 /// Generate grid column placeholders
+/// and uses Foundation to generate column placeholders
 
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
@@ -43,7 +46,24 @@ $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
   }
 }
 
-/// Generate grid column placeholders
+///
+/// @example scss - Usage
+///   .wrapper {
+///     @extend %grid-row;
+///
+///     .sidebar {
+///       @extend %grid-column-medium-4;
+///       @extend %grid-column-large-3;
+///       @extend %grid-column-xlarge-2;
+///     }
+///
+///     .content {
+///       @extend %grid-column-medium-8;
+///       @extend %grid-column-large-9;
+///       @extend %grid-column-xlarge-10;
+///     }
+///   }
+///
 
 %grid-row {
   @include grid-row;
