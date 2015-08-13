@@ -1,14 +1,12 @@
 ////
-/// Colours / Pallettes
+/// Colors / Palettes
 ///
 /// @group color
-/// @since v0.8.5
+/// @since v0.8.16
 ////
 
-/// Default color pallettes and general color settings
+/// Default color palettes and general color settings
 
-
-$colors: () !default;
 $colors-default-settings: (
   text: (
     base: #222222,
@@ -87,30 +85,33 @@ $colors-default-settings: (
   )
 );
 
+/// @ignore Defaults
+
+$colors: () !default;
 $colors: map-merge-settings($colors-default-settings, $colors);
 
-/// Fetch a color code for a pallette / component / setting
-/// @param {color | pallette} $color - Single color or pallette variant
+/// Fetch a color code for a palette / component / setting
+/// @param {color | palette} $color - Single color, palette variant or solid color
 ///
-/// @example scss
+/// @example scss - Usage
 ///   text-color: color(primary);
 ///   background-color: color(primary, light);
 ///   border-color: color(primary, dark);
+///   color: color(#fc0000) // When used with dynamic maps that use both solid colors and map keys
 ///
-/// Custom pallettes
-///
-/// @example scss
-/// // Include in your app's `paint-settings.scss`
-/// $colors: (
-///   text: (
-///     base: #111111,
-///     funky: link
-///   ),
-///   link: #f8f8f8
-/// );
-/// // color(text, funky); returns `#f8f8f8`
+/// @example scss - Custom Palette map
+///   // Include in your app's `paint-settings.scss`
+///   $colors: (
+///     text: (
+///       base: #111111,
+///       funky: link
+///     ),
+///     link: #f8f8f8
+///   );
+///   // color(text, funky); returns `#f8f8f8`
 ///
 /// @return {color}
+///
 
 @function color($color, $variant: base) {
   $output-color: map-get($colors, $color);

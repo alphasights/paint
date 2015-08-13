@@ -6,7 +6,7 @@ description: |
   ## AlphaSights styles library
 
 groups:
-  color: Colors / Pallettes
+  color: Colors / Palettes
   button: Buttons
   grid: Grid
   layout: Layout
