@@ -1,0 +1,333 @@
+$navigation: () !default;
+$navigation-default-settings: (
+  height: 60px,
+  height-negative: -60px,
+  logo-width: 28px,
+  transition-duration: .3s,
+  icon-class-selector: '[class^="icon-"]',
+  selector: '.main-navigation',
+  z-index: 101,
+
+  topbar: (
+    background-color: color(white),
+    hover-color: color(border, light),
+    border-color: color(border),
+    text-color: #191c1f,
+    text-hover-color: #191c1f
+  ),
+
+  sidebar: (
+    selector: '.sidebar',
+    background-color: #191c1f,
+    hover-color: lighten(#191c1f, 10%),
+    text-color: #a5a5a5,
+    submenu-text-color: darken(#a5a5a5, 20%),
+    min-width: 60px,
+    width: 300px
+  )
+);
+
+$navigation: map-merge-settings($navigation-default-settings, $navigation);
+
+$no-touch-selector: '.no-touch' !default;
+$include-html-paint-navigation: true !default;
+
+@function navigation-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($navigation, $setting), $property);
+  } @else {
+    @return map-get($navigation, $setting);
+  }
+}
+
+@mixin navigation-logo {
+  $logo-padding: (navigation-settings(sidebar, min-width) - navigation-settings(logo-width)) / 2;
+
+  background: 
+    url('#{$images-path}/logo.png')
+    $logo-padding 50%
+    no-repeat;
+
+  background-size: 
+    navigation-settings(logo-width)
+    navigation-settings(logo-width);
+
+  min-width: navigation-settings(sidebar, min-width);
+  padding-left: 0;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  span {
+    display: block;
+    font-size: $small-font-size;
+    font-weight: $font-weight-extrabold;
+    padding-left: navigation-settings(sidebar, min-width);
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+@mixin navigation-item-icon {
+  @extend %paint-icon;
+
+  &:before {
+    display: block !important;
+    height: 0 !important;
+    overflow: hidden;
+    width: 0 !important;
+  }
+}
+
+#{$layout-main-selector} {
+  &.with-sidebar {
+    margin-left: navigation-settings(height);
+  }
+
+  &.with-topbar {
+    margin-top: navigation-settings(height);
+  }
+}
+
+#{navigation-settings(selector)} {
+  background: navigation-settings(topbar, background-color);
+  border-bottom: solid 1px navigation-settings(topbar, border-color);
+  color: navigation-settings(topbar, text-color);
+  font-size: $base-font-size;
+  height: navigation-settings(height);
+  left: 0;
+  line-height: navigation-settings(height);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  text-transform: none;
+  top: 0;
+  z-index: navigation-settings(z-index);
+
+  &.with-topbar {
+    width: 100%;
+  }
+
+  &:not(.with-topbar)
+  .item.with-sidebar > .logo span {
+    display: none;
+  }
+
+  a {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  > .item {
+    border-right: 1px solid navigation-settings(topbar, hover-color);
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+
+    &.with-sidebar {
+      position: relative;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+
+    &:last-child:not(.with-sidebar),
+    &.right {
+      border-left: 1px solid navigation-settings(topbar, hover-color);
+      border-right: 0;
+      float: right;
+    }
+
+    > a {
+      color: navigation-settings(topbar, text-color);
+      font-weight: $font-weight-normal;
+      padding: 0 navigation-settings(height) / 2;
+      text-transform: uppercase;
+
+      &#{navigation-settings(icon-class-selector)} {
+        @include navigation-item-icon;
+      }
+    }
+
+    .logo {
+      @include navigation-logo;
+    }
+  }
+}
+
+#{$no-touch-selector} {
+  .main-navigation .item > a:hover {
+    background-color: navigation-settings(topbar, hover-color);
+    color: navigation-settings(topbar, text-hover-color);
+  }
+}
+
+#{navigation-settings(selector)}
+#{navigation-settings(sidebar, selector)} {
+  background: navigation-settings(sidebar, background-color);
+  bottom: 0;
+  color: navigation-settings(sidebar, text-color);
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  transform: translateX(navigation-settings(height-negative));
+  transition: 
+    transform navigation-settings(transition-duration),
+    width navigation-settings(transition-duration);
+  transition-delay: navigation-settings(transition-duration);
+  width: navigation-settings(sidebar, min-width);
+
+  > header {
+    background-color: navigation-settings(topbar, background-color);
+    padding: 0;
+    transition: background-color navigation-settings(transition-duration);
+    transition-delay: navigation-settings(transition-duration);
+
+    span {
+      color: color(white);
+    }
+  }
+
+  .scroller {
+    height: 100%;
+    overflow-y: scroll;
+    position: absolute;
+    width: navigation-settings(sidebar, width);
+  }
+
+  .menu,
+  .menu ul {
+    background: navigation-settings(sidebar, background-color);
+    border-bottom: 1px solid navigation-settings(sidebar, hover-color);
+    color: color(white);
+    font-size: $base-font-size;
+    line-height: navigation-settings(height);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-transform: none;
+
+    li:not(:first-child),
+    li li {
+      box-shadow: inset 0 1px navigation-settings(sidebar, hover-color);
+    }
+
+    a {
+      color: navigation-settings(sidebar, text-color);
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: navigation-settings(sidebar, hover-color);
+      }
+
+      span {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        width: 0;
+      }
+    }
+
+    a#{navigation-settings(icon-class-selector)} {
+      @extend %paint-icon;
+
+      &:before {
+        width: navigation-settings(sidebar, min-width);
+      }
+    }
+
+    .submenu li {
+      height: 0;
+      overflow: hidden;
+      transition: height navigation-settings(transition-duration);
+
+      a {
+        color: navigation-settings(sidebar, submenu-text-color);
+      }
+    }
+  }
+}
+
+$sidebar-part-open: '.part-open';
+$sidebar-full-open: '.part-open:hover';
+
+#{navigation-settings(selector)}
+#{navigation-settings(sidebar, selector)} {
+  &#{$sidebar-full-open},
+  &#{$sidebar-part-open} {
+    transform: translateX(0);
+  }
+
+  &#{$sidebar-full-open} {
+    transition-delay: 0s;
+    width: navigation-settings(sidebar, width);
+
+    > header {
+      background-color: navigation-settings(sidebar, background-color);
+      transition-delay: 0s;
+    }
+
+    .submenu li {
+      height: navigation-settings(height);
+    }
+  }
+}
+
+@media #{$small-only} {
+  #{$layout-main-selector} {
+    &.with-sidebar {
+      margin-left: 0;
+      margin-top: navigation-settings(height);
+    }
+  }
+
+  #{navigation-settings(selector)} {
+    .item.with-sidebar:hover
+    #{navigation-settings(sidebar, selector)} {
+      transform: translateX(0);
+    }
+
+    #{navigation-settings(sidebar, selector)} {
+      &#{$sidebar-part-open} {
+        transform: translateX(navigation-settings(height-negative));
+      }
+
+      &#{$sidebar-full-open} {
+        min-width: navigation-settings(sidebar, width);
+        transform: translateX(0);
+        width: 100%;
+
+        .scroller {
+          width: 130%;
+        }
+      }
+    }
+  }
+}
+
+@media #{$medium-down} {
+  #{navigation-settings(selector)} {
+    .item > a {
+      &#{navigation-settings(icon-class-selector)} {
+        padding: 0 $column-gutter / 4 !important;
+
+        &:before {
+          display: inline-block !important;
+          height: auto !important;
+          line-height: navigation-settings(height) !important;
+          width: navigation-settings(sidebar, min-width) / 2 !important;
+        }
+      }
+
+      span {
+        display: none !important;
+      }
+    }
+  }
+}

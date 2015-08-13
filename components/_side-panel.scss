@@ -1,8 +1,4 @@
-// Variables are needed here since libsass cannot currently multiply values
-// fetched via map-get. http://git.io/vtC5i
-$scaled-ratio-small: 1;
-$scaled-ratio-large: .5;
-
+$side-panel: () !default;
 $side-panel-default-settings: (
   size: (
     small: 100%,
@@ -10,6 +6,11 @@ $side-panel-default-settings: (
     large: 75em,
     xlarge: 90em,
     xxlarge: 120em
+  ),
+
+  scale-ratio: (
+    small: 1,
+    large: .5
   ),
 
   actions-bar: (
@@ -30,38 +31,32 @@ $side-panel-default-settings: (
   )
 );
 
-@if global-variable-exists(side-panel) {
-  $side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
-} @else {
-  $side-panel: $side-panel-default-settings;
-}
+$side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
 
 $include-html-paint-side-panel: true !default;
 
 @function side-panel-settings($setting, $property: null) {
   @if $property {
-    @return map-get(map-get($side-panel, $setting), $property),
+    @return map-get(map-get($side-panel, $setting), $property);
   } @else {
-    @return map-get($side-panel, $setting)
+    @return map-get($side-panel, $setting);
   }
 }
 
 @mixin side-panel-size($size: large, $scaled: false) {
   $width: side-panel-settings(size, $size);
+  $ratio: side-panel-settings(scale-ratio, large);
+  $main-translation: -100% * $ratio;
+  $drawer-width: "calc(#{$width} * #{$ratio})";
 
   @if ($size == small or $size == medium) {
-    $ratio: $scaled-ratio-small;
-  } @else {
-    $ratio: $scaled-ratio-large;
+    $ratio: side-panel-settings(scale-ratio, small);
   }
 
   @if $scaled {
     $width: "calc(#{$width} * #{$ratio})";
     $drawer-width: $width;
     $main-translation: -100%;
-  } @else {
-    $drawer-width: "calc(#{$width} * #{$ratio})";
-    $main-translation: -100% * $ratio;
   }
 
   > .main {

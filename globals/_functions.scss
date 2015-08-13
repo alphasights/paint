@@ -59,10 +59,10 @@
   $dark-text-brightness: brightness($dark);
   $light-text-brightness: brightness($light);
 
+  $output: $dark;
+
   @if abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness) {
     $output: $light;
-  } @else {
-    $output: $dark;
   }
 
   @return $output;

@@ -1,5 +1,4 @@
-$include-html-paint-quick-jump: true !default;
-
+$quick-jump: () !default;
 $quick-jump-default-settings: (
   bar: (
     background-color: #e1e5ea,
@@ -19,11 +18,9 @@ $quick-jump-default-settings: (
   )
 );
 
-@if global-variable-exists(quick-jump) {
-  $quick-jump: map-merge-settings($quick-jump-default-settings, $quick-jump);
-} @else {
-  $quick-jump: $quick-jump-default-settings;
-}
+$quick-jump: map-merge-settings($quick-jump-default-settings, $quick-jump);
+
+$include-html-paint-quick-jump: true !default;
 
 @function quick-jump-settings($setting, $property: null) {
   @if $property {

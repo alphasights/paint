@@ -108,6 +108,35 @@ $include-html-paint-form: true !default;
   }
 }
 
+@mixin form-checkbox($inner-wrapper: '.content', $float: left, $inline: false) {
+  @if ($inner-wrapper == null) {
+    $inner-wrapper: '&';
+  }
+
+  $label-margin-direction: right;
+
+  @if ($float == left) {
+    $label-margin-direction: left;
+  }
+
+  @if $inline {
+    width: auto !important;
+  }
+  
+  min-height: $form-input-height * 2;
+
+  label {
+    display: inline-block;
+    margin-#{$label-margin-direction}: $column-gutter / 2;
+  }
+
+  #{$inner-wrapper} {
+    display: inline-block;
+    float: $float;
+    line-height: $form-input-height;
+  }
+}
+
 @mixin form-select($inner-wrapper: '.content', $inline: false) {
   @if ($inner-wrapper == null) {
     $inner-wrapper: '&';
@@ -707,6 +736,11 @@ $include-html-paint-form: true !default;
 
           input {
             @include form-input;
+          }
+
+          &.form-checkbox,
+          &.form-radio {
+            @include form-checkbox;
           }
 
           &.form-select {
