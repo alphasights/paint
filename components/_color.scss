@@ -85,8 +85,6 @@ $colors-default-settings: (
   )
 );
 
-/// @ignore Defaults
-
 $colors: () !default;
 $colors: map-merge-settings($colors-default-settings, $colors);
 
