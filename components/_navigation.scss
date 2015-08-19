@@ -20,6 +20,7 @@ $navigation-default-settings: (
     selector: '.sidebar',
     background-color: #191c1f,
     hover-color: lighten(#191c1f, 10%),
+    active-color: lighten(#191c1f, 5%),
     text-color: #a5a5a5,
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
@@ -224,6 +225,10 @@ $include-html-paint-navigation: true !default;
 
       &:hover {
         background-color: navigation-settings(sidebar, hover-color);
+      }
+
+      &.active {
+        background-color: navigation-settings(sidebar, active-color);
       }
 
       span {
