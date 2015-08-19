@@ -6,7 +6,7 @@ $navigation-default-settings: (
   transition-duration: .3s,
   icon-class-selector: '[class^="icon-"]',
   selector: '.main-navigation',
-  z-index: 101,
+  z-index: 100,
 
   topbar: (
     background-color: color(white),
