@@ -1,9 +1,14 @@
 $tab: () !default;
 $tab-default-settings: (
+  active-class: 'active',
+  active-tag: 'a',
   background-color: color(white),
   border-color: color(border),
   border-color-active: color(link),
+  border-height: 3px,
   height: 60px,
+  font-size: $h4-font-size,
+  tab-padding: 0 $column-gutter / 2,
   text-color: color(text, small),
   text-color-active: color(text),
   transition-duration: $global-transition-duration / 2
@@ -43,12 +48,18 @@ $include-html-paint-tabs: true !default;
     margin: 0;
     padding: 0;
     position: relative;
+    overflow-y: hidden;
+    white-space: nowrap;
 
     li {
       display: inline-block;
       list-style: none;
       position: relative;
       vertical-align: top;
+
+      @if tab-settings(active-tag) == 'li' {
+        @include tab-active-border;
+      }
 
       a {
         @include tab-item;
@@ -62,21 +73,13 @@ $include-html-paint-tabs: true !default;
   }  
 }
 
-@mixin tab-item() {
-  color: tab-settings(text-color);
-  display: block;
-  font-size: $h4-font-size;
-  line-height: tab-settings(height);
-  margin: 0 $column-gutter / 2;
-  margin-bottom: -1px;
-  overflow: hidden;
-  padding: 0 $column-gutter / 2;
-  position: relative;
-  transition: color tab-settings(transition-duration);
-  white-space: nowrap;
+@mixin tab-active-border() {
+  &.#{tab-settings(active-class)}::after {
+    background-color: tab-settings(border-color-active);
+  }
 
   &:hover,
-  &.active {
+  &.#{tab-settings(active-class)} {
     color: tab-settings(text-color-active);
 
     &:after {
@@ -84,15 +87,11 @@ $include-html-paint-tabs: true !default;
     }
   }
 
-  &.active::after {
-    background-color: tab-settings(border-color-active);
-  }
-
   &:after {
     background-color: tab-settings(border-color);
     bottom: 0;
     content: '';
-    height: 3px;
+    height: tab-settings(border-height);
     left: 0;
     position: absolute;
     transform: translate(0, 150%);
@@ -100,6 +99,24 @@ $include-html-paint-tabs: true !default;
       transform tab-settings(transition-duration),
       background-color tab-settings(transition-duration);
     width: 100%;
+  }
+}
+
+@mixin tab-item() {
+  color: tab-settings(text-color);
+  display: block;
+  font-size: tab-settings(font-size);
+  line-height: tab-settings(height);
+  margin: 0 $column-gutter / 2;
+  margin-bottom: -1px;
+  overflow: hidden;
+  padding: tab-settings(tab-padding);
+  position: relative;
+  transition: color tab-settings(transition-duration);
+  white-space: nowrap;
+
+  @if tab-settings(active-tag) == 'a' {
+    @include tab-active-border;
   }
 
   @media #{$small-only} {
