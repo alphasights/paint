@@ -68,7 +68,6 @@ $include-html-paint-tabs: true !default;
 
     @media #{$small-only} {
       overflow-x: auto;
-      white-space: nowrap;
     }
   }  
 }
