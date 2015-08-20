@@ -46,9 +46,9 @@ $include-html-paint-tabs: true !default;
 
   ul {
     margin: 0;
+    overflow-y: hidden;
     padding: 0;
     position: relative;
-    overflow-y: hidden;
     white-space: nowrap;
 
     li {
