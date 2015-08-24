@@ -10,6 +10,7 @@ $navigation-default-settings: (
 
   topbar: (
     background-color: color(white),
+    hover-background-color: color(black),
     hover-color: color(border, light),
     border-color: color(border),
     text-color: #191c1f,
@@ -41,6 +42,15 @@ $include-html-paint-navigation: true !default;
   }
 }
 
+@mixin navigation-header-title {
+  display: block;
+  font-size: $small-font-size;
+  font-weight: $font-weight-extrabold;
+  padding-left: navigation-settings(sidebar, min-width);
+  text-align: left;
+  text-transform: uppercase;
+}
+
 @mixin navigation-logo {
   $logo-padding: (navigation-settings(sidebar, min-width) - navigation-settings(logo-width)) / 2;
 
@@ -57,16 +67,11 @@ $include-html-paint-navigation: true !default;
   padding-left: 0;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0) !important;
+    background-color: navigation-settings(topbar, hover-background-color) !important;
   }
 
   span {
-    display: block;
-    font-size: $small-font-size;
-    font-weight: $font-weight-extrabold;
-    padding-left: navigation-settings(sidebar, min-width);
-    text-align: left;
-    text-transform: uppercase;
+    @include navigation-header-title;
   }
 }
 
@@ -274,7 +279,7 @@ $sidebar-full-open: '.part-open:hover';
     width: navigation-settings(sidebar, width);
 
     > header {
-      background-color: navigation-settings(sidebar, background-color);
+      background-color: navigation-settings(topbar, hover-background-color);
       transition-delay: 0s;
     }
 
