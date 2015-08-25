@@ -116,7 +116,7 @@ $include-html-paint-tabs: true !default;
   }
 }
 
-@include exports('paint-tabs') {
+@include exports('paint-tab') {
   @if $include-html-paint-tabs {
     .tabs {
       @include tabs;
