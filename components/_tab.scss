@@ -1,7 +1,7 @@
 $tab: () !default;
 $tab-default-settings: (
   active-class: '.active',
-  active-tab-selector: li,
+  active-tab-selector: a,
   background-color: color(white),
   border-color: color(border),
   border-color-active: color(link),
