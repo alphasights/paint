@@ -5,9 +5,12 @@ $tab-default-settings: (
   background-color: color(white),
   border-color: color(border),
   border-color-active: color(link),
+  border-height: 3px,
   height: 60px,
   text-color: color(text, small),
   text-color-active: color(text),
+  text-size: $h4-font-size,
+  padding: 0 $column-gutter / 2,
   transition-duration: $global-transition-duration / 2
 );
 
@@ -70,12 +73,12 @@ $include-html-paint-tabs: true !default;
   > #{$tab-selector} {
     color: tab-settings(text-color);
     display: block;
-    font-size: $h4-font-size;
+    font-size: tab-settings(text-size);
     line-height: tab-settings(height);
     margin: 0 $column-gutter / 2;
     margin-bottom: -1px;
     overflow: hidden;
-    padding: 0 $column-gutter / 2;
+    padding: tab-settings(padding);
     position: relative;
     transition: color tab-settings(transition-duration);
     white-space: nowrap;
@@ -98,7 +101,7 @@ $include-html-paint-tabs: true !default;
     background-color: tab-settings(border-color);
     bottom: 0;
     content: '';
-    height: 3px;
+    height: tab-settings(border-height);
     left: 0;
     position: absolute;
     transform: translate(0, 150%);
