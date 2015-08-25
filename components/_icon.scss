@@ -1,4 +1,14 @@
+////
+/// Icons Component
+/// @group icon
+/// @since v0.8.16
+////
+
+/// Extends FontAwesome icons and Paint icons
+
 @import url(https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css);
+
+/// Custom Paint icons map
 
 $paint-icons: (
   archive: '\f016',
@@ -38,10 +48,19 @@ $paint-icons: (
   video: '\f035',
 );
 
+/// Renders font-awesome icons
+/// @param {string} $name - The name of the icon
+/// @example scss - Usage
+///   .dashboard-icon {
+///     @include icon(dashboard);
+///   }
+
 @mixin icon($name) {
   @include fa-icon;
   @extend .fa-#{$name};
 }
+
+/// @access private
 
 %paint-icon {
   &:before {
@@ -58,6 +77,13 @@ $paint-icons: (
     text-transform: none;
   }
 }
+
+/// Renders custom Paint icons
+/// @param {string} $name - The name of the icon
+/// @example scss - Usage
+///   .dashboard-icon {
+///     @include paint-icon(dashboard);
+///   }
 
 @mixin paint-icon($name) {
   @extend %paint-icon;

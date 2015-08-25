@@ -1,4 +1,11 @@
-$colors: () !default;
+////
+/// Colors / Palettes Component
+/// @group color
+/// @since v0.8.16
+////
+
+/// Default color palettes and general color settings
+
 $colors-default-settings: (
   text: (
     base: #222222,
@@ -77,7 +84,43 @@ $colors-default-settings: (
   )
 );
 
+$colors: () !default;
 $colors: map-merge-settings($colors-default-settings, $colors);
+
+/// Fetch a color from a palette group / setting
+/// @param {color | palette} $color - Single color, palette variant or solid color
+/// @return {Color}
+///
+/// @example scss - Usage
+///   text-color: color(primary);
+///   background-color: color(primary, light);
+///   border-color: color(primary, dark);
+///   color: color(#fc0000) // When used with dynamic maps that use both solid colors and map keys
+///
+/// @example scss - Update existing colors / variations
+///   // Include in your app's `paint-settings.scss`
+///   $colors: (
+///     text: (
+///       base: #111111,
+///       funky: link
+///     ),
+///     link: #f8f8f8
+///   );
+///   // color(text, funky) will return `#f8f8f8`
+///
+/// @example scss - Create custom palette map
+///   // Include in your app's `paint-settings.scss`
+///   $colors: (
+///     dragon-skin: (
+///       base: #47C51D,
+///       dark: dragon-skin (darken: 20%, saturate: 20%),
+///       light: dragon-skin (lighten: 30%)
+///       transparent: dragon-skin (transparentize: 0.6)
+///     )
+///   );
+///
+///   // Call example: `color(dragon-skin)` or `color(dragon-skin, transparent)`
+///
 
 @function color($color, $variant: base) {
   $output-color: map-get($colors, $color);

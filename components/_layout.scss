@@ -1,3 +1,10 @@
+////
+/// Layout and sidebar Component.
+/// @group layout
+/// @since v0.8.5
+/// @deprecated from 0.9.0
+////
+
 $layout-content-selector: '> .content' !default;
 $layout-content-wrapper-selector: 'main' !default;
 $layout-main-selector: '.application' !default;
@@ -51,6 +58,9 @@ $include-html-paint-layout: true !default;
   text-transform: uppercase;
 }
 
+/// Sidebar navigation icons generator
+/// @access private
+
 @mixin layout-navigation-icons {
   @for $i from 1 through length($layout-sidebar-nav-classes) {
     $class-name: nth($layout-sidebar-nav-classes, $i);
@@ -61,6 +71,8 @@ $include-html-paint-layout: true !default;
     }
   }
 }
+
+/// Layout sidebar
 
 @mixin layout-sidebar {
   $nav-top-margin: 0;
@@ -147,6 +159,22 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Global application layout styles
+/// 
+/// @example - Default Usage
+///   <body>
+///     <div class="application">
+///       <div class="sidebar">
+///         //...
+///       </div>
+///       <main>
+///         <div class="content">
+///           //...
+///         </div>
+///       </main>
+///     </div>
+///   </body>
+
 @mixin layout {
   html,
   body {
@@ -169,6 +197,9 @@ $include-html-paint-layout: true !default;
     }
   }
 }
+
+/// Layout sidebar navigation styles
+/// @access private
 
 @mixin layout-sidebar-nav($nav-bottom-margin: 0, $nav-top-margin: 0, $subnav-selector: '> li > ul') {
   bottom: $nav-bottom-margin;
@@ -308,6 +339,9 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Layout sidebar collapsed navigation styles
+/// @access private
+
 @mixin layout-sidebar-nav-collapsed {
   width: $layout-sidebar-nav-width-collapsed;
 
@@ -356,6 +390,9 @@ $include-html-paint-layout: true !default;
   }
 }
 
+/// Sidebar navigation footer with actions
+/// @access private
+
 @mixin layout-sidebar-footer-with-actions {
   #{$layout-sidebar-footer-avatar-selector} {
     float: left;
@@ -390,6 +427,9 @@ $include-html-paint-layout: true !default;
     }
   }
 }
+
+/// Sidebar navigation collapsed footer with actions
+/// @access private
 
 @mixin layout-sidebar-footer-with-actions-collapsed {
   #{$layout-sidebar-footer-avatar-selector},
