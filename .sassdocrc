@@ -1,0 +1,17 @@
+dest: './docs'
+src: ['components']
+
+description: |
+  ## Paint
+
+descriptionPath: './README.md'
+
+groups:
+  color: Colors / Palettes
+  button: Buttons
+  grid: Grid
+  layout: Layout
+  icon: Icons
+  modal: Modals
+  dropdown: Dropdowns
+  undefined: Misc
