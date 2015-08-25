@@ -11,6 +11,7 @@ $tab-default-settings: (
   text-color-active: color(text),
   text-size: $h4-font-size,
   padding: 0 $column-gutter / 2,
+  margin: 0 $column-gutter / 2,
   transition-duration: $global-transition-duration / 2
 );
 
@@ -75,7 +76,7 @@ $include-html-paint-tabs: true !default;
     display: block;
     font-size: tab-settings(text-size);
     line-height: tab-settings(height);
-    margin: 0 $column-gutter / 2;
+    margin: tab-settings(margin);
     margin-bottom: -1px;
     overflow: hidden;
     padding: tab-settings(padding);
