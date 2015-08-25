@@ -4,7 +4,5 @@ set -e
 
 SASSDOC='sassdoc --verbose' sassdocify components
 cd .pages
-git add --all
-git commit -m "Update SassDocs"
-git push origin gh-pages
+git push --force origin gh-pages
 cd ..
