@@ -10,4 +10,5 @@
 # compiled output
 /dist
 /tmp
-/docs
+/.pages
+/.sassdoc

@@ -98,6 +98,16 @@ Most coding style issues are taken care of automatically by the linter. There ar
 - Mixins that do not have a corresponding placeholder should be put in the `globals/mixins.scss` file.
 - Not everything should be exposed as a setting. If a setting is dependent on another one, and it's not reused, you should avoid creating a separate variable. Not only this would pollute the top of the file too much, but it could expose "implementation" details to the user of your component.
 
+## Generate Documentation
+
+```
+npm install -g sassdoc
+npm install -g sassdocify
+
+bin/docs
+```
+
+This is going to push documentation to a `gh-pages` branch that automatically updates http://alphasights.github.io/paint/
 
 ## Contributing
 
