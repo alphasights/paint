@@ -15,4 +15,5 @@ groups:
   modal: Modals
   dropdown: Dropdowns
   navigation: Navigation
+  tab: Tabs
   undefined: Misc
