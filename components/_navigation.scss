@@ -5,10 +5,10 @@
 ////
 
 /// Default settings
-/// Topbar and sidebar navigation
-/// @example
-///   <div class="application [with-topbar] [with-sidebar]">
-///     <div class="main-navigation [with-topbar]">
+
+/// @example html - Topbar and Sidebar Navigation Example
+///   <div class="application with-topbar with-sidebar">
+///     <div class="main-navigation with-topbar">
 ///       <div class="item with-sidebar">
 ///         <a class="logo"><span>Paint</span></a>
 ///
@@ -28,15 +28,61 @@
 ///             </ul>
 ///           </div>
 ///         </nav>
-///       </div>
+///       </div> <!-- .item -->
 ///
 ///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
-///     </div>
+///     </div> <!-- .main-navigation -->
 ///     <main>
 ///       <div class="content">
 ///       </div>
 ///     </main>
-///   </div>
+///   </div> <!-- .application -->
+///
+/// @example html - Sidebar-only Navigation Example
+///   <div class="application with-sidebar">
+///     <div class="main-navigation">
+///       <div class="item with-sidebar">
+///         <a class="logo"><span>Paint</span></a>
+///
+///         <nav class="sidebar part-open">
+///           <header>
+///             <a class="logo"><span>Paint</span></a>
+///           </header>
+///
+///           <div class="scroller">
+///             <ul class="menu">
+///               <li>
+///                 <a href="#" class="icon-dashboard">Menu Item</a>
+///                 <ul class="submenu">
+///                   <li><a href="#" class="icon-dashboard">Submenu</a></li>
+///                 </ul>
+///               </li>
+///             </ul>
+///           </div>
+///         </nav>
+///       </div> <!-- .item -->
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
+///
+/// @example html - Topbar-only Navigation Example
+///   <div class="application with-topbar">
+///     <div class="main-navigation with-topbar">
+///       <div class="item">
+///         <a class="logo"><span>Paint</span></a>
+///       </div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
 ///
 
 $navigation-default-settings: (
