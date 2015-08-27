@@ -16,4 +16,5 @@ groups:
   dropdown: Dropdowns
   navigation: Navigation
   tab: Tabs
+  panel: Panels
   undefined: Misc
