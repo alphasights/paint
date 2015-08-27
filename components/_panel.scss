@@ -1,4 +1,30 @@
-$panel: () !default;
+////
+/// Panel
+/// @group panel
+/// @since v0.8.5
+////
+
+/// Default settings
+
+/// @example scss - Usage
+///   .custom-panel-widget {
+///     @extend %panel-widget;
+///   }
+///
+/// @example scss - Custom Panel Styles
+///   // paint-settings.scss
+///   $panel: (
+///     styles: (
+///       success: color(success, dark),
+///       info: color(info)
+///     )
+///   );
+///
+///   // Custom stylesheet
+///   .fancy-green-panel {
+///     @extend %panel-success;
+///   }
+
 $panel-default-settings: (
   header-height: $h1-font-size + $column-gutter,
   footer-height: $h1-font-size + $column-gutter / 2,
@@ -9,6 +35,7 @@ $panel-default-settings: (
   ),
 );
 
+$panel: () !default;
 $panel: map-merge-settings($panel-default-settings, $panel);
 
 $include-html-paint-panel: true !default;
@@ -20,6 +47,10 @@ $include-html-paint-panel: true !default;
     @return map-get($panel, $setting);
   }
 }
+
+/// Panel header background
+/// @access private
+/// @param {Color} $background-color [color(border, light)] - Sets the panel header background to a gradient and sets the text color dynamically based on the color brightness.
 
 @mixin panel-background(
   $background-color: color(border, light)
@@ -39,6 +70,9 @@ $include-html-paint-panel: true !default;
     background-color: color(border, light);
   }
 }
+
+/// The placeholder that holds the base panel styles
+/// @access public
 
 %panel {
   backface-visibility: hidden;
@@ -71,6 +105,10 @@ $include-html-paint-panel: true !default;
     }
   }
 }
+
+/// Generates all panel variation placeholders defined in the settings
+/// @access private
+/// @param {Map} $styles [panel-settings(styles)] - The style variations map
 
 @mixin panel-placeholders(
   $styles: panel-settings(styles)
