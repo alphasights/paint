@@ -6,6 +6,26 @@
 
 /// Default settings
 
+/// @example scss - Usage
+///   .my-tabs {
+///     @include tabs;
+///   }
+/// @example html - Default Markup
+///   <section class="tabs">
+///     <nav>
+///       <ul>
+///         <li><a>First Tab</a></li>
+///         <li><a class="active">Second Tab</a></li>
+///         <li><a>Third Tab</a></li>
+///       </ul>
+///     </nav>
+///
+///     <div class="content">
+///       ...
+///     </div>
+///   </section>
+///
+
 $tab-default-settings: (
   active-class: '.active',
   active-tab-selector: a,
@@ -36,25 +56,6 @@ $include-html-paint-tabs: true !default;
 }
 
 /// Main tabs mixin, to be applied to the tabs wrapper
-
-/// @example scss - Usage
-///   .my-tabs {
-///     @include tabs;
-///   }
-/// @example html - Default Markup
-///   <section class="tabs">
-///     <nav>
-///       <ul>
-///         <li><a>First Tab</a></li>
-///         <li><a class="active">Second Tab</a></li>
-///         <li><a>Third Tab</a></li>
-///       </ul>
-///     </nav>
-///
-///     <div class="content">
-///       ...
-///     </div>
-///   </section>
 
 @mixin tabs() {
   overflow: hidden;
