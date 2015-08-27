@@ -1,6 +1,53 @@
+////
+/// Flip Panel
+/// @group panel
+/// @since v0.8.5
+////
+
 @import 'panel';
 
-$flip-panel: () !default;
+/// Default settings
+
+/// @example scss - Usage
+///   .flip-panel {
+///     @include flip-panel;
+///   }
+///
+/// @example html - Default Markup
+/// <div class="flip-panel [flipped]">
+///   <div class="front">
+///     <header>
+///       <h1>Flip Panel Front</h1>
+///     </header>
+///
+///     <div class="content">
+///       <section>
+///         Flip panel front section content
+///       </section>
+///     </div>
+///
+///     <footer>
+///       <span><a>More information</a></span>
+///     </footer>
+///   </div> <!-- .front -->
+///
+///   <div class="back">
+///     <header>
+///       <h1><a><i class="back-icon"></i> Back to Front</a></h1>
+///     </header>
+///
+///     <div class="content">
+///       <section>
+///         <p>Flip panel back content</p>
+///       </section>
+///     </div>
+///   </div> <!-- .back -->
+/// </div>
+///
+/// @example html - Animation
+///   Toggle class `.flipped` on the main selector to trigger the flipping animation
+///
+
 $flip-panel-default-settings: (
   header-height: panel-settings(header-height),
   footer-height: panel-settings(footer-height),
@@ -11,6 +58,7 @@ $flip-panel-default-settings: (
   transition-settings: .3s ease-in-out
 );
 
+$flip-panel: () !default;
 $flip-panel: map-merge-settings($flip-panel-default-settings, $flip-panel);
 
 $include-html-paint-flip-panel: true !default;
@@ -23,6 +71,9 @@ $include-html-paint-flip-panel: true !default;
   }
 }
 
+/// Generate icons used for the panel header
+/// @access private
+
 @mixin flip-panel-icons {
   $flip-panel-icons: flip-panel-settings(icons);
 
@@ -32,6 +83,11 @@ $include-html-paint-flip-panel: true !default;
     }
   }
 }
+
+/// Create the scrollable content block based on the presence of header and footer
+/// @access private
+/// @param {Boolean} $with-header [true] - Specify if the panel has a header
+/// @param {Boolean} $with-footer [false] - Specify if the panel has a footer
 
 @mixin flip-panel-scroll-content($with-header: true, $with-footer: false) {
   @if $with-header {
@@ -50,6 +106,14 @@ $include-html-paint-flip-panel: true !default;
   position: absolute;
   right: 0;
 }
+
+/// Mixin that generates the flip-panel styles
+/// @access public
+/// @param {Boolean} $with-front-header [true] - Specify if the panel front has a header
+/// @param {Boolean} $with-front-footer [true] - Specify if the panel front has a footer
+/// @param {Boolean} $with-back-header [true] - Specify if the panel back has a header
+/// @param {Boolean} $with-back-footer [false] - Specify if the panel back has a footer
+/// @param {value} $min-height [false] - Specify a fixed height for the panel
 
 @mixin flip-panel (
   $with-front-header: true,

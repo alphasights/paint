@@ -1,4 +1,90 @@
-$navigation: () !default;
+////
+/// Navigation
+/// @group navigation
+/// @since v0.8.18
+////
+
+/// Default settings
+
+/// @example html - Topbar and Sidebar Navigation Example
+///   <div class="application with-topbar with-sidebar">
+///     <div class="main-navigation with-topbar">
+///       <div class="item with-sidebar">
+///         <a class="logo"><span>Paint</span></a>
+///
+///         <nav class="sidebar part-open">
+///           <header>
+///             <a class="logo"><span>Paint</span></a>
+///           </header>
+///
+///           <div class="scroller">
+///             <ul class="menu">
+///               <li>
+///                 <a href="#" class="icon-dashboard">Menu Item</a>
+///                 <ul class="submenu">
+///                   <li><a href="#" class="icon-dashboard">Submenu</a></li>
+///                 </ul>
+///               </li>
+///             </ul>
+///           </div>
+///         </nav>
+///       </div> <!-- .item -->
+///
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
+///
+/// @example html - Sidebar-only Navigation Example
+///   <div class="application with-sidebar">
+///     <div class="main-navigation">
+///       <div class="item with-sidebar">
+///         <a class="logo"><span>Paint</span></a>
+///
+///         <nav class="sidebar part-open">
+///           <header>
+///             <a class="logo"><span>Paint</span></a>
+///           </header>
+///
+///           <div class="scroller">
+///             <ul class="menu">
+///               <li>
+///                 <a href="#" class="icon-dashboard">Menu Item</a>
+///                 <ul class="submenu">
+///                   <li><a href="#" class="icon-dashboard">Submenu</a></li>
+///                 </ul>
+///               </li>
+///             </ul>
+///           </div>
+///         </nav>
+///       </div> <!-- .item -->
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
+///
+/// @example html - Topbar-only Navigation Example
+///   <div class="application with-topbar">
+///     <div class="main-navigation with-topbar">
+///       <div class="item">
+///         <a class="logo"><span>Paint</span></a>
+///       </div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///       <div class="item"><a class="icon-cog" href="#"><span>Top Item</span></a></div>
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
+///
+
 $navigation-default-settings: (
   height: 60px,
   height-negative: -60px,
@@ -29,6 +115,7 @@ $navigation-default-settings: (
   )
 );
 
+$navigation: () !default;
 $navigation: map-merge-settings($navigation-default-settings, $navigation);
 
 $no-touch-selector: '.no-touch' !default;
@@ -42,6 +129,9 @@ $include-html-paint-navigation: true !default;
   }
 }
 
+/// Header title properties
+/// @access private
+
 @mixin navigation-header-title {
   display: block;
   font-size: $small-font-size;
@@ -50,6 +140,10 @@ $include-html-paint-navigation: true !default;
   text-align: left;
   text-transform: uppercase;
 }
+
+/// Logo properties
+/// @access private
+/// @param {value} $hover-background-color [topbar hover-background-color] - The logo hover color - useful for when the topbar logo is different than the sidebar one
 
 @mixin navigation-logo(
   $hover-background-color: navigation-settings(topbar, hover-background-color)
@@ -76,6 +170,9 @@ $include-html-paint-navigation: true !default;
     @include navigation-header-title;
   }
 }
+
+/// Basic properties for the navigation item icon
+/// @access private
 
 @mixin navigation-item-icon {
   @extend %paint-icon;
@@ -271,6 +368,9 @@ $include-html-paint-navigation: true !default;
     }
   }
 }
+
+/// Use custom classes for the partially open sidebar and fully open one. By default the sidebar opens fully on hover
+/// @access private
 
 $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
