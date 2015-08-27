@@ -1,4 +1,31 @@
-$tab: () !default;
+////
+/// Navigation
+/// @group tab
+/// @since v0.8.18
+////
+
+/// Default settings
+
+/// @example scss - Usage
+///   .my-tabs {
+///     @include tabs;
+///   }
+/// @example html - Default Markup
+///   <section class="tabs">
+///     <nav>
+///       <ul>
+///         <li><a>First Tab</a></li>
+///         <li><a class="active">Second Tab</a></li>
+///         <li><a>Third Tab</a></li>
+///       </ul>
+///     </nav>
+///
+///     <div class="content">
+///       ...
+///     </div>
+///   </section>
+///
+
 $tab-default-settings: (
   active-class: '.active',
   active-tab-selector: a,
@@ -15,6 +42,7 @@ $tab-default-settings: (
   transition-duration: $global-transition-duration / 2
 );
 
+$tab: () !default;
 $tab: map-merge-settings($tab-default-settings, $tab);
 
 $include-html-paint-tabs: true !default;
@@ -26,6 +54,8 @@ $include-html-paint-tabs: true !default;
     @return map-get($tab, $setting);
   }
 }
+
+/// Main tabs mixin, to be applied to the tabs wrapper
 
 @mixin tabs() {
   overflow: hidden;
@@ -40,6 +70,9 @@ $include-html-paint-tabs: true !default;
     @extend %grid-column-12;
   }  
 }
+
+/// Tab Nav Group
+/// @access private
 
 @mixin tabs-nav() {
   background-color: tab-settings(background-color);
@@ -62,6 +95,10 @@ $include-html-paint-tabs: true !default;
     }
   }  
 }
+
+/// Tab Nav Item
+/// @access private
+/// @param {value} $active-selector [a] - Sets the active state selector, can be `a` or `li`
 
 @mixin tab-item($active-selector: tab-settings(active-tab-selector)) {
   $tab-selector: 'li > a';
