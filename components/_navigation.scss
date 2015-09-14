@@ -84,6 +84,40 @@
 ///     </main>
 ///   </div> <!-- .application -->
 ///
+/// @example html - Sidebar With Footer Example
+///   <div class="application with-sidebar">
+///     <div class="main-navigation">
+///       <div class="item with-sidebar">
+///         <a class="logo"><span>Paint</span></a>
+///
+///         <nav class="sidebar part-open">
+///           <header>
+///             <a class="logo"><span>Paint</span></a>
+///           </header>
+///
+///           <div class="scroller">
+///             ...
+///           </div>
+///
+///           <footer>
+///             <div class="actions">
+///               <button class="settings"></button>
+///             </div>
+///
+///             <div class="avatar">
+///               <img src="" />
+///             </div>
+///
+///             <div class="title">Footer Title Text</div>
+///           </footer>
+///         </nav>
+///       </div> <!-- .item -->
+///     </div> <!-- .main-navigation -->
+///     <main>
+///       <div class="content">
+///       </div>
+///     </main>
+///   </div> <!-- .application -->
 
 $navigation-default-settings: (
   height: 60px,
