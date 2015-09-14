@@ -366,11 +366,11 @@ $include-html-paint-navigation: true !default;
   }
 
   .scroller {
-    top: navigation-settings(height);
-    right: 0;
     left: 0;
     overflow-y: scroll;
     position: absolute;
+    right: 0;
+    top: navigation-settings(height);
     width: navigation-settings(sidebar, width);
 
     @if navigation-settings(sidebar-footer, included) {
@@ -455,8 +455,8 @@ $sidebar-full-open: '.part-open:hover';
     #{navigation-settings(sidebar-footer, avatar-selector)},
     #{navigation-settings(sidebar-footer, title-selector)} {
       transform: translateY(100px);
-      transition-delay: 0s;
       transition: transform $global-transition-duration ease;
+      transition-delay: 0s;
     }
   }
 
