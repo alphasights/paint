@@ -112,6 +112,13 @@ $navigation-default-settings: (
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
     width: 300px
+  ),
+
+  sidebar-footer: (
+    included: false,
+    actions-selector: '.actions',
+    avatar-selector: '.avatar',
+    title-selector: '.title'
   )
 );
 
@@ -182,6 +189,52 @@ $include-html-paint-navigation: true !default;
     height: 0 !important;
     overflow: hidden;
     width: 0 !important;
+  }
+}
+
+/// Basic styles for an optional sidebar footer
+/// @access private
+
+@mixin navigation-footer {
+  background-color: navigation-settings(topbar, hover-background-color);
+  bottom: 0;
+  height: navigation-settings(height);
+  left: 0;
+  position: absolute;
+  right: 0;
+
+  #{navigation-settings(sidebar-footer, avatar-selector)} {
+    float: right;
+    text-align: center;
+    width: navigation-settings(sidebar, min-width);
+
+    img {
+      border-radius: 100%;
+      height: navigation-settings(logo-width);
+      width: navigation-settings(logo-width);
+    }
+  }
+
+  #{navigation-settings(sidebar-footer, title-selector)} {
+    color: navigation-settings(sidebar, text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #{navigation-settings(sidebar-footer, actions-selector)} {
+    float: left;
+    line-height: navigation-settings(height);
+    margin: 0 navigation-settings(sidebar, min-width) / 4;
+    width: navigation-settings(sidebar, min-width) / 2;
+
+    button {
+      @include button-icon(cog);
+
+      background-color: transparent;
+      border: 0;
+      color: navigation-settings(sidebar, text-color);
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -304,11 +357,27 @@ $include-html-paint-navigation: true !default;
     }
   }
 
+  > footer {
+    @include navigation-footer;
+
+    span {
+      color: color(white);
+    }
+  }
+
   .scroller {
-    height: 100%;
+    top: navigation-settings(height);
+    right: 0;
+    left: 0;
     overflow-y: scroll;
     position: absolute;
     width: navigation-settings(sidebar, width);
+
+    @if navigation-settings(sidebar-footer, included) {
+      bottom: navigation-settings(height);
+    } @else {
+      bottom: 0;
+    }
   }
 
   .menu,
@@ -382,6 +451,15 @@ $sidebar-full-open: '.part-open:hover';
     transform: translateX(0);
   }
 
+  &#{$sidebar-part-open} > footer {
+    #{navigation-settings(sidebar-footer, avatar-selector)},
+    #{navigation-settings(sidebar-footer, title-selector)} {
+      transform: translateY(100px);
+      transition-delay: 0s;
+      transition: transform $global-transition-duration ease;
+    }
+  }
+
   &#{$sidebar-full-open} {
     transition-delay: 0s;
     width: navigation-settings(sidebar, width);
@@ -393,6 +471,14 @@ $sidebar-full-open: '.part-open:hover';
 
     .submenu li {
       height: navigation-settings(height);
+    }
+
+    > footer {
+      #{navigation-settings(sidebar-footer, avatar-selector)},
+      #{navigation-settings(sidebar-footer, title-selector)} {
+        transform: translateY(0);
+        transition-delay: navigation-settings(transition-duration) / 2;
+      }
     }
   }
 }
