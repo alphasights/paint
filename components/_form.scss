@@ -34,6 +34,9 @@ $form-multi-select-option-focused-color: color(white) !default;
 $form-multi-select-dropdown-icon: plus !default;
 $form-multi-select-options-max-height: 200px !default;
 
+$form-multi-checkbox-option-checked-background: color(primary);
+$form-multi-checkbox-option-checked-color: color(white);
+
 $include-html-paint-form: true !default;
 
 @mixin form($with-border: $form-with-border) {
@@ -483,6 +486,102 @@ $include-html-paint-form: true !default;
   }
 }
 
+@mixin form-multi-checkbox-icon($icon) {
+  &:before {
+    @include icon($icon);
+    
+    float: right;
+    line-height: $form-input-height;
+    margin-left: $column-gutter / 2;
+  }
+}
+
+@mixin form-multi-checkbox-option($is-checked-selector: $is-checked-selector) {
+  &:before {
+    @include icon(square-o);
+
+    color: color(text, small);
+    margin-right: $column-gutter / 4;
+  }
+
+  &#{$is-checked-selector} {
+    background-color: $form-multi-checkbox-option-checked-background;
+    color: $form-multi-checkbox-option-checked-color;
+
+    &:before {
+      @include icon(check);
+
+      color: $form-multi-checkbox-option-checked-color;
+    }
+  }
+}
+
+@mixin form-multi-checkbox-options(
+  $options: $options,
+  $option: $option,
+  $is-focused-selector: $is-focused-selector,
+  $is-checked-selector: $is-checked-selector
+) {
+  @include form-multi-select-options($options, $option, $is-focused-selector);
+
+  #{$option} {
+    @include form-multi-checkbox-option($is-checked-selector);
+  }
+}
+
+@mixin form-multi-checkbox(
+  $control: '.control',
+  $options-selector: '.options-selector',
+  $options: '.options',
+  $option: '.option',
+  $is-open-selector: '.is-open',
+  $has-items-selector: '.has-value',
+  $is-focused-selector: '.is-focused',
+  $is-checked-selector: '.is-checked'
+) {
+  position: relative;
+
+  #{$control} {
+    @include form-input;
+    @include form-multi-checkbox-icon(plus);
+
+    background-color: $form-input-background-color;
+    display: block;
+  }
+
+  &#{$is-open-selector} > #{$control},
+  #{$is-open-selector}#{$control} {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: $form-input-border-color-focused;
+  }
+
+  &#{$is-open-selector} > #{$options-selector},
+  #{$is-open-selector} + #{$options-selector} {
+    display: block;
+  }
+
+  &#{$is-focused-selector} > #{$control},
+  &#{$is-focused-selector} > #{$options-selector},
+  #{$is-focused-selector}#{$control},
+  #{$is-focused-selector} + #{$options-selector} {
+    border-color: $form-input-border-color-focused;
+  }
+
+  &#{$has-items-selector} > #{$control} {
+    @include form-multi-checkbox-icon(check);
+  }
+
+  #{$options-selector} {
+    @include form-multi-checkbox-options(
+      $options: $options,
+      $option: $option,
+      $is-focused-selector: $is-focused-selector,
+      $is-checked-selector: $is-checked-selector
+    );
+  }
+}
+
 @mixin form-textarea() {
   @include form-input-shared-properties;
 
@@ -751,6 +850,12 @@ $include-html-paint-form: true !default;
             @include form-multi-select(
               $control: '.control',
               $input-selector: '.input'
+            );
+          }
+
+          &.form-multi-checkbox .content {
+            @include form-multi-checkbox(
+              $control: '.control'
             );
           }
 
