@@ -492,6 +492,7 @@ $include-html-paint-form: true !default;
     
     float: right;
     line-height: $form-input-height;
+    margin-left: $column-gutter / 2;
   }
 }
 
