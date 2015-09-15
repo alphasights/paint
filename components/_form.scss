@@ -499,8 +499,8 @@ $include-html-paint-form: true !default;
   &:before {
     @include icon(square-o);
 
-    margin-right: $column-gutter / 4;
     color: color(text, small);
+    margin-right: $column-gutter / 4;
   }
 
   &#{$is-checked-selector} {
@@ -544,8 +544,8 @@ $include-html-paint-form: true !default;
     @include form-input;
     @include form-multi-checkbox-icon(plus);
 
-    display: block;
     background-color: $form-input-background-color;
+    display: block;
   }
 
   &#{$is-open-selector} > #{$control},
