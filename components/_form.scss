@@ -322,14 +322,13 @@ $include-html-paint-form: true !default;
   overflow-y: auto;
   position: absolute;
   top: 100%;
-
   z-index: 1;
 
   #{$options} {
     margin: 0;
+    padding-right: 20%;
     padding: 0;
     width: 120%;
-    padding-right: 20%;
   }
 
   #{$option} {
