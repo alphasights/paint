@@ -526,7 +526,8 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   #{navigation-settings(selector)} {
-    .item.with-sidebar:hover, .item.with-sidebar:focus
+    .item.with-sidebar:hover,
+    .item.with-sidebar:focus
     #{navigation-settings(sidebar, selector)} {
       transform: translateX(0);
     }
