@@ -307,22 +307,21 @@ $include-html-paint-form: true !default;
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
   background-color: color(white);
-  border: 1px solid;
   border-color: $form-input-border-color;
   border-radius: 0 0 $global-radius $global-radius;
+  border: 1px solid;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
   box-sizing: border-box;
   display: none;
   margin-bottom: $column-gutter / 2;
   margin-top: -1px;
   max-height: $form-multi-select-options-max-height;
-  -webkit-overflow-scrolling: touch;
-  position: absolute;
-  top: 100%;
-  max-height: $form-multi-select-options-max-height;
   min-width: 100%;
+  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   overflow-y: auto;
+  position: absolute;
+  top: 100%;
 
   z-index: 1;
 
@@ -504,6 +503,7 @@ $include-html-paint-form: true !default;
   $option-whitespace: normal
 ) {
   white-space: $option-whitespace;
+
   &:before {
     @include icon(square-o);
 
