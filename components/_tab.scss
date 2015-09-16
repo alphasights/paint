@@ -58,7 +58,6 @@ $include-html-paint-tabs: true !default;
 /// Main tabs mixin, to be applied to the tabs wrapper
 
 @mixin tabs() {
-  overflow: hidden;
   position: relative;
   width: 100%;
 
@@ -77,6 +76,7 @@ $include-html-paint-tabs: true !default;
 @mixin tabs-nav() {
   background-color: tab-settings(background-color);
   border-bottom: 1px solid tab-settings(border-color);
+  overflow: hidden;
 
   ul {
     @include tab-item;
