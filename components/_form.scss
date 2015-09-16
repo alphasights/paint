@@ -29,13 +29,13 @@ $form-multi-select-option-color: $form-input-text-color !default;
 $form-multi-select-item-border: 0 !default;
 $form-multi-select-item-background: color(gray, jet) !default;
 $form-multi-select-item-color: color(white) !default;
-$form-multi-select-option-focused-background: color(primary) !default;
-$form-multi-select-option-focused-color: color(white) !default;
+$form-multi-select-option-focused-background: color(border, light) !default;
+$form-multi-select-option-focused-color: color(text) !default;
 $form-multi-select-dropdown-icon: plus !default;
 $form-multi-select-options-max-height: 200px !default;
 
-$form-multi-checkbox-option-checked-background: color(primary);
-$form-multi-checkbox-option-checked-color: color(white);
+$form-multi-checkbox-option-checked-background: color(info, light);
+$form-multi-checkbox-option-checked-color: color(info, dark);
 
 $include-html-paint-form: true !default;
 
