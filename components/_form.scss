@@ -307,9 +307,8 @@ $include-html-paint-form: true !default;
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
   background-color: color(white);
-  border-color: $form-input-border-color;
   border-radius: 0 0 $global-radius $global-radius;
-  border: 1px solid;
+  border: 1px solid $form-input-border-color;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
   box-sizing: border-box;
   display: none;
@@ -350,10 +349,10 @@ $include-html-paint-form: true !default;
       background-color: $form-multi-select-option-focused-background;
       color: $form-multi-select-option-focused-color;
       transition: background .125s ease;
+    }
 
-      &:last-child {
-        margin-bottom: -1px;
-      }
+    &#{$is-focused-selector}::last-child {
+      margin-bottom: -1px;
     }
   }
 }
