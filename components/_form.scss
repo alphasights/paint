@@ -491,6 +491,7 @@ $include-html-paint-form: true !default;
     @include icon($icon);
     
     float: right;
+    font-size: $small-font-size;
     line-height: $form-input-height;
     margin-left: $column-gutter / 2;
   }
