@@ -145,7 +145,7 @@ $navigation-default-settings: (
     text-color: #a5a5a5,
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
-    width: 300px
+    width: 280px
   ),
 
   sidebar-footer: (
@@ -401,6 +401,7 @@ $include-html-paint-navigation: true !default;
 
   .scroller {
     left: 0;
+    -webkit-overflow-scrolling: touch;
     overflow-y: scroll;
     position: absolute;
     right: 0;
@@ -521,12 +522,12 @@ $sidebar-full-open: '.part-open:hover';
   #{$layout-main-selector} {
     &.with-sidebar {
       margin-left: 0;
-      margin-top: navigation-settings(height);
     }
   }
 
   #{navigation-settings(selector)} {
-    .item.with-sidebar:hover
+    .item.with-sidebar:hover,
+    .item.with-sidebar:focus
     #{navigation-settings(sidebar, selector)} {
       transform: translateX(0);
     }
@@ -539,7 +540,7 @@ $sidebar-full-open: '.part-open:hover';
       &#{$sidebar-full-open} {
         min-width: navigation-settings(sidebar, width);
         transform: translateX(0);
-        width: 100%;
+        width: 80%;
 
         .scroller {
           width: 130%;

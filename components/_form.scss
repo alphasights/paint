@@ -29,13 +29,13 @@ $form-multi-select-option-color: $form-input-text-color !default;
 $form-multi-select-item-border: 0 !default;
 $form-multi-select-item-background: color(gray, jet) !default;
 $form-multi-select-item-color: color(white) !default;
-$form-multi-select-option-focused-background: color(primary) !default;
-$form-multi-select-option-focused-color: color(white) !default;
+$form-multi-select-option-focused-background: color(border, light) !default;
+$form-multi-select-option-focused-color: color(text) !default;
 $form-multi-select-dropdown-icon: plus !default;
 $form-multi-select-options-max-height: 200px !default;
 
-$form-multi-checkbox-option-checked-background: color(primary);
-$form-multi-checkbox-option-checked-color: color(white);
+$form-multi-checkbox-option-checked-background: color(info, light);
+$form-multi-checkbox-option-checked-color: color(info, dark);
 
 $include-html-paint-form: true !default;
 
@@ -307,27 +307,27 @@ $include-html-paint-form: true !default;
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
   background-color: color(white);
-  border: 1px solid;
-  border-color: $form-input-border-color;
   border-radius: 0 0 $global-radius $global-radius;
+  border: 1px solid $form-input-border-color;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
   box-sizing: border-box;
   display: none;
   margin-bottom: $column-gutter / 2;
   margin-top: -1px;
   max-height: $form-multi-select-options-max-height;
+  min-width: 100%;
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: absolute;
   top: 100%;
-  width: 100%;
   z-index: 1;
 
   #{$options} {
     margin: 0;
-    max-height: $form-multi-select-options-max-height;
-    overflow-x: hidden;
-    overflow-y: auto;
     padding: 0;
+    padding-right: 20%;
+    width: 120%;
   }
 
   #{$option} {
@@ -349,10 +349,10 @@ $include-html-paint-form: true !default;
       background-color: $form-multi-select-option-focused-background;
       color: $form-multi-select-option-focused-color;
       transition: background .125s ease;
+    }
 
-      &:last-child {
-        margin-bottom: -1px;
-      }
+    &#{$is-focused-selector}::last-child {
+      margin-bottom: -1px;
     }
   }
 }
@@ -491,12 +491,18 @@ $include-html-paint-form: true !default;
     @include icon($icon);
     
     float: right;
+    font-size: $small-font-size;
     line-height: $form-input-height;
     margin-left: $column-gutter / 2;
   }
 }
 
-@mixin form-multi-checkbox-option($is-checked-selector: $is-checked-selector) {
+@mixin form-multi-checkbox-option(
+  $is-checked-selector: $is-checked-selector,
+  $option-whitespace: normal
+) {
+  white-space: $option-whitespace;
+
   &:before {
     @include icon(square-o);
 
@@ -519,13 +525,14 @@ $include-html-paint-form: true !default;
 @mixin form-multi-checkbox-options(
   $options: $options,
   $option: $option,
+  $option-whitespace: $option-whitespace,
   $is-focused-selector: $is-focused-selector,
   $is-checked-selector: $is-checked-selector
 ) {
   @include form-multi-select-options($options, $option, $is-focused-selector);
 
   #{$option} {
-    @include form-multi-checkbox-option($is-checked-selector);
+    @include form-multi-checkbox-option($is-checked-selector, $option-whitespace);
   }
 }
 
@@ -534,6 +541,7 @@ $include-html-paint-form: true !default;
   $options-selector: '.options-selector',
   $options: '.options',
   $option: '.option',
+  $option-whitespace: nowrap,
   $is-open-selector: '.is-open',
   $has-items-selector: '.has-value',
   $is-focused-selector: '.is-focused',
@@ -576,6 +584,7 @@ $include-html-paint-form: true !default;
     @include form-multi-checkbox-options(
       $options: $options,
       $option: $option,
+      $option-whitespace: $option-whitespace,
       $is-focused-selector: $is-focused-selector,
       $is-checked-selector: $is-checked-selector
     );
