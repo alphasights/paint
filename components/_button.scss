@@ -183,6 +183,13 @@ $include-html-paint-button: true !default;
   padding: 0 $button-base-padding * 2;
 }
 
+/// Rounded button style
+/// @require {placeholder} button
+
+%button-rounded {
+  border-radius: $global-rounded;
+}
+
 /// Button Group
 ///
 /// @example scss
