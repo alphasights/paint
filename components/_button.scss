@@ -108,36 +108,53 @@ $include-html-paint-button: true !default;
   }
 }
 
+/// Solid button styles
+/// @access private 
+
+@mixin button-solid(
+  $bg: color(white),
+  $color: color(primary)
+) {
+  @include button(
+    $bg: $bg,
+    $radius: $global-radius,
+    $bg-hover: $color,
+    $border-color: $color
+  );
+
+  border: 1px solid $color;
+  color: $color;
+  font-size: $small-font-size;
+  font-weight: $font-weight-bold;
+  margin-bottom: 0;
+  padding: $button-base-padding;
+  text-transform: uppercase;
+
+  &:focus {
+    background-color: $bg;
+    color: $color;
+  }
+
+  &:hover {
+    background-color: $color;
+    border-color: $bg;
+    color: $bg;
+  }
+}
+
 /// Generate all button styles placeholders
 /// @access private 
 
 @mixin button-color-placeholders {
   @each $type, $button-color in $button-colors {
     %button-#{$type} {
-      @include button(
-        $bg: color(white),
-        $radius: $global-radius,
-        $bg-hover: $button-color,
-        $border-color: $button-color
-      );
+      @include button-solid($color: $button-color);
+    }
 
-      border: 1px solid $button-color;
-      color: $button-color;
-      font-size: $small-font-size;
-      font-weight: $font-weight-bold;
-      margin-bottom: 0;
-      padding: $button-base-padding;
-      text-transform: uppercase;
+    %button-#{$type}-inverted {
+      @include button-solid($bg: $button-color, $color: contrast($button-color, $dark: color(text)));
 
-      &:focus {
-        background-color: color(white);
-        color: $button-color;
-      }
-
-      &:hover {
-        background-color: $button-color;
-        color: color(white);
-      }
+      border-color: transparent;
     }
   }
 }
