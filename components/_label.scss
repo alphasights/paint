@@ -5,13 +5,32 @@
 ////
 
 /// Default settings
+/// @example scss
+///   span.custom-base-label {
+///     @extend %label-base;
+///   }
+///
+///   span.primary-tiny {
+///     @extend %label-primary;
+///     @extend %label-tiny;
+///   }
+///
+///   span.info-base {
+///     @extend %label-info;
+///     @extend %label-base-size;
+///   }
+///
+///   h1 > span.label {
+///     @extend %label-base;
+///     @extend %label-large;
+///   }
 
 $label-default-settings: (
   padding: 5px 10px,
 
   styles: (
     base: color(border),
-    primary: color(link),
+    primary: color(primary),
     secondary: color(secondary),
     alert: color(alert),
     error: color(alert),
@@ -39,10 +58,16 @@ $label: map-merge-settings($label-default-settings, $label);
   }
 }
 
+/// Generates background color and text color
+/// @access private
+
 @mixin label-style($color: label-settings(styles, base)) {
   background-color: $color;
   color: contrast($color);
 }
+
+/// Generates font size from label settings
+/// @access private
 
 @mixin label-size($size: small) {
   $fraction: label-settings(sizes, $size);
@@ -55,6 +80,9 @@ $label: map-merge-settings($label-default-settings, $label);
     text-transform: capitalize;
   }
 }
+
+/// Basic label styles
+/// @access private
 
 %label {
   border-radius: $global-radius / 2;
@@ -71,6 +99,9 @@ $label: map-merge-settings($label-default-settings, $label);
     display: none;
   }
 }
+
+/// Generates label style and size placeholders
+/// @access private
 
 @mixin label-placeholders {
   @each $style, $color in label-settings(styles) {
