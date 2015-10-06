@@ -44,10 +44,17 @@ $label: map-merge-settings($label-default-settings, $label);
   color: contrast($color);
 }
 
-%label {
-  @extend %label-base;
-  @extend %label-small;
+@mixin label-size($size: small) {
+  $fraction: label-settings(sizes, $size);
 
+  font-size: $base-font-size * $fraction;
+
+  @if $fraction < 1 {
+    text-transform: uppercase;
+  }
+}
+
+%label {
   border-radius: $global-radius / 2;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
   display: inline-block;
@@ -69,18 +76,13 @@ $label: map-merge-settings($label-default-settings, $label);
       @extend %label;
 
       @include label-style($color);
+      @include label-size(small);
     }
   }
 
   @each $size, $fraction in label-settings(sizes) {
-    $computed-size: $base-font-size * $fraction;
-
     %label-#{$size} {
-      font-size: $base-font-size * $fraction;
-
-      @if $computed-size < $base-font-size {
-        text-transform: uppercase;
-      }
+      @include label-size($size);
     }
   }
 }
