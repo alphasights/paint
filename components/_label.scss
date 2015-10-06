@@ -1,3 +1,90 @@
+////
+/// Labels
+/// @group label
+/// @since v0.8.27
+////
+
+/// Default settings
+
+$label-default-settings: (
+  padding: $column-gutter / 6 $column-gutter / 4,
+
+  styles: (
+    base: color(border),
+    primary: color(link),
+    secondary: color(secondary),
+    alert: color(alert),
+    error: color(alert),
+    warning: color(warning),
+    success: color(success),
+    info: color(info)
+  ),
+
+  sizes: (
+    tiny: .6,
+    small: .8,
+    base-size: 1,
+    large: 1.2
+  )
+);
+
+$label: () !default;
+$label: map-merge-settings($label-default-settings, $label);
+
+@function label-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($label, $setting), $property);
+  } @else {
+    @return map-get($label, $setting);
+  }
+}
+
+@mixin label-style($color: label-settings(styles, base)) {
+  background-color: $color;
+  color: contrast($color);
+}
+
 %label {
-  @include label;
+  @extend %label-base;
+  @extend %label-small;
+
+  border-radius: $global-radius / 2;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+  display: inline-block;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  padding: label-settings(padding);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:empty {
+    display: none;
+  }
+}
+
+@mixin label-placeholders {
+  @each $style, $color in label-settings(styles) {
+    %label-#{$style} {
+      @extend %label;
+
+      @include label-style($color);
+    }
+  }
+
+  @each $size, $fraction in label-settings(sizes) {
+    $computed-size: $base-font-size * $fraction;
+
+    %label-#{$size} {
+      font-size: $base-font-size * $fraction;
+
+      @if $computed-size < $base-font-size {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@include exports('paint-label') {
+  @include label-placeholders;
 }
