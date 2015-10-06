@@ -91,15 +91,6 @@ $include-html-paint-side-panel: true !default;
     @include overlay($position: fixed, $z-index: 200);
   }
 
-  &.active {
-    > .main,
-    > .drawer {
-      > header {
-        top: 0;
-      }
-    }
-  }
-
   > .main,
   > .drawer {
     background-color: color(white);
@@ -189,8 +180,7 @@ $include-html-paint-side-panel: true !default;
   height: side-panel-settings(actions-bar, height);
   line-height: side-panel-settings(actions-bar, height);
   min-height: side-panel-settings(actions-bar, height);
-  top: -#{side-panel-settings(actions-bar, height)};
-  transition: top $global-transition-duration $global-transition-duration;
+  top: 0;
   padding: 0 $column-gutter;
   position: absolute;
 }
