@@ -1,3 +1,125 @@
+////
+/// Labels
+/// @group label
+/// @since v0.8.27
+////
+
+/// Default settings
+/// @example scss
+///   span.default-label {
+///     @extend %label-base;
+///   }
+///
+///   span.primary-tiny {
+///     @extend %label-primary;
+///     @extend %label-tiny;
+///   }
+///
+///   span.info-base {
+///     @extend %label-info;
+///     @extend %label-base-size;
+///   }
+///
+///   h1 > span.label {
+///     @extend %label-base;
+///     @extend %label-large;
+///   }
+
+$label-default-settings: (
+  padding: 5px 10px,
+
+  styles: (
+    base: color(border),
+    primary: color(primary),
+    secondary: color(secondary),
+    alert: color(alert),
+    error: color(alert),
+    warning: color(warning),
+    success: color(success),
+    info: color(info)
+  ),
+
+  sizes: (
+    tiny: .6,
+    small: .8,
+    base-size: 1,
+    large: 1.2
+  )
+);
+
+$label: () !default;
+$label: map-merge-settings($label-default-settings, $label);
+
+@function label-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($label, $setting), $property);
+  } @else {
+    @return map-get($label, $setting);
+  }
+}
+
+/// Generates background color and text color
+/// @access private
+
+@mixin label-style($color: label-settings(styles, base)) {
+  background-color: $color;
+  color: contrast($color);
+}
+
+/// Generates font size from label settings
+/// @access private
+
+@mixin label-size($size: small) {
+  $fraction: label-settings(sizes, $size);
+
+  font-size: $base-font-size * $fraction;
+
+  @if $fraction < 1 {
+    text-transform: uppercase;
+  } @else {
+    text-transform: capitalize;
+  }
+}
+
+/// Basic label styles
+/// @access private
+
 %label {
-  @include label;
+  border-radius: $global-radius / 2;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+  display: inline-block;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  padding: label-settings(padding);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:empty {
+    display: none;
+  }
+}
+
+/// Generates label style and size placeholders
+/// @access private
+
+@mixin label-placeholders {
+  @each $style, $color in label-settings(styles) {
+    %label-#{$style} {
+      @extend %label;
+
+      @include label-style($color);
+      @include label-size(small);
+    }
+  }
+
+  @each $size, $fraction in label-settings(sizes) {
+    %label-#{$size} {
+      @include label-size($size);
+    }
+  }
+}
+
+@include exports('paint-label') {
+  @include label-placeholders;
 }
