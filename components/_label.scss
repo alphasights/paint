@@ -51,6 +51,8 @@ $label: map-merge-settings($label-default-settings, $label);
 
   @if $fraction < 1 {
     text-transform: uppercase;
+  } @else {
+    text-transform: capitalize;
   }
 }
 
