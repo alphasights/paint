@@ -67,7 +67,7 @@ $include-html-paint-tabs: true !default;
 
   .content {
     @extend %grid-column-12;
-  }  
+  }
 }
 
 /// Tab Nav Group
@@ -83,6 +83,7 @@ $include-html-paint-tabs: true !default;
 
     margin: 0;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 0;
     position: relative;
     white-space: nowrap;
@@ -93,7 +94,7 @@ $include-html-paint-tabs: true !default;
       position: relative;
       vertical-align: top;
     }
-  }  
+  }
 }
 
 /// Tab Nav Item
