@@ -118,8 +118,7 @@ $include-html-paint-layout-deprecated: false !default;
           -webkit-font-smoothing: $body-font-smoothing;
           margin: 0;
           opacity: 1;
-          transition:
-            opacity $layout-sidebar-collapse-duration / 2 ease-in,
+          transition: opacity $layout-sidebar-collapse-duration / 2 ease-in,
             width $layout-sidebar-collapse-duration / 1.5 ease-in;
           width: auto;
         }
@@ -225,8 +224,7 @@ $include-html-paint-layout-deprecated: false !default;
       line-height: $layout-sidebar-nav-title-height;
       margin: 0;
       transform: translate(0, 0);
-      transition:
-        transform $layout-sidebar-collapse-duration $global-transition-easing,
+      transition: transform $layout-sidebar-collapse-duration $global-transition-easing,
         opacity $layout-sidebar-collapse-duration ease-out;
       transition-delay: $global-transition-easing;
       width: 80%;
