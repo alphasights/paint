@@ -49,7 +49,7 @@ $layout-sidebar-nav-bubble-width: rem-calc(24) !default;
 $layout-sidebar-nav-bubble-background-color: $steel !default;
 $layout-sidebar-selector: '.sidebar' !default;
 
-$include-html-paint-layout: true !default;
+$include-html-paint-layout-deprecated: false !default;
 
 %layout-sidebar-heading {
   font-size: $layout-sidebar-heading-font-size;
@@ -118,7 +118,7 @@ $include-html-paint-layout: true !default;
           -webkit-font-smoothing: $body-font-smoothing;
           margin: 0;
           opacity: 1;
-          transition: 
+          transition:
             opacity $layout-sidebar-collapse-duration / 2 ease-in,
             width $layout-sidebar-collapse-duration / 1.5 ease-in;
           width: auto;
@@ -160,7 +160,7 @@ $include-html-paint-layout: true !default;
 }
 
 /// Global application layout styles
-/// 
+///
 /// @example - Default Usage
 ///   <body>
 ///     <div class="application">
@@ -175,7 +175,7 @@ $include-html-paint-layout: true !default;
 ///     </div>
 ///   </body>
 
-@mixin layout {
+@mixin layout-deprecated {
   html,
   body {
     height: 100%;
@@ -225,7 +225,7 @@ $include-html-paint-layout: true !default;
       line-height: $layout-sidebar-nav-title-height;
       margin: 0;
       transform: translate(0, 0);
-      transition: 
+      transition:
         transform $layout-sidebar-collapse-duration $global-transition-easing,
         opacity $layout-sidebar-collapse-duration ease-out;
       transition-delay: $global-transition-easing;
@@ -444,9 +444,9 @@ $include-html-paint-layout: true !default;
   }
 }
 
-@include exports('paint-layout') {
-  @if $include-html-paint-layout {
-    @include layout;
+@include exports('paint-layout-deprecated') {
+  @if $include-html-paint-layout-deprecated {
+    @include layout-deprecated;
     @include layout-sidebar;
   }
 }
