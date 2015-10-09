@@ -1,7 +1,7 @@
 ////
 /// Grid placeholders generator
 /// @group grid
-/// @since v0.8.5
+/// @since v0.8.28
 ////
 
 /// Grid placeholder prefix
@@ -20,10 +20,6 @@ $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
   @for $i from 1 through $total-columns {
     %#{$prefix}-#{$i} {
       @include grid-column($columns: $i, $collapse: false, $float: true);
-
-      &:last-child {
-        @include grid-column($columns: $i, $collapse: false, $float: true, $last-column: true);
-      }
     }
 
     %#{$prefix}-#{$i}-centered {
