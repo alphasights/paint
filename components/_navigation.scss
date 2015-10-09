@@ -272,7 +272,7 @@ $include-html-paint-navigation: true !default;
   }
 }
 
-#{$layout-main-selector} {
+#{layout-settings(selectors, main)} {
   &.with-sidebar {
     margin-left: navigation-settings(height);
   }
@@ -519,7 +519,7 @@ $sidebar-full-open: '.part-open:hover';
 }
 
 @media #{$small-only} {
-  #{$layout-main-selector} {
+  #{layout-settings(selectors, main)} {
     &.with-sidebar {
       margin-left: 0;
     }
