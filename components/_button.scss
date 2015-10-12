@@ -1,7 +1,7 @@
 ////
 /// Buttons Component
 /// @group button
-/// @since v0.8.5
+/// @since v0.8.29
 ////
 
 @import 'icon';
@@ -19,6 +19,7 @@ $button-large-height: 50px !default;
 /// Default button styles
 
 $button-colors: (
+  base: color(text, small),
   primary: color(link),
   secondary: color(secondary),
   alert: color(alert),
@@ -43,7 +44,7 @@ $include-html-paint-button: true !default;
 }
 
 /// Disabled button styles
-/// @access private 
+/// @access private
 
 @mixin button-disabled() {
   background-color: transparentize(
@@ -68,7 +69,7 @@ $include-html-paint-button: true !default;
 }
 
 /// Button with icon placeholder
-/// @access private 
+/// @access private
 
 %button-icon {
   margin-bottom: 0;
@@ -109,7 +110,7 @@ $include-html-paint-button: true !default;
 }
 
 /// Solid button styles
-/// @access private 
+/// @access private
 
 @mixin button-solid(
   $bg: color(white),
@@ -143,7 +144,7 @@ $include-html-paint-button: true !default;
 }
 
 /// Generate all button styles placeholders
-/// @access private 
+/// @access private
 
 @mixin button-color-placeholders {
   @each $type, $button-color in $button-colors {
