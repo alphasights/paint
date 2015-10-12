@@ -1,0 +1,193 @@
+/// @example - Usage
+///   <nav>
+///     <ol class="steps text-center with-icons">
+///       <li class="visited"><a href="#">Step 1</a></li>
+///       <li class="visited" ><a href="#">Step 2</a></li>
+///       <li class="current"><em>Step 3</em></li>
+///       <li><em>Finish</em></li>
+///     </ol>
+///   </nav>
+
+
+$step-default-settings: (
+  colors: (
+    inactive: color(border),
+    active: color(primary),
+    hover: color(primary, dark)
+  )
+);
+
+$step: () !default;
+$step: map-merge-settings($step-default-settings, $step);
+
+$include-html-paint-step: true !default;
+
+@function step-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($step, $setting), $property);
+  } @else {
+    @return map-get($step, $setting);
+  }
+}
+
+.steps {
+	width: 90%;
+	max-width: 100%;
+	padding: 0 $column-gutter / 2;
+	margin: 0 auto;
+  clear: both;
+
+	li {
+		display: inline-block;
+		float: left;
+		margin: $column-gutter / 4 0;
+
+		&::after {
+			/* separator */
+			display: inline-block;
+			content: '\00bb';
+			margin: 0 .6em;
+			color: step-settings(colors, inactive);
+		}
+
+		&:last-of-type::after {
+			display: none;
+		}
+
+    > * {
+  		/* single item */
+  		display: inline-block;
+  		font-size: $base-font-size;
+  		color: step-settings(colors, active);
+	  }
+
+    &.current > * {
+  		/* current item */
+  		color: step-settings(colors, current);
+  	}
+  }
+
+	.no-touch & a:hover {
+		/* previous items */
+		color: step-settings(colors, active);
+	}
+
+	&.custom-separator li::after {
+		@include icon(arrow-right);
+
+		vertical-align: middle;
+	}
+
+	&.with-icons li > *::before {
+		/* add a custom icon before each item */
+    @include icon(check);
+
+		content: '';
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		margin-right: $column-gutter / 4;
+		margin-top: -2px;
+		vertical-align: middle;
+	}
+
+	&.with-icons li:not(.current):nth-of-type(2) > *::before {
+		@include paint-icon(dashboard);
+	}
+
+	&.with-icons li:not(.current):nth-of-type(3) > *::before {
+		@include paint-icon(cog);
+	}
+
+	&.with-icons li.current:first-of-type > *::before {
+		@include paint-icon(video);
+	}
+
+	@media #{$medium-up} {
+		padding: 0;
+
+		li {
+			margin: 0;
+
+			&::after {
+				margin: 0 $column-gutter;
+			}
+		}
+
+		li > * {
+			font-size: $small-font-size;
+		}
+	}
+}
+
+@media #{$medium-up} {
+  .steps {
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+
+    li {
+      position: relative;
+      float: none;
+      margin: $column-gutter / 4 $column-gutter $column-gutter / 4 0;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &::after {
+        /* connector */
+        position: absolute;
+        content: '';
+        height: 4px;
+        background: step-settings(colors, inactive);
+
+        margin: 0;
+      }
+
+      &.visited::after {
+        background-color: step-settings(colors, active);
+      }
+
+      & > *, &.current > * {
+        position: relative;
+        color: step-settings(colors, active);
+      }
+    }
+
+    &.custom-separator li::after {
+      height: 4px;
+      background: step-settings(colors, inactive);
+    }
+
+    &.text-center {
+      li::after {
+        width: 100%;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%) translateX(-1px);
+      }
+
+      li > * {
+        z-index: 1;
+        padding: $column-gutter / 4 $column-gutter / 2;
+        border-radius: $global-radius;
+        background-color: step-settings(colors, inactive);
+      }
+
+      .no-touch & a:hover {
+        background-color: step-settings(colors, hover);
+      }
+
+      li.current > *, li.visited > * {
+        color: contrast(step-settings(colors, hover));
+        background-color: step-settings(colors, active);
+      }
+
+      &.with-icons li.visited a::before {
+        /* visited icon */
+        @include icon(check);
+      }
+    }
+  }
+}
