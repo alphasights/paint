@@ -84,10 +84,8 @@ $notification-colors: (
     text-shadow: -1px 0 $text-shadow-color;
   }
 
-  #{$close-selector} {
-    @include button-icon(times);
-
-    color: transparentize($text-color, .4);
+  #{$close-selector},
+  #{$actions-selector} {
     position: absolute;
     right: $column-gutter / 2;
     text-align: center;
@@ -95,13 +93,13 @@ $notification-colors: (
     transform: translateY(-50%);
   }
 
-  #{$actions-selector} {
-    position: absolute;
-    right: $column-gutter / 2;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
+  #{$close-selector} {
+    @include button-icon(times);
 
+    color: transparentize($text-color, .4);
+  }
+
+  #{$actions-selector} {
     #{$primary-action-tag} {
       @extend %button-#{$type}-inverted;
     }
