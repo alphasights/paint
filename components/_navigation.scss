@@ -402,7 +402,7 @@ $include-html-paint-navigation: true !default;
   .scroller {
     left: 0;
     -webkit-overflow-scrolling: touch;
-    overflow-y: scroll;
+    overflow-y: auto;
     position: absolute;
     right: 0;
     top: navigation-settings(height);
