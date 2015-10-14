@@ -9,10 +9,20 @@
 /// @example html - Steps with border and icons
 ///   <ol class="steps with-border with-icons">
 ///     <li><a>First Step</a></li>
-///     <li class="highlighted" ><a>Second Step</a></li>
+///     <li class="highlighted"><a>Second Step</a></li>
 ///     <li class="active"><span>Current</span></li>
 ///     <li><span>Inactive</span></li>
 ///     <li><span>Inactive</span></li>
+///     <li><span>Inactive</span></li>
+///   </ol>
+///
+/// @example html - Steps with border and counts
+///   <ol class="steps with-border with-counts">
+///     <li class="highlighted with-pre"><span>10</span><a>First Item</a></li>
+///     <li class="highlighted with-pre"><span>8</span><a>Second Item</a></li>
+///     <li class="active"><span>Current</span></li>
+///     <li class="with-post"><span>Inactive Item</span><span>0</span></li>
+///     <li class="with-post"><span>Inactive Item</span><span>0</span></li>
 ///     <li><span>Inactive</span></li>
 ///   </ol>
 ///
@@ -32,12 +42,18 @@
 ///   }
 
 $step-default-settings: (
-  height: $base-line-height * .75,
+  height: $button-small-height,
 
   colors: (
-    inactive: border,
-    highlighted: link,
-    active: primary
+    inactive-background: color(border, light),
+    inactive-border: color(border),
+    inactive-count: color(border),
+    highlighted-background: color(info, light),
+    highlighted-border: color(gray),
+    highlighted-count: color(gray),
+    active-background: color(primary, light),
+    active-border: color(primary),
+    active-count: color(primary, dark),
   ),
 
   selectors: (
@@ -68,7 +84,7 @@ $include-html-paint-step: true !default;
     margin: $column-gutter / 4 0;
 
     &::after {
-      color: color(step-settings(colors, inactive), dark);
+      color: step-settings(colors, inactive-border);
       content: '\00bb';
       display: inline-block;
       margin: 0 $column-gutter / 4;
@@ -79,41 +95,47 @@ $include-html-paint-step: true !default;
     }
 
     > * {
-      color: color(step-settings(colors, inactive), dark);
+      color: step-settings(colors, inactive-border);
       display: inline-block;
     }
 
     &#{step-settings(selectors, highlighted)} > * {
-      color: color(step-settings(colors, highlighted));
+      color: step-settings(colors, highlighted-border);
     }
 
     &#{step-settings(selectors, active)} > * {
-      color: color(step-settings(colors, active));
+      color: step-settings(colors, active-border);
     }
   }
 
   .no-touch & a:hover {
-    color: color(step-settings(colors, highlighted));
+    color: step-settings(colors, highlighted-border);
+  }
+}
+
+@mixin steps-default-icon {
+  @include icon(circle-o);
+
+  &:before {
+    margin-right: $column-gutter / 4;
   }
 }
 
 %steps-with-icons {
   li {
-    &#{step-settings(selectors, highlighted)} > * {
-     @include icon(check);
+    &#{step-settings(selectors, highlighted)} > *:first-child {
+      @include icon(check);
     }
 
-    &#{step-settings(selectors, active)} > * {
-     @include icon(dot-circle-o);
+    &#{step-settings(selectors, active)} > *:first-child {
+      @include icon(dot-circle-o);
     }
 
     > * {
-      @include icon(circle-o);
-
       line-height: step-settings(height) !important;
 
-      &:before {
-        margin-right: $column-gutter / 4;
+      &:first-child {
+        @include steps-default-icon;
       }
     }
   }
@@ -124,65 +146,140 @@ $include-html-paint-step: true !default;
     text-align: center;
 
     li {
-      position: relative;
       float: none;
       margin: $column-gutter / 4 $column-gutter $column-gutter / 4 0;
+      position: relative;
 
       &:last-of-type {
         margin-right: 0;
       }
 
       &::after {
-        background: color(step-settings(colors, inactive));
+        background: step-settings(colors, inactive-border);
         content: '';
-        height: 2px;
+        height: 1px;
         left: 100%;
         margin: 0;
         position: absolute;
         top: 50%;
         transform: translateY(-50%) translateX(-1px);
-        width: 100%;
+        width: 50%;
       }
 
       &#{step-settings(selectors, highlighted)} {
         &:after {
-          background-color: color(step-settings(colors, highlighted));
+          background-color: step-settings(colors, highlighted-border);
         }
 
         > * {
-          color: contrast(color(step-settings(colors, highlighted)));
-          background-color: color(step-settings(colors, highlighted));
+          @include detached-border(step-settings(colors, highlighted-border));
+
+          background-color: step-settings(colors, highlighted-background);
+          color: contrast(step-settings(colors, highlighted-background));
         }
       }
 
-      &#{step-settings(selectors, active)} {
-        &:after {
-          background-color: color(step-settings(colors, active));
-        }
+      &#{step-settings(selectors, active)} > * {
+        @include detached-border(step-settings(colors, active-border));
 
-        > * {
-          color: contrast(color(step-settings(colors, active)));
-          background-color: color(step-settings(colors, active));
-        }
+        background-color: step-settings(colors, active-background);
+        color: contrast(step-settings(colors, active-background));
       }
 
       > * {
-        background-color: color(step-settings(colors, inactive));
+        @include detached-border(step-settings(colors, inactive-border));
+
+        background-color: step-settings(colors, inactive-background);
         border-radius: $global-radius;
-        color: color(step-settings(colors, inactive), dark);
+        color: contrast(step-settings(colors, inactive-background));
         line-height: step-settings(height);
-        padding: $column-gutter / 4 $column-gutter / 2 !important;
+        padding: 0 $column-gutter / 2 !important;
         position: relative;
         z-index: 1;
       }
 
-      .no-touch & > *:hover {
-        background-color: color(step-settings(colors, highlighted), dark);
+      .no-touch & > a:hover {
+        background-color: step-settings(colors, highlighted-border);
+        color: contrast(step-settings(colors, highlighted-border));
       }
-
     }
   }
 };
+
+%steps-with-counts {
+  li {
+    &.with-pre > *:first-child,
+    &.with-post > *:last-child {
+      font-weight: $font-weight-bold;
+    }
+
+    &.with-pre > *:first-child {
+      padding-right: $column-gutter / 6;
+    }
+
+    &.with-post > *:last-child {
+      padding-left: $column-gutter / 6;
+    }
+  }
+
+  @media #{$medium-up} {
+    .with-pre > *:first-child,
+    .with-post > *:last-child {
+      padding-left: $column-gutter / 6;
+      padding-right: $column-gutter / 6;
+    }
+
+    .with-pre {
+      &#{step-settings(selectors, highlighted)} > *:first-child {
+        background-color: step-settings(colors, highlighted-count);
+        color: contrast(step-settings(colors, highlighted-count));
+      }
+
+      &#{step-settings(selectors, active)} > *:first-child {
+        background-color: step-settings(colors, active-count);
+        color: contrast(step-settings(colors, active-count));
+      }
+
+      > *:first-child {
+        background-color: step-settings(colors, inactive-count);
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        color: contrast(step-settings(colors, inactive-count));
+      }
+
+      > *:last-child {
+        border-bottom-left-radius: 0;
+        border-left-width: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    .with-post {
+      &#{step-settings(selectors, highlighted)} > *:last-child {
+        background-color: step-settings(colors, highlighted-count);
+        color: contrast(step-settings(colors, highlighted-count));
+      }
+
+      &#{step-settings(selectors, active)} > *:last-child {
+        background-color: step-settings(colors, active-count);
+        color: contrast(step-settings(colors, active-count));
+      }
+
+      > *:first-child {
+        border-bottom-right-radius: 0;
+        border-right-width: 0;
+        border-top-right-radius: 0;
+      }
+
+      > *:last-child {
+        background-color: step-settings(colors, inactive-count);
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        color: contrast(step-settings(colors, inactive-count));
+      }
+    }
+  }
+}
 
 @include exports('paint-step') {
   @if $include-html-paint-step {
@@ -195,6 +292,10 @@ $include-html-paint-step: true !default;
 
       &.with-icons {
         @extend %steps-with-icons;
+      }
+
+      &.with-counts {
+        @extend %steps-with-counts;
       }
     }
   }
