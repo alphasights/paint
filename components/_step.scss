@@ -1,19 +1,48 @@
-/// @example - Usage
-///   <nav>
-///     <ol class="steps text-center with-icons">
-///       <li class="visited"><a href="#">Step 1</a></li>
-///       <li class="visited" ><a href="#">Step 2</a></li>
-///       <li class="current"><em>Step 3</em></li>
-///       <li><em>Finish</em></li>
-///     </ol>
-///   </nav>
+////
+/// Steps
+/// @group steps
+/// @since v0.8.32
+////
 
+/// Default settings
+
+/// @example html - Steps with border and icons
+///   <ol class="steps with-border with-icons">
+///     <li><a>First Step</a></li>
+///     <li class="highlighted" ><a>Second Step</a></li>
+///     <li class="active"><span>Current</span></li>
+///     <li><span>Inactive</span></li>
+///     <li><span>Inactive</span></li>
+///     <li><span>Inactive</span></li>
+///   </ol>
+///
+/// @example scss - Custom steps
+///   .basic-breadbrumb,
+///   .border-steps,
+///   .icon-steps {
+///     @extend %steps;
+///   }
+///
+///   .icon-steps {
+///     @extend %steps-with-icons;
+///   }
+///
+///   .border-steps {
+///     @extend %steps-with-border;
+///   }
 
 $step-default-settings: (
+  height: $base-line-height * .75,
+
   colors: (
-    inactive: color(border),
-    active: color(primary),
-    hover: color(primary, dark)
+    inactive: border,
+    highlighted: link,
+    active: primary
+  ),
+
+  selectors: (
+    highlighted: '.highlighted',
+    active: '.active'
   )
 );
 
@@ -30,100 +59,68 @@ $include-html-paint-step: true !default;
   }
 }
 
-.steps {
-	width: 90%;
-	max-width: 100%;
-	padding: 0 $column-gutter / 2;
-	margin: 0 auto;
-  clear: both;
+%steps {
+  @extend %grid-row;
 
-	li {
-		display: inline-block;
-		float: left;
-		margin: $column-gutter / 4 0;
+  li {
+    display: inline-block;
+    float: left;
+    margin: $column-gutter / 4 0;
 
-		&::after {
-			/* separator */
-			display: inline-block;
-			content: '\00bb';
-			margin: 0 .6em;
-			color: step-settings(colors, inactive);
-		}
+    &::after {
+      color: color(step-settings(colors, inactive), dark);
+      content: '\00bb';
+      display: inline-block;
+      margin: 0 $column-gutter / 4;
+    }
 
-		&:last-of-type::after {
-			display: none;
-		}
+    &:last-of-type::after {
+      display: none;
+    }
 
     > * {
-  		/* single item */
-  		display: inline-block;
-  		font-size: $base-font-size;
-  		color: step-settings(colors, active);
-	  }
+      color: color(step-settings(colors, inactive), dark);
+      display: inline-block;
+    }
 
-    &.current > * {
-  		/* current item */
-  		color: step-settings(colors, current);
-  	}
+    &#{step-settings(selectors, highlighted)} > * {
+      color: color(step-settings(colors, highlighted));
+    }
+
+    &#{step-settings(selectors, active)} > * {
+      color: color(step-settings(colors, active));
+    }
   }
 
-	.no-touch & a:hover {
-		/* previous items */
-		color: step-settings(colors, active);
-	}
-
-	&.custom-separator li::after {
-		@include icon(arrow-right);
-
-		vertical-align: middle;
-	}
-
-	&.with-icons li > *::before {
-		/* add a custom icon before each item */
-    @include icon(check);
-
-		content: '';
-		display: inline-block;
-		height: 20px;
-		width: 20px;
-		margin-right: $column-gutter / 4;
-		margin-top: -2px;
-		vertical-align: middle;
-	}
-
-	&.with-icons li:not(.current):nth-of-type(2) > *::before {
-		@include paint-icon(dashboard);
-	}
-
-	&.with-icons li:not(.current):nth-of-type(3) > *::before {
-		@include paint-icon(cog);
-	}
-
-	&.with-icons li.current:first-of-type > *::before {
-		@include paint-icon(video);
-	}
-
-	@media #{$medium-up} {
-		padding: 0;
-
-		li {
-			margin: 0;
-
-			&::after {
-				margin: 0 $column-gutter;
-			}
-		}
-
-		li > * {
-			font-size: $small-font-size;
-		}
-	}
+  .no-touch & a:hover {
+    color: color(step-settings(colors, highlighted));
+  }
 }
 
-@media #{$medium-up} {
-  .steps {
-    background-color: transparent;
-    padding: 0;
+%steps-with-icons {
+  li {
+    &#{step-settings(selectors, highlighted)} > * {
+     @include icon(check);
+    }
+
+    &#{step-settings(selectors, active)} > * {
+     @include icon(dot-circle-o);
+    }
+
+    > * {
+      @include icon(circle-o);
+
+      line-height: step-settings(height) !important;
+
+      &:before {
+        margin-right: $column-gutter / 4;
+      }
+    }
+  }
+}
+
+%steps-with-border {
+  @media #{$medium-up} {
     text-align: center;
 
     li {
@@ -136,57 +133,68 @@ $include-html-paint-step: true !default;
       }
 
       &::after {
-        /* connector */
-        position: absolute;
+        background: color(step-settings(colors, inactive));
         content: '';
-        height: 4px;
-        background: step-settings(colors, inactive);
-
-        margin: 0;
-      }
-
-      &.visited::after {
-        background-color: step-settings(colors, active);
-      }
-
-      & > *, &.current > * {
-        position: relative;
-        color: step-settings(colors, active);
-      }
-    }
-
-    &.custom-separator li::after {
-      height: 4px;
-      background: step-settings(colors, inactive);
-    }
-
-    &.text-center {
-      li::after {
-        width: 100%;
-        top: 50%;
+        height: 2px;
         left: 100%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
         transform: translateY(-50%) translateX(-1px);
+        width: 100%;
       }
 
-      li > * {
-        z-index: 1;
-        padding: $column-gutter / 4 $column-gutter / 2;
+      &#{step-settings(selectors, highlighted)} {
+        &:after {
+          background-color: color(step-settings(colors, highlighted));
+        }
+
+        > * {
+          color: contrast(color(step-settings(colors, highlighted)));
+          background-color: color(step-settings(colors, highlighted));
+        }
+      }
+
+      &#{step-settings(selectors, active)} {
+        &:after {
+          background-color: color(step-settings(colors, active));
+        }
+
+        > * {
+          color: contrast(color(step-settings(colors, active)));
+          background-color: color(step-settings(colors, active));
+        }
+      }
+
+      > * {
+        background-color: color(step-settings(colors, inactive));
         border-radius: $global-radius;
-        background-color: step-settings(colors, inactive);
+        color: color(step-settings(colors, inactive), dark);
+        line-height: step-settings(height);
+        padding: $column-gutter / 4 $column-gutter / 2 !important;
+        position: relative;
+        z-index: 1;
       }
 
-      .no-touch & a:hover {
-        background-color: step-settings(colors, hover);
+      .no-touch & > *:hover {
+        background-color: color(step-settings(colors, highlighted), dark);
       }
 
-      li.current > *, li.visited > * {
-        color: contrast(step-settings(colors, hover));
-        background-color: step-settings(colors, active);
+    }
+  }
+};
+
+@include exports('paint-step') {
+  @if $include-html-paint-step {
+    .steps {
+      @extend %steps;
+
+      &.with-border {
+        @extend %steps-with-border;
       }
 
-      &.with-icons li.visited a::before {
-        /* visited icon */
-        @include icon(check);
+      &.with-icons {
+        @extend %steps-with-icons;
       }
     }
   }
