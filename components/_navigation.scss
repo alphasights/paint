@@ -373,14 +373,14 @@ $include-html-paint-navigation: true !default;
 
     @media #{$small-only} {
       + label {
-        width: navigation-settings(sidebar, min-width);
+        display: block;
         height: navigation-settings(height);
-        position: absolute;
-        top: 0;
         left: 0;
         margin: 0;
+        position: absolute;
+        top: 0;
+        width: navigation-settings(sidebar, min-width);
         z-index: 2;
-        display: block;
 
         + #{navigation-settings(sidebar, selector)} {
           transform: translateX(navigation-settings(height-negative));
@@ -388,14 +388,14 @@ $include-html-paint-navigation: true !default;
       }
 
       &:checked + label {
-        width: 100vw;
         height: 100vh;
         opacity: 0;
+        width: 100vw;
         z-index: 1;
 
         + #{navigation-settings(sidebar, selector)} {
-          transition-delay: 0s !important;
           transform: translateX(0);
+          transition-delay: 0s !important;
         }
       }
     }
