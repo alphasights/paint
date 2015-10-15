@@ -55,11 +55,15 @@ $paint-icons: (
 ///     @include icon(dashboard);
 ///   }
 
-@mixin icon($name) {
+@mixin icon($name, $selector: '') {
   @extend .fa-#{$name};
 
-  &:before {
+  @if $selector == '' {
     @include fa-icon;
+  } @else {
+    &:#{$selector} {
+      @include fa-icon;
+    }
   }
 }
 
