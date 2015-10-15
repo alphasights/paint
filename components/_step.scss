@@ -135,7 +135,7 @@ $include-html-paint-step: true !default;
       line-height: step-settings(height) !important;
 
       &:first-child {
-        @include step-icon-default;
+        @include steps-icon-default;
       }
     }
   }
