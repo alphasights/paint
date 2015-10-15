@@ -1,6 +1,6 @@
 ////
 /// Steps
-/// @group steps
+/// @group step
 /// @since v0.8.32
 ////
 
@@ -75,6 +75,8 @@ $include-html-paint-step: true !default;
   }
 }
 
+/// Default steps placeholder, acts like a breadcrumb
+
 %steps {
   @extend %grid-row;
 
@@ -121,6 +123,9 @@ $include-html-paint-step: true !default;
   }
 }
 
+/// Steps extention placeholder, allows use of icons
+/// @require {placeholder} steps
+
 %steps-with-icons {
   li {
     &#{step-settings(selectors, highlighted)} > *:first-child {
@@ -140,6 +145,9 @@ $include-html-paint-step: true !default;
     }
   }
 }
+
+/// Steps extention placeholder, adds a border around elements
+/// @require {placeholder} steps
 
 %steps-with-border {
   @media #{$medium-up} {
@@ -205,6 +213,10 @@ $include-html-paint-step: true !default;
     }
   }
 };
+
+/// Steps extention placeholder, allows adding pre or post content
+/// @require {placeholder} steps
+/// @require {placeholder} steps-with-border
 
 %steps-with-counts {
   li {
