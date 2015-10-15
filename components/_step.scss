@@ -184,6 +184,10 @@ $include-html-paint-step: true !default;
 
           background-color: step-settings(colors, highlighted-background);
           color: contrast(step-settings(colors, highlighted-background));
+
+          &:hover {
+            background-color: lighten(step-settings(colors, highlighted-background), 3%);
+          }
         }
       }
 
@@ -192,6 +196,10 @@ $include-html-paint-step: true !default;
 
         background-color: step-settings(colors, active-background);
         color: contrast(step-settings(colors, active-background));
+
+        &:hover {
+          background-color: lighten(step-settings(colors, active-background), 7%);
+        }
       }
 
       > * {
@@ -204,11 +212,10 @@ $include-html-paint-step: true !default;
         padding: 0 $column-gutter / 2 !important;
         position: relative;
         z-index: 1;
-      }
 
-      .no-touch & > a:hover {
-        background-color: step-settings(colors, highlighted-border);
-        color: contrast(step-settings(colors, highlighted-border));
+        &:hover {
+          background-color: lighten(step-settings(colors, inactive-background), 3%);
+        }
       }
     }
   }
