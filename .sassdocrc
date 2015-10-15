@@ -15,6 +15,7 @@ groups:
   modal: Modals
   dropdown: Dropdowns
   label: Labels
+  step: Steps
   navigation: Navigation
   tab: Tabs
   panel: Panels
