@@ -1,7 +1,7 @@
 ////
 /// Steps
 /// @group step
-/// @since v0.8.32
+/// @since v0.8.33
 ////
 
 /// Default settings
@@ -185,9 +185,10 @@ $include-html-paint-step: true !default;
           background-color: step-settings(colors, highlighted-background);
           color: contrast(step-settings(colors, highlighted-background));
 
-          &:hover {
-            background-color: lighten(step-settings(colors, highlighted-background), 3%);
-          }
+        }
+
+        > *:hover {
+          background-color: lighten(step-settings(colors, highlighted-background), 3%);
         }
       }
 
