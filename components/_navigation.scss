@@ -1,7 +1,7 @@
 ////
 /// Navigation
 /// @group navigation
-/// @since v0.8.18
+/// @since v0.8.32
 ////
 
 /// Default settings
@@ -11,6 +11,9 @@
 ///     <div class="main-navigation with-topbar">
 ///       <div class="item with-sidebar">
 ///         <a class="logo"><span>Paint</span></a>
+///
+///         <input class="sidebar-toggler" id="#sidebar-toggler" type="checkbox" />
+///         <label for="sidebar-toggler"></label>
 ///
 ///         <nav class="sidebar part-open">
 ///           <header>
@@ -43,6 +46,9 @@
 ///     <div class="main-navigation">
 ///       <div class="item with-sidebar">
 ///         <a class="logo"><span>Paint</span></a>
+///
+///         <input class="sidebar-toggler" id="#sidebar-toggler" type="checkbox" />
+///         <label for="sidebar-toggler"></label>
 ///
 ///         <nav class="sidebar part-open">
 ///           <header>
@@ -89,6 +95,9 @@
 ///     <div class="main-navigation">
 ///       <div class="item with-sidebar">
 ///         <a class="logo"><span>Paint</span></a>
+///
+///         <input class="sidebar-toggler" id="#sidebar-toggler" type="checkbox" />
+///         <label for="sidebar-toggler"></label>
 ///
 ///         <nav class="sidebar part-open">
 ///           <header>
@@ -351,10 +360,50 @@ $include-html-paint-navigation: true !default;
       );
     }
   }
+
+  .sidebar-toggler {
+    &,
+    + label {
+      display: none;
+    }
+
+    &:checked + label + #{navigation-settings(sidebar, selector)} {
+      @extend %sidebar-full-open;
+    }
+
+    @media #{$small-only} {
+      + label {
+        width: navigation-settings(sidebar, min-width);
+        height: navigation-settings(height);
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        z-index: 2;
+        display: block;
+
+        + #{navigation-settings(sidebar, selector)} {
+          transform: translateX(navigation-settings(height-negative));
+        }
+      }
+
+      &:checked + label {
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;
+        z-index: 1;
+
+        + #{navigation-settings(sidebar, selector)} {
+          transition-delay: 0s !important;
+          transform: translateX(0);
+        }
+      }
+    }
+  }
 }
 
 #{$no-touch-selector} {
-  .main-navigation .item > a:hover {
+  #{navigation-settings(selector)} .item > a:hover {
     background-color: navigation-settings(topbar, hover-color);
     color: navigation-settings(topbar, text-hover-color);
   }
@@ -480,6 +529,28 @@ $include-html-paint-navigation: true !default;
 $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
 
+%sidebar-full-open {
+  transition-delay: 0s;
+  width: navigation-settings(sidebar, width);
+
+  > header {
+    background-color: navigation-settings(topbar, hover-background-color);
+    transition-delay: 0s;
+  }
+
+  .submenu li {
+    height: navigation-settings(height);
+  }
+
+  > footer {
+    #{navigation-settings(sidebar-footer, avatar-selector)},
+    #{navigation-settings(sidebar-footer, title-selector)} {
+      transform: translateY(0);
+      transition-delay: navigation-settings(transition-duration) / 2;
+    }
+  }
+}
+
 #{navigation-settings(selector)}
 #{navigation-settings(sidebar, selector)} {
   &#{$sidebar-full-open},
@@ -497,25 +568,7 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   &#{$sidebar-full-open} {
-    transition-delay: 0s;
-    width: navigation-settings(sidebar, width);
-
-    > header {
-      background-color: navigation-settings(topbar, hover-background-color);
-      transition-delay: 0s;
-    }
-
-    .submenu li {
-      height: navigation-settings(height);
-    }
-
-    > footer {
-      #{navigation-settings(sidebar-footer, avatar-selector)},
-      #{navigation-settings(sidebar-footer, title-selector)} {
-        transform: translateY(0);
-        transition-delay: navigation-settings(transition-duration) / 2;
-      }
-    }
+    @extend %sidebar-full-open;
   }
 }
 
@@ -523,30 +576,6 @@ $sidebar-full-open: '.part-open:hover';
   #{layout-settings(selectors, main)} {
     &.with-sidebar {
       margin-left: 0;
-    }
-  }
-
-  #{navigation-settings(selector)} {
-    .item.with-sidebar:hover,
-    .item.with-sidebar:focus
-    #{navigation-settings(sidebar, selector)} {
-      transform: translateX(0);
-    }
-
-    #{navigation-settings(sidebar, selector)} {
-      &#{$sidebar-part-open} {
-        transform: translateX(navigation-settings(height-negative));
-      }
-
-      &#{$sidebar-full-open} {
-        min-width: navigation-settings(sidebar, width);
-        transform: translateX(0);
-        width: 80%;
-
-        .scroller {
-          width: 130%;
-        }
-      }
     }
   }
 }
