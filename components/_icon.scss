@@ -1,7 +1,7 @@
 ////
 /// Icons Component
 /// @group icon
-/// @since v0.8.16
+/// @since v0.8.32
 ////
 
 /// Extends FontAwesome icons and Paint icons
@@ -56,8 +56,11 @@ $paint-icons: (
 ///   }
 
 @mixin icon($name) {
-  @include fa-icon;
   @extend .fa-#{$name};
+
+  &:before {
+    @include fa-icon;
+  }
 }
 
 /// @access private
