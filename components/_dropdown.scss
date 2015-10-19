@@ -1,23 +1,42 @@
 ////
 /// Dropdown Component Styles
 /// @group dropdown
-/// @since v0.8.5
+/// @since v0.8.34
 ////
 
-$dropdown-background-color: color(white) !default;
-$dropdown-border-color: color(border) !default;
-$dropdown-z-index: 100 !default;
-$dropdown-link-color: color(text) !default;
-$dropdown-link-hover-color: color(black) !default;
-$dropdown-link-hover-background-color: color(border) !default;
-$dropdown-link-active-color: $dropdown-link-color !default;
-$dropdown-link-active-background-color: lighten($dropdown-link-hover-background-color, 50%) !default;
-$dropdown-link-disabled-color: lighten($dropdown-link-color, 50%) !default;
-$dropdown-search-inner-padding: 3px;
-$dropdown-search-icon-size: 32px;
-$dropdown-search-results-height: 15em;
+$dropdown-default-settings: (
+  background-color: color(border),
+  border-color: color(border),
+  z-index: 100,
+
+  link: (
+    color: color(text),
+    hover-color: color(black),
+    hover-background-color: color(border),
+    active-color: color(link),
+    active-background-color: color(border, light),
+    disabled-color: color(text, small)
+  ),
+
+  search: (
+    padding-inner: 3px,
+    icon-size: 32px,
+    results-height: 15em
+  )
+);
+
+$dropdown: () !default;
+$dropdown: map-merge-settings($dropdown-default-settings, $dropdown);
 
 $include-html-paint-dropdown: true !default;
+
+@function dropdown-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($dropdown, $setting), $property);
+  } @else {
+    @return map-get($dropdown, $setting);
+  }
+}
 
 @mixin dropdown-triangle($size, $color, $direction) {
   $background-color: if(length($color) == 2, nth($color, 2), transparent);
@@ -113,8 +132,8 @@ $include-html-paint-dropdown: true !default;
 @mixin dropdown-with-search() {
   .input {
     cursor: auto;
-    padding: $dropdown-search-inner-padding
-      $dropdown-search-inner-padding * 2;
+    padding: dropdown-settings(search, padding-inner)
+      dropdown-settings(search, padding-inner) * 2;
     position: relative;
 
     &:hover {
@@ -123,37 +142,37 @@ $include-html-paint-dropdown: true !default;
 
     > div,
     .icon {
-      height: $dropdown-search-icon-size;
-      left: $dropdown-search-inner-padding;
-      margin: $dropdown-search-inner-padding * 2 0;
+      height: dropdown-settings(search, icon-size);
+      left: dropdown-settings(search, padding-inner);
+      margin: dropdown-settings(search, padding-inner) * 2 0;
       overflow: hidden;
       position: absolute;
       text-align: center;
-      top: $dropdown-search-inner-padding;
-      width: $dropdown-search-icon-size;
+      top: dropdown-settings(search, padding-inner);
+      width: dropdown-settings(search, icon-size);
 
       i {
         @include icon(search);
 
         color: color(primary);
-        line-height: $dropdown-search-icon-size;
+        line-height: dropdown-settings(search, icon-size);
       }
     }
 
     > input {
       @include form-input;
 
-      height: $dropdown-search-icon-size;
-      line-height: $dropdown-search-icon-size;
-      margin: $dropdown-search-inner-padding * 2 0;
-      padding-left: $dropdown-search-icon-size;
+      height: dropdown-settings(search, icon-size);
+      line-height: dropdown-settings(search, icon-size);
+      margin: dropdown-settings(search, padding-inner) * 2 0;
+      padding-left: dropdown-settings(search, icon-size);
       width: 100%;
     }
   }
 
   .results {
     margin: 0;
-    max-height: $dropdown-search-results-height;
+    max-height: dropdown-settings(search, results-height);
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 0;
@@ -166,11 +185,11 @@ $include-html-paint-dropdown: true !default;
         @extend %dropdown-item;
 
         cursor: pointer;
-        padding: $dropdown-search-inner-padding
+        padding: dropdown-settings(search, padding-inner)
           $column-gutter / 4;
 
         &:hover {
-          background-color: $dropdown-link-hover-background-color;
+          background-color: dropdown-settings(link, hover-background-color);
         }
       }
     }
@@ -188,8 +207,8 @@ $include-html-paint-dropdown: true !default;
     @include dropdown-directions;
 
     background-clip: padding-box;
-    background-color: $dropdown-background-color;
-    border: 1px solid $dropdown-border-color;
+    background-color: dropdown-settings(background-color);
+    border: 1px solid dropdown-settings(border-color);
     border-radius: $global-radius / 2;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .175);
     display: none;
@@ -200,10 +219,10 @@ $include-html-paint-dropdown: true !default;
     min-width: 100px;
     position: absolute;
     text-align: left;
-    z-index: $dropdown-z-index;
+    z-index: dropdown-settings(z-index);
 
     .divider {
-      border-bottom: 1px solid $dropdown-border-color;
+      border-bottom: 1px solid dropdown-settings(border-color);
       margin: $column-gutter / 4;
     }
 
@@ -218,7 +237,7 @@ $include-html-paint-dropdown: true !default;
 }
 
 %dropdown-item {
-  border-bottom: 1px solid $dropdown-border-color;
+  border-bottom: 1px solid dropdown-settings(border-color);
 
   &:last-child {
     border-bottom: 0;
@@ -228,8 +247,8 @@ $include-html-paint-dropdown: true !default;
     &,
     &:hover,
     &:focus {
-      background-color: $dropdown-link-active-background-color;
-      color: $dropdown-link-active-color;
+      background-color: dropdown-settings(link, active-background-color);
+      color: dropdown-settings(link, active-color);
       outline: 0;
       text-decoration: none;
     }
@@ -239,7 +258,7 @@ $include-html-paint-dropdown: true !default;
     &,
     &:hover,
     &:focus {
-      color: $dropdown-link-disabled-color;
+      color: dropdown-settings(link, disabled-color);
     }
 
     &:hover,
@@ -252,7 +271,7 @@ $include-html-paint-dropdown: true !default;
 
   > a {
     clear: both;
-    color: $dropdown-link-color;
+    color: dropdown-settings(link, color);
     cursor: pointer;
     display: block;
     font-weight: $font-weight-normal;
@@ -262,8 +281,8 @@ $include-html-paint-dropdown: true !default;
 
     &:hover,
     &:focus {
-      background-color: $dropdown-link-hover-background-color;
-      color: $dropdown-link-hover-color;
+      background-color: dropdown-settings(link, hover-background-color);
+      color: dropdown-settings(link, hover-color);
       text-decoration: none;
     }
   }
@@ -285,13 +304,13 @@ $include-html-paint-dropdown: true !default;
 
 %dropdown-inverted {
   > ul {
-    background-color: $dropdown-link-hover-background-color;
-    color: $dropdown-link-hover-color;
+    background-color: dropdown-settings(link, hover-background-color);
+    color: dropdown-settings(link, hover-color);
 
     > li:hover,
     > li a:hover {
-      background-color: $dropdown-background-color;
-      color: $dropdown-link-color;
+      background-color: dropdown-settings(background-color);
+      color: dropdown-settings(link, color);
     }
   }
 }
