@@ -4,6 +4,25 @@
 /// @since v0.8.34
 ////
 
+/// Default settings, styles and sizes
+///
+/// @example scss - Basic usage
+///   // Default classes
+///   .progress-bar {
+///     @extend %progress-bar-base;
+///   }
+///
+///   // Custom usage
+///   .project-progress-bar {
+///     @extend %progress-bar-primary;
+///     @extend %progress-bar-large;
+///   }
+///
+/// @example html - Basic markup
+///   <div class="project-progress-bar">
+///     <div style="width: 30%"></div>
+///   </div>
+
 $progress-bar-default-settings: (
   background-color: color(border, light),
   border: 0,
