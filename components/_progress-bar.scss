@@ -1,14 +1,66 @@
-%progress-bar {
-  @include progress-container;
+////
+/// Progress Bar Component Styles
+/// @group progress-bar
+/// @since v0.8.34
+////
 
-  border: 0;
-  height: 3px;
+$progress-bar-default-settings: (
+  container: (
+    background-color: color(border, light),
+    border: 0,
+    height: 3px,
+    padding: 0
+  ),
+
+  meter: (
+    background-color: color(success, light)
+  )
+);
+
+$progress-bar: () !default;
+$progress-bar: map-merge-settings($progress-bar-default-settings, $progress-bar);
+
+$include-html-paint-progress-bar: true !default;
+
+@function progress-bar-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($progress-bar, $setting), $property);
+  } @else {
+    @return map-get($progress-bar, $setting);
+  }
+}
+
+@mixin progress-bar-container {
+  background-color: progress-bar-settings(container, background-color);
+  border-radius: $global-radius / 2;
+  border: progress-bar-settings(container, border);
+  height: progress-bar-settings(container, height);
   margin: 0;
-  padding: 0;
+  padding: progress-bar-settings(container, padding);
+}
+
+@mixin progress-bar-meter(
+  $background-color: progress-bar-settings(meter, background-color)
+) {
+  background: $background-color;
+  display: block;
+  height: 100%;
+  transition: width $global-transition-duration ease;
+  width: 0;
+}
+
+%progress-bar {
+  @include progress-bar-container;
 
   > div {
-    @include progress-meter;
+    @include progress-bar-meter;
+  }
+}
 
-    width: 0;
+@include exports('paint-progress-bar') {
+  @if $include-html-paint-progress-bar {
+    .progress-bar {
+      @extend %progress-bar;
+    }
   }
 }
