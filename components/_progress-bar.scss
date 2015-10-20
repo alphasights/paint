@@ -14,8 +14,8 @@
 ///
 ///   // Custom usage
 ///   .project-progress-bar {
-///     @extend %progress-bar-primary;
-///     @extend %progress-bar-large;
+///     @extend %progress-bar-[base, primary, secondary, alert ...] ;
+///     @extend %progress-bar-[small, base-size, large];
 ///   }
 ///
 /// @example html - Basic markup
