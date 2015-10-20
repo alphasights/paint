@@ -38,6 +38,16 @@ $include-html-paint-dropdown: true !default;
   }
 }
 
+/// DEPRECATED variables - will be removed with 0.9.x
+
+$dropdown-background-color: dropdown-settings(background-color);
+$dropdown-border-color: dropdown-settings(border-color);
+$dropdown-z-index: dropdown-settings(z-index);
+$dropdown-search-inner-padding: dropdown-settings(search, padding-inner);
+$dropdown-search-icon-size: dropdown-settings(search, icon-size);
+$dropdown-search-results-height: dropdown-settings(search, results-height);
+$dropdown-link-hover-background-color: dropdown-settings(hover-background-color);
+
 @mixin dropdown-triangle($size, $color, $direction) {
   $background-color: if(length($color) == 2, nth($color, 2), transparent);
   $foreground-color: nth($color, 1);
