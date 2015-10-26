@@ -550,8 +550,8 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   .submenu li {
-    transition-delay: navigation-settings(sidebar, transition-delay-in);
     height: navigation-settings(height);
+    transition-delay: navigation-settings(sidebar, transition-delay-in);
   }
 
   > footer {
