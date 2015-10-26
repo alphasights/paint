@@ -172,10 +172,16 @@ $no-touch-selector: '.no-touch' !default;
 $include-html-paint-navigation: true !default;
 
 @function navigation-settings($setting, $property: null) {
+  $output: map-get($navigation, $setting);
+
   @if $property {
-    @return map-get(map-get($navigation, $setting), $property);
+    $output: map-get(map-get($navigation, $setting), $property);
+  }
+
+  @if type-of($output) == string {
+    @return unquote($output);
   } @else {
-    @return map-get($navigation, $setting);
+    @return $output;
   }
 }
 
