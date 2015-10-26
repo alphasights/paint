@@ -127,6 +127,17 @@
 ///       </div>
 ///     </main>
 ///   </div> <!-- .application -->
+///
+/// @example scss - Example of delayed transition settings
+///   $navigation: (
+///     transition-delay-in: .475s,
+///     transition-delay-out: .8s,
+///
+///     sidebar: (
+///       transition-delay-in: .8s,
+///       transition-delay-out: .4s
+///     )
+///   );
 
 $navigation-default-settings: (
   height: 60px,
