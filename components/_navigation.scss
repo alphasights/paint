@@ -133,6 +133,8 @@ $navigation-default-settings: (
   height-negative: -60px,
   logo-width: 28px,
   transition-duration: .3s,
+  transition-delay-in: .475s,
+  transition-delay-out: .8s,
   icon-class-selector: '[class^="icon-"]',
   selector: '.main-navigation',
   z-index: 100,
@@ -154,7 +156,8 @@ $navigation-default-settings: (
     text-color: #a5a5a5,
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
-    width: 280px
+    width: 280px,
+    transition-delay: .8s
   ),
 
   sidebar-footer: (
@@ -416,15 +419,15 @@ $include-html-paint-navigation: true !default;
   top: 0;
   transform: translateX(navigation-settings(height-negative));
   transition: transform navigation-settings(transition-duration),
-    width navigation-settings(transition-duration);
-  transition-delay: navigation-settings(transition-duration);
+    width navigation-settings(transition-duration) $global-transition-easing;
+  transition-delay: navigation-settings(transition-delay-out);
   width: navigation-settings(sidebar, min-width);
 
   > header {
     background-color: navigation-settings(topbar, background-color);
     padding: 0;
     transition: background-color navigation-settings(transition-duration);
-    transition-delay: navigation-settings(transition-duration);
+    transition-delay: navigation-settings(transition-delay-out);
 
     span {
       color: color(white);
@@ -509,7 +512,8 @@ $include-html-paint-navigation: true !default;
     .submenu li {
       height: 0;
       overflow: hidden;
-      transition: height navigation-settings(transition-duration);
+      transition: height navigation-settings(transition-duration) $global-transition-easing;
+      transition-delay: navigation-settings(sidebar, transition-delay);
 
       a {
         color: navigation-settings(sidebar, submenu-text-color);
@@ -525,12 +529,12 @@ $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
 
 %sidebar-full-open {
-  transition-delay: 0s;
+  transition-delay: navigation-settings(transition-delay-in);
   width: navigation-settings(sidebar, width);
 
   > header {
     background-color: navigation-settings(topbar, hover-background-color);
-    transition-delay: 0s;
+    transition-delay: navigation-settings(transition-delay-in);
   }
 
   .submenu li {
@@ -541,7 +545,7 @@ $sidebar-full-open: '.part-open:hover';
     #{navigation-settings(sidebar-footer, avatar-selector)},
     #{navigation-settings(sidebar-footer, title-selector)} {
       transform: translateY(0);
-      transition-delay: navigation-settings(transition-duration) / 2;
+      transition-delay: navigation-settings(transition-delay-in);
     }
   }
 }
