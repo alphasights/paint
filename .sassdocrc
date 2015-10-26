@@ -19,4 +19,5 @@ groups:
   navigation: Navigation
   tab: Tabs
   panel: Panels
+  progress-bar: Progress Bars
   undefined: Misc
