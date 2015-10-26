@@ -37,10 +37,16 @@ $layout: () !default;
 $layout: map-merge-settings($layout-default-settings, $layout);
 
 @function layout-settings($setting, $property: null) {
+  $output: map-get($layout, $setting);
+
   @if $property {
-    @return map-get(map-get($layout, $setting), $property);
+    $output: map-get(map-get($layout, $setting), $property);
+  }
+
+  @if type-of($output) == string {
+    @return unquote($output);
   } @else {
-    @return map-get($layout, $setting);
+    @return $output;
   }
 }
 
