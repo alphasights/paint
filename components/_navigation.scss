@@ -133,8 +133,8 @@ $navigation-default-settings: (
   height-negative: -60px,
   logo-width: 28px,
   transition-duration: .3s,
-  transition-delay-in: .475s,
-  transition-delay-out: .8s,
+  transition-delay-in: .175s,
+  transition-delay-out: 0s,
   icon-class-selector: '[class^="icon-"]',
   selector: '.main-navigation',
   z-index: 100,
@@ -157,7 +157,8 @@ $navigation-default-settings: (
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
     width: 280px,
-    transition-delay: .8s
+    transition-delay-in: .175s,
+    transition-delay-out: 0s
   ),
 
   sidebar-footer: (
@@ -513,7 +514,7 @@ $include-html-paint-navigation: true !default;
       height: 0;
       overflow: hidden;
       transition: height navigation-settings(transition-duration) $global-transition-easing;
-      transition-delay: navigation-settings(sidebar, transition-delay);
+      transition-delay: navigation-settings(sidebar, transition-delay-out);
 
       a {
         color: navigation-settings(sidebar, submenu-text-color);
@@ -538,6 +539,7 @@ $sidebar-full-open: '.part-open:hover';
   }
 
   .submenu li {
+    transition-delay: navigation-settings(sidebar, transition-delay-in);
     height: navigation-settings(height);
   }
 
