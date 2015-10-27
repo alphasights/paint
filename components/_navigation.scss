@@ -127,12 +127,21 @@
 ///       </div>
 ///     </main>
 ///   </div> <!-- .application -->
+///
+/// @example scss - Example of delayed transition settings
+///   $navigation: (
+///     sidebar: (
+///       delay-in: .475s,
+///       delay-out: .8s,
+///       subnav-delay-in: .8s,
+///       subnav-delay-out: .4s
+///     )
+///   );
 
 $navigation-default-settings: (
   height: 60px,
   height-negative: -60px,
   logo-width: 28px,
-  transition-duration: .3s,
   icon-class-selector: '[class^="icon-"]',
   selector: '.main-navigation',
   z-index: 100,
@@ -154,7 +163,12 @@ $navigation-default-settings: (
     text-color: #a5a5a5,
     submenu-text-color: darken(#a5a5a5, 20%),
     min-width: 60px,
-    width: 280px
+    width: 280px,
+    transition-duration: .3s,
+    delay-in: .175s,
+    delay-out: 0s,
+    subnav-delay-in: .175s,
+    subnav-delay-out: 0s
   ),
 
   sidebar-footer: (
@@ -421,16 +435,16 @@ $include-html-paint-navigation: true !default;
   position: fixed;
   top: 0;
   transform: translateX(navigation-settings(height-negative));
-  transition: transform navigation-settings(transition-duration),
-    width navigation-settings(transition-duration);
-  transition-delay: navigation-settings(transition-duration);
+  transition: transform navigation-settings(sidebar, transition-duration),
+    width navigation-settings(sidebar, transition-duration) $global-transition-easing;
+  transition-delay: navigation-settings(sidebar, delay-out);
   width: navigation-settings(sidebar, min-width);
 
   > header {
     background-color: navigation-settings(topbar, background-color);
     padding: 0;
-    transition: background-color navigation-settings(transition-duration);
-    transition-delay: navigation-settings(transition-duration);
+    transition: background-color navigation-settings(sidebar, transition-duration);
+    transition-delay: navigation-settings(sidebar, delay-out);
 
     span {
       color: color(white);
@@ -515,7 +529,8 @@ $include-html-paint-navigation: true !default;
     .submenu li {
       height: 0;
       overflow: hidden;
-      transition: height navigation-settings(transition-duration);
+      transition: height navigation-settings(sidebar, transition-duration) $global-transition-easing;
+      transition-delay: navigation-settings(sidebar, subnav-delay-out);
 
       a {
         color: navigation-settings(sidebar, submenu-text-color);
@@ -531,23 +546,24 @@ $sidebar-part-open: '.part-open';
 $sidebar-full-open: '.part-open:hover';
 
 %sidebar-full-open {
-  transition-delay: 0s;
+  transition-delay: navigation-settings(sidebar, delay-in);
   width: navigation-settings(sidebar, width);
 
   > header {
     background-color: navigation-settings(topbar, hover-background-color);
-    transition-delay: 0s;
+    transition-delay: navigation-settings(sidebar, delay-in);
   }
 
   .submenu li {
     height: navigation-settings(height);
+    transition-delay: navigation-settings(sidebar, subnav-delay-in);
   }
 
   > footer {
     #{navigation-settings(sidebar-footer, avatar-selector)},
     #{navigation-settings(sidebar-footer, title-selector)} {
       transform: translateY(0);
-      transition-delay: navigation-settings(transition-duration) / 2;
+      transition-delay: navigation-settings(sidebar, delay-in);
     }
   }
 }
@@ -563,7 +579,7 @@ $sidebar-full-open: '.part-open:hover';
     #{navigation-settings(sidebar-footer, avatar-selector)},
     #{navigation-settings(sidebar-footer, title-selector)} {
       transform: translateY(100px);
-      transition: transform $global-transition-duration ease;
+      transition: transform navigation-settings(sidebar, transition-duration) ease;
       transition-delay: 0s;
     }
   }
