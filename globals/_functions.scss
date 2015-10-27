@@ -55,7 +55,7 @@
     } @else {
       @each $key, $value in $current {
 
-        @if type-of($value) == "map" and type-of(map-get($default-map, $key)) == "map" {
+        @if type-of($value) == 'map' and type-of(map-get($default-map, $key)) == 'map' {
           $value: map-extend(map-get($default-map, $key), $value, true);
         }
 
