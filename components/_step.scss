@@ -68,10 +68,16 @@ $step: map-merge-settings($step-default-settings, $step);
 $include-html-paint-step: true !default;
 
 @function step-settings($setting, $property: null) {
+  $output: map-get($step, $setting);
+
   @if $property {
-    @return map-get(map-get($step, $setting), $property);
+    $output: map-get(map-get($step, $setting), $property);
+  }
+
+  @if type-of($output) == string {
+    @return unquote($output);
   } @else {
-    @return map-get($step, $setting);
+    @return $output;
   }
 }
 

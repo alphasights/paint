@@ -56,10 +56,16 @@ $progress-bar: map-merge-settings($progress-bar-default-settings, $progress-bar)
 $include-html-paint-progress-bar: true !default;
 
 @function progress-bar-settings($setting, $property: null) {
+  $output: map-get($progress-bar, $setting);
+
   @if $property {
-    @return map-get(map-get($progress-bar, $setting), $property);
+    $output: map-get(map-get($progress-bar, $setting), $property);
+  }
+
+  @if type-of($output) == string {
+    @return unquote($output);
   } @else {
-    @return map-get($progress-bar, $setting);
+    @return $output;
   }
 }
 

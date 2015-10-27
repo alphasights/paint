@@ -48,10 +48,16 @@ $tab: map-merge-settings($tab-default-settings, $tab);
 $include-html-paint-tabs: true !default;
 
 @function tab-settings($setting, $property: null) {
+  $output: map-get($tab, $setting);
+
   @if $property {
-    @return map-get(map-get($tab, $setting), $property);
+    $output: map-get(map-get($tab, $setting), $property);
+  }
+
+  @if type-of($output) == string {
+    @return unquote($output);
   } @else {
-    @return map-get($tab, $setting);
+    @return $output;
   }
 }
 
@@ -144,8 +150,7 @@ $include-html-paint-tabs: true !default;
     left: 0;
     position: absolute;
     transform: translate(0, 150%);
-    transition: 
-      transform tab-settings(transition-duration),
+    transition: transform tab-settings(transition-duration),
       background-color tab-settings(transition-duration);
     width: 100%;
   }
