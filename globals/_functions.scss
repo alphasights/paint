@@ -30,21 +30,47 @@
   @return $result;
 }
 
-@function map-merge-settings($default-map, $map) {
-  $merged-map: $default-map;
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
 
-  @each $settings-group, $settings in $map {
-    @if type-of($settings) == 'map' {
-      @each $setting, $value in $settings {
-        $merged-map: map-set($merged-map, $settings-group $setting, $value);
-      }
+  @return $map;
+}
+
+@function map-extend($default-map, $merged-maps.../*, $deep */) {
+  $last: nth($merged-maps, -1);
+  $deep: $last == true;
+  $max: if($deep, length($merged-maps) - 1, length($merged-maps));
+
+  @if $max == 0 {
+    @return $default-map;
+  }
+
+  @for $i from 1 through $max {
+    $current: nth($merged-maps, $i);
+
+    @if not $deep {
+      $default-map: map-merge($default-map, $current);
     } @else {
-      $merged-map: map-set($merged-map, $settings-group, $settings);
+      @each $key, $value in $current {
+
+        @if type-of($value) == "map" and type-of(map-get($default-map, $key)) == "map" {
+          $value: map-extend(map-get($default-map, $key), $value, true);
+        }
+
+        $default-map: map-merge($default-map, ($key: $value));
+      }
     }
   }
 
-  @return $merged-map;
+  @return $default-map;
 }
+
+@function map-merge-settings($default-map, $settings-map) {
+  @return map-extend($default-map, $settings-map, true);
+}
+
 
 @function brightness($color) {
   @return ((red($color) * .229) + (green($color) * .499) + (blue($color) * .199)) / 255 * 100%;
