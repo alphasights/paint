@@ -125,7 +125,7 @@ $include-html-paint-form: true !default;
   @if $inline {
     width: auto !important;
   }
-  
+
   min-height: $form-input-height * 2;
 
   label {
@@ -340,7 +340,7 @@ $include-html-paint-form: true !default;
     padding: $column-gutter / 4 $column-gutter / 2;
 
     &:last-child {
-      border: 0;
+      border-bottom: 0;
       border-radius: 0 0 $global-radius $global-radius;
     }
 
@@ -489,7 +489,7 @@ $include-html-paint-form: true !default;
 @mixin form-multi-checkbox-icon($icon) {
   &:before {
     @include icon($icon);
-    
+
     float: right;
     font-size: $small-font-size;
     line-height: $form-input-height;
