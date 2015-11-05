@@ -102,7 +102,6 @@ $include-html-paint-form: true !default;
   @include form-input-shared-properties;
 
   font-size: $base-font-size;
-  line-height: $form-input-height;
   height: $form-input-height;
   margin-bottom: 0;
   padding: 0 $form-input-padding / 2;
