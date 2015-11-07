@@ -57,10 +57,14 @@ $include-html-paint-typography: true !default;
   h4,
   h5,
   h6 {
+    color: color(text);
     font-family: $heading-font-family;
-    font-size: $base-font-size;
+    font-style: normal;
+    font-weight: $heading-font-weight;
     line-height: $heading-line-height;
-    margin: 0 0 $small-spacing;
+    margin-bottom: $small-spacing;
+    margin-top: 0;
+    text-rendering: $heading-font-smoothing;
 
     small {
       color: color(text, small);
