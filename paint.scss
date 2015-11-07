@@ -5,6 +5,7 @@
 /// Import dependencies
 
 @import 'bower_components/foundation/scss/foundation/functions';
+@import "bower_components/bourbon/bourbon";
 
 @import 'globals/functions';
 @import 'globals/settings';
@@ -12,6 +13,7 @@
 @import 'bower_components/foundation/scss/normalize';
 @import 'bower_components/foundation/scss/foundation';
 @import 'bower_components/fontawesome/scss/font-awesome';
+@import "bower_components/neat/neat";
 
 @import 'globals/mixins';
 

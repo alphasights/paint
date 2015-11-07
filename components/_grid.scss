@@ -19,11 +19,13 @@ $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $total-columns {
     %#{$prefix}-#{$i} {
-      @include grid-column($columns: $i, $collapse: false, $float: true);
+      // @include grid-column($columns: $i, $collapse: false, $float: true);
+      @include span-columns($i);
     }
 
     %#{$prefix}-#{$i}-centered {
-      @include grid-column($columns: $i, $collapse: false, $float: false, $center: true);
+      // @include grid-column($columns: $i, $collapse: false, $float: false, $center: true);
+      @include span-columns($i);
     }
   }
 }
@@ -62,5 +64,9 @@ $large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
 ///
 
 %grid-row {
-  @include grid-row;
+  @include outer-container;
+}
+
+%grid-no-gutter {
+  @include omega;
 }
