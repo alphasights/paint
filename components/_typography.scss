@@ -1,6 +1,6 @@
 $typography: () !default;
 $typography-default-settings: (
-  header-tags: (
+  heading-tags: (
     h1, h2, h3, h4, h5, h6, blockquote
   ),
 
@@ -20,17 +20,17 @@ $include-html-paint-typography: true !default;
 }
 
 @mixin typography-font-smoothing(
-  $header-tags: typography-settings(header-tags)
+  $heading-tags: typography-settings(heading-tags)
 ) {
   body {
     -webkit-font-smoothing: $body-font-smoothing;
   }
 
-  @for $i from 1 through length($header-tags) {
-    $tag: nth($header-tags, $i);
+  @for $i from 1 through length($heading-tags) {
+    $tag: nth($heading-tags, $i);
 
     #{$tag} {
-      -webkit-font-smoothing: $header-font-smoothing;
+      -webkit-font-smoothing: $heading-font-smoothing;
     }
   }
 }
