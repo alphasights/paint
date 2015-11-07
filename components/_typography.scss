@@ -43,8 +43,105 @@ $include-html-paint-typography: true !default;
   }
 }
 
+@mixin typography-resets {
+  body {
+    color: color(text);
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $heading-font-family;
+    font-size: $base-font-size;
+    line-height: $heading-line-height;
+    margin: 0 0 $small-spacing;
+
+    small {
+      color: color(text, small);
+      font-size: $small-font-size;
+      line-height: 0;
+    }
+  }
+
+  p {
+    margin: 0 0 $small-spacing;
+  }
+
+  a {
+    color: color(link);
+    text-decoration: none;
+    transition: color $global-transition-duration / 2 ease;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: color(link, dark);
+    }
+  }
+
+  hr {
+    border-bottom: color(border);
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    margin: $base-spacing 0;
+  }
+
+  img,
+  picture {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  ul,
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  dl {
+    margin-bottom: $small-spacing;
+
+    dt {
+      font-weight: 600;
+      margin-top: $small-spacing;
+    }
+
+    dd {
+      margin: 0;
+    }
+  }
+}
+
+@mixin typography-headings {
+  h1 { font-size: $h1-font-size - $h1-font-reduction; }
+  h2 { font-size: $h2-font-size - $h2-font-reduction; }
+  h3 { font-size: $h3-font-size - $h3-font-reduction; }
+  h4 { font-size: $h4-font-size - $h4-font-reduction; }
+  h5 { font-size: $h5-font-size - $h5-font-reduction; }
+  h6 { font-size: $h6-font-size - $h6-font-reduction; }
+
+  @media #{$large-up} {
+    h1 { font-size: $h1-font-size }
+    h2 { font-size: $h2-font-size }
+    h3 { font-size: $h3-font-size }
+    h4 { font-size: $h4-font-size }
+    h5 { font-size: $h5-font-size }
+    h6 { font-size: $h6-font-size }
+  }
+}
+
 @include exports('paint-typography') {
   @if $include-html-paint-typography {
+    @include typography-resets;
+    @include typography-headings;
     @include typography-font-smoothing;
     @include typography-condensed-tags;
   }

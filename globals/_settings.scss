@@ -102,6 +102,12 @@ $h4-font-size: 1.125rem !default;
 $h5-font-size: 1rem !default;
 $h6-font-size: .875rem !default;
 
+$h1-font-reduction: rem-calc(10) !default;
+$h2-font-reduction: rem-calc(10) !default;
+$h3-font-reduction: rem-calc(5) !default;
+$h4-font-reduction: rem-calc(5) !default;
+$h5-font-reduction: 0 !default;
+$h6-font-reduction: 0 !default;
 
 /// deprecate!
 
@@ -111,9 +117,9 @@ $header-font-smoothing: $heading-font-smoothing;
 
 $include-html-classes: false;
 $include-html-form-classes: true;
-$include-html-global-classes: true;
-$include-html-type-classes: true;
-$include-html-tooltip-classes: true;
+$include-html-global-classes: false;
+$include-html-type-classes: false;
+$include-html-tooltip-classes: false;
 
 $icon-font-folder-path: '/assets/fonts' !default;
 $fa-font-path: $icon-font-folder-path;
