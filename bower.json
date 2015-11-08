@@ -22,7 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "~5.5.1",
     "fontawesome": "~4.4.0",
     "bourbon": "~4.2.6",
     "neat": "~1.7.2"

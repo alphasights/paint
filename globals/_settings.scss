@@ -7,7 +7,9 @@
 
 /// Neat
 
-$max-width: 100% !default;
+$max-width: 100%;
+$grid-columns: 12;
+$column-gutter: 1rem;
 
 /// Media
 
@@ -90,7 +92,7 @@ $heading-font-smoothing: antialiased !default;
 $paragraph-font-weight: $font-weight-normal !default;
 
 // Other Sizes
-$base-border-radius: 3px !default;
+$global-radius: 3px !default;
 $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing / 2 !default;
 $base-z-index: 0 !default;
@@ -157,11 +159,4 @@ $header-line-height: 2 !default;
 
 $global-transition-easing: cubic-bezier(.78, .01, .27, 1);
 $global-transition-duration: .325s;
-
-// Code
-
-$code-color: inherit !default;
-$code-background-color: inherit !default;
-$code-border-size: 0 !default;
-$code-border-style: solid !default;
-$code-border-color: inherit !default;
+$global-rounded: 1000px;

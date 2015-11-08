@@ -46,7 +46,7 @@ $layout-sidebar-nav-width-collapsed: $layout-sidebar-nav-link-icon-width + 2 * $
 $layout-sidebar-nav-width: rem-calc(260) !default;
 $layout-sidebar-nav-bubble-selector: '.bubble' !default;
 $layout-sidebar-nav-bubble-width: rem-calc(24) !default;
-$layout-sidebar-nav-bubble-background-color: $steel !default;
+$layout-sidebar-nav-bubble-background-color: color(gray, steel) !default;
 $layout-sidebar-selector: '.sidebar' !default;
 
 $include-html-paint-layout-deprecated: false !default;
@@ -104,7 +104,7 @@ $include-html-paint-layout-deprecated: false !default;
         padding: 0 $layout-sidebar-nav-padding;
 
         img {
-          @include single-transition(padding, 150ms, linear);
+          transition: padding $global-transition-duration / 2 linear;
 
           height: $layout-sidebar-header-logo-height;
           margin-right: $layout-sidebar-nav-padding / 2;
@@ -113,7 +113,7 @@ $include-html-paint-layout-deprecated: false !default;
         h1 {
           @extend %layout-sidebar-heading;
 
-          color: $white;
+          color: color(white);
           display: inline-block;
           -webkit-font-smoothing: $body-font-smoothing;
           margin: 0;
@@ -257,15 +257,14 @@ $include-html-paint-layout-deprecated: false !default;
     padding: 0;
 
     a {
-      @include single-transition(background-color, 150ms, linear);
-
+      -webkit-font-smoothing: $header-font-smoothing;
       border-bottom: 1px solid $layout-sidebar-nav-title-background-color;
       display: block;
       font-size: $paragraph-font-size;
-      -webkit-font-smoothing: $header-font-smoothing;
       line-height: $layout-sidebar-nav-link-height;
       padding: 0 $layout-sidebar-nav-padding;
       text-decoration: none;
+      transition: background-color $global-transition-duration / 2 linear;
       white-space: nowrap;
 
       &,
@@ -293,21 +292,20 @@ $include-html-paint-layout-deprecated: false !default;
     }
 
     i {
-      @include single-transition(margin, 150ms, linear);
-
       border-radius: $layout-sidebar-nav-link-icon-roundness;
       color: $layout-sidebar-nav-link-text-color;
       font-size: $base-font-size;
       margin-right: $layout-sidebar-nav-padding;
       padding: $layout-sidebar-nav-link-icon-padding 0;
       text-align: center;
+      transition: margin $global-transition-duration / 2 linear;
       width: $layout-sidebar-nav-link-icon-width;
     }
 
     #{$layout-sidebar-nav-bubble-selector} {
       background-color: $layout-sidebar-nav-bubble-background-color;
       border-radius: $global-rounded;
-      color: $white;
+      color: color(white);
       float: right;
       font-size: $small-font-size * .8;
       font-weight: $font-weight-extrabold;

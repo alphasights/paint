@@ -46,8 +46,6 @@ $include-html-paint-quick-jump: true !default;
 
     > div,
     > .icon {
-      @include single-transition(all, 150ms, linear);
-
       border-radius: $global-rounded;
       color: color(primary);
       height: quick-jump-settings(bar, icon-size);
@@ -55,6 +53,7 @@ $include-html-paint-quick-jump: true !default;
       position: absolute;
       text-align: center;
       top: (quick-jump-settings(bar, height) - quick-jump-settings(bar, icon-size)) / 2;
+      transition: all $global-transition-duration / 2 linear;
       width: quick-jump-settings(bar, icon-size);
 
       i {
@@ -69,7 +68,7 @@ $include-html-paint-quick-jump: true !default;
       $icon-size: quick-jump-settings(bar, icon-size);
       $input-left-padding: $icon-size * 1.15;
 
-      @include single-transition(all, 150ms, linear);
+      transition: all $global-transition-duration / 2 linear;
 
       background-color: transparent;
       border: 0;
@@ -159,10 +158,9 @@ $include-html-paint-quick-jump: true !default;
 %quick-jump-results {
   $background-color: quick-jump-settings(results, background-color);
 
-  @include single-transition(opacity, 150ms, linear);
-
   background-color: $background-color;
   position: relative;
+  transition: opacity $global-transition-duration / 2 linear;
   width: 100%;
 
   section {
@@ -209,7 +207,7 @@ $include-html-paint-quick-jump: true !default;
       }
 
       .title {
-        color: $body-font-color;
+        color: color(text);
         line-height: quick-jump-settings(results, item-height);
       }
     }

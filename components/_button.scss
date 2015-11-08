@@ -236,7 +236,7 @@ $include-html-paint-button: true !default;
 ///   </ul>
 
 %button-group {
-  @include button-group-container;
+  // @include button-group-container;
 
   display: inline-block;
 

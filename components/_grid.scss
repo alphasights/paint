@@ -14,7 +14,7 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 /// and uses Foundation to generate column placeholders
 
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
-  @for $i from 1 through $total-columns {
+  @for $i from 1 through $grid-columns {
     %#{$prefix}-#{$i} {
       @include span-columns($i);
     }

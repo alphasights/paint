@@ -125,7 +125,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
       }
 
       &:before {
-        @include dropdown-triangle(12px, $white, $direction);
+        @include dropdown-triangle(12px, color(white), $direction);
       }
     }
 
@@ -134,7 +134,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
 
   &#{$other-directions-string} {
     &:before {
-      @include dropdown-triangle(12px, $white, bottom);
+      @include dropdown-triangle(12px, color(white), bottom);
     }
   }
 }
