@@ -1,7 +1,7 @@
 ////
 /// Panel
 /// @group panel
-/// @since v0.8.5
+/// @since v0.8.43
 ////
 
 /// Default settings
@@ -31,7 +31,11 @@ $panel-default-settings: (
   styles: (
     default: color(border, light),
     primary: color(primary),
-    widget: color(link)
+    link: color(link),
+    success: color(success),
+    warning: color(warning),
+    alert: color(alert),
+    info: color(info, light)
   ),
 );
 
@@ -53,21 +57,27 @@ $include-html-paint-panel: true !default;
 /// @param {Color} $background-color [color(border, light)] - Sets the panel header background to a gradient and sets the text color dynamically based on the color brightness.
 
 @mixin panel-background(
-  $background-color: color(border, light)
+  $header-background-color: color(border, light),
+  $background-color: color(white),
+  $footer-background-color: color(white)
 ) {
-  $dark-background-color: desaturate(adjust-hue($background-color, 10%), 15%);
-  $light-background-color: saturate(adjust-hue($background-color, 10%), 15%);
+  $dark-background-color: desaturate(adjust-hue($header-background-color, 10%), 15%);
+  $light-background-color: saturate(adjust-hue($header-background-color, 10%), 15%);
 
   > header {
-    background: linear-gradient(to right, $dark-background-color, $background-color);
+    background: linear-gradient(to right, $dark-background-color, $light-background-color);
 
     * {
-      color: contrast($background-color);
+      color: contrast($header-background-color);
     }
   }
 
+  .content {
+    background-color: $background-color;
+  }
+
   > footer {
-    background-color: color(border, light);
+    background-color: $footer-background-color;
   }
 }
 
