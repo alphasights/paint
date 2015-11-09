@@ -66,21 +66,6 @@ $global-radius: 4px !default;
 $global-section-border-color: #ececec !default;
 $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
 
-$buttons-list: 'button',
-               'input[type="button"]',
-               'input[type="reset"]',
-               'input[type="submit"]';
-
-$all-buttons:        assign-inputs($buttons-list);
-$all-buttons-active: assign-inputs($buttons-list, active);
-$all-buttons-focus:  assign-inputs($buttons-list, focus);
-$all-buttons-hover:  assign-inputs($buttons-list, hover);
-
-$all-button-inputs:        $all-buttons;
-$all-button-inputs-active: $all-buttons-active;
-$all-button-inputs-focus:  $all-buttons-focus;
-$all-button-inputs-hover:  $all-buttons-hover;
-
 // Typography
 $base-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $font-weight-normal: 300 !default;
