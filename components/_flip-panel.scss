@@ -1,7 +1,7 @@
 ////
 /// Flip Panel
 /// @group panel
-/// @since v0.8.5
+/// @since v0.8.43
 ////
 
 @import 'panel';
@@ -14,35 +14,43 @@
 ///   }
 ///
 /// @example html - Default Markup
-/// <div class="flip-panel [flipped]">
-///   <div class="front">
-///     <header>
-///       <h1>Flip Panel Front</h1>
-///     </header>
+///   <div class="flip-panel [flipped]">
+///     <div class="front">
+///       <header>
+///         <h1>Flip Panel Front</h1>
+///       </header>
 ///
-///     <div class="content">
-///       <section>
-///         Flip panel front section content
-///       </section>
-///     </div>
+///       <div class="content">
+///         <section>
+///           Flip panel front section content
+///         </section>
+///       </div>
 ///
-///     <footer>
-///       <span><a>More information</a></span>
-///     </footer>
-///   </div> <!-- .front -->
+///       <footer>
+///         <span><a>More information</a></span>
+///       </footer>
+///     </div> <!-- .front -->
 ///
-///   <div class="back">
-///     <header>
-///       <h1><a><i class="back-icon"></i> Back to Front</a></h1>
-///     </header>
+///     <div class="back">
+///       <header>
+///         <h1><a><i class="back-icon"></i> Back to Front</a></h1>
+///       </header>
 ///
-///     <div class="content">
-///       <section>
-///         <p>Flip panel back content</p>
-///       </section>
-///     </div>
-///   </div> <!-- .back -->
-/// </div>
+///       <div class="content">
+///         <section>
+///           <p>Flip panel back content</p>
+///         </section>
+///       </div>
+///     </div> <!-- .back -->
+///   </div>
+///
+/// @example html - Custom panel style and back face with footer
+///   Pass option `$with-footer: true` to `flip-panel`. It is advised to specify a min-height for the panel as well.
+///
+/// @example scss - Usage
+///   .custom-flip-panel {
+///     @include flip-panel(primary, $with-back-footer: true, $min-height: 400px);
+///   }
 ///
 /// @example html - Animation
 ///   Toggle class `.flipped` on the main selector to trigger the flipping animation
@@ -116,6 +124,7 @@ $include-html-paint-flip-panel: true !default;
 /// @param {value} $min-height [false] - Specify a fixed height for the panel
 
 @mixin flip-panel (
+  $style: default,
   $with-front-header: true,
   $with-front-footer: true,
   $with-back-header: true,
@@ -134,7 +143,7 @@ $include-html-paint-flip-panel: true !default;
 
   .front,
   .back {
-    @extend %panel-default;
+    @extend %panel-#{$style};
 
     @if $min-height {
       position: absolute;
@@ -148,8 +157,7 @@ $include-html-paint-flip-panel: true !default;
     right: 0;
     top: 0;
     transform-style: preserve-3d;
-    transition: 
-      transform flip-panel-settings(transition-settings),
+    transition: transform flip-panel-settings(transition-settings),
       box-shadow flip-panel-settings(transition-settings);
 
     > footer {
@@ -199,10 +207,23 @@ $include-html-paint-flip-panel: true !default;
     transform: rotateY(-180deg);
     z-index: 200;
 
+    > header > * {
+      color: panel-settings(styles, $style);
+      font-weight: $font-weight-extrabold !important;
+    }
+
     > .content {
       @include flip-panel-scroll-content(
         $with-header: $with-back-header,
-        $with-footer: $with-back-footer);
+        $with-footer: $with-back-footer
+      );
+    }
+
+    > footer {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
     }
   }
 
