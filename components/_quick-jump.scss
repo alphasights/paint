@@ -68,14 +68,13 @@ $include-html-paint-quick-jump: true !default;
       $icon-size: quick-jump-settings(bar, icon-size);
       $input-left-padding: $icon-size * 1.15;
 
-      transition: all $global-transition-duration / 2 linear;
-
       background-color: transparent;
       border: 0;
       box-shadow: none;
       display: inline-block;
       margin: 0;
       text-indent: $input-left-padding;
+      transition: all $global-transition-duration / 2 linear;
       width: 100%;
     }
   }

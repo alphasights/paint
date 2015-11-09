@@ -84,9 +84,8 @@ $include-html-paint-form: true !default;
     input,
     textarea,
     &#{$form-select-selector} > div {
-      transition: border-color $global-transition-duration / 2 linear;
-
       border-color: color(alert, light);
+      transition: border-color $global-transition-duration / 2 linear;
     }
   }
 }
@@ -705,9 +704,8 @@ $include-html-paint-form: true !default;
   }
 
   button {
-    transition: background-color $global-transition-duration / 2 linear;
-
     margin-bottom: 0 !important;
+    transition: background-color $global-transition-duration / 2 linear;
 
     &[type='submit'] {
       @extend %button-primary;

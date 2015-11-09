@@ -24,7 +24,7 @@ $large-range:   ($medium-breakpoint + em(1), $large-breakpoint) !default;
 $xlarge-range:  ($large-breakpoint  + em(1), $xlarge-breakpoint) !default;
 $xxlarge-range: ($xlarge-breakpoint + em(1), em(99999999)) !default;
 
-$screen: "only screen" !default;
+$screen: 'only screen' !default;
 
 $landscape: "#{$screen} and (orientation: landscape)" !default;
 $portrait: "#{$screen} and (orientation: portrait)" !default;
