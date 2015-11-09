@@ -83,6 +83,19 @@ $modules: () !default;
   @return map-extend($default-map, $settings-map, true);
 }
 
+@function lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range, 1);
+}
+
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
 
 @function brightness($color) {
   @return ((red($color) * .229) + (green($color) * .499) + (blue($color) * .199)) / 255 * 100%;
