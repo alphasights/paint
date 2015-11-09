@@ -4,25 +4,36 @@
 
 /// Import dependencies
 
+@import "bower_components/normalize-css/normalize";
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
+
+/// Import core paint
 
 @import 'globals/functions';
 @import 'components/color';
 @import 'globals/settings';
 @import 'globals/mixins';
 
+/// Import core dependencies
+
 @import "bower_components/neat/app/assets/stylesheets/neat";
 @import 'bower_components/fontawesome/scss/variables';
 @import 'bower_components/fontawesome/scss/path';
 @import 'bower_components/fontawesome/scss/mixins';
 @import 'bower_components/fontawesome/scss/icons';
-@import 'components/vertical-align';
 
+/// Import base components
+
+@import 'components/vertical-align';
 @import 'components/icon';
 @import 'components/button';
 @import 'components/typography';
 @import 'components/grid';
 @import 'components/layout';
+@import 'components/navigation';
+
+/// Import components
+
 @import 'components/notification';
 @import 'components/form';
 @import 'components/dropdown';
