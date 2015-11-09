@@ -8,7 +8,7 @@ $quick-jump-default-settings: (
   ),
   results: (
     background-color: color(gray, white-smoke),
-    item-height: rem-calc(50)
+    item-height: rem(50)
   ),
   actions: (
     navigation: (
@@ -216,7 +216,7 @@ $include-html-paint-quick-jump: true !default;
   .empty-message {
     height: quick-jump-settings(bar, height);
     line-height: quick-jump-settings(bar, height);
-    padding-left: $column-gutter + rem-calc(quick-jump-settings(bar, icon-size));
+    padding-left: $column-gutter + rem(quick-jump-settings(bar, icon-size));
   }
 }
 

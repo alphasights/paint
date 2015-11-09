@@ -9,20 +9,20 @@
 
 $max-width: 100%;
 $grid-columns: 12;
-$column-gutter: 1rem;
+$column-gutter: 2rem;
 
 /// Media
 
-$small-breakpoint:  em-calc(640) !default;
-$medium-breakpoint: em-calc(1024) !default;
-$large-breakpoint:  em-calc(1440) !default;
-$xlarge-breakpoint: em-calc(1920) !default;
+$small-breakpoint:  em(640) !default;
+$medium-breakpoint: em(1024) !default;
+$large-breakpoint:  em(1440) !default;
+$xlarge-breakpoint: em(1920) !default;
 
 $small-range:   (0, $small-breakpoint) !default;
-$medium-range:  ($small-breakpoint  + em-calc(1), $medium-breakpoint) !default;
-$large-range:   ($medium-breakpoint + em-calc(1), $large-breakpoint) !default;
-$xlarge-range:  ($large-breakpoint  + em-calc(1), $xlarge-breakpoint) !default;
-$xxlarge-range: ($xlarge-breakpoint + em-calc(1), em-calc(99999999)) !default;
+$medium-range:  ($small-breakpoint  + em(1), $medium-breakpoint) !default;
+$large-range:   ($medium-breakpoint + em(1), $large-breakpoint) !default;
+$xlarge-range:  ($large-breakpoint  + em(1), $xlarge-breakpoint) !default;
+$xxlarge-range: ($xlarge-breakpoint + em(1), em(99999999)) !default;
 
 $screen: "only screen" !default;
 
@@ -102,10 +102,10 @@ $h4-font-size: 1.125rem !default;
 $h5-font-size: 1rem !default;
 $h6-font-size: .875rem !default;
 
-$h1-font-reduction: rem-calc(10) !default;
-$h2-font-reduction: rem-calc(10) !default;
-$h3-font-reduction: rem-calc(5) !default;
-$h4-font-reduction: rem-calc(5) !default;
+$h1-font-reduction: rem(10) !default;
+$h2-font-reduction: rem(10) !default;
+$h3-font-reduction: rem(5) !default;
+$h4-font-reduction: rem(5) !default;
 $h5-font-reduction: 0 !default;
 $h6-font-reduction: 0 !default;
 
