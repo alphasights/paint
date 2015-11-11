@@ -272,8 +272,8 @@ $include-html-paint-navigation: true !default;
     img {
       border-radius: 100%;
       height: navigation-settings(logo-width);
-      width: navigation-settings(logo-width);
       vertical-align: middle;
+      width: navigation-settings(logo-width);
     }
   }
 

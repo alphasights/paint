@@ -173,12 +173,12 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
     > input {
       @include form-input;
 
+      display: block;
       height: dropdown-settings(search, icon-size);
       line-height: dropdown-settings(search, icon-size);
       margin: dropdown-settings(search, padding-inner) * 2 0;
       padding-left: dropdown-settings(search, icon-size);
       width: 100%;
-      display: block;
     }
   }
 
