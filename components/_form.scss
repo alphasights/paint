@@ -764,7 +764,6 @@ $include-html-paint-form: true !default;
     right: $form-input-padding / 2;
     top: ($form-input-padding + $form-select-arrow-size) / 2;
     width: 0;
-    z-index: 1;
   }
 
   &:before {
