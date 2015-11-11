@@ -105,8 +105,8 @@ $include-html-paint-button: true !default;
 
   &:hover,
   &:focus {
-    background-color: shade(color(link), 20%);
-    color: #fff;
+    background-color: color(border, light);
+    outline: none;
   }
 
   &:disabled {

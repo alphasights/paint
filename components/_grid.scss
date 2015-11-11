@@ -67,6 +67,11 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   @include fill-parent;
 }
 
+%grid-row-gutter {
+  padding-left: $column-gutter / 2;
+  padding-right: $column-gutter / 2;
+}
+
 %grid-row-no-gutter {
   @include omega;
 }
