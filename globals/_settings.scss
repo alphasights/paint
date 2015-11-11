@@ -68,6 +68,7 @@ $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
 
 // Typography
 $base-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+
 $font-weight-normal: 300 !default;
 $font-weight-bold: 400 !default;
 $font-weight-extrabold: 600 !default;
@@ -79,10 +80,11 @@ $heading-line-height: 2 !default;
 // Font Sizes
 $base-font-size: 14px !default;
 $small-font-size: 80% !default;
+$tiny-font-size: 70% !default;
 
 // Line height
 $base-line-height: 1.5 !default;
-$heading-line-height: 1.2 !default;
+$heading-line-height: 1.5 !default;
 
 $body-font-smoothing: subpixel-antialiased !default;
 $heading-font-smoothing: antialiased !default;
@@ -95,17 +97,17 @@ $base-spacing: $base-line-height * 1em !default;
 $small-spacing: $base-spacing / 2 !default;
 $base-z-index: 0 !default;
 
-$h1-font-size: 2.25rem !default;
-$h2-font-size: 1.75rem !default;
-$h3-font-size: 1.375rem !default;
-$h4-font-size: 1.125rem !default;
-$h5-font-size: 1rem !default;
-$h6-font-size: .875rem !default;
+$h1-font-size: 1.75rem !default;
+$h2-font-size: 1.375rem !default;
+$h3-font-size: 1.125rem !default;
+$h4-font-size: 1rem !default;
+$h5-font-size: .875rem !default;
+$h6-font-size: .8rem !default;
 
-$h1-font-reduction: rem(10) !default;
-$h2-font-reduction: rem(10) !default;
-$h3-font-reduction: rem(5) !default;
-$h4-font-reduction: rem(5) !default;
+$h1-font-reduction: rem(7) !default;
+$h2-font-reduction: rem(7) !default;
+$h3-font-reduction: rem(3) !default;
+$h4-font-reduction: rem(3) !default;
 $h5-font-reduction: 0 !default;
 $h6-font-reduction: 0 !default;
 
@@ -114,12 +116,6 @@ $h6-font-reduction: 0 !default;
 $header-font-smoothing: $heading-font-smoothing;
 
 /// Foundation
-
-$include-html-classes: false;
-$include-html-form-classes: true;
-$include-html-global-classes: false;
-$include-html-type-classes: false;
-$include-html-tooltip-classes: false;
 
 $icon-font-folder-path: '/assets/fonts' !default;
 $fa-font-path: $icon-font-folder-path;
@@ -130,8 +126,6 @@ $images-path: '/assets/images' !default;
 
 $include-html-visibility-classes: true;
 $include-legacy-visibility-classes: true;
-$include-accessibility-classes: false;
-$include-table-visibility-classes: false;
 
 // Deprecated color calls - will be removed starting v0.9.x
 
