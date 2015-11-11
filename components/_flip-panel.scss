@@ -208,7 +208,7 @@ $include-html-paint-flip-panel: true !default;
     z-index: 200;
 
     > header > * {
-      color: panel-settings(styles, $style);
+      color: contrast(color(white), panel-settings(styles, $style), color(text, small));
       font-weight: $font-weight-extrabold !important;
     }
 
