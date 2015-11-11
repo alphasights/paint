@@ -67,6 +67,6 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   @include fill-parent;
 }
 
-%grid-no-gutter {
+%grid-row-no-gutter {
   @include omega;
 }
