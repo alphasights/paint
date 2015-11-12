@@ -86,8 +86,8 @@ $include-html-paint-button: true !default;
 
 #{$all-buttons} {
   appearance: none;
-  border-radius: $global-radius;
   border: 0;
+  border-radius: $global-radius;
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;

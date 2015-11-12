@@ -153,8 +153,8 @@ $include-html-paint-form: true !default;
 
     background: color(white);
     background-image: $form-select-background !important;
-    line-height: $form-input-height;
     height: $form-input-height;
+    line-height: $form-input-height;
     overflow: hidden;
     position: relative;
 
