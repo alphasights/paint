@@ -49,6 +49,7 @@ $include-html-paint-typography: true !default;
     color: color(text);
     font-family: $base-font-family;
     font-size: $base-font-size;
+    font-weight: $font-weight-normal;
     line-height: $base-line-height;
   }
 
