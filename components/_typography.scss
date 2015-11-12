@@ -24,6 +24,7 @@ $include-html-paint-typography: true !default;
 ) {
   body {
     -webkit-font-smoothing: $body-font-smoothing;
+    text-rendering: optimizeLegibility;
   }
 
   @for $i from 1 through length($heading-tags) {
@@ -62,9 +63,8 @@ $include-html-paint-typography: true !default;
     font-style: normal;
     font-weight: $heading-font-weight;
     line-height: $heading-line-height;
-    margin-bottom: $small-spacing;
+    margin-bottom: 0;
     margin-top: 0;
-    text-rendering: $heading-font-smoothing;
 
     small {
       color: color(text, small);
@@ -114,7 +114,7 @@ $include-html-paint-typography: true !default;
     margin-bottom: $small-spacing;
 
     dt {
-      font-weight: 600;
+      font-weight: $font-weight-extrabold;
       margin-top: $small-spacing;
     }
 
