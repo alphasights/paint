@@ -68,10 +68,12 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 }
 
 %grid-row-gutter {
+  @extend %grid-row;
+
   padding-left: $column-gutter;
   padding-right: $column-gutter;
 }
 
-%grid-row-no-gutter {
+%grid-no-gutter {
   @include omega;
 }
