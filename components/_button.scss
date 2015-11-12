@@ -86,15 +86,15 @@ $include-html-paint-button: true !default;
 
 #{$all-buttons} {
   appearance: none;
-  border: 0;
   border-radius: $global-radius;
+  border: 0;
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
   font-size: $small-font-size;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: $heading-font-smoothing;
   font-weight: $font-weight-normal;
-  line-height: 1;
+  line-height: $base-line-height;
   padding: $small-spacing $base-spacing;
   text-decoration: none;
   text-transform: uppercase;
