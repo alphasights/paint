@@ -80,7 +80,7 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
 
 %grid-row-table {
   @include fill-parent;
-  @include row(table);
+  @include display-context(table);
 }
 
 %grid-row-gutter {
