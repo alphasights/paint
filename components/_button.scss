@@ -86,8 +86,8 @@ $include-html-paint-button: true !default;
 
 #{$all-buttons} {
   appearance: none;
-  border: 0;
   border-radius: $global-radius;
+  border: 0;
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
@@ -236,20 +236,43 @@ $include-html-paint-button: true !default;
 ///   </ul>
 
 %button-group {
-  // @include button-group-container;
+  @include clearfix();
 
   display: inline-block;
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
 
   &:not(:first-child) {
-    padding-left: $button-base-padding;
+    padding-left: $button-base-padding / 2;
   }
 
   > li {
-    // @include button-group-style($radius: $global-radius, $float: null);
+    display: inline-block;
+    margin: 0 -2px 0 -1px;
+
+    &:first-child {
+      &,
+      button {
+        @include border-left-radius($global-radius);
+      }
+    }
+
+    &:last-child {
+      &,
+      button {
+        @include border-right-radius($global-radius);
+      }
+
+      button {
+        border-right: solid 1px color(border);
+      }
+    }
 
     button {
       border-color: color(border);
-      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
       line-height: $button-icon-size;
       padding: 0 $button-base-padding;
 
@@ -260,10 +283,6 @@ $include-html-paint-button: true !default;
       &:not(:empty):before {
         margin-left: -$button-base-padding;
       }
-    }
-
-    &:first-child button {
-      border-left: solid 1px color(border);
     }
   }
 }
