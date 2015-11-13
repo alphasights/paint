@@ -19,8 +19,19 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
       @include span-columns($i);
     }
 
+    %#{$prefix}-#{$i}-collapsed {
+      @include span-columns($i);
+
+      margin-right: 0;
+      width: flex-grid($i, $grid-columns) + flex-gutter($grid-columns);
+
+      &:last-child {
+        width: flex-grid($i, $grid-columns);
+      }
+    }
+
     %#{$prefix}-#{$i}-centered {
-      @extend %#{$prefix}-#{$i};
+      @include span-columns($i);
 
       float: none;
       margin-left: auto;
@@ -67,13 +78,14 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   @include fill-parent;
 }
 
+%grid-row-table {
+  @include fill-parent;
+  @include row(table);
+}
+
 %grid-row-gutter {
   @extend %grid-row;
 
   padding-left: $column-gutter;
   padding-right: $column-gutter;
-}
-
-%grid-no-gutter {
-  @include omega;
 }

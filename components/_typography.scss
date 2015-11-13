@@ -25,6 +25,10 @@ $include-html-paint-typography: true !default;
   body {
     -webkit-font-smoothing: $body-font-smoothing;
     text-rendering: optimizeLegibility;
+
+    * {
+      box-sizing: border-box;
+    }
   }
 
   @for $i from 1 through length($heading-tags) {
