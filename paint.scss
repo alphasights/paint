@@ -7,7 +7,7 @@
 @import "bower_components/normalize-scss/normalize";
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
 
-/// Import core paint
+/// Import core paint and vendor resets
 
 @import 'globals/resets';
 @import 'globals/functions';
@@ -15,7 +15,7 @@
 @import 'globals/settings';
 @import 'globals/mixins';
 
-/// Import core dependencies
+/// Import core vendor dependencies
 
 @import "bower_components/neat/app/assets/stylesheets/neat";
 @import 'bower_components/fontawesome/scss/variables';
@@ -27,8 +27,8 @@
 
 @import 'components/vertical-align';
 @import 'components/icon';
-@import 'components/button';
 @import 'components/typography';
+@import 'components/button';
 @import 'components/grid';
 @import 'components/layout';
 @import 'components/navigation';
