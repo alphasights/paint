@@ -9,21 +9,21 @@ $form-multi-select-selector: '.form-multi-select' !default;
 $form-submission-action-selector: '.action' !default;
 $form-submission-action-active: '.active' !default;
 $form-submission-action-confirmation-selector: '.confirmation' !default;
-$form-confirm-border-color: transparentize($white, .65) !default;
-$form-input-background: linear-gradient(to top, transparent, rgba($black, .03)) !default;
-$form-input-background-color: $white !default;
-$form-input-border-color: darken($white, 10%) !default;
-$form-input-border-color-focused: $smoke !default;
+$form-confirm-border-color: transparentize(color(white), .65) !default;
+$form-input-background: linear-gradient(to top, transparent, rgba(color(black), .03)) !default;
+$form-input-background-color: color(white) !default;
+$form-input-border-color: darken(color(white), 10%) !default;
+$form-input-border-color-focused: color(border, dark) !default;
 $form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
 $form-input-height: $button-small-height !default;
 $form-input-padding: $form-input-height - $base-font-size !default;
-$form-input-shadow-color: rgba($black, .08) !default;
-$form-input-text-color: $small-font-color !default;
+$form-input-shadow-color: rgba(color(black), .08) !default;
+$form-input-text-color: color(text, small) !default;
 $form-input-disabled-text-color: lighten($form-input-text-color, 20%) !default;
 $form-label-height: $form-input-height;
 $form-select-arrow-size: 4px !default;
-$form-select-background: linear-gradient(to bottom, transparent, rgba($black, .03)) !default;
-$form-multi-select-icon-color: $small-font-color !default;
+$form-select-background: linear-gradient(to bottom, transparent, rgba(color(black), .03)) !default;
+$form-multi-select-icon-color: color(text, small) !default;
 $form-multi-select-icon-size: 14px !default;
 $form-multi-select-option-color: $form-input-text-color !default;
 $form-multi-select-item-border: 0 !default;
@@ -45,7 +45,7 @@ $include-html-paint-form: true !default;
   padding: 0 !important;
 
   @if $with-border {
-    background-color: lighten($panel-bg, 2%);
+    background-color: color(border, light);
     border: solid 1px color(border);
     border-radius: $global-radius;
   }
@@ -84,14 +84,14 @@ $include-html-paint-form: true !default;
     input,
     textarea,
     &#{$form-select-selector} > div {
-      @include single-transition(border-color, 150ms, linear);
-
       border-color: color(alert, light);
+      transition: border-color $global-transition-duration / 2 linear;
     }
   }
 }
 
 @mixin form-label() {
+  display: block;
   font-size: $h5-font-size;
   font-weight: $font-weight-bold;
   line-height: $form-label-height;
@@ -106,6 +106,7 @@ $include-html-paint-form: true !default;
   height: $form-input-height;
   margin-bottom: 0;
   padding: 0 $form-input-padding / 2;
+  width: 100%;
 
   &::-webkit-input-placeholder {
     color: lighten($form-input-text-color, 20%);
@@ -150,8 +151,9 @@ $include-html-paint-form: true !default;
     @include form-input-shared-properties;
     @include form-select-arrow;
 
-    background: $white;
+    background: color(white);
     background-image: $form-select-background !important;
+    height: $form-input-height;
     line-height: $form-input-height;
     overflow: hidden;
     position: relative;
@@ -163,7 +165,7 @@ $include-html-paint-form: true !default;
 
     select {
       -webkit-appearance: none;
-      background: rgba($black, 0);
+      background: rgba(color(black), 0);
       border: 0;
       border-radius: $global-radius;
       color: $form-input-text-color;
@@ -171,7 +173,7 @@ $include-html-paint-form: true !default;
       margin: 0;
       padding: 0 $form-input-padding / 2;
       position: relative;
-      text-shadow: 0 1px $white;
+      text-shadow: 0 1px color(white);
       width: 130%;
 
       &:focus {
@@ -651,7 +653,7 @@ $include-html-paint-form: true !default;
     button {
       background-color: transparent;
       border: solid 1px $form-confirm-border-color;
-      color: $white;
+      color: color(white);
 
       &:hover {
         background-color: $form-confirm-border-color;
@@ -659,7 +661,7 @@ $include-html-paint-form: true !default;
     }
 
     a {
-      color: $white;
+      color: color(white);
     }
   }
 
@@ -672,9 +674,9 @@ $include-html-paint-form: true !default;
 
 @mixin form-submission($with-border: $form-with-border, $standalone: false, $height: false) {
   @extend %grid-column-12;
-  @include single-transition(background-color, 150ms, linear);
 
   position: relative;
+  transition: background-color $global-transition-duration / 2 linear;
 
   @if $standalone == false {
     background-color: color(white);
@@ -705,9 +707,8 @@ $include-html-paint-form: true !default;
   }
 
   button {
-    @include single-transition(background-color, 150ms, linear);
-
     margin-bottom: 0 !important;
+    transition: background-color $global-transition-duration / 2 linear;
 
     &[type='submit'] {
       @extend %button-primary;
@@ -794,15 +795,17 @@ $include-html-paint-form: true !default;
   box-shadow: 0 1px 1px $form-input-shadow-color;
   color: $form-input-text-color;
   height: auto;
-  text-shadow: 0 1px $white;
+  text-shadow: 0 1px color(white);
 
   &:hover {
-    box-shadow: 0 1px 2px rgba($black, .1);
+    box-shadow: 0 1px 2px rgba(color(black), .1);
   }
 
-  &:focus {
-    background-color: $white;
+  &:focus,
+  > *:focus, {
+    background-color: color(white);
     background-image: none;
+    outline: none;
   }
 
   &:disabled,

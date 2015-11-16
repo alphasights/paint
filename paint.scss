@@ -4,33 +4,44 @@
 
 /// Import dependencies
 
-@import 'bower_components/foundation/scss/foundation/functions';
+@import "bower_components/normalize-scss/normalize";
+@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
 
+/// Import core paint and vendor resets
+
+@import 'globals/resets';
 @import 'globals/functions';
+@import 'components/color';
 @import 'globals/settings';
-
-@import 'bower_components/foundation/scss/normalize';
-@import 'bower_components/foundation/scss/foundation';
-@import 'bower_components/fontawesome/scss/font-awesome';
-
 @import 'globals/mixins';
 
-@import 'components/color';
+/// Import core vendor dependencies
+
+@import "bower_components/neat/app/assets/stylesheets/neat";
+@import 'bower_components/fontawesome/scss/variables';
+@import 'bower_components/fontawesome/scss/path';
+@import 'bower_components/fontawesome/scss/mixins';
+@import 'bower_components/fontawesome/scss/icons';
+
+/// Import base components
+
+@import 'components/vertical-align';
+@import 'components/icon';
+@import 'components/typography';
 @import 'components/button';
 @import 'components/grid';
-@import 'components/typography';
-@import 'components/icon';
-@import 'components/notification';
-@import 'components/label';
 @import 'components/layout';
-@import 'components/layout-deprecated';
 @import 'components/navigation';
-@import 'components/table';
-@import 'components/progress-bar';
-@import 'components/side-panel';
-@import 'components/vertical-align';
+
+/// Import components
+
+@import 'components/notification';
 @import 'components/form';
 @import 'components/dropdown';
+@import 'components/side-panel';
+@import 'components/label';
+@import 'components/table';
+@import 'components/progress-bar';
 @import 'components/quick-jump';
 @import 'components/panel';
 @import 'components/flip-panel';

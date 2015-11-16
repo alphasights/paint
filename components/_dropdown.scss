@@ -48,7 +48,7 @@ $dropdown-search-icon-size: dropdown-settings(search, icon-size);
 $dropdown-search-results-height: dropdown-settings(search, results-height);
 $dropdown-link-hover-background-color: dropdown-settings(hover-background-color);
 
-@mixin dropdown-triangle($size, $color, $direction) {
+@mixin dropdown-triangle($size, $color, $direction, $adjust: 0) {
   $background-color: if(length($color) == 2, nth($color, 2), transparent);
   $foreground-color: nth($color, 1);
   $height: nth($size, length($size));
@@ -67,7 +67,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
       border-bottom: $height solid $foreground-color;
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
-      left: $size;
+      left: ($size - $adjust);
       top: - $size / 2;
 
     } @else if $direction == left {
@@ -75,22 +75,36 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
       border-left: $height solid $foreground-color;
       border-top: $width solid $background-color;
       right: - $size / 2;
-      top: $size / 2;
+      top: ($size - $adjust);
 
     } @else if $direction == top {
       border-left: $width solid $background-color;
       border-right: $width solid $background-color;
       border-top: $height solid $foreground-color;
       bottom: - $size / 2;
-      left: $size;
+      left: ($size - $adjust);
 
     } @else if $direction == right {
       border-bottom: $width solid $background-color;
       border-right: $height solid $foreground-color;
       border-top: $width solid $background-color;
       left: - $size / 2;
-      top: $size / 2;
+      top: ($size / 2 - $adjust);
     }
+  }
+}
+
+@mixin dropdown-triangle-shade($size: 12px, $direction: bottom, $color: color(border) color(white), $adjust: 3px) {
+  $foreground-color: if(length($color) == 2, nth($color, 2), transparent);
+  $background-color: nth($color, 1);
+  $background-size: ($size + $adjust);
+
+  &:before {
+    @include dropdown-triangle($background-size, $background-color, $direction, ($adjust + 1px));
+  }
+
+  &:after {
+    @include dropdown-triangle($size, $foreground-color, $direction);
   }
 }
 
@@ -120,12 +134,10 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
 
   @each $direction, $properties in $directions {
     &.#{$direction} {
+      @include dropdown-triangle-shade($direction: $direction);
+
       @each $property, $value in $properties {
         #{$property}: #{$value};
-      }
-
-      &:before {
-        @include dropdown-triangle(12px, $white, $direction);
       }
     }
 
@@ -133,9 +145,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
   }
 
   &#{$other-directions-string} {
-    &:before {
-      @include dropdown-triangle(12px, $white, bottom);
-    }
+    @include dropdown-triangle-shade(bottom);
   }
 }
 
@@ -165,6 +175,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
         @include icon(search);
 
         color: color(primary);
+        display: block;
         line-height: dropdown-settings(search, icon-size);
       }
     }
@@ -172,6 +183,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
     > input {
       @include form-input;
 
+      display: block;
       height: dropdown-settings(search, icon-size);
       line-height: dropdown-settings(search, icon-size);
       margin: dropdown-settings(search, padding-inner) * 2 0;
