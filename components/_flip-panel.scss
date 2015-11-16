@@ -169,7 +169,7 @@ $include-html-paint-flip-panel: true !default;
       }
 
       span {
-        border-top: 1px solid $global-section-border-color;
+        border-top: 1px solid color(border);
         display: block;
         font-weight: $font-weight-bold;
         line-height: flip-panel-settings(footer-height);
@@ -181,7 +181,7 @@ $include-html-paint-flip-panel: true !default;
       > section {
         @extend %grid-row;
 
-        border-top: 1px solid $global-section-border-color;
+        border-top: 1px solid color(border);
         padding: $column-gutter / 4 $column-gutter / 2;
       }
     }
@@ -208,7 +208,7 @@ $include-html-paint-flip-panel: true !default;
     z-index: 200;
 
     > header > * {
-      color: panel-settings(styles, $style);
+      color: contrast(color(white), panel-settings(styles, $style), color(text, small));
       font-weight: $font-weight-extrabold !important;
     }
 

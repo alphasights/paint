@@ -1,3 +1,15 @@
+$modules: () !default;
+
+@mixin exports($name) {
+  $modules: $modules !global;
+  $module-index: index($modules, $name);
+
+  @if (($module-index == null) or ($module-index == false)) {
+    $modules: append($modules, $name) !global;
+    @content;
+  }
+}
+
 @function map-set($map, $keys, $value) {
   $maps: ($map,);
   $result: null;
@@ -71,6 +83,19 @@
   @return map-extend($default-map, $settings-map, true);
 }
 
+@function lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range, 1);
+}
+
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
 
 @function brightness($color) {
   @return ((red($color) * .229) + (green($color) * .499) + (blue($color) * .199)) / 255 * 100%;
@@ -78,8 +103,8 @@
 
 @function contrast(
   $color,
-  $dark: $small-font-color,
-  $light: $white
+  $dark: #333333,
+  $light: #ffffff
 ) {
   $color-brightness: brightness($color);
   $dark-text-brightness: brightness($dark);

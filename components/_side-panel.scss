@@ -16,11 +16,11 @@ $side-panel-default-settings: (
   actions-bar: (
     background-color: #e1e5ea,
     button-size: 35px,
-    height: rem-calc(60)
+    height: rem(60)
   ),
 
   footer-bar: (
-    height: rem-calc(90)
+    height: rem(90)
   ),
 
   actions: (
@@ -129,7 +129,7 @@ $include-html-paint-side-panel: true !default;
     }
 
     > footer {
-      border-top: solid 1px $global-section-border-color;
+      border-top: solid 1px color(border);
       bottom: 0;
       height: side-panel-settings(footer-bar, height);
       left: 0;

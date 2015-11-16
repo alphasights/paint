@@ -2,8 +2,12 @@
   display: table !important;
 
   > * {
-    display: table-cell;
+    display: table-cell !important;
     float: none !important;
-    vertical-align: middle;
+
+    &,
+    > * {
+      vertical-align: middle;
+    }
   }
 }

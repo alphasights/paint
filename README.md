@@ -17,7 +17,7 @@ Let's have a look at how the button component is implemented.
 @import "icon";
 
 // We expose configuration options by declaring default settings
-$button-base-background-color: $white !default;
+$button-base-background-color: color(white) !default;
 $button-base-text-color: $jumbo !default;
 $button-icon-size: 28px !default;
 $button-primary-background-color: #008fd9 !default;

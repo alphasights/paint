@@ -5,81 +5,121 @@
 /// @author @deioo
 ////
 
-$include-html-classes: false;
-$include-html-form-classes: true;
-$include-html-global-classes: true;
-$include-html-type-classes: true;
-$include-html-tooltip-classes: true;
+/// Neat
+
+$max-width: 100%;
+$grid-columns: 12;
+$column-gutter: 1.5rem;
+
+/// Media
+
+$small-breakpoint:  em(640) !default;
+$medium-breakpoint: em(1024) !default;
+$large-breakpoint:  em(1440) !default;
+$xlarge-breakpoint: em(1920) !default;
+
+$small-range:   (0, $small-breakpoint) !default;
+$medium-range:  ($small-breakpoint  + em(1), $medium-breakpoint) !default;
+$large-range:   ($medium-breakpoint + em(1), $large-breakpoint) !default;
+$xlarge-range:  ($large-breakpoint  + em(1), $xlarge-breakpoint) !default;
+$xxlarge-range: ($xlarge-breakpoint + em(1), em(99999999)) !default;
+
+$screen: 'only screen' !default;
+
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+$small-up: $screen !default;
+$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})" !default;
+
+$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})" !default;
+$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})" !default;
+$medium-down: "#{$screen} and (max-width:#{upper-bound($medium-range)})" !default;
+
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})" !default;
+$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})" !default;
+$large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
+
+$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})" !default;
+$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})" !default;
+$xlarge-down: "#{$screen} and (max-width:#{upper-bound($xlarge-range)})" !default;
+
+$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})" !default;
+$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})" !default;
+
+$retina: (
+ "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+ "#{$screen} and (min--moz-device-pixel-ratio: 2)",
+ "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+ "#{$screen} and (min-device-pixel-ratio: 2)",
+ "#{$screen} and (min-resolution: 192dpi)",
+ "#{$screen} and (min-resolution: 2dppx)"
+) !default;
+
+$small: $medium-up !default;
+$medium: $medium-up !default;
+$large: $large-up !default;
+
+/// Bourbon / Globals
+
+$global-radius: 4px !default;
+$global-overlay-background-color: rgba(0, 0, 0, .45) !default;
+
+// Typography
+
+$base-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+$heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+
+$font-weight-normal: 300 !default;
+$font-weight-bold: 400 !default;
+$font-weight-extrabold: 600 !default;
+
+$heading-font-weight: $font-weight-normal !default;
+$heading-line-height: 2 !default;
+
+// Font Sizes
+$base-font-size: 14px !default;
+$small-font-size: 80% !default;
+$tiny-font-size: 70% !default;
+
+// Line height
+$base-line-height: 1.5 !default;
+$heading-line-height: 1.5 !default;
+
+$body-font-smoothing: subpixel-antialiased !default;
+$heading-font-smoothing: antialiased !default;
+
+$paragraph-font-weight: $font-weight-normal !default;
+
+// Other Sizes
+$global-radius: 3px !default;
+$base-spacing: $base-line-height * 1em !default;
+$small-spacing: $base-spacing / 2 !default;
+$base-z-index: 0 !default;
+
+$h1-font-size: 1.75rem !default;
+$h2-font-size: 1.375rem !default;
+$h3-font-size: 1.125rem !default;
+$h4-font-size: 1rem !default;
+$h5-font-size: .875rem !default;
+$h6-font-size: .8rem !default;
+
+$h1-font-reduction: rem(7) !default;
+$h2-font-reduction: rem(7) !default;
+$h3-font-reduction: rem(3) !default;
+$h4-font-reduction: rem(3) !default;
+$h5-font-reduction: 0 !default;
+$h6-font-reduction: 0 !default;
+
+/// Path settings
 
 $icon-font-folder-path: '/assets/fonts' !default;
 $fa-font-path: $icon-font-folder-path;
 
 $images-path: '/assets/images' !default;
 
-$global-radius: 4px !default;
-$global-section-border-color: #ececec !default;
-$global-overlay-background-color: rgba(0, 0, 0, .45) !default;
-
-// Visibility
-
-$include-html-visibility-classes: true;
-$include-legacy-visibility-classes: true;
-$include-accessibility-classes: false;
-$include-table-visibility-classes: false;
-
-// Grid
-
-$row-width: 100% !default;
-
-// Deprecated color calls - will be removed starting v0.9.x
-
-$primary-color: #f36b09 !default;
-$secondary-color: #a42524 !default;
-$alert-color: #ff7f7d !default;
-$alert-function-factor: -20% !default;
-$anchor-font-color: #1082e4 !default;
-$small-font-color: #888888 !default;
-$warning-color: #ffcc7a !default;
-
-// Fonts
-
-$body-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$font-weight-normal: 300 !default;
-$font-weight-bold: 400 !default;
-$font-weight-extrabold: 600 !default;
-
-$base-font-size: 14px !default;
-$rem-base: 16px !default;
-$base-line-height: 2 !default;
-$small-font-size: 80% !default;
-
-$body-font-smoothing: subpixel-antialiased !default;
-$header-font-smoothing: antialiased !default;
-
-$paragraph-font-weight: $font-weight-normal !default;
-
-// Headers
-
-$header-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$header-font-weight: $font-weight-normal !default;
-$header-line-height: 2 !default;
-
-$h1-font-size: 2.25rem !default;
-$h2-font-size: 1.75rem !default;
-$h3-font-size: 1.375rem !default;
-$h4-font-size: 1.125rem !default;
-$h5-font-size: 1rem !default;
-$h6-font-size: .875rem !default;
-
 // Misc
 
 $global-transition-easing: cubic-bezier(.78, .01, .27, 1);
 $global-transition-duration: .325s;
-
-// Code
-
-$code-color: inherit !default;
-$code-background-color: inherit !default;
-$code-border-size: 0 !default;
-$code-border-style: solid !default;
-$code-border-color: inherit !default;
+$global-rounded: 1000px;

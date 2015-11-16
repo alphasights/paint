@@ -1,10 +1,8 @@
 ////
 /// Buttons Component
 /// @group button
-/// @since v0.8.29
+/// @since v0.9.0
 ////
-
-@import 'icon';
 
 $button-base-background-color: color(white) !default;
 $button-base-text-color: color(gray, jumbo) !default;
@@ -72,7 +70,6 @@ $include-html-paint-button: true !default;
 /// @access private
 
 %button-icon {
-  margin-bottom: 0;
   padding: 0;
 
   &:before {
@@ -82,16 +79,51 @@ $include-html-paint-button: true !default;
   }
 }
 
+/// Button resets
+
+#{$all-buttons} {
+  appearance: none;
+  border: 0;
+  border-radius: $global-radius;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $small-font-size;
+  -webkit-font-smoothing: $heading-font-smoothing;
+  font-weight: $font-weight-normal;
+  line-height: $base-line-height;
+  padding: $small-spacing $base-spacing;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color $global-transition-duration / 2 ease;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: color(border, light);
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+
+    &:hover {
+      background-color: color(border);
+    }
+  }
+}
+
 /// Default button styles
 
 %button {
-  @include button-base;
-  @include single-transition(color, 150ms, ease);
-
   background-color: $button-base-background-color;
   border: 1px solid lighten($button-base-text-color, 20%);
   border-radius: $global-radius;
   color: $button-base-text-color;
+  transition: color $global-transition-duration / 2 ease;
 
   &:hover,
   &:focus {
@@ -116,18 +148,12 @@ $include-html-paint-button: true !default;
   $bg: color(white),
   $color: color(primary)
 ) {
-  @include button(
-    $bg: $bg,
-    $radius: $global-radius,
-    $bg-hover: $color,
-    $border-color: $color
-  );
-
+  background-color: $bg;
+  border-radius: $global-radius;
   border: 1px solid $color;
   color: $color;
   font-size: $small-font-size;
   font-weight: $font-weight-bold;
-  margin-bottom: 0;
   padding: $button-base-padding;
   text-transform: uppercase;
 
@@ -206,20 +232,43 @@ $include-html-paint-button: true !default;
 ///   </ul>
 
 %button-group {
-  @include button-group-container;
+  @include clearfix();
 
   display: inline-block;
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
 
   &:not(:first-child) {
-    padding-left: $button-base-padding;
+    padding-left: $button-base-padding / 2;
   }
 
   > li {
-    @include button-group-style($radius: $global-radius, $float: null);
+    display: inline-block;
+    margin: 0 -2px 0 -1px;
+
+    &:first-child {
+      &,
+      button {
+        @include border-left-radius($global-radius);
+      }
+    }
+
+    &:last-child {
+      &,
+      button {
+        @include border-right-radius($global-radius);
+      }
+
+      button {
+        border-right: solid 1px color(border);
+      }
+    }
 
     button {
       border-color: color(border);
-      border-left: 0;
+      border-radius: 0;
+      border-right: 0;
       line-height: $button-icon-size;
       padding: 0 $button-base-padding;
 
@@ -230,10 +279,6 @@ $include-html-paint-button: true !default;
       &:not(:empty):before {
         margin-left: -$button-base-padding;
       }
-    }
-
-    &:first-child button {
-      border-left: solid 1px color(border);
     }
   }
 }

@@ -4,11 +4,11 @@ $quick-jump-default-settings: (
     background-color: #e1e5ea,
     active-background-color: color(white),
     icon-size: $button-icon-size,
-    height: $layout-sidebar-header-height
+    height: navigation-settings(height)
   ),
   results: (
     background-color: color(gray, white-smoke),
-    item-height: rem-calc(50)
+    item-height: rem(50)
   ),
   actions: (
     navigation: (
@@ -46,8 +46,6 @@ $include-html-paint-quick-jump: true !default;
 
     > div,
     > .icon {
-      @include single-transition(all, 150ms, linear);
-
       border-radius: $global-rounded;
       color: color(primary);
       height: quick-jump-settings(bar, icon-size);
@@ -55,6 +53,7 @@ $include-html-paint-quick-jump: true !default;
       position: absolute;
       text-align: center;
       top: (quick-jump-settings(bar, height) - quick-jump-settings(bar, icon-size)) / 2;
+      transition: all $global-transition-duration / 2 linear;
       width: quick-jump-settings(bar, icon-size);
 
       i {
@@ -69,15 +68,18 @@ $include-html-paint-quick-jump: true !default;
       $icon-size: quick-jump-settings(bar, icon-size);
       $input-left-padding: $icon-size * 1.15;
 
-      @include single-transition(all, 150ms, linear);
-
       background-color: transparent;
       border: 0;
       box-shadow: none;
       display: inline-block;
       margin: 0;
       text-indent: $input-left-padding;
+      transition: all $global-transition-duration / 2 linear;
       width: 100%;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -128,7 +130,7 @@ $include-html-paint-quick-jump: true !default;
 %quick-jump-actions-section {
   $actions-button-size: quick-jump-settings(bar, icon-size);
 
-  padding: 0 $column-gutter / 2;
+  padding: 0 $column-gutter;
   position: absolute;
   right: 0;
   text-align: right;
@@ -142,8 +144,8 @@ $include-html-paint-quick-jump: true !default;
 
       background-color: transparent;
       border: 0;
-      margin-bottom: 0;
-      min-height: $actions-button-size;
+      height: $actions-button-size;
+      padding: 0;
     }
   }
 
@@ -159,10 +161,9 @@ $include-html-paint-quick-jump: true !default;
 %quick-jump-results {
   $background-color: quick-jump-settings(results, background-color);
 
-  @include single-transition(opacity, 150ms, linear);
-
   background-color: $background-color;
   position: relative;
+  transition: opacity $global-transition-duration / 2 linear;
   width: 100%;
 
   section {
@@ -209,7 +210,7 @@ $include-html-paint-quick-jump: true !default;
       }
 
       .title {
-        color: $body-font-color;
+        color: color(text);
         line-height: quick-jump-settings(results, item-height);
       }
     }
@@ -218,7 +219,7 @@ $include-html-paint-quick-jump: true !default;
   .empty-message {
     height: quick-jump-settings(bar, height);
     line-height: quick-jump-settings(bar, height);
-    padding-left: $column-gutter + rem-calc(quick-jump-settings(bar, icon-size));
+    padding-left: $column-gutter + rem(quick-jump-settings(bar, icon-size));
   }
 }
 
@@ -240,7 +241,7 @@ $include-html-paint-quick-jump: true !default;
     @extend %grid-column-small-12;
     @extend %grid-column-large-8;
 
-    color: $small-font-color;
+    color: color(text, small);
   }
 }
 
