@@ -63,7 +63,7 @@ $label: map-merge-settings($label-default-settings, $label);
 
 @mixin label-style($color: label-settings(styles, base)) {
   background-color: $color;
-  color: contrast($color);
+  color: contrast($color, color(text, small));
 }
 
 /// Generates font size from label settings
