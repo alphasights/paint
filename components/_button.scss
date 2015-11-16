@@ -72,7 +72,6 @@ $include-html-paint-button: true !default;
 /// @access private
 
 %button-icon {
-  margin-bottom: 0;
   padding: 0;
 
   &:before {
@@ -157,7 +156,6 @@ $include-html-paint-button: true !default;
   color: $color;
   font-size: $small-font-size;
   font-weight: $font-weight-bold;
-  margin-bottom: 0;
   padding: $button-base-padding;
   text-transform: uppercase;
 

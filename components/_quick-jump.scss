@@ -76,6 +76,10 @@ $include-html-paint-quick-jump: true !default;
       text-indent: $input-left-padding;
       transition: all $global-transition-duration / 2 linear;
       width: 100%;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -126,7 +130,7 @@ $include-html-paint-quick-jump: true !default;
 %quick-jump-actions-section {
   $actions-button-size: quick-jump-settings(bar, icon-size);
 
-  padding: 0 $column-gutter / 2;
+  padding: 0 $column-gutter;
   position: absolute;
   right: 0;
   text-align: right;
@@ -140,8 +144,8 @@ $include-html-paint-quick-jump: true !default;
 
       background-color: transparent;
       border: 0;
-      margin-bottom: 0;
-      min-height: $actions-button-size;
+      height: $actions-button-size;
+      padding: 0;
     }
   }
 
