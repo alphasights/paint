@@ -63,17 +63,17 @@ $large: $large-up !default;
 /// Bourbon / Globals
 
 $global-radius: 4px !default;
-$global-section-border-color: #ececec !default;
 $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
 
 // Typography
+
 $base-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+$heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 
 $font-weight-normal: 300 !default;
 $font-weight-bold: 400 !default;
 $font-weight-extrabold: 600 !default;
 
-$heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $heading-font-weight: $font-weight-normal !default;
 $heading-line-height: 2 !default;
 
@@ -111,41 +111,12 @@ $h4-font-reduction: rem(3) !default;
 $h5-font-reduction: 0 !default;
 $h6-font-reduction: 0 !default;
 
-/// deprecate!
-
-$header-font-smoothing: $heading-font-smoothing;
-
-/// Foundation
+/// Path settings
 
 $icon-font-folder-path: '/assets/fonts' !default;
 $fa-font-path: $icon-font-folder-path;
 
 $images-path: '/assets/images' !default;
-
-// Visibility
-
-$include-html-visibility-classes: true;
-$include-legacy-visibility-classes: true;
-
-// Deprecated color calls - will be removed starting v0.9.x
-
-$primary-color: #f36b09 !default;
-$secondary-color: #a42524 !default;
-$alert-color: #ff7f7d !default;
-$alert-function-factor: -20% !default;
-$anchor-font-color: #1082e4 !default;
-$small-font-color: #888888 !default;
-$warning-color: #ffcc7a !default;
-
-// Fonts
-
-// $rem-base: 16px !default;
-
-// Headers
-
-$header-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$header-font-weight: $font-weight-normal !default;
-$header-line-height: 2 !default;
 
 // Misc
 
