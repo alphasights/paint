@@ -241,7 +241,7 @@ $include-html-paint-quick-jump: true !default;
     @extend %grid-column-small-12;
     @extend %grid-column-large-8;
 
-    color: $small-font-color;
+    color: color(text, small);
   }
 }
 
