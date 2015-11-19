@@ -128,17 +128,20 @@ $include-html-paint-form: true !default;
     width: auto !important;
   }
 
-  min-height: $form-input-height * 2;
+  min-height: $form-input-height;
+
+  label,
+  #{$inner-wrapper} {
+    display: inline-block;
+    line-height: $form-input-height;
+  }
 
   label {
-    display: inline-block;
     margin-#{$label-margin-direction}: $column-gutter / 2;
   }
 
   #{$inner-wrapper} {
-    display: inline-block;
     float: $float;
-    line-height: $form-input-height;
   }
 }
 
@@ -845,7 +848,7 @@ $include-html-paint-form: true !default;
             @include form-label;
           }
 
-          input {
+          input:not([type='checkbox']) {
             @include form-input;
           }
 
