@@ -197,11 +197,6 @@ $include-html-paint-side-panel: true !default;
       @extend %button-group;
 
       line-height: inherit !important;
-
-      > li {
-        float: left;
-        margin: 0 !important;
-      }
     }
   }
 

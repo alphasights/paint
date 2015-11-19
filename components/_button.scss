@@ -247,24 +247,6 @@ $include-html-paint-button: true !default;
     display: inline-block;
     margin: 0 -2px 0 -1px;
 
-    &:first-child {
-      &,
-      button {
-        @include border-left-radius($global-radius);
-      }
-    }
-
-    &:last-child {
-      &,
-      button {
-        @include border-right-radius($global-radius);
-      }
-
-      button {
-        border-right: solid 1px color(border);
-      }
-    }
-
     button {
       border-color: color(border);
       border-radius: 0;
@@ -280,6 +262,29 @@ $include-html-paint-button: true !default;
         margin-left: -$button-base-padding;
       }
     }
+
+    &:first-child {
+      margin-left: 0;
+
+      &,
+      button {
+        @include border-left-radius($global-radius);
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      &,
+      button {
+        @include border-right-radius($global-radius);
+      }
+
+      button {
+        border-right: solid 1px color(border);
+      }
+    }
+
   }
 }
 
