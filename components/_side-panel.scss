@@ -2,6 +2,7 @@ $side-panel: () !default;
 $side-panel-default-settings: (
   size: (
     small: 100%,
+    full-size: 95%,
     medium: 45em,
     large: 75em,
     xlarge: 90em,
@@ -10,6 +11,7 @@ $side-panel-default-settings: (
 
   scale-ratio: (
     small: 1,
+    full-size: 1,
     large: .5
   ),
 
@@ -51,6 +53,8 @@ $include-html-paint-side-panel: true !default;
 
   @if ($size == small or $size == medium) {
     $ratio: side-panel-settings(scale-ratio, small);
+  } @else if ($size == full-size) {
+    $ratio: side-panel-settings(scale-ratio, full-size);
   }
 
   @if $scaled {
@@ -86,7 +90,7 @@ $include-html-paint-side-panel: true !default;
   }
 }
 
-@mixin side-panel($overlay: true, $scaled: false) {
+@mixin side-panel($overlay: true, $scaled: false, $full-size: false) {
   @if $overlay {
     @include overlay($position: fixed, $z-index: 200);
   }
@@ -148,28 +152,38 @@ $include-html-paint-side-panel: true !default;
     }
   }
 
-  @media #{$small-only} {
-    @include side-panel-size(small, $scaled);
-  }
-
-  @media #{$medium-only} {
-    @include side-panel-size(medium, $scaled);
-  }
-
-  @media #{$large-only} {
-    @include side-panel-size(large, $scaled);
-  }
-
-  @media #{$xlarge-only} {
-    @include side-panel-size(xlarge, $scaled);
-  }
-
-  @media #{$xxlarge-up} {
-    @include side-panel-size(xxlarge, $scaled);
-  }
-
   > .main {
     z-index: 1;
+  }
+
+  @if $full-size {
+    @media #{$small-only} {
+      @include side-panel-size(small, $scaled: true);
+    }
+
+    @media #{$medium-up} {
+      @include side-panel-size(full-size, $scaled);
+    }
+  } @else {
+    @media #{$small-only} {
+      @include side-panel-size(small, $scaled);
+    }
+
+    @media #{$medium-only} {
+      @include side-panel-size(medium, $scaled);
+    }
+
+    @media #{$large-only} {
+      @include side-panel-size(large, $scaled);
+    }
+
+    @media #{$xlarge-only} {
+      @include side-panel-size(xlarge, $scaled);
+    }
+
+    @media #{$xxlarge-up} {
+      @include side-panel-size(xxlarge, $scaled);
+    }
   }
 }
 
