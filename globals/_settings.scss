@@ -7,9 +7,9 @@
 
 /// Neat
 
-$max-width: 100%;
-$grid-columns: 12;
-$column-gutter: 1.5rem;
+$max-width: 100% !default;
+$grid-columns: 12 !default;
+$column-gutter: 1.5rem !default;
 
 /// Media
 
@@ -73,12 +73,11 @@ $heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $font-weight-normal: 300 !default;
 $font-weight-bold: 400 !default;
 $font-weight-extrabold: 600 !default;
-
 $heading-font-weight: $font-weight-normal !default;
-$heading-line-height: 2 !default;
 
 // Font Sizes
 $base-font-size: 14px !default;
+$em-base: $base-font-size !default;
 $small-font-size: 80% !default;
 $tiny-font-size: 70% !default;
 
