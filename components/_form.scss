@@ -611,7 +611,7 @@ $include-html-paint-form: true !default;
     #{$actions-selector} {
       height: $form-input-height;
       margin-right: $form-multi-select-icon-size;
-      opacity: 0.2;
+      opacity: .2;
       position: absolute;
       right: $form-multi-select-icon-size;
       text-align: right;
