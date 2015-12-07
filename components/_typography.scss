@@ -45,6 +45,10 @@ $include-html-paint-typography: true !default;
 }
 
 @mixin typography-resets {
+  html {
+    font-size: $rem-base;
+  }
+
   body {
     color: color(text);
     font-family: $base-font-family;

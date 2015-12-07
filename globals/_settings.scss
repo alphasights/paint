@@ -73,11 +73,12 @@ $heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
 $font-weight-normal: 300 !default;
 $font-weight-bold: 400 !default;
 $font-weight-extrabold: 600 !default;
+
 $heading-font-weight: $font-weight-normal !default;
 
 // Font Sizes
-$base-font-size: 14px !default;
-$em-base: $base-font-size !default;
+$rem-base: 14px !default;
+$base-font-size: $rem-base !default;
 $small-font-size: 80% !default;
 $tiny-font-size: 70% !default;
 
