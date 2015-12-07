@@ -498,7 +498,7 @@ $include-html-paint-form: true !default;
 
     float: right;
     font-size: $small-font-size;
-    line-height: $form-input-height;
+    line-height: $form-input-height !important;
     margin-left: $column-gutter / 2;
   }
 }
@@ -590,16 +590,6 @@ $include-html-paint-form: true !default;
     @include form-multi-checkbox-icon(angle-up);
   }
 
-  &#{$has-items-selector} > #{$control} {
-    @include form-multi-checkbox-icon(check);
-  }
-
-  &:hover {
-    #{$actions-selector} {
-      display: block;
-    }
-  }
-
   #{$options-selector} {
     @include form-multi-checkbox-options(
       $options: $options,
@@ -611,11 +601,17 @@ $include-html-paint-form: true !default;
   }
 
   @if $actions-selector {
+    &:hover,
+    &#{$is-open-selector} {
+      #{$actions-selector} {
+        opacity: 1;
+      }
+    }
+
     #{$actions-selector} {
-      display: none;
       height: $form-input-height;
-      line-height: $form-input-height;
       margin-right: $form-multi-select-icon-size;
+      opacity: 0.2;
       position: absolute;
       right: $form-multi-select-icon-size;
       text-align: right;
@@ -625,8 +621,8 @@ $include-html-paint-form: true !default;
       &,
       > * {
         color: $form-multi-select-icon-color;
+        line-height: $form-input-height !important;
       }
-
 
       @each $action, $icon in $actions {
         .#{$action} {
@@ -637,6 +633,10 @@ $include-html-paint-form: true !default;
           }
         }
       }
+    }
+  } @else {
+    &#{$has-items-selector} > #{$control} {
+      @include form-multi-checkbox-icon(check);
     }
   }
 }
