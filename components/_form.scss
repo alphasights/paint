@@ -498,7 +498,7 @@ $include-html-paint-form: true !default;
 
     float: right;
     font-size: $small-font-size;
-    line-height: $form-input-height;
+    line-height: $form-input-height !important;
     margin-left: $column-gutter / 2;
   }
 }
@@ -551,13 +551,17 @@ $include-html-paint-form: true !default;
   $is-open-selector: '.is-open',
   $has-items-selector: '.has-value',
   $is-focused-selector: '.is-focused',
-  $is-checked-selector: '.is-checked'
+  $is-checked-selector: '.is-checked',
+  $actions-selector: '.actions',
+  $actions: (
+    remove: trash alert
+  )
 ) {
   position: relative;
 
   #{$control} {
     @include form-input;
-    @include form-multi-checkbox-icon(plus);
+    @include form-multi-checkbox-icon(angle-down);
 
     background-color: $form-input-background-color;
     display: block;
@@ -582,8 +586,8 @@ $include-html-paint-form: true !default;
     border-color: $form-input-border-color-focused;
   }
 
-  &#{$has-items-selector} > #{$control} {
-    @include form-multi-checkbox-icon(check);
+  &#{$is-open-selector} > #{$control} {
+    @include form-multi-checkbox-icon(angle-up);
   }
 
   #{$options-selector} {
@@ -594,6 +598,46 @@ $include-html-paint-form: true !default;
       $is-focused-selector: $is-focused-selector,
       $is-checked-selector: $is-checked-selector
     );
+  }
+
+  @if $actions-selector {
+    &:hover,
+    &#{$is-open-selector} {
+      #{$actions-selector} {
+        opacity: 1;
+      }
+    }
+
+    #{$actions-selector} {
+      height: $form-input-height;
+      margin-right: $form-multi-select-icon-size;
+      opacity: .2;
+      position: absolute;
+      right: $form-multi-select-icon-size;
+      text-align: right;
+      text-shadow: none;
+      top: 0;
+
+      &,
+      > * {
+        color: $form-multi-select-icon-color;
+        line-height: $form-input-height !important;
+      }
+
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon(nth($icon, 1));
+
+          &:hover {
+            color: color(nth($icon, 2));
+          }
+        }
+      }
+    }
+  } @else {
+    &#{$has-items-selector} > #{$control} {
+      @include form-multi-checkbox-icon(check);
+    }
   }
 }
 
