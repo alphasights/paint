@@ -552,7 +552,10 @@ $include-html-paint-form: true !default;
   $has-items-selector: '.has-value',
   $is-focused-selector: '.is-focused',
   $is-checked-selector: '.is-checked',
-  $actions-selector: '.actions'
+  $actions-selector: '.actions',
+  $actions: (
+    remove: trash alert
+  )
 ) {
   position: relative;
 
@@ -607,27 +610,32 @@ $include-html-paint-form: true !default;
     );
   }
 
-  #{$actions-selector} {
-    display: none;
-    height: $form-input-height;
-    line-height: $form-input-height;
-    margin-right: $form-multi-select-icon-size;
-    position: absolute;
-    right: $form-multi-select-icon-size;
-    text-align: right;
-    text-shadow: none;
-    top: 0;
+  @if $actions-selector {
+    #{$actions-selector} {
+      display: none;
+      height: $form-input-height;
+      line-height: $form-input-height;
+      margin-right: $form-multi-select-icon-size;
+      position: absolute;
+      right: $form-multi-select-icon-size;
+      text-align: right;
+      text-shadow: none;
+      top: 0;
 
-    &,
-    > * {
-      color: $form-multi-select-icon-color;
-    }
+      &,
+      > * {
+        color: $form-multi-select-icon-color;
+      }
 
-    .remove {
-      @include button-icon(trash-o);
 
-      &:hover {
-        color: color(alert);
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon(nth($icon, 1));
+
+          &:hover {
+            color: color(nth($icon, 2));
+          }
+        }
       }
     }
   }
