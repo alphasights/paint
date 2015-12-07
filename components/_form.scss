@@ -551,13 +551,14 @@ $include-html-paint-form: true !default;
   $is-open-selector: '.is-open',
   $has-items-selector: '.has-value',
   $is-focused-selector: '.is-focused',
-  $is-checked-selector: '.is-checked'
+  $is-checked-selector: '.is-checked',
+  $actions-selector: '.actions'
 ) {
   position: relative;
 
   #{$control} {
     @include form-input;
-    @include form-multi-checkbox-icon(plus);
+    @include form-multi-checkbox-icon(angle-down);
 
     background-color: $form-input-background-color;
     display: block;
@@ -582,8 +583,18 @@ $include-html-paint-form: true !default;
     border-color: $form-input-border-color-focused;
   }
 
+  &#{$is-open-selector} > #{$control} {
+    @include form-multi-checkbox-icon(angle-up);
+  }
+
   &#{$has-items-selector} > #{$control} {
     @include form-multi-checkbox-icon(check);
+  }
+
+  &:hover {
+    #{$actions-selector} {
+      display: block;
+    }
   }
 
   #{$options-selector} {
@@ -594,6 +605,31 @@ $include-html-paint-form: true !default;
       $is-focused-selector: $is-focused-selector,
       $is-checked-selector: $is-checked-selector
     );
+  }
+
+  #{$actions-selector} {
+    display: none;
+    height: $form-input-height;
+    line-height: $form-input-height;
+    margin-right: $form-multi-select-icon-size;
+    position: absolute;
+    right: $form-multi-select-icon-size;
+    text-align: right;
+    text-shadow: none;
+    top: 0;
+
+    &,
+    > * {
+      color: $form-multi-select-icon-color;
+    }
+
+    .remove {
+      @include button-icon(trash-o);
+
+      &:hover {
+        color: color(alert);
+      }
+    }
   }
 }
 
