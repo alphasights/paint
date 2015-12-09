@@ -100,6 +100,15 @@ $label: map-merge-settings($label-default-settings, $label);
   }
 }
 
+/// Label modifier - ellipsis. Extend to enable text-ellipsis
+/// when having long text items
+
+%label-ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /// Generates label style and size placeholders
 /// @access private
 
