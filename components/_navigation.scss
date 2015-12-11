@@ -243,9 +243,9 @@ $include-html-paint-navigation: true !default;
 /// @access private
 
 @mixin navigation-item-icon {
-  @extend %paint-icon;
-
   &:before {
+    @extend %paint-icon;
+
     display: block !important;
     height: 0 !important;
     overflow: hidden;
@@ -519,9 +519,9 @@ $include-html-paint-navigation: true !default;
     }
 
     a#{navigation-settings(icon-class-selector)} {
-      @extend %paint-icon;
-
       &:before {
+        @extend %paint-icon;
+
         width: navigation-settings(sidebar, min-width);
       }
     }
