@@ -37,7 +37,8 @@ $paint-icons: (
   lock: '\f02c',
   mail: '\f02d',
   menu: '\f02e',
-  notification: '\f02f',
+  // Libsass bug sass/libsass#934
+  'notification': '\f02f',
   printer: '\f030',
   right-arrow: '\f015',
   search: '\f031',
