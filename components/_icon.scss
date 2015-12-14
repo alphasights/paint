@@ -60,12 +60,14 @@ $paint-icons: (
 ///   }
 
 @mixin icon($name, $selector: null) {
-  $selector: if($selector == null, '&', '&:' + $selector);
-
   @extend .fa-#{$name};
 
-  #{$selector} {
+  @if $selector == null {
     @include fa-icon;
+  } @else {
+    &:#{$selector} {
+      @include fa-icon;
+    }
   }
 }
 
