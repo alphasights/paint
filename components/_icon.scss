@@ -46,6 +46,10 @@ $paint-icons: (
   toggle: '\f033',
   upload: '\f034',
   video: '\f035',
+  chevron-left: '\f036',
+  chevron-right: '\f037',
+  ban: '\f038',
+  shield: '\f039'
 );
 
 /// Renders font-awesome icons
@@ -55,10 +59,10 @@ $paint-icons: (
 ///     @include icon(dashboard);
 ///   }
 
-@mixin icon($name, $selector: '') {
+@mixin icon($name, $selector: null) {
   @extend .fa-#{$name};
 
-  @if $selector == '' {
+  @if $selector == null {
     @include fa-icon;
   } @else {
     &:#{$selector} {
@@ -70,19 +74,17 @@ $paint-icons: (
 /// @access private
 
 %paint-icon {
-  &:before {
-    display: inline-block;
-    font-family: 'Paint';
-    font-size: $h4-font-size;
-    -webkit-font-smoothing: antialiased;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    line-height: 1;
-    speak: none;
-    text-align: center;
-    text-transform: none;
-  }
+  display: inline-block;
+  font-family: 'Paint';
+  font-size: $h4-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-align: center;
+  text-transform: none;
 }
 
 /// Renders custom Paint icons
@@ -92,16 +94,17 @@ $paint-icons: (
 ///     @include paint-icon(dashboard);
 ///   }
 
-@mixin paint-icon($name) {
-  @extend %paint-icon;
-
+@mixin paint-icon($name, $selector: null) {
   $content: map-get($paint-icons, $name);
+  $selector: if($selector == null, '&', '&:' + $selector);
 
   @if not $content {
     @error "Icon #{$name} doesn't exist"
   }
 
-  &:before {
+  #{$selector} {
+    @extend %paint-icon;
+
     content: $content;
   }
 }
