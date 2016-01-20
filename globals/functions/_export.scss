@@ -1,0 +1,11 @@
+$modules: () !default;
+
+@mixin exports($name) {
+  $modules: $modules !global;
+  $module-index: index($modules, $name);
+
+  @if (($module-index == null) or ($module-index == false)) {
+    $modules: append($modules, $name) !global;
+    @content;
+  }
+}

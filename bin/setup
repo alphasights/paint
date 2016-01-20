@@ -2,6 +2,7 @@
 
 set -e
 
+npm install -g bower
 npm install
-node_modules/.bin/bower install
+bower install
 bundle install
