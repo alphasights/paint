@@ -1,0 +1,21 @@
+@function brightness($color) {
+  @return ((red($color) * .229) + (green($color) * .499) + (blue($color) * .199)) / 255 * 100%;
+}
+
+@function contrast(
+  $color,
+  $dark: #333333,
+  $light: #ffffff
+) {
+  $color-brightness: brightness($color);
+  $dark-text-brightness: brightness($dark);
+  $light-text-brightness: brightness($light);
+
+  $output: $dark;
+
+  @if abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness) {
+    $output: $light;
+  }
+
+  @return $output;
+}

@@ -59,7 +59,7 @@ linters:
     enabled: false
 
   ImportPath:
-    enabled: true
+    enabled: false
     leading_underscore: false
     filename_extension: false
 

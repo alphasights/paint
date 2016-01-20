@@ -4,8 +4,8 @@
 
 /// Import dependencies
 
-@import "bower_components/normalize-scss/normalize.scss";
-@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import 'bower_components/normalize-scss/normalize.scss';
+@import 'bower_components/bourbon/app/assets/stylesheets/bourbon';
 
 /// Import core paint and vendor resets
 
@@ -17,7 +17,7 @@
 
 /// Import core vendor dependencies
 
-@import "bower_components/neat/app/assets/stylesheets/neat";
+@import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'bower_components/fontawesome/scss/variables';
 @import 'bower_components/fontawesome/scss/path';
 @import 'bower_components/fontawesome/scss/mixins';
