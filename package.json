@@ -9,10 +9,9 @@
   "author": "AlphaSights",
   "license": "MIT",
   "devDependencies": {
-    "bower": "1.7.2",
-    "broccoli": "^0.16.9",
-    "broccoli-cli": "^1.0.0",
+    "broccoli": "0.16.9",
+    "broccoli-cli": "1.0.0",
     "broccoli-sass": "0.7.0",
-    "sassdoc": "^2.1.18"
+    "sassdoc": "2.1.18"
   }
 }
