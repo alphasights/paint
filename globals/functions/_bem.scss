@@ -3,7 +3,8 @@ $bem-modifier-separator: '--';
 
 @function _bem-selector-to-string($selector) {
   $selector: inspect($selector);
-  $selector: str-slice($selector, 2, -2);
+  $dot-index: str-index($selector, ".") + 1;
+  $selector: str-slice($selector, $dot-index, -1);
 
   @return $selector;
 }
