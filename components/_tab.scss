@@ -184,9 +184,11 @@ $include-html-paint-tabs: true !default;
 ///
 ///   @include bem-block('custom-tabs-nav') {
 ///     @extend %tabs-nav;
+///     // @extend %tabs-nav--fluid-widths; // optional
 ///
 ///     @include bem-element('item') {
 ///       @extend %tabs-nav__item;
+///       // @extend %tabs-nav--fluid-widths__item; // optional
 ///     }
 ///
 ///     @include bem-element('item-link') {
