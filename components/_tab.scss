@@ -162,6 +162,17 @@ $include-html-paint-tabs: true !default;
 
 /// Tabs placeholders
 ///
+/// @example html - BEM Structure
+///   %tabs
+///     %tabs__nav
+///
+///   %tabs-nav
+///     %tabs-nav__item
+///       %tabs-nav__link
+///
+///   %tabs-nav--fluid-widths
+///   %tabs-nav--fluid-widths__item
+///
 /// @example scss - Usage
 ///   @include bem-block('custom-tabs') {
 ///     @extend %tabs;
