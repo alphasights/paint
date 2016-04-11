@@ -235,7 +235,9 @@ $include-html-paint-tabs: true !default;
     display: flex;
 
     &__item {
-      flex: 1;
+      @media #{$medium-up} {
+        flex: 1;
+      }
     }
   }
 
