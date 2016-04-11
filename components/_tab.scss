@@ -192,8 +192,8 @@ $include-html-paint-tabs: true !default;
 ///       // @extend %tabs-nav--fluid-widths__item; // optional
 ///     }
 ///
-///     @include bem-element('item-link') {
-///       @extend %tabs-nav__item-link;
+///     @include bem-element('link') {
+///       @extend %tabs-nav__link;
 ///     }
 ///   }
 ///
