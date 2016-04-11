@@ -213,6 +213,14 @@ $include-html-paint-tabs: true !default;
   position: relative;
   white-space: nowrap;
 
+  &--fluid-widths {
+    display: flex;
+
+    &__item {
+      flex: 1;
+    }
+  }
+
   &__item {
     display: inline-block;
     list-style: none;
