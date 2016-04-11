@@ -161,6 +161,7 @@ $include-html-paint-tabs: true !default;
 }
 
 /// Tabs placeholders
+/// @since 0.9.15
 ///
 /// @example html - BEM Structure
 ///   %tabs
@@ -217,6 +218,10 @@ $include-html-paint-tabs: true !default;
     overflow: hidden;
   }
 }
+
+/// Block: tabs-nav
+/// Elements: item, link
+/// Modifiers: fluid-widths - affects item
 
 %tabs-nav {
   margin: 0;
