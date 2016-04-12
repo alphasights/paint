@@ -4,7 +4,7 @@
 /// @since v0.8.18
 ////
 
-/// Default settings
+/// Default settings - Deprecating in favor of the placeholders
 
 /// @example scss - Usage
 ///   .my-tabs {
@@ -157,6 +157,142 @@ $include-html-paint-tabs: true !default;
 
   @media #{$small-only} {
     margin: 0;
+  }
+}
+
+/// Tabs placeholders
+/// @since 0.9.15
+///
+/// @example html - BEM Structure
+///   %tabs
+///     %tabs__nav
+///
+///   %tabs-nav
+///     %tabs-nav__item
+///       %tabs-nav__link
+///
+///   %tabs-nav--fluid-widths
+///   %tabs-nav--fluid-widths__item
+///
+/// @example scss - Usage
+///   @include bem-block('custom-tabs') {
+///     @extend %tabs;
+///
+///     @include bem-element('nav') {
+///       @extend %tabs__nav;
+///     }
+///   }
+///
+///   @include bem-block('custom-tabs-nav') {
+///     @extend %tabs-nav;
+///     // @extend %tabs-nav--fluid-widths; // optional
+///
+///     @include bem-element('item') {
+///       @extend %tabs-nav__item;
+///       // @extend %tabs-nav--fluid-widths__item; // optional
+///     }
+///
+///     @include bem-element('link') {
+///       @extend %tabs-nav__link;
+///     }
+///   }
+///
+/// @example html - Usage
+///   <div class="newtabs">
+///     <nav class="custom-tabs__nav">
+///       <ul class="custom-tabs-nav">
+///         <li class="custom-tabs-nav__item"><a class="custom-tabs-nav__link" href="#">Item</a></li>
+///         <li class="custom-tabs-nav__item"><a class="custom-tabs-nav__link active" href="#">Item</a></li>
+///         <li class="custom-tabs-nav__item"><a class="custom-tabs-nav__link" href="#">Item</a></li>
+///       </ul>
+///     </nav>
+///   </div>
+
+%tabs {
+  position: relative;
+  width: 100%;
+
+  &__nav {
+    background-color: tab-settings(background-color);
+    border-bottom: 1px solid tab-settings(border-color);
+    overflow: hidden;
+  }
+}
+
+/// Block: tabs-nav
+/// Elements: item, link
+/// Modifiers: fluid-widths - affects item
+
+%tabs-nav {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+
+  &--fluid-widths {
+    display: flex;
+
+    &__item {
+      @media #{$medium-up} {
+        flex: 1;
+      }
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+    vertical-align: top;
+  }
+
+  &__link {
+    color: tab-settings(text-color);
+    display: block;
+    font-size: tab-settings(text-size);
+    line-height: tab-settings(height);
+    margin: tab-settings(margin);
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: tab-settings(padding);
+    position: relative;
+    text-align: center;
+    transition: color tab-settings(transition-duration);
+    white-space: nowrap;
+
+    &:after {
+      background-color: tab-settings(border-color);
+      bottom: 0;
+      content: '';
+      height: tab-settings(border-height);
+      left: 0;
+      position: absolute;
+      transform: translate(0, 150%);
+      transition: transform tab-settings(transition-duration),
+        background-color tab-settings(transition-duration);
+      width: 100%;
+    }
+
+    &:hover,
+    &.active {
+      color: tab-settings(text-color-active);
+
+      &:after {
+        transform: translate(0, 0);
+      }
+    }
+
+    &.active {
+      &:after {
+        background-color: tab-settings(border-color-active);
+      }
+    }
+
+    @media #{$small-only} {
+      margin: 0;
+    }
   }
 }
 
