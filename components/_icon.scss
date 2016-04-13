@@ -12,6 +12,11 @@
 
 $paint-icons: (
   archive: '\f016',
+  arrow-down: '\f050',
+  arrow-right: '\f04f',
+  arrow-up: '\f04e',
+  calendar: '\f046',
+  calendar-full: '\f051',
   chart: '\f017',
   check: '\f018',
   circle-check: '\f019',
@@ -43,6 +48,10 @@ $paint-icons: (
   right-arrow: '\f015',
   search: '\f031',
   share: '\f032',
+  square-check: '\f04b',
+  square-cross: '\f04a',
+  square-minus: '\f049',
+  square-plus: '\f04c',
   toggle: '\f033',
   upload: '\f034',
   video: '\f035',
@@ -52,7 +61,9 @@ $paint-icons: (
   shield: '\f039',
   dots-horizontal: '\f040',
   done-circle: '\f041',
-  iteraction: '\f03f'
+  iteraction: '\f03f',
+  zoom-in: '\f047',
+  zoom-out: '\f048'
 );
 
 /// Renders font-awesome icons
