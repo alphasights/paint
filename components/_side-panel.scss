@@ -212,6 +212,11 @@ $include-html-paint-side-panel: true !default;
 
       line-height: inherit !important;
     }
+
+    > .title {
+      display: inline-block;
+      padding: 0 $column-gutter / 2;
+    }
   }
 
   .close {
