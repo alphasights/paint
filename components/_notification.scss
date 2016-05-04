@@ -96,7 +96,10 @@ $notification-colors: (
   #{$close-selector} {
     @include button-icon(times);
 
+    background-color: transparent;
+    border: 0;
     color: transparentize($text-color, .4);
+    padding: 0;
   }
 
   #{$actions-selector} {
