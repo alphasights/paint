@@ -173,7 +173,6 @@ $include-html-paint-quick-jump: true !default;
     padding-top: $column-gutter / 2;
 
     > .title {
-      @extend .hide-for-small-only;
       @extend %grid-column-2;
 
       color: color(primary);
@@ -181,6 +180,10 @@ $include-html-paint-quick-jump: true !default;
       margin-bottom: 0;
       margin-top: 0;
       text-align: right;
+
+      @media #{$medium-down} {
+        display: none;
+      }
     }
 
     &:nth-of-type(even) {
@@ -190,7 +193,6 @@ $include-html-paint-quick-jump: true !default;
     ul {
       @extend %grid-column-small-12;
       @extend %grid-column-medium-10;
-      @extend .no-bullet;
 
       margin-bottom: 0;
     }
