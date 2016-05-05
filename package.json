@@ -9,9 +9,11 @@
   "author": "AlphaSights",
   "license": "MIT",
   "devDependencies": {
+    "bourbon": "^4.2.7",
     "broccoli": "0.16.9",
     "broccoli-cli": "1.0.0",
     "broccoli-sass": "0.7.0",
+    "node-neat": "^1.7.2",
     "sassdoc": "2.1.18"
   }
 }
