@@ -5,8 +5,11 @@
 ////
 
 /// Import dependencies
-@import '../../../neat/app/assets/stylesheets/neat';
-@import '../../../bourbon-neat/app/assets/stylesheets/neat';
+@if $paint-dependency-manager == 'bower' {
+  @import '../../../neat/app/assets/stylesheets/neat';
+} @else {
+  @import '../../../bourbon-neat/app/assets/stylesheets/neat';
+}
 
 /// Grid placeholder prefix
 
