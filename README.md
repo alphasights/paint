@@ -14,7 +14,11 @@ Paint comes as a bower package (`paint`) and an npm package (`as-paint`).
 To use the **bower package**, run `bower install paint --save-dev`.  
 For **npm**, run `npm install as-paint --save-dev`.
 
-This will install all dependencies. The next step is to load paint in your application.
+This is going to install all dependencies.  
+
+When using the npm package, you have to set a `$paint-dependency-manager: 'npm'`  before importing paint. SASS doesn't allow variable interpolation for imports, that's why we need it.
+
+The next step is to load paint in your application.
 
 There are 2 use cases:
 
@@ -41,6 +45,8 @@ For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/no
 /// Import all Paint Components
 @import '/bower_components/paint/styles/components';
 ```
+
+_Remember to add the `$paint-dependency-manager: 'npm'` if you're not using bower._
 
 To make any future changes easier, add the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
 
