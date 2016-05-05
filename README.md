@@ -1,140 +1,229 @@
 Paint
 =====
 
-Paint is a collection of SCSS mixins, placeholders and global styles to bootstrap all our apps.
-Mixins and placeholders with the same prefix are put in a single file. This file is generically named "component".
-The prefix represents the broad category to which the mixins or placeholders belong, e.g. "button" or "grid".
+Paint is a collection of SCSS functions, mixins, placeholders and global styles that help us bootstrap our internal apps.
 
-Paint is thought as an extension of Foundation, and many of the components share prefixes with the Foundation ones (for instance, we don't redefine the "button" mixin inside Paint because it's already present in Foundation). We also try to use Foundation variables as much as possible before defining our own.
+It also acts as an abstraction layer, keeping other frameworks / dependencies away from the applications. This makes structural changes _(like removing a dependency or adding a new one)_ easier to implement.
 
+---
 
-## Inside a component
+## Setup
 
-Let's have a look at how the button component is implemented.
+Paint comes as a bower package (`paint`) and an npm package (`as-paint`).
 
+To use the **bower package**, run `bower install paint --save-dev`.  
+For **npm**, run `npm install as-paint --save-dev`.
+
+This will install all dependencies. The next step is to load paint in your application.
+
+There are 2 use cases:
+
+* Import Paint out-of-the-box, without any theming / resets.  
+For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/node_modules/paint/styles/paint'`
+
+* Allow theming and customising components. In this case, you need to load components individually and create an app-specific `paint-settings` file _(example for the bower package)_:  
 ```scss
-// We import any components or files we depend on
-@import "icon";
+/// Paint Core
+@import '/bower_components/paint/styles/core';
 
-// We expose configuration options by declaring default settings
-$button-base-background-color: color(white) !default;
-$button-base-text-color: $jumbo !default;
-$button-icon-size: 28px !default;
-$button-primary-background-color: #008fd9 !default;
+/// Application-specific Resets
+@import 'paint-settings';
 
-// If this component extends a Foundation one, we configure it
-$include-html-paint-button: true !default;
+/// Import Paint Global Settings
+@import '/bower_components/paint/styles/settings';
 
-// We declare any sub-placeholder or mixin before the main one
-@mixin button-icon($icon) {
-  @extend %button-icon;
-  @include icon($icon);
-}
+/// Paint Tools / Helpers
+@import '/bower_components/paint/styles/tools';
 
-%button-icon {
-  margin-bottom: 0;
-  padding: 0;
+/// Import Global Components
+@import '/bower_components/paint/styles/global';
 
-  &:before {
-    display: block;
-    line-height: $button-icon-size;
-    width: $button-icon-size;
-  }
-}
-
-/* We declare the main placeholder.
-Every component should expose at least one placeholder that has the same name of the file it's contained in.
-Placeholders should "materialize" the most common usages of the mixin declared by the component.
-The declaration of the mixin is optional, since it could happen that nothing in the component is configurable, or that the mixin is already declared inside Foundation. */
-
-%button {
-  // We include the mixin(s) we are materializing into a placeholder.
-  @include button-base;
-  
-  // We declare additional properties not included in the mixin (this should not be needed in case you're the author of the mixin)
-  background-color: $button-base-background-color;
-  color: $button-base-text-color;
-  border: 1px solid lighten($button-base-text-color, 20%);
-  border-radius: $global-radius;
-  
-  &:hover {
-    color: darken($button-base-text-color, 20%);
-  }
-
-  &:focus {
-    outline: 0;
-  }
-}
-
-// We declare additional placeholders
-%button-primary {
-  @include button(
-    $bg: $button-primary-background-color,
-    $padding: $column-gutter / 2,
-    $radius: $global-radius
-  );
-
-  font-size: $small-font-size;
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
-}
-
-// We declare any component-specific global styles. The exports mixin should be included with the name of the component prefixed by 'paint-'
-@include exports("paint-button") {
-  @if $include-html-paint-button {
-    button {
-      @extend %button;
-    }
-  }
-}
+/// Import all Paint Components
+@import '/bower_components/paint/styles/components';
 ```
 
-## Coding style
+To make any future changes easier, add the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
+
+```scss
+/// application.scss
+@import 'paint-loader';
+@import 'styles';
+
+/// paint-loader.scss
+@import '/bower_components/paint/styles/core';
+@import 'paint-settings';
+@import '/bower_components/paint/styles/settings';
+@import '/bower_components/paint/styles/tools';
+@import '/bower_components/paint/styles/global';
+@import '/bower_components/paint/styles/components';
+
+/// styles.scss
+@import 'components/custom-component1';
+@import 'components/custom-component2';
+...
+```
+
+---
+
+## Structure
+
+Paint is separated into
+
+* Core
+* Settings
+* Tools
+* Globals
+* Components
+
+### Core
+
+This contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:
+
+```
+- core/dependencies
+  normalize-scss
+  bourbon
+- core/functions
+  export
+  map
+  bound
+- core/components
+  color
+- core/resets
+```
+
+### Settings
+
+This contains global variables that are shared between globals, tools and components. Settings use the core functions and components.
+
+### Tools
+
+A set of reusable styles that we want to share between the components and throughout the application.
+
+```
+- tools/mixins
+  detached-border
+  overlay
+  bem
+- tools/placeholders
+  vertical-align
+```
+
+### Global
+
+This contains the most basic set of components.  
+_Each component might have extra package dependencies that are not defined above._
+
+```
+- global/components
+  icon
+    font-awesome
+  button
+  grid
+    neat (bower) / node-neat (npm)
+  typography  
+```
+
+### Components
+
+A set of components that are pretty common in all applications
+
+```
+- layout
+- navigation
+- label
+- panel
+- flip-panel
+- side-panel
+- tab
+- table
+- notification
+- progress-bar
+- form
+- quick-jump
+- modal
+- dropdown
+- step
+```
+
+**Deprecation warning**  
+Most of these components are going to be extracted into separate repos and refactored to make it easier to customise and more flexible to extend.
+
+---
+
+## How to use Paint
+
+[upcoming]
+
+---
+
+## Customising Component Settings
+
+[upcoming]
+
+---
+
+## Usage Guidelines
 
 Most coding style issues are taken care of automatically by the linter. There are though some things that are difficult to implement/not yet implemented in the linter and you should check manually.
 
-- Any selector that uses pseudo classes should be put at the end of the selector they refer to, using the SCSS `&` operator
-- Every variable declared inside a component should be prefixed by the component's name and a dash, e.g.: `button-`
-- Mixins that do not have a corresponding placeholder should be put in the `globals/mixins.scss` file.
-- Not everything should be exposed as a setting. If a setting is dependent on another one, and it's not reused, you should avoid creating a separate variable. Not only this would pollute the top of the file too much, but it could expose "implementation" details to the user of your component.
+[upcoming]
 
-## Generate Documentation
+---
+
+## Contributing
+
+We use `git flow` to manage feature/hotfixes/releases.
+The easiest setup is to clone the repository, then run:
+
+```
+cd paint
+git branch master origin/master
+git flow init -d
+git flow feature start <your initials>/<feature name>
+```
+
+Then, do work and commit your changes.
+```
+git flow feature publish <your initials>/<feature name>
+```
+When done, open a pull request for your feature branch. Make sure you branched-off `develop` not `master`.
+
+### Publishing process _(internal)_
+
+After the review, we merge the PR to `develop`, then create a new release _(vX.xx.xx)_. Then we
+
+* **Bump** Paint version (bower / npm) `bower patch && npm patch`.  
+_Npm might return an error, since the tag name might already exist. No worries, all good._
+
+* Push changes and tags
+
+* **Finish** the release, adding the release notes to the description:  
+```
+## Changelog
+
+* Feature
+* Feature
+...
+```
+
+* Run `npm publish`, preferably on master.
+
+* Generate Documentation:
 
 ```
 npm install -g sassdoc
 npm install -g sassdocify
+// run the above just once
 
 bin/docs
 ```
 
-This is going to push documentation to a `gh-pages` branch that automatically updates http://alphasights.github.io/paint/
+_This is going to push documentation to a `gh-pages` branch that automatically updates http://alphasights.github.io/paint/_
 
-## Contributing
+If the changes you've made affect any `ember-cli-paint` component you also need to:
 
-Clone the repository.  Then, run:
-
-    cd paint
-    git branch master origin/master
-    git flow init -d
-    git flow feature start <your feature>
-
-Then, do work and commit your changes.
-
-    git flow feature publish <your feature>
-
-When done, open a pull request to your feature branch.
-
-## Releasing
-
-In order to make use of Paint changes in your project you need to:
-
-- Bump paint's version in bower.json using `bower version major | minor | patch`
-- Push git tags to GitHub
-- Update paint's version in your project bower.json
-
-If the changes you've made affect ember-cli-paint Ember component you also need to:
-
-- Update paint's version in ember-cli-paint index.js and bower.json
-- Release a new version of ember-cli-paint
+- Update paint's version in ember-cli-paint `index.js` and `bower.json`
+- Release a new version of `ember-cli-paint`
   - `npm version major | minor | patch`
   - `npm publish`
