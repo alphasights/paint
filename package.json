@@ -13,6 +13,7 @@
     "broccoli": "0.16.9",
     "broccoli-cli": "1.0.0",
     "broccoli-sass": "0.7.0",
+    "font-awesome": "^4.6.1",
     "node-neat": "^1.7.2",
     "normalize-scss": "^4.2.1",
     "sassdoc": "2.1.18"
