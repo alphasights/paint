@@ -1,7 +1,9 @@
-* {
-  box-sizing: border-box !important;
+html {
+  box-sizing: border-box;
 }
 
-a {
-  cursor: pointer;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
