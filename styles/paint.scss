@@ -2,48 +2,17 @@
 /// Paint Global Imports
 ////
 
-/// Import dependencies
+/// Import core
+@import 'core';
 
-@import 'bower_components/normalize-scss/normalize.scss';
-@import 'bower_components/bourbon/app/assets/stylesheets/bourbon';
+/// Import global settings
+@import 'settings';
 
-/// Import core paint and vendor resets
+/// Import basic tools
+@import 'tools';
 
-@import 'globals/resets';
-@import 'globals/functions';
-@import 'components/color';
-@import 'globals/settings';
-@import 'globals/mixins';
-
-/// Import core vendor dependencies
-
-@import 'bower_components/neat/app/assets/stylesheets/neat';
-@import 'bower_components/fontawesome/scss/variables';
-@import 'bower_components/fontawesome/scss/path';
-@import 'bower_components/fontawesome/scss/mixins';
-@import 'bower_components/fontawesome/scss/icons';
-
-/// Import base components
-
-@import 'components/vertical-align';
-@import 'components/icon';
-@import 'components/typography';
-@import 'components/button';
-@import 'components/grid';
-@import 'components/layout';
-@import 'components/navigation';
+/// Import global components
+@import 'global';
 
 /// Import components
-
-@import 'components/notification';
-@import 'components/form';
-@import 'components/dropdown';
-@import 'components/side-panel';
-@import 'components/label';
-@import 'components/table';
-@import 'components/progress-bar';
-@import 'components/quick-jump';
-@import 'components/panel';
-@import 'components/flip-panel';
-@import 'components/modal';
-@import 'components/tab';
+@import 'components';
