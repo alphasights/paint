@@ -221,6 +221,7 @@ $include-html-paint-button: true !default;
 %button-rounded {
   border-radius: $global-rounded;
   padding: 0;
+  text-align: center;
 }
 
 /// Button Group
