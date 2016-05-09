@@ -46,8 +46,6 @@ For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/no
 @import '/bower_components/paint/styles/components';
 ```
 
-_Remember to add the `$paint-dependency-manager: 'npm'` if you're not using bower._
-
 To make any future changes easier, add the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
 
 ```scss
