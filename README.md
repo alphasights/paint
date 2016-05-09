@@ -93,8 +93,6 @@ This contains a set of functions and mixins that are mandatory for the rest of t
   export
   map
   bound
-- core/components
-  color
 - core/resets
 ```
 
@@ -107,6 +105,8 @@ This contains global variables that are shared between globals, tools and compon
 A set of reusable styles that we want to share between the components and throughout the application.
 
 ```
+- tools/functions
+  color
 - tools/mixins
   detached-border
   overlay
