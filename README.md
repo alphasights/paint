@@ -183,7 +183,7 @@ git flow init -d
 git flow feature start <your initials>/<feature name>
 ```
 
-Then, do work and commit your changes.
+Then, do the work and commit your changes.
 ```
 git flow feature publish <your initials>/<feature name>
 ```
@@ -191,7 +191,7 @@ When done, open a pull request for your feature branch. Make sure you branched-o
 
 ### Publishing process _(internal)_
 
-After the review, we merge the PR to `develop`, then create a new release _(vX.xx.xx)_. Then we
+* After the review, merge to `develop`, then create a new release _(vX.xx.xx)_.
 
 * **Bump** Paint version (bower / npm) `bower patch && npm patch`.  
 _Npm might return an error, since the tag name might already exist. No worries, all good._
@@ -207,21 +207,21 @@ _Npm might return an error, since the tag name might already exist. No worries, 
 ...
 ```
 
-* Run `npm publish`, preferably on master.
+* Run `npm publish` on master.
 
 * Generate Documentation:
 
 ```
 npm install -g sassdoc
 npm install -g sassdocify
-// run the above just once
+// run the above only the first time you do this
 
 bin/docs
 ```
 
 _This is going to push documentation to a `gh-pages` branch that automatically updates http://alphasights.github.io/paint/_
 
-If the changes you've made affect any `ember-cli-paint` component you also need to:
+If the changes you made affect any `ember-cli-paint` component you also need to:
 
 - Update paint's version in ember-cli-paint `index.js` and `bower.json`
 - Release a new version of `ember-cli-paint`
