@@ -16,16 +16,12 @@ For **npm**, run `npm install as-paint --save-dev`.
 
 This is going to install all dependencies.  
 
-When using the npm package, you have to set a `$paint-dependency-manager: 'npm'`  before importing paint. SASS doesn't allow variable interpolation for imports, that's why we need it.
+There are 2 ways to import paint into an application:
 
-The next step is to load paint in your application.
-
-There are 2 use cases:
-
-* Import Paint out-of-the-box, without any theming / resets.  
+* Out-of-the-box, without any theming / resets.  
 For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/node_modules/paint/styles/paint'`
 
-* Allow theming and customising components. In this case, you need to load components individually and create an app-specific `paint-settings` file _(example for the bower package)_:  
+* Allow theming and customising components. In this case, you need to load some components individually and create an app-specific `paint-settings` file _(which will act as your theme file)_:  
 ```scss
 /// Paint Core
 @import '/bower_components/paint/styles/core';
@@ -46,7 +42,7 @@ For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/no
 @import '/bower_components/paint/styles/components';
 ```
 
-To make any future changes easier, add the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
+To make any future changes easier, add all of the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
 
 ```scss
 /// application.scss
@@ -96,7 +92,7 @@ This contains a set of functions and mixins that are mandatory for the rest of t
 
 ### Settings
 
-This contains global variables that are shared between globals, tools and components. Settings use the core functions and components.
+This contains variables that are shared between globals, tools and components. Settings use the core functions, that's the reason why we need to load Core before.
 
 ### Tools
 
