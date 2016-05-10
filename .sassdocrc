@@ -1,5 +1,5 @@
 dest: './docs'
-src: ['components']
+src: ['styles/components']
 
 description: |
   ## Paint

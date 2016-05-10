@@ -4,7 +4,12 @@
 /// @since v0.8.32
 ////
 
-/// Extends FontAwesome icons and Paint icons
+/// Import FontAwesome icons and Paint icons
+
+@import 'bower_components/fontawesome/scss/_variables';
+@import 'bower_components/fontawesome/scss/_path';
+@import 'bower_components/fontawesome/scss/_mixins';
+@import 'bower_components/fontawesome/scss/_icons';
 
 @import url(https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css);
 

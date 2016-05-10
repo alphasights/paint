@@ -149,13 +149,8 @@ $include-html-paint-button: true !default;
   $color: color(primary)
 ) {
   background-color: $bg;
-  border-radius: $global-radius;
   border: 1px solid $color;
   color: $color;
-  font-size: $small-font-size;
-  font-weight: $font-weight-bold;
-  padding: $button-base-padding;
-  text-transform: uppercase;
 
   &:focus {
     background-color: $bg;
@@ -175,15 +170,25 @@ $include-html-paint-button: true !default;
 @mixin button-color-placeholders {
   @each $type, $button-color in $button-colors {
     %button-#{$type} {
+      @extend %button-solid;
       @include button-solid($color: $button-color);
     }
 
     %button-#{$type}-inverted {
+      @extend %button-solid;
       @include button-solid($bg: $button-color, $color: contrast($button-color, $dark: color(text)));
 
       border-color: transparent;
     }
   }
+}
+
+%button-solid {
+  border-radius: $global-radius;
+  font-size: $small-font-size;
+  font-weight: $font-weight-bold;
+  padding: $button-base-padding;
+  text-transform: uppercase;
 }
 
 /// Tiny button styles
@@ -215,6 +220,8 @@ $include-html-paint-button: true !default;
 
 %button-rounded {
   border-radius: $global-rounded;
+  padding: 0;
+  text-align: center;
 }
 
 /// Button Group
