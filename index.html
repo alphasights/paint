@@ -1,0 +1,1330 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>As-paint - v0.9.23</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="As-paint - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>AlphaSights&#39; CSS Framework</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">As-paint - 0.9.23</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="dropdown"><a href="#dropdown">Dropdowns</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="dropdown-variable"><a href="#dropdown-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="dropdown-background-color" data-type="variable"><a href="#variable-dropdown-background-color">dropdown-background-color</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="label"><a href="#label">Labels</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="label-variable"><a href="#label-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="label-default-settings" data-type="variable"><a href="#variable-label-default-settings">label-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="label-mixin"><a href="#label-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="label-style" data-type="mixin"><a href="#mixin-label-style">label-style</a></li><li class="sidebar__item sassdoc__item" data-name="label-size" data-type="mixin"><a href="#mixin-label-size">label-size</a></li><li class="sidebar__item sassdoc__item" data-name="label-placeholders" data-type="mixin"><a href="#mixin-label-placeholders">label-placeholders</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="label-placeholder"><a href="#label-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="label" data-type="placeholder"><a href="#placeholder-label">label</a></li><li class="sidebar__item sassdoc__item" data-name="label-ellipsis" data-type="placeholder"><a href="#placeholder-label-ellipsis">label-ellipsis</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="layout"><a href="#layout">Layout</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="layout-variable"><a href="#layout-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="layout-default-settings" data-type="variable"><a href="#variable-layout-default-settings">layout-default-settings</a></li><li class="sidebar__item sassdoc__item" data-name="layout" data-type="variable"><a href="#variable-layout">layout</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="modal"><a href="#modal">Modals</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="modal-variable"><a href="#modal-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="modal-default-settings" data-type="variable"><a href="#variable-modal-default-settings">modal-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="modal-mixin"><a href="#modal-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="modal-size" data-type="mixin"><a href="#mixin-modal-size">modal-size</a></li><li class="sidebar__item sassdoc__item" data-name="modal-close-button" data-type="mixin"><a href="#mixin-modal-close-button">modal-close-button</a></li><li class="sidebar__item sassdoc__item" data-name="modal-panel" data-type="mixin"><a href="#mixin-modal-panel">modal-panel</a></li><li class="sidebar__item sassdoc__item" data-name="modal" data-type="mixin"><a href="#mixin-modal">modal</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="navigation"><a href="#navigation">Navigation</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="navigation-variable"><a href="#navigation-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="navigation-default-settings" data-type="variable"><a href="#variable-navigation-default-settings">navigation-default-settings</a></li><li class="sidebar__item sassdoc__item" data-name="sidebar-part-open" data-type="variable"><a href="#variable-sidebar-part-open">sidebar-part-open</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="navigation-mixin"><a href="#navigation-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="navigation-header-title" data-type="mixin"><a href="#mixin-navigation-header-title">navigation-header-title</a></li><li class="sidebar__item sassdoc__item" data-name="navigation-logo" data-type="mixin"><a href="#mixin-navigation-logo">navigation-logo</a></li><li class="sidebar__item sassdoc__item" data-name="navigation-item-icon" data-type="mixin"><a href="#mixin-navigation-item-icon">navigation-item-icon</a></li><li class="sidebar__item sassdoc__item" data-name="navigation-footer" data-type="mixin"><a href="#mixin-navigation-footer">navigation-footer</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="panel"><a href="#panel">Panels</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="panel-variable"><a href="#panel-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="flip-panel-default-settings" data-type="variable"><a href="#variable-flip-panel-default-settings">flip-panel-default-settings</a></li><li class="sidebar__item sassdoc__item" data-name="panel-default-settings" data-type="variable"><a href="#variable-panel-default-settings">panel-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="panel-mixin"><a href="#panel-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="flip-panel-icons" data-type="mixin"><a href="#mixin-flip-panel-icons">flip-panel-icons</a></li><li class="sidebar__item sassdoc__item" data-name="flip-panel-scroll-content" data-type="mixin"><a href="#mixin-flip-panel-scroll-content">flip-panel-scroll-content</a></li><li class="sidebar__item sassdoc__item" data-name="flip-panel" data-type="mixin"><a href="#mixin-flip-panel">flip-panel</a></li><li class="sidebar__item sassdoc__item" data-name="panel-background" data-type="mixin"><a href="#mixin-panel-background">panel-background</a></li><li class="sidebar__item sassdoc__item" data-name="panel-placeholders" data-type="mixin"><a href="#mixin-panel-placeholders">panel-placeholders</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="panel-placeholder"><a href="#panel-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="panel" data-type="placeholder"><a href="#placeholder-panel">panel</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="progress-bar"><a href="#progress-bar">Progress Bars</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="progress-bar-variable"><a href="#progress-bar-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="progress-bar-default-settings" data-type="variable"><a href="#variable-progress-bar-default-settings">progress-bar-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="progress-bar-mixin"><a href="#progress-bar-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="progress-bar-style" data-type="mixin"><a href="#mixin-progress-bar-style">progress-bar-style</a></li><li class="sidebar__item sassdoc__item" data-name="progress-bar-height" data-type="mixin"><a href="#mixin-progress-bar-height">progress-bar-height</a></li><li class="sidebar__item sassdoc__item" data-name="progress-bar-placeholders" data-type="mixin"><a href="#mixin-progress-bar-placeholders">progress-bar-placeholders</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="step"><a href="#step">Steps</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="step-variable"><a href="#step-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="step-default-settings" data-type="variable"><a href="#variable-step-default-settings">step-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="step-placeholder"><a href="#step-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="steps" data-type="placeholder"><a href="#placeholder-steps">steps</a></li><li class="sidebar__item sassdoc__item" data-name="steps-with-icons" data-type="placeholder"><a href="#placeholder-steps-with-icons">steps-with-icons</a></li><li class="sidebar__item sassdoc__item" data-name="steps-with-border" data-type="placeholder"><a href="#placeholder-steps-with-border">steps-with-border</a></li><li class="sidebar__item sassdoc__item" data-name="steps-with-counts" data-type="placeholder"><a href="#placeholder-steps-with-counts">steps-with-counts</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="tab"><a href="#tab">Tabs</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="tab-variable"><a href="#tab-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="tab-default-settings" data-type="variable"><a href="#variable-tab-default-settings">tab-default-settings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="tab-mixin"><a href="#tab-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="tabs" data-type="mixin"><a href="#mixin-tabs">tabs</a></li><li class="sidebar__item sassdoc__item" data-name="tabs-nav" data-type="mixin"><a href="#mixin-tabs-nav">tabs-nav</a></li><li class="sidebar__item sassdoc__item" data-name="tab-item" data-type="mixin"><a href="#mixin-tab-item">tab-item</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="tab-placeholder"><a href="#tab-placeholder">placeholders</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="tabs" data-type="placeholder"><a href="#placeholder-tabs">tabs</a></li><li class="sidebar__item sassdoc__item" data-name="tabs-nav" data-type="placeholder"><a href="#placeholder-tabs-nav">tabs-nav</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><div class="container"><h1 id="paint">Paint</h1><p>Paint is a collection of SCSS functions, mixins, placeholders and global styles that help us bootstrap our internal apps.</p><p>It also acts as an abstraction layer, keeping other frameworks / dependencies away from the applications. This makes structural changes <em>(like removing a dependency or adding a new one)</em> easier to implement.</p><hr><h2 id="setup">Setup</h2><p>Paint comes as a bower package (<code>paint</code>) and an npm package (<code>as-paint</code>).</p><p>To use the <strong>bower package</strong>, run <code>bower install paint --save-dev</code>.<br>For <strong>npm</strong>, run <code>npm install as-paint --save-dev</code>.</p><p>This is going to install all dependencies.</p><p>There are 2 ways to import paint into an application:</p><ul><li><p>Out-of-the-box, without any theming / resets.<br>For that, just <code>@import &#39;/bower_components/paint/styles/paint&#39;</code> or <code>@import &#39;/node_modules/paint/styles/paint&#39;</code></p></li><li><p>Allow theming and customising components. In this case, you need to load some components individually and create an app-specific <code>paint-settings</code> file <em>(which will act as your theme file)</em>:</p></li></ul><pre><code class="lang-scss">/// Paint Core
+@import &#39;/bower_components/paint/styles/core&#39;;
+
+/// Application-specific Resets
+@import &#39;paint-settings&#39;;
+
+/// Import Paint Global Settings
+@import &#39;/bower_components/paint/styles/settings&#39;;
+
+/// Paint Tools / Helpers
+@import &#39;/bower_components/paint/styles/tools&#39;;
+
+/// Import Global Components
+@import &#39;/bower_components/paint/styles/global&#39;;
+
+/// Import all Paint Components
+@import &#39;/bower_components/paint/styles/components&#39;;
+</code></pre><p>To make any future changes easier, add all of the above in a <code>paint-loader.scss</code> file and import it in your main <code>application</code> stylesheet, before the app-specific dependencies and styles, e.g</p><pre><code class="lang-scss">/// application.scss
+@import &#39;paint-loader&#39;;
+@import &#39;styles&#39;;
+
+/// paint-loader.scss
+@import &#39;/bower_components/paint/styles/core&#39;;
+@import &#39;paint-settings&#39;;
+@import &#39;/bower_components/paint/styles/settings&#39;;
+@import &#39;/bower_components/paint/styles/tools&#39;;
+@import &#39;/bower_components/paint/styles/global&#39;;
+@import &#39;/bower_components/paint/styles/components&#39;;
+
+/// styles.scss
+@import &#39;components/custom-component1&#39;;
+@import &#39;components/custom-component2&#39;;
+...
+</code></pre><hr><h2 id="structure">Structure</h2><p>Paint is separated into</p><ul><li>Core</li><li>Settings</li><li>Tools</li><li>Globals</li><li>Components</li></ul><h3 id="core">Core</h3><p>This contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:</p><pre><code>- core/dependencies
+  normalize-scss
+  bourbon
+- core/functions
+  export
+  map
+  bound
+- core/resets
+</code></pre><h3 id="settings">Settings</h3><p>This contains variables that are shared between globals, tools and components. Settings use the core functions, that&#39;s the reason why we need to load Core before.</p><h3 id="tools">Tools</h3><p>A set of reusable styles that we want to share between the components and throughout the application.</p><pre><code>- tools/functions
+  color
+- tools/mixins
+  detached-border
+  overlay
+  bem
+- tools/placeholders
+  vertical-align
+</code></pre><h3 id="global">Global</h3><p>This contains the most basic set of components.<br><em>Each component might have extra package dependencies that are not defined above.</em></p><pre><code>- global/components
+  icon
+    font-awesome
+  button
+  grid
+    neat (bower) / node-neat (npm)
+  typography
+</code></pre><h3 id="components">Components</h3><p>A set of components that are pretty common in all applications</p><pre><code>- layout
+- navigation
+- label
+- panel
+- flip-panel
+- side-panel
+- tab
+- table
+- notification
+- progress-bar
+- form
+- quick-jump
+- modal
+- dropdown
+- step
+</code></pre><p><strong>Deprecation warning</strong><br>Most of these components are going to be extracted into separate repos and refactored to make it easier to customise and more flexible to extend.</p><hr><h2 id="how-to-use-paint">How to use Paint</h2><p>[upcoming]</p><hr><h2 id="customising-component-settings">Customising Component Settings</h2><p>[upcoming]</p><hr><h2 id="usage-guidelines">Usage Guidelines</h2><p>Most coding style issues are taken care of automatically by the linter. There are though some things that are difficult to implement/not yet implemented in the linter and you should check manually.</p><p>[upcoming]</p><hr><h2 id="contributing">Contributing</h2><p>We use <code>git flow</code> to manage feature/hotfixes/releases. The easiest setup is to clone the repository, then run:</p><pre><code>cd paint
+git branch master origin/master
+git flow init -d
+git flow feature start &lt;your initials&gt;/&lt;feature name&gt;
+</code></pre><p>Then, do the work and commit your changes.</p><pre><code>git flow feature publish &lt;your initials&gt;/&lt;feature name&gt;
+</code></pre><p>When done, open a pull request for your feature branch. Make sure you branched-off <code>develop</code> not <code>master</code>.</p><h3 id="publishing-process-_-internal-_">Publishing process <em>(internal)</em></h3><ul><li><p>After the review, merge to <code>develop</code>, then create a new release <em>(vX.xx.xx)</em>.</p></li><li><p><strong>Bump</strong> Paint version (bower / npm) <code>bower patch &amp;&amp; npm patch</code>.<br><em>Npm might return an error, since the tag name might already exist. No worries, all good.</em></p></li><li><p>Push changes and tags</p></li><li><p><strong>Finish</strong> the release, adding the release notes to the description:</p></li></ul><pre><code>## Changelog
+
+* Feature
+* Feature
+...
+</code></pre><ul><li><p>Run <code>npm publish</code> on master.</p></li><li><p>Generate Documentation:</p></li></ul><pre><code>npm install -g sassdoc
+npm install -g sassdocify
+// run the above only the first time you do this
+
+bin/docs
+</code></pre><p><em>This is going to push documentation to a <code>gh-pages</code> branch that automatically updates <a href="http://alphasights.github.io/paint/">http://alphasights.github.io/paint/</a></em></p><p>If the changes you made affect any <code>ember-cli-paint</code> component you also need to:</p><ul><li>Update paint&#39;s version in ember-cli-paint <code>index.js</code> and <code>bower.json</code></li><li>Release a new version of <code>ember-cli-paint</code><ul><li><code>npm version major | minor | patch</code></li><li><code>npm publish</code></li></ul></li></ul></div></section><section class="main__section"><h1 class="main__heading" id="dropdown"><div class="container">Dropdowns</div></h1><section class="main__sub-section" id="dropdown-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-dropdown-background-color"><h3 class="item__heading"><a class="item__name" href="#variable-dropdown-background-color">dropdown-background-color</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$dropdown-background-color: dropdown-settings(background-color);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>DEPRECATED variables - will be removed with 0.9.x</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="label"><div class="container">Labels</div></h1><section class="main__sub-section" id="label-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-label-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-label-default-settings">label-default-settings</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$label-default-settings: (
+  padding: 5px 10px,
+
+  styles: (
+    base: color(border),
+    primary: color(primary),
+    secondary: color(secondary),
+    alert: color(alert),
+    error: color(alert),
+    warning: color(warning),
+    success: color(success),
+    info: color(info)
+  ),
+
+  sizes: (
+    tiny: .6,
+    small: .8,
+    base-size: 1,
+    large: 1.2
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default settings</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>span.default-label {
+  @extend %label-base;
+}
+
+span.primary-tiny {
+  @extend %label-primary;
+  @extend %label-tiny;
+}
+
+span.info-base {
+  @extend %label-info;
+  @extend %label-base-size;
+}
+
+h1 &gt; span.label {
+  @extend %label-base;
+  @extend %label-large;
+}</code></pre></div></section></section><section class="main__sub-section" id="label-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-label-style"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-label-style">label-style</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin label-style() { 
+  background-color: $color;
+  color: contrast($color, color(text, small));
+ }" data-collapsed="@mixin label-style() { ... }"><code>@mixin label-style() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates background color and text color</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-label-placeholders"><code>label-placeholders</code></a></li></ul></section><section class="main__item container item" id="mixin-label-size"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-label-size">label-size</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin label-size() { 
+  $fraction: label-settings(sizes, $size);
+
+  font-size: $base-font-size * $fraction;
+
+  @if $fraction &lt; 1 {
+    text-transform: uppercase;
+  } @else {
+    text-transform: capitalize;
+  }
+ }" data-collapsed="@mixin label-size() { ... }"><code>@mixin label-size() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates font size from label settings</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-label-placeholders"><code>label-placeholders</code></a></li></ul></section><section class="main__item container item" id="mixin-label-placeholders"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-label-placeholders">label-placeholders</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin label-placeholders() { 
+  @each $style, $color in label-settings(styles) {
+    %label-#{$style} {
+      @extend %label;
+
+      @include label-style($color);
+      @include label-size(small);
+    }
+  }
+
+  @each $size, $fraction in label-settings(sizes) {
+    %label-#{$size} {
+      @include label-size($size);
+    }
+  }
+ }" data-collapsed="@mixin label-placeholders() { ... }"><code>@mixin label-placeholders() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates label style and size placeholders</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-label-style"><code>label-style</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-label-size"><code>label-size</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-label"><code>label</code></a></li></ul></section></section><section class="main__sub-section" id="label-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-label"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#placeholder-label">label</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%label { 
+  border-radius: $global-radius / 2;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+  display: inline-block;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  padding: label-settings(padding);
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &amp;:empty {
+    display: none;
+  }
+ }" data-collapsed="%label { ... }"><code>%label { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Basic label styles</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-label-placeholders"><code>label-placeholders</code></a></li></ul></section><section class="main__item container item" id="placeholder-label-ellipsis"><h3 class="item__heading"><a class="item__name" href="#placeholder-label-ellipsis">label-ellipsis</a></h3><span class="item__since">Since v0.8.27</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%label-ellipsis { 
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }" data-collapsed="%label-ellipsis { ... }"><code>%label-ellipsis { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Label modifier - ellipsis. Extend to enable text-ellipsis when having long text items</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="layout"><div class="container">Layout</div></h1><section class="main__sub-section" id="layout-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-layout-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-layout-default-settings">layout-default-settings</a></h3><span class="item__since">Since v0.8.29</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$layout-default-settings: (
+  selectors: (
+    main: &#39;.application&#39;,
+    content-wrapper: &#39;main&#39;,
+    content: &#39;&gt; .content&#39;
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default settings</p></div></section><section class="main__item container item" id="variable-layout"><h3 class="item__heading"><a class="item__name" href="#variable-layout">layout</a></h3><span class="item__since">Since v0.8.29</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$layout: () !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Global application layout styles</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-Default"><code>&lt;body&gt;
+  &lt;div class=&quot;application&quot;&gt;
+    &lt;div class=&quot;main-navigation&quot;&gt;
+       // ...
+    &lt;/div&gt;
+
+    &lt;main&gt;
+      &lt;div class=&quot;content&quot;&gt;
+        //...
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="modal"><div class="container">Modals</div></h1><section class="main__sub-section" id="modal-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-modal-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-modal-default-settings">modal-default-settings</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$modal-default-settings: (
+  size: (
+    small: 98%,
+    medium: 40em,
+    large: 60em,
+    xlarge: 80em,
+    xxlarge: 100em
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default settings</p></div></section></section><section class="main__sub-section" id="modal-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-modal-size"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-modal-size">modal-size</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-size($size: large, $use-content-size: false) { 
+  $width: modal-settings(size, $size);
+
+  max-width: 98%;
+
+  @if not($use-content-size) {
+    min-width: $width;
+  }
+ }" data-collapsed="@mixin modal-size($size: large, $use-content-size: false) { ... }"><code>@mixin modal-size($size: large, $use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Calculate the size of the modal based on the screen size</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Screen size</p></td><td data-label="type"><code>Value</code></td><td data-label="default"><code>large</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section><section class="main__item container item" id="mixin-modal-close-button"><h3 class="item__heading"><a class="item__name" href="#mixin-modal-close-button">modal-close-button</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-close-button() { 
+  @include button-icon(close);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: panel-settings(header-height);
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0 $column-gutter / 2;
+
+  &amp;:before {
+    display: inline-block;
+  }
+ }" data-collapsed="@mixin modal-close-button() { ... }"><code>@mixin modal-close-button() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Close button styles</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section><section class="main__item container item" id="mixin-modal-panel"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-modal-panel">modal-panel</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal-panel($use-content-size: false) { 
+  @extend %panel-default;
+  @include panel-background(color(gray, smoke));
+
+  &gt; header {
+    font-size: $small-font-size;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+
+    &gt; .close {
+      @include modal-close-button;
+    }
+  }
+
+  &gt; .content {
+    @extend %grid-row;
+  }
+
+  @media #{$small-only} {
+    @include modal-size(small, $use-content-size);
+  }
+
+  @media #{$medium-only} {
+    @include modal-size(medium, $use-content-size);
+  }
+
+  @media #{$large-only} {
+    @include modal-size(large, $use-content-size);
+  }
+
+  @media #{$xlarge-only} {
+    @include modal-size(xlarge, $use-content-size);
+  }
+
+  @media #{$xxlarge-up} {
+    @include modal-size(xxlarge, $use-content-size);
+  }
+ }" data-collapsed="@mixin modal-panel($use-content-size: false) { ... }"><code>@mixin modal-panel($use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Modal panel styles, including responsive media queries</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-panel-background"><code>panel-background</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-close-button"><code>modal-close-button</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-size"><code>modal-size</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal"><code>modal</code></a></li></ul></section><section class="main__item container item" id="mixin-modal"><h3 class="item__heading"><a class="item__name" href="#mixin-modal">modal</a></h3><span class="item__since">Since v0.8.5</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modal($use-content-size: false) { 
+  @include overlay;
+
+  height: 100%;
+  transform-style: preserve-3d;
+  text-align: center;
+
+  &gt; div {
+    @include modal-panel($use-content-size);
+
+    display: inline-block;
+    margin: 0 auto;
+    max-height: 98%;
+    overflow-y: auto;
+    position: relative;
+    top: -100%;
+    transform: translateY(-100%);
+    transition: 
+      top $global-transition-duration $global-transition-easing,
+      transform $global-transition-duration;
+  }
+
+  &amp;.active &gt; div {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+ }" data-collapsed="@mixin modal($use-content-size: false) { ... }"><code>@mixin modal($use-content-size: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Modal Component</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$use-content-size</code></th><td data-label="desc"><p>Set to <code>true</code> to resize based on the modal content</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.custom-modal {
+  @include modal;
+}</code></pre></div><div class="item__example example"><pre class="example__code language-Markup"><code>&lt;div class=&quot;modal [active]&quot;&gt;
+  &lt;div&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Modal Title&lt;/h1&gt;
+      &lt;button class=&quot;close&quot;&gt;&lt;/button&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;content&quot;&gt;
+      //..
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="navigation"><div class="container">Navigation</div></h1><section class="main__sub-section" id="navigation-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-navigation-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-navigation-default-settings">navigation-default-settings</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$navigation-default-settings: (
+  height: 60px,
+  height-negative: -60px,
+  logo-width: 28px,
+  icon-class-selector: &#39;[class^=&quot;icon-&quot;]&#39;,
+  selector: &#39;.main-navigation&#39;,
+  z-index: 100,
+
+  topbar: (
+    background-color: color(white),
+    hover-background-color: color(black),
+    hover-color: color(border, light),
+    border-color: color(border),
+    text-color: #191c1f,
+    text-hover-color: #191c1f
+  ),
+
+  sidebar: (
+    selector: &#39;.sidebar&#39;,
+    background-color: #191c1f,
+    hover-color: lighten(#191c1f, 10%),
+    active-color: lighten(#191c1f, 5%),
+    text-color: #a5a5a5,
+    submenu-text-color: darken(#a5a5a5, 20%),
+    min-width: 60px,
+    width: 280px,
+    transition-duration: .3s,
+    delay-in: .175s,
+    delay-out: 0s,
+    subnav-delay-in: .175s,
+    subnav-delay-out: 0s
+  ),
+
+  sidebar-footer: (
+    included: false,
+    actions-selector: &#39;.actions&#39;,
+    avatar-selector: &#39;.avatar&#39;,
+    title-selector: &#39;.title&#39;
+  )
+);</code></pre></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Topbar and Sidebar Navigation Example</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;application with-topbar with-sidebar&quot;&gt;
+  &lt;div class=&quot;main-navigation with-topbar&quot;&gt;
+    &lt;div class=&quot;item with-sidebar&quot;&gt;
+      &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+
+      &lt;input id=&quot;sidebar-toggler&quot; class=&quot;sidebar-toggler&quot; type=&quot;checkbox&quot; /&gt;
+      &lt;label for=&quot;sidebar-toggler&quot;&gt;&lt;/label&gt;
+
+      &lt;nav class=&quot;sidebar part-open&quot;&gt;
+        &lt;header&gt;
+          &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+        &lt;/header&gt;
+
+        &lt;div class=&quot;scroller&quot;&gt;
+          &lt;ul class=&quot;menu&quot;&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;#&quot; class=&quot;icon-dashboard&quot;&gt;Menu Item&lt;/a&gt;
+              &lt;ul class=&quot;submenu&quot;&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;icon-dashboard&quot;&gt;Submenu&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt; &lt;!-- .item --&gt;
+
+    &lt;div class=&quot;item&quot;&gt;&lt;a class=&quot;icon-cog&quot; href=&quot;#&quot;&gt;&lt;span&gt;Top Item&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt; &lt;!-- .main-navigation --&gt;
+  &lt;main&gt;
+    &lt;div class=&quot;content&quot;&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt; &lt;!-- .application --&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Sidebar-only Navigation Example</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;application with-sidebar&quot;&gt;
+  &lt;div class=&quot;main-navigation&quot;&gt;
+    &lt;div class=&quot;item with-sidebar&quot;&gt;
+      &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+
+      &lt;input id=&quot;sidebar-toggler&quot; class=&quot;sidebar-toggler&quot; type=&quot;checkbox&quot; /&gt;
+      &lt;label for=&quot;sidebar-toggler&quot;&gt;&lt;/label&gt;
+
+      &lt;nav class=&quot;sidebar part-open&quot;&gt;
+        &lt;header&gt;
+          &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+        &lt;/header&gt;
+
+        &lt;div class=&quot;scroller&quot;&gt;
+          &lt;ul class=&quot;menu&quot;&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;#&quot; class=&quot;icon-dashboard&quot;&gt;Menu Item&lt;/a&gt;
+              &lt;ul class=&quot;submenu&quot;&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;icon-dashboard&quot;&gt;Submenu&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt; &lt;!-- .item --&gt;
+  &lt;/div&gt; &lt;!-- .main-navigation --&gt;
+  &lt;main&gt;
+    &lt;div class=&quot;content&quot;&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt; &lt;!-- .application --&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Topbar-only Navigation Example</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;application with-topbar&quot;&gt;
+  &lt;div class=&quot;main-navigation with-topbar&quot;&gt;
+    &lt;div class=&quot;item&quot;&gt;
+      &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;&lt;a class=&quot;icon-cog&quot; href=&quot;#&quot;&gt;&lt;span&gt;Top Item&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;&lt;a class=&quot;icon-cog&quot; href=&quot;#&quot;&gt;&lt;span&gt;Top Item&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;&lt;a class=&quot;icon-cog&quot; href=&quot;#&quot;&gt;&lt;span&gt;Top Item&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt; &lt;!-- .main-navigation --&gt;
+  &lt;main&gt;
+    &lt;div class=&quot;content&quot;&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt; &lt;!-- .application --&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Sidebar With Footer Example</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;application with-sidebar&quot;&gt;
+  &lt;div class=&quot;main-navigation&quot;&gt;
+    &lt;div class=&quot;item with-sidebar&quot;&gt;
+      &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+
+      &lt;input id=&quot;sidebar-toggler&quot; class=&quot;sidebar-toggler&quot; type=&quot;checkbox&quot; /&gt;
+      &lt;label for=&quot;sidebar-toggler&quot;&gt;&lt;/label&gt;
+
+      &lt;nav class=&quot;sidebar part-open&quot;&gt;
+        &lt;header&gt;
+          &lt;a class=&quot;logo&quot;&gt;&lt;span&gt;Paint&lt;/span&gt;&lt;/a&gt;
+        &lt;/header&gt;
+
+        &lt;div class=&quot;scroller&quot;&gt;
+          ...
+        &lt;/div&gt;
+
+        &lt;footer&gt;
+          &lt;div class=&quot;actions&quot;&gt;
+            &lt;button class=&quot;settings&quot;&gt;&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;avatar&quot;&gt;
+            &lt;img src=&quot;&quot; /&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;title&quot;&gt;Footer Title Text&lt;/div&gt;
+        &lt;/footer&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt; &lt;!-- .item --&gt;
+  &lt;/div&gt; &lt;!-- .main-navigation --&gt;
+  &lt;main&gt;
+    &lt;div class=&quot;content&quot;&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt; &lt;!-- .application --&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Example of delayed transition settings</p></div><pre class="example__code language-scss"><code>$navigation: (
+  sidebar: (
+    delay-in: .475s,
+    delay-out: .8s,
+    subnav-delay-in: .8s,
+    subnav-delay-out: .4s
+  )
+);</code></pre></div></section><section class="main__item container item" id="variable-sidebar-part-open"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#variable-sidebar-part-open">sidebar-part-open</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$sidebar-part-open: &#39;.part-open&#39;;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Use custom classes for the partially open sidebar and fully open one. By default the sidebar opens fully on hover</p></div></section></section><section class="main__sub-section" id="navigation-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-navigation-header-title"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-navigation-header-title">navigation-header-title</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin navigation-header-title() { 
+  display: block;
+  font-size: $small-font-size;
+  font-weight: $font-weight-extrabold;
+  padding-left: navigation-settings(sidebar, min-width);
+  text-align: left;
+  text-transform: uppercase;
+ }" data-collapsed="@mixin navigation-header-title() { ... }"><code>@mixin navigation-header-title() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Header title properties</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-navigation-logo"><code>navigation-logo</code></a></li></ul></section><section class="main__item container item" id="mixin-navigation-logo"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-navigation-logo">navigation-logo</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin navigation-logo($hover-background-color: topbar hover-background-color) { 
+  $logo-padding: (navigation-settings(sidebar, min-width) - navigation-settings(logo-width)) / 2;
+
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFcAAABXCAYAAABxyNlsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM1MUY5QkFDRTgwNTExRTJBRUY5QkM1MkNERUM5NzAzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM1MUY5QkFERTgwNTExRTJBRUY5QkM1MkNERUM5NzAzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RkM4RTA0NzVFN0VDMTFFMkFFRjlCQzUyQ0RFQzk3MDMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkM4RTA0NzZFN0VDMTFFMkFFRjlCQzUyQ0RFQzk3MDMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4DCxgbAAAKeklEQVR42uxda2wcVxX+7rx2vV47TmzHeTjYIqVJm1Rt1UoQKaC2olWLoNAK0RZoVZACVAIqxJ+CWiQCFQgUVFU0CgjxA4TEK1UJJQXakgolahseFVCSlCRt3o/Gdhzb+5zH5Zx5rHfXj9TeO07s2WN/+/CuZuZ+c+53zz1z7lj85cH7cXET9Cv4138ZPtCjqHwcmevp0ISHa69+GW2tF1C2U9NulkwnPEC4k7Ca0E6QIS5Xi5gYIRwi7CD8jOBVH7VxiQ/yQ3SMT8Irr5aeU3uW5o3Ja4Rm3AXNepRef4n+8Fxs5Er2Z/JcTXMh5bRkPQQptkqnAGFmoKW76Ly7849bTYcsj0La+dXCaNlJDHyB/vqjWMhlSXBcE+VyGtnMyFRfu43OwFY+KGF1wFyxwSdYuuV5x63QTSK2AOf0K/CK5yFSbdvIqw7TRy/EQm7RziBfaEN356nJvsIi/FvplKBlVxCxG4nYFj7z/vP8UwUJrXUpzL5bYZ/aA5k/R6OItZ0+6Y5FcwWJw2iug/arT/bx5yG9NtIpaJll8PJnidixeaq3VWJoZqk9PXCLw/TWa4fQNsVCrmmWMTi8FLl8FimrCNu2qj++l/ybuNTgDuyj42Ap0DD/zaMmWey1TC7z/clYyDV0m2Qhi9Nn+3BF/+vV5LIkrA1OtucPBkJrwYIybldga1WQu5KwjtBDOEHYFUiDh+GRLjiOSWOXjCKHNkJrfaC7QC09W3KvJNxHlH2Ynq+nLhCJ66uE90XdRNOc8amArOo/yTBnpuSuIpI20/OD9YyFdqp6FK10EVml/Jf3zEutPM7guw8QX9vouWUa55Pj3JJfJ4fHhsh9jLxw8wyjkwAiweRezLeIm4eJpc0zdkJfFpIoBtWe6007vtxA4fETs5u4eL40QIoEy8L0HrV91i7nE5twzZVTESDA2Z2+2U8IE6oFtQOanCo98N1GExoVfhOruZN77ucIixqbajc9dwpZEI80PMVuSu6knvt+oqVfSQJDek3PrfPaTSo27M/Qmppb02qTcLeSLfueK5PM7YQ49zaioVUNuYkfzybIwkdVbbiZuJkoC7dCHbsTY90Ee+4aIdCvjNtmWqxqhiaxUaVzRdGCaMqCbxuUdt3mgMayUHl9PZR6rtfU3HAW1U4deJ3SLXvhDK1WFzQsjCKFGXnuemIipdZzue5DBpfVx/9cIHA5Yyohnus3fY36TUs4jgbX1XxX9QKGuW7pRDz7u/xMC+PRteNxaUOQ0WtDd5Afs1AqmtD1mtLQPyVEFbjj+j9XhM+N/kTb8+tziyUD5bIBw6jJjj2REHI9LRzJ+yZcNZgdOqPXuvBQyJs4c2YRNNOtngi+Rfh2Asgtc7TAmbBVija4pjrMTadKOHqkC/39A0inyygWzWBdhV8HwYMoPraQydXIo3oI3Wok19/WVdF703QwOmrhwP5lMCyXpKIm2L2L8MMFTK7NA1qPX4KoiF3CR6LXHOa2Zoo4fKgLx8iDMx2l+gPgBRq3wL+E70cSC8lKnLhZrnijDxG+VwlHNI8GNAev/b0X2dYiliwfQ/5CCp4jIonYFaKTcBVhSYNzuihblA5l6jrCTYSuOSY3z3Fut+KNcmbtU4RfRJOJdMqmsEzDS8+vwg3vPYO+91yAW9RpwDP8eCW0QcLuWJopkaHHOwhfDImeCytoMZ3RrdQjzCDslXAdlwa0Ej0L7N7Vi1deWolSSUO2uwAr5UZrCGP1olB6biZ8nHByTjxXel4c5PIqyJ3g5Hukv8RgusWFaXk4uH8xzr3dgivXDmH5yhyyWZuXSEBwPNzoBWM+STSElEs67PKkaQwm+XnCrwi3x0juCJeQLo5p4x8k/JTw2ep8A0cMHZ1FFEkSXt2zHEu6Cmhvs5EhgjOtDk2XG3Nhl6bcrdkyepbn0d5R9t8Xcnp9zxgJZeKXhHtiav8wD2jtMZ69zxA6CPfx6Fkh2RO+HKTSDooFA6M0wDHxnicazq5zhKLrEm1tJXR2FbFm3TA6V+RQHLHg2KKWZCnvRbCmY2Ms5NIOFsWsPRzP7iN8mfCH+syZaXo+lMdBNGAePNCBE8dasf66QVx9zXnIlMDYqBnE2+NTRpaGtwkZxYcwwHFuq8IYdyq8m/BsqMO8SEWPezRhbV+8pEg9QWLvnqV4cWcvRi6YpO9l8u6aKC8XnnjVNiCeufmmv9GLG+c4BgyXVEle/XOUuxAav5rJJ+w84X+EYuUqiAgmM8NDFtoX2bj9zmMkRy6FgXU6LHGcHnsVtvFuvkCZwdwbN+L+EKrtbJjWfIqwN+r9iztLRHAK/9zbjY23nISuaYHGj9s2xQmlU7QHmfIz2QsHPQS+OQb3iu+M67vwo4c3D7Xj8BsdaKEIpa5M7hnVJ9mgTmMuyLRJQNwjYcbv08FUHH6U8vq/OrGMQjUr5VXHwv8Nvb5Hwd5Zns7wgGbNwYB2KUFTcfl1v0yF3re02BgeNnHsSBYWaW9dPvqAorz2cUKR41wrAYnrxwk/JxwPClU8DJ6j2LocxL1V8jCgaH9H/J6iON14OeMr0WvLcigsM5CjWaKu18TYtiJyD4fkQlPUFS533DGeyJRR+XBcdoAfWBaSUqTxLgS3JBiVnqjkePxFiLIm7aPC3vDJTdCyECNMoI/GXF/FRS//CXaYnCU3XDzhVZIa8ZHLkjAUyQKSZlESPyZ7bbyrJLHMs77yUi0HL1fIbXqucttdJfJJdl3ldioazJI2oFW7blyF2S9UB3NG03GV2o6aW7w2NVeZ8a39dtYG1gmWBcWq8DsElfNVnoskeq4XrJNTy+5PJk4JE+m5yjX3NOHPk5DbHNAU2PcnTWYkc0CDygGNdfapSclN7jJHZZr7WBgpoCkLamWBL2humerDxMpCNJA3mB3/xHQfJjhaaLjd3yD8tUnuVOTOXnO3kMt/62JfMpqSO2PjRTLvaBVSUxZqbToJfprwKGH/O91NIsmNCqQNIyjErrL6lU1cMflHBP/U6B8z3Q/fEsBICKdcYuqXEXDxcyFPwWkJaM0CjlP5zjcR3Hl1lPBv8CXyBsIJPnc8w8hUguqFZKKmpxcRLiQ0LYmhAQ0H9xm48QM2kK8sF3hR5e5ZFtj1Nwgh4HkupOMumLv+CIPXuVWKwQ4iSgnSn1JpD4cOaFizntdnSNhl9Y1mcn9NE4kNXJGW6VkKzTThle3YF4bFO1qRBqRSsMfGUBwc8mtHqTW/qf5KOgWMDAmcPKph7bUukav+SDgU20Z7ftx1nEyZDqa9vw8anXHPduatB7ODOLkcxk6P+rlbAc2WdckVbppNPjR4TvhK7Fc/CvWey1p0j2bovy8NDWO4XEa2t5e6k0Yj6fy7Raum67AvjGD0+HF/5aZuWdGSqLF6/zZTvFYCKOUERQ+A6uZGkcKz8ORX9ZS1xckXMPLmW773zse8A2usS7LGjqGTBxNjXyOXfHrSxlM4ls8FUQOfg7jIZfsBkXmUBoEnPc9b4RVL8/RfQspAY3X9LLXnYREsQ53yqxzralo85Yj1Me522stzFDlsgi74jqR8r7H59D+1WOJ4bcMOasePyWNzl/Jg/i/AAKyZ76K3lb4WAAAAAElFTkSuQmCC)
+    $logo-padding 50%
+    no-repeat;
+
+  background-size: navigation-settings(logo-width)
+    navigation-settings(logo-width);
+
+  min-width: navigation-settings(sidebar, min-width);
+  padding-left: 0;
+
+  &amp;:hover {
+    background-color: $hover-background-color !important;
+  }
+
+  span {
+    @include navigation-header-title;
+  }
+ }" data-collapsed="@mixin navigation-logo($hover-background-color: topbar hover-background-color) { ... }"><code>@mixin navigation-logo($hover-background-color: topbar hover-background-color) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Logo properties</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover-background-color</code></th><td data-label="desc"><p>The logo hover color - useful for when the topbar logo is different than the sidebar one</p></td><td data-label="type"><code>Value</code></td><td data-label="default"><code>topbar hover-background-color</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-navigation-header-title"><code>navigation-header-title</code></a></li></ul></section><section class="main__item container item" id="mixin-navigation-item-icon"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-navigation-item-icon">navigation-item-icon</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin navigation-item-icon() { 
+  &amp;:before {
+    @extend %paint-icon;
+
+    display: block !important;
+    height: 0 !important;
+    overflow: hidden;
+    width: 0 !important;
+  }
+ }" data-collapsed="@mixin navigation-item-icon() { ... }"><code>@mixin navigation-item-icon() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Basic properties for the navigation item icon</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="mixin-navigation-footer"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-navigation-footer">navigation-footer</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin navigation-footer() { 
+  background-color: navigation-settings(topbar, hover-background-color);
+  bottom: 0;
+  height: navigation-settings(height);
+  left: 0;
+  position: absolute;
+  right: 0;
+
+  #{navigation-settings(sidebar-footer, avatar-selector)} {
+    float: right;
+    text-align: center;
+    width: navigation-settings(sidebar, min-width);
+
+    img {
+      border-radius: 100%;
+      height: navigation-settings(logo-width);
+      vertical-align: middle;
+      width: navigation-settings(logo-width);
+    }
+  }
+
+  #{navigation-settings(sidebar-footer, title-selector)} {
+    color: navigation-settings(sidebar, text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #{navigation-settings(sidebar-footer, actions-selector)} {
+    float: left;
+    line-height: navigation-settings(height);
+    margin: 0 navigation-settings(sidebar, min-width) / 4;
+    width: navigation-settings(sidebar, min-width) / 2;
+
+    button {
+      @include button-icon(cog);
+
+      background-color: transparent;
+      border: 0;
+      color: navigation-settings(sidebar, text-color);
+    }
+  }
+ }" data-collapsed="@mixin navigation-footer() { ... }"><code>@mixin navigation-footer() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Basic styles for an optional sidebar footer</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section></section></section><section class="main__section"><h1 class="main__heading" id="panel"><div class="container">Panels</div></h1><section class="main__sub-section" id="panel-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-flip-panel-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-flip-panel-default-settings">flip-panel-default-settings</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$flip-panel-default-settings: (
+  header-height: panel-settings(header-height),
+  footer-height: panel-settings(footer-height),
+  icons: (
+    back: long-arrow-left,
+    forward: long-arrow-right
+  ),
+  transition-settings: .3s ease-in-out
+);</code></pre></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.flip-panel {
+  @include flip-panel;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Default Markup</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;flip-panel [flipped]&quot;&gt;
+  &lt;div class=&quot;front&quot;&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Flip Panel Front&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;content&quot;&gt;
+      &lt;section&gt;
+        Flip panel front section content
+      &lt;/section&gt;
+    &lt;/div&gt;
+
+    &lt;footer&gt;
+      &lt;span&gt;&lt;a&gt;More information&lt;/a&gt;&lt;/span&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt; &lt;!-- .front --&gt;
+
+  &lt;div class=&quot;back&quot;&gt;
+    &lt;header&gt;
+      &lt;h1&gt;&lt;a&gt;&lt;i class=&quot;back-icon&quot;&gt;&lt;/i&gt; Back to Front&lt;/a&gt;&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;content&quot;&gt;
+      &lt;section&gt;
+        &lt;p&gt;Flip panel back content&lt;/p&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/div&gt; &lt;!-- .back --&gt;
+&lt;/div&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Custom panel style and back face with footer</p></div><pre class="example__code language-html"><code>Pass option `$with-footer: true` to `flip-panel`. It is advised to specify a min-height for the panel as well.</code></pre></div><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.custom-flip-panel {
+  @include flip-panel(primary, $with-back-footer: true, $min-height: 400px);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Animation</p></div><pre class="example__code language-html"><code>Toggle class `.flipped` on the main selector to trigger the flipping animation</code></pre></div></section><section class="main__item container item" id="variable-panel-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-panel-default-settings">panel-default-settings</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$panel-default-settings: (
+  header-height: $h1-font-size + $column-gutter,
+  footer-height: $h1-font-size + $column-gutter / 2,
+  styles: (
+    default: color(border, light),
+    primary: color(primary),
+    link: color(link),
+    success: color(success),
+    warning: color(warning),
+    alert: color(alert),
+    info: color(info, light)
+  ),
+);</code></pre></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.custom-panel-widget {
+  @extend %panel-widget;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Custom Panel Styles</p></div><pre class="example__code language-scss"><code>// paint-settings.scss
+$panel: (
+  styles: (
+    success: color(success, dark),
+    info: color(info)
+  )
+);
+
+// Custom stylesheet
+.fancy-green-panel {
+  @extend %panel-success;
+}</code></pre></div></section></section><section class="main__sub-section" id="panel-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-flip-panel-icons"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-flip-panel-icons">flip-panel-icons</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin flip-panel-icons() { 
+  $flip-panel-icons: flip-panel-settings(icons);
+
+  @each $name, $icon in $flip-panel-icons {
+    .#{$name}-icon {
+      @include icon($icon);
+    }
+  }
+ }" data-collapsed="@mixin flip-panel-icons() { ... }"><code>@mixin flip-panel-icons() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generate icons used for the panel header</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="mixin-flip-panel-scroll-content"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-flip-panel-scroll-content">flip-panel-scroll-content</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin flip-panel-scroll-content($with-header: true, $with-footer: false) { 
+  @if $with-header {
+    top: flip-panel-settings(header-height);
+  } @else {
+    top: 0;
+  }
+  @if $with-footer {
+    bottom: flip-panel-settings(footer-height);
+  } @else {
+    bottom: 0;
+  }
+
+  left: 0;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+ }" data-collapsed="@mixin flip-panel-scroll-content($with-header: true, $with-footer: false) { ... }"><code>@mixin flip-panel-scroll-content($with-header: true, $with-footer: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Create the scrollable content block based on the presence of header and footer</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-header</code></th><td data-label="desc"><p>Specify if the panel has a header</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>true</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-footer</code></th><td data-label="desc"><p>Specify if the panel has a footer</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-flip-panel"><code>flip-panel</code></a></li></ul></section><section class="main__item container item" id="mixin-flip-panel"><h3 class="item__heading"><a class="item__name" href="#mixin-flip-panel">flip-panel</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin flip-panel($with-front-header: true, $with-front-footer: true, $with-back-header: true, $with-back-footer: false, $min-height: false) { 
+
+  @extend %grid-row;
+
+  @if $min-height {
+    min-height: $min-height;
+  }
+
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+
+  .front,
+  .back {
+    @extend %panel-#{$style};
+
+    @if $min-height {
+      position: absolute;
+    } @else {
+      position: relative;
+    }
+
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    transition: transform flip-panel-settings(transition-settings),
+      box-shadow flip-panel-settings(transition-settings);
+
+    &gt; footer {
+      @if $min-height {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      span {
+        border-top: 1px solid color(border);
+        display: block;
+        font-weight: $font-weight-bold;
+        line-height: flip-panel-settings(footer-height);
+        padding: 0 $column-gutter / 2;
+      }
+    }
+
+    &gt; .content {
+      &gt; section {
+        @extend %grid-row;
+
+        border-top: 1px solid color(border);
+        padding: $column-gutter / 4 $column-gutter / 2;
+      }
+    }
+  }
+
+  .front {
+    transform: rotateX(0deg) rotateY(0deg);
+    z-index: 300;
+
+    @if $min-height {
+      &gt; .content {
+        @include flip-panel-scroll-content (
+          $with-header: $with-front-header,
+          $with-footer: $with-front-footer);
+      }
+    }
+  }
+
+  .back {
+    @include panel-background(color(white));
+
+    position: absolute;
+    transform: rotateY(-180deg);
+    z-index: 200;
+
+    &gt; header &gt; * {
+      color: contrast(color(white), panel-settings(styles, $style), color(text, small));
+      font-weight: $font-weight-extrabold !important;
+    }
+
+    &gt; .content {
+      @include flip-panel-scroll-content(
+        $with-header: $with-back-header,
+        $with-footer: $with-back-footer
+      );
+    }
+
+    &gt; footer {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  &amp;.flipped {
+    .front,
+    .back {
+      box-shadow: 0 5px 5px rgba(0, 0, 0, .075);
+    }
+
+    .front {
+      transform: rotateY(180deg);
+      z-index: 200;
+    }
+
+    .back {
+      transform: rotateX(0deg) rotateY(0deg);
+      z-index: 300;
+    }
+  }
+
+  &amp;.no-css-transform {
+    .back {
+      opacity: 0;
+    }
+
+    &amp;.flipped {
+      .front,
+      .back {
+        box-shadow: 0;
+        opacity: 1;
+      }
+    }
+  }
+ }" data-collapsed="@mixin flip-panel($with-front-header: true, $with-front-footer: true, $with-back-header: true, $with-back-footer: false, $min-height: false) { ... }"><code>@mixin flip-panel($with-front-header: true, $with-front-footer: true, $with-back-header: true, $with-back-footer: false, $min-height: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin that generates the flip-panel styles</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-front-header</code></th><td data-label="desc"><p>Specify if the panel front has a header</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>true</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-front-footer</code></th><td data-label="desc"><p>Specify if the panel front has a footer</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>true</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-back-header</code></th><td data-label="desc"><p>Specify if the panel back has a header</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>true</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-back-footer</code></th><td data-label="desc"><p>Specify if the panel back has a footer</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default"><code>false</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$min-height</code></th><td data-label="desc"><p>Specify a fixed height for the panel</p></td><td data-label="type"><code>Value</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-panel-background"><code>panel-background</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-flip-panel-scroll-content"><code>flip-panel-scroll-content</code></a></li></ul></section><section class="main__item container item" id="mixin-panel-background"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-panel-background">panel-background</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin panel-background($background-color: color(border, light)) { 
+  $dark-background-color: desaturate(adjust-hue($header-background-color, 10%), 15%);
+  $light-background-color: saturate(adjust-hue($header-background-color, 10%), 15%);
+
+  &gt; header {
+    background: linear-gradient(to right, $dark-background-color, $light-background-color);
+
+    * {
+      color: contrast($header-background-color);
+    }
+  }
+
+  .content {
+    background-color: $background-color;
+  }
+
+  &gt; footer {
+    background-color: $footer-background-color;
+  }
+ }" data-collapsed="@mixin panel-background($background-color: color(border, light)) { ... }"><code>@mixin panel-background($background-color: color(border, light)) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Panel header background</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$background-color</code></th><td data-label="desc"><p>Sets the panel header background to a gradient and sets the text color dynamically based on the color brightness.</p></td><td data-label="type"><code>Color</code></td><td data-label="default"><code>color(border, light)</code></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-modal-panel"><code>modal-panel</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-flip-panel"><code>flip-panel</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-panel-placeholders"><code>panel-placeholders</code></a></li></ul></section><section class="main__item container item" id="mixin-panel-placeholders"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-panel-placeholders">panel-placeholders</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin panel-placeholders($styles: panel-settings(styles)) { 
+  @each $style, $background-color in $styles {
+    %panel-#{$style} {
+      @extend %panel;
+      @include panel-background($background-color);
+    }
+  }
+ }" data-collapsed="@mixin panel-placeholders($styles: panel-settings(styles)) { ... }"><code>@mixin panel-placeholders($styles: panel-settings(styles)) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates all panel variation placeholders defined in the settings</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$styles</code></th><td data-label="desc"><p>The style variations map</p></td><td data-label="type"><code>Map</code></td><td data-label="default"><code>panel-settings(styles)</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-panel-background"><code>panel-background</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-panel"><code>panel</code></a></li></ul></section></section><section class="main__sub-section" id="panel-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-panel"><h3 class="item__heading"><a class="item__name" href="#placeholder-panel">panel</a></h3><span class="item__since">Since v0.8.43</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%panel { 
+  backface-visibility: hidden;
+  background-color: color(white);
+  border: 1px solid color(border);
+  border-radius: $global-radius;
+  box-shadow: 0 2px 1px color(border);
+
+  &gt; header,
+  &gt; footer {
+    a {
+      font-weight: $font-weight-bold;
+    }
+
+    i {
+      margin-right: $column-gutter / 4;
+    }
+  }
+
+  &gt; header {
+    border-radius: $global-radius $global-radius 0 0;
+
+    h1 {
+      font-size: $base-font-size;
+      font-weight: $font-weight-bold;
+      letter-spacing: 0;
+      line-height: panel-settings(header-height);
+      margin: 0;
+      padding: 0 $column-gutter / 2;
+    }
+  }
+ }" data-collapsed="%panel { ... }"><code>%panel { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The placeholder that holds the base panel styles</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-panel-placeholders"><code>panel-placeholders</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="progress-bar"><div class="container">Progress Bars</div></h1><section class="main__sub-section" id="progress-bar-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-progress-bar-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-progress-bar-default-settings">progress-bar-default-settings</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$progress-bar-default-settings: (
+  background-color: color(border, light),
+  border: 0,
+  border-radius: $global-radius / 2,
+  padding: 0,
+  meter: (
+    selector: &#39;&gt; div&#39;
+  ),
+
+  styles: (
+    base: color(success, light),
+    primary: color(primary),
+    secondary: color(secondary),
+    alert: color(alert),
+    error: color(alert),
+    warning: color(warning),
+    success: color(success),
+    info: color(info)
+  ),
+
+  sizes: (
+    small: 1px,
+    base-size: 3px,
+    large: 10px
+  )
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default settings, styles and sizes</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic usage</p></div><pre class="example__code language-scss"><code>// Default classes
+.progress-bar {
+  @extend %progress-bar-base;
+}
+
+// Custom usage
+.project-progress-bar {
+  @extend %progress-bar-[base, primary, secondary, alert ...] ;
+  @extend %progress-bar-[small, base-size, large];
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic markup</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;project-progress-bar&quot;&gt;
+  &lt;div style=&quot;width: 30%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></section></section><section class="main__sub-section" id="progress-bar-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-progress-bar-style"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-progress-bar-style">progress-bar-style</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin progress-bar-style() { 
+  background-color: $color;
+ }" data-collapsed="@mixin progress-bar-style() { ... }"><code>@mixin progress-bar-style() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates background color</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-progress-bar-placeholders"><code>progress-bar-placeholders</code></a></li></ul></section><section class="main__item container item" id="mixin-progress-bar-height"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-progress-bar-height">progress-bar-height</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin progress-bar-height() { 
+  height: $height;
+ }" data-collapsed="@mixin progress-bar-height() { ... }"><code>@mixin progress-bar-height() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates bar height from settings</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-progress-bar-placeholders"><code>progress-bar-placeholders</code></a></li></ul></section><section class="main__item container item" id="mixin-progress-bar-placeholders"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-progress-bar-placeholders">progress-bar-placeholders</a></h3><span class="item__since">Since v0.8.34</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin progress-bar-placeholders() { 
+  @each $style, $color in progress-bar-settings(styles) {
+    %progress-bar-#{$style} {
+      @extend %progress-bar;
+
+      @include progress-bar-height;
+
+      #{progress-bar-settings(meter, selector)} {
+        @include progress-bar-style($color);
+      }
+    }
+  }
+
+  @each $size, $value in progress-bar-settings(sizes) {
+    %progress-bar-#{$size} {
+      @include progress-bar-height($value);
+    }
+  }
+ }" data-collapsed="@mixin progress-bar-placeholders() { ... }"><code>@mixin progress-bar-placeholders() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates progress-bar style and size placeholders</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-progress-bar-height"><code>progress-bar-height</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-progress-bar-style"><code>progress-bar-style</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="step"><div class="container">Steps</div></h1><section class="main__sub-section" id="step-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-step-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-step-default-settings">step-default-settings</a></h3><span class="item__since">Since v0.8.33</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$step-default-settings: (
+  height: $button-small-height,
+
+  colors: (
+    inactive-background: color(border, light),
+    inactive-border: color(border),
+    inactive-count: color(border),
+    highlighted-background: color(info, light),
+    highlighted-border: color(gray),
+    highlighted-count: color(gray),
+    active-background: color(primary, light),
+    active-border: color(primary),
+    active-count: color(primary, dark),
+  ),
+
+  selectors: (
+    highlighted: &#39;.highlighted&#39;,
+    active: &#39;.active&#39;
+  )
+);</code></pre></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Steps with border and icons</p></div><pre class="example__code language-html"><code>&lt;ol class=&quot;steps with-border with-icons&quot;&gt;
+  &lt;li&gt;&lt;a&gt;First Step&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;highlighted&quot;&gt;&lt;a&gt;Second Step&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;active&quot;&gt;&lt;span&gt;Current&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;Inactive&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;Inactive&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;Inactive&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Steps with border and counts</p></div><pre class="example__code language-html"><code>&lt;ol class=&quot;steps with-border with-counts&quot;&gt;
+  &lt;li class=&quot;highlighted with-pre&quot;&gt;&lt;span&gt;10&lt;/span&gt;&lt;a&gt;First Item&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;highlighted with-pre&quot;&gt;&lt;span&gt;8&lt;/span&gt;&lt;a&gt;Second Item&lt;/a&gt;&lt;/li&gt;
+  &lt;li class=&quot;active&quot;&gt;&lt;span&gt;Current&lt;/span&gt;&lt;/li&gt;
+  &lt;li class=&quot;with-post&quot;&gt;&lt;span&gt;Inactive Item&lt;/span&gt;&lt;span&gt;0&lt;/span&gt;&lt;/li&gt;
+  &lt;li class=&quot;with-post&quot;&gt;&lt;span&gt;Inactive Item&lt;/span&gt;&lt;span&gt;0&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;Inactive&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;</code></pre></div><div class="item__example example"><div class="example__description"><p>Custom steps</p></div><pre class="example__code language-scss"><code>.basic-breadbrumb,
+.border-steps,
+.icon-steps {
+  @extend %steps;
+}
+
+.icon-steps {
+  @extend %steps-with-icons;
+}
+
+.border-steps {
+  @extend %steps-with-border;
+}</code></pre></div></section></section><section class="main__sub-section" id="step-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-steps"><h3 class="item__heading"><a class="item__name" href="#placeholder-steps">steps</a></h3><span class="item__since">Since v0.8.33</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%steps { 
+  @extend %grid-row;
+
+  li {
+    display: inline-block;
+    float: left;
+    margin: $column-gutter / 4 0;
+
+    &amp;::after {
+      color: step-settings(colors, inactive-border);
+      content: &#39;\00bb&#39;;
+      display: inline-block;
+      margin: 0 $column-gutter / 4;
+    }
+
+    &amp;:last-of-type::after {
+      display: none;
+    }
+
+    &gt; * {
+      color: step-settings(colors, inactive-border);
+      display: inline-block;
+    }
+
+    &amp;#{step-settings(selectors, highlighted)} &gt; * {
+      color: step-settings(colors, highlighted-border);
+    }
+
+    &amp;#{step-settings(selectors, active)} &gt; * {
+      color: step-settings(colors, active-border);
+    }
+  }
+
+  .no-touch &amp; a:hover {
+    color: step-settings(colors, highlighted-border);
+  }
+ }" data-collapsed="%steps { ... }"><code>%steps { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Default steps placeholder, acts like a breadcrumb</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps-with-icons"><code>steps-with-icons</code></a></li><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps-with-border"><code>steps-with-border</code></a></li><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps-with-counts"><code>steps-with-counts</code></a></li></ul></section><section class="main__item container item" id="placeholder-steps-with-icons"><h3 class="item__heading"><a class="item__name" href="#placeholder-steps-with-icons">steps-with-icons</a></h3><span class="item__since">Since v0.8.33</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%steps-with-icons { 
+  li {
+    &amp;#{step-settings(selectors, highlighted)} &gt; *:first-child {
+      @include icon(check, before);
+    }
+
+    &amp;#{step-settings(selectors, active)} &gt; *:first-child {
+      @include icon(dot-circle-o, before);
+    }
+
+    &gt; * {
+      line-height: step-settings(height) !important;
+
+      &amp;:first-child {
+        @include steps-icon-default;
+      }
+    }
+  }
+ }" data-collapsed="%steps-with-icons { ... }"><code>%steps-with-icons { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Steps extention placeholder, allows use of icons</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps"><code>steps</code></a></li></ul></section><section class="main__item container item" id="placeholder-steps-with-border"><h3 class="item__heading"><a class="item__name" href="#placeholder-steps-with-border">steps-with-border</a></h3><span class="item__since">Since v0.8.33</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%steps-with-border { 
+  @media #{$medium-up} {
+    text-align: center;
+
+    li {
+      float: none;
+      margin: $column-gutter / 4 $column-gutter $column-gutter / 4 0;
+      position: relative;
+
+      &amp;:last-of-type {
+        margin-right: 0;
+      }
+
+      &amp;::after {
+        background: step-settings(colors, inactive-border);
+        content: &#39;&#39;;
+        height: 1px;
+        left: 100%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) translateX(-1px);
+        width: 50%;
+      }
+
+      &amp;#{step-settings(selectors, highlighted)} {
+        &amp;:after {
+          background-color: step-settings(colors, highlighted-border);
+        }
+
+        &gt; * {
+          @include detached-border(step-settings(colors, highlighted-border));
+
+          background-color: step-settings(colors, highlighted-background);
+          color: contrast(step-settings(colors, highlighted-background));
+
+        }
+
+        &gt; *:hover {
+          background-color: lighten(step-settings(colors, highlighted-background), 3%);
+        }
+      }
+
+      &amp;#{step-settings(selectors, active)} &gt; * {
+        @include detached-border(step-settings(colors, active-border));
+
+        background-color: step-settings(colors, active-background);
+        color: contrast(step-settings(colors, active-background));
+
+        &amp;:hover {
+          background-color: lighten(step-settings(colors, active-background), 7%);
+        }
+      }
+
+      &gt; * {
+        @include detached-border(step-settings(colors, inactive-border));
+
+        background-color: step-settings(colors, inactive-background);
+        border-radius: $global-radius;
+        color: contrast(step-settings(colors, inactive-background));
+        line-height: step-settings(height);
+        padding: 0 $column-gutter / 2 !important;
+        position: relative;
+        z-index: 1;
+
+        &amp;:hover {
+          background-color: lighten(step-settings(colors, inactive-background), 3%);
+        }
+      }
+    }
+  }
+ }" data-collapsed="%steps-with-border { ... }"><code>%steps-with-border { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Steps extention placeholder, adds a border around elements</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps"><code>steps</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps-with-counts"><code>steps-with-counts</code></a></li></ul></section><section class="main__item container item" id="placeholder-steps-with-counts"><h3 class="item__heading"><a class="item__name" href="#placeholder-steps-with-counts">steps-with-counts</a></h3><span class="item__since">Since v0.8.33</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%steps-with-counts { 
+  li {
+    &amp;.with-pre &gt; *:first-child,
+    &amp;.with-post &gt; *:last-child {
+      font-weight: $font-weight-bold;
+    }
+
+    &amp;.with-pre &gt; *:first-child {
+      padding-right: $column-gutter / 6;
+    }
+
+    &amp;.with-post &gt; *:last-child {
+      padding-left: $column-gutter / 6;
+    }
+  }
+
+  @media #{$medium-up} {
+    .with-pre &gt; *:first-child,
+    .with-post &gt; *:last-child {
+      padding-left: $column-gutter / 6;
+      padding-right: $column-gutter / 6;
+    }
+
+    .with-pre {
+      &amp;#{step-settings(selectors, highlighted)} &gt; *:first-child {
+        background-color: step-settings(colors, highlighted-count);
+        color: contrast(step-settings(colors, highlighted-count));
+      }
+
+      &amp;#{step-settings(selectors, active)} &gt; *:first-child {
+        background-color: step-settings(colors, active-count);
+        color: contrast(step-settings(colors, active-count));
+      }
+
+      &gt; *:first-child {
+        background-color: step-settings(colors, inactive-count);
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        color: contrast(step-settings(colors, inactive-count));
+      }
+
+      &gt; *:last-child {
+        border-bottom-left-radius: 0;
+        border-left-width: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    .with-post {
+      &amp;#{step-settings(selectors, highlighted)} &gt; *:last-child {
+        background-color: step-settings(colors, highlighted-count);
+        color: contrast(step-settings(colors, highlighted-count));
+      }
+
+      &amp;#{step-settings(selectors, active)} &gt; *:last-child {
+        background-color: step-settings(colors, active-count);
+        color: contrast(step-settings(colors, active-count));
+      }
+
+      &gt; *:first-child {
+        border-bottom-right-radius: 0;
+        border-right-width: 0;
+        border-top-right-radius: 0;
+      }
+
+      &gt; *:last-child {
+        background-color: step-settings(colors, inactive-count);
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        color: contrast(step-settings(colors, inactive-count));
+      }
+    }
+  }
+ }" data-collapsed="%steps-with-counts { ... }"><code>%steps-with-counts { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Steps extention placeholder, allows adding pre or post content</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps"><code>steps</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[placeholder]</span> <a href="#placeholder-steps-with-border"><code>steps-with-border</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="tab"><div class="container">Tabs</div></h1><section class="main__sub-section" id="tab-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-tab-default-settings"><h3 class="item__heading"><a class="item__name" href="#variable-tab-default-settings">tab-default-settings</a></h3><span class="item__since">Since v0.8.18</span><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$tab-default-settings: (
+  active-class: &#39;.active&#39;,
+  active-tab-selector: a,
+  background-color: color(white),
+  border-color: color(border),
+  border-color-active: color(link),
+  border-height: 3px,
+  height: 60px,
+  text-color: color(text, small),
+  text-color-active: color(text),
+  text-size: $h4-font-size,
+  padding: 0 $column-gutter / 2,
+  margin: 0 $column-gutter / 2,
+  transition-duration: $global-transition-duration / 2
+);</code></pre></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.my-tabs {
+  @include tabs;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Default Markup</p></div><pre class="example__code language-html"><code>&lt;section class=&quot;tabs&quot;&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a&gt;First Tab&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;active&quot;&gt;Second Tab&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a&gt;Third Tab&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;div class=&quot;content&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre></div></section></section><section class="main__sub-section" id="tab-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="mixin-tabs"><h3 class="item__heading"><a class="item__name" href="#mixin-tabs">tabs</a></h3><span class="item__since">Since v0.8.18</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin tabs() { 
+  position: relative;
+  width: 100%;
+
+  nav {
+    @include tabs-nav;
+  }
+
+  .content {
+    @extend %grid-column-12;
+  }
+ }" data-collapsed="@mixin tabs() { ... }"><code>@mixin tabs() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Main tabs mixin, to be applied to the tabs wrapper</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-tabs-nav"><code>tabs-nav</code></a></li></ul></section><section class="main__item container item" id="mixin-tabs-nav"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-tabs-nav">tabs-nav</a></h3><span class="item__since">Since v0.8.18</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin tabs-nav() { 
+  background-color: tab-settings(background-color);
+  border-bottom: 1px solid tab-settings(border-color);
+  overflow: hidden;
+
+  ul {
+    @include tab-item;
+
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+
+    li {
+      display: inline-block;
+      list-style: none;
+      position: relative;
+      vertical-align: top;
+    }
+  }
+ }" data-collapsed="@mixin tabs-nav() { ... }"><code>@mixin tabs-nav() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Tab Nav Group</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-tab-item"><code>tab-item</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-tabs"><code>tabs</code></a></li></ul></section><section class="main__item container item" id="mixin-tab-item"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-tab-item">tab-item</a></h3><span class="item__since">Since v0.8.18</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin tab-item($active-selector: a) { 
+  $tab-selector: &#39;li &gt; a&#39;;
+  $active-tab-selectors: (
+    a: &#39;li &gt; a#{tab-settings(active-class)}&#39;,
+    li: &#39;li#{tab-settings(active-class)} &gt; a&#39;,
+  );
+  $active-tab-selector: map-get($active-tab-selectors, $active-selector);
+
+  &gt; #{$tab-selector} {
+    color: tab-settings(text-color);
+    display: block;
+    font-size: tab-settings(text-size);
+    line-height: tab-settings(height);
+    margin: tab-settings(margin);
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: tab-settings(padding);
+    position: relative;
+    transition: color tab-settings(transition-duration);
+    white-space: nowrap;
+  }
+
+  &gt; #{$tab-selector}:hover,
+  &gt; #{$active-tab-selector} {
+    color: tab-settings(text-color-active);
+
+    &amp;:after {
+      transform: translate(0, 0);
+    }
+  }
+
+  &gt; #{$active-tab-selector}::after {
+    background-color: tab-settings(border-color-active);
+  }
+
+  &gt; #{$tab-selector}::after {
+    background-color: tab-settings(border-color);
+    bottom: 0;
+    content: &#39;&#39;;
+    height: tab-settings(border-height);
+    left: 0;
+    position: absolute;
+    transform: translate(0, 150%);
+    transition: transform tab-settings(transition-duration),
+      background-color tab-settings(transition-duration);
+    width: 100%;
+  }
+
+  @media #{$small-only} {
+    margin: 0;
+  }
+ }" data-collapsed="@mixin tab-item($active-selector: a) { ... }"><code>@mixin tab-item($active-selector: a) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Tab Nav Item</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$active-selector</code></th><td data-label="desc"><p>Sets the active state selector, can be <code>a</code> or <code>li</code></p></td><td data-label="type"><code>Value</code></td><td data-label="default"><code>a</code></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-tabs-nav"><code>tabs-nav</code></a></li></ul></section></section><section class="main__sub-section" id="tab-placeholder"><h2 class="main__heading--secondary"><div class="container">placeholders</div></h2><section class="main__item container item" id="placeholder-tabs"><h3 class="item__heading"><a class="item__name" href="#placeholder-tabs">tabs</a></h3><span class="item__since">Since 0.9.15</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%tabs { 
+  position: relative;
+  width: 100%;
+
+  &amp;__nav {
+    background-color: tab-settings(background-color);
+    border-bottom: 1px solid tab-settings(border-color);
+    overflow: hidden;
+  }
+ }" data-collapsed="%tabs { ... }"><code>%tabs { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Tabs placeholders</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>BEM Structure</p></div><pre class="example__code language-html"><code>%tabs
+  %tabs__nav
+
+%tabs-nav
+  %tabs-nav__item
+    %tabs-nav__link
+
+%tabs-nav--fluid-widths
+%tabs-nav--fluid-widths__item</code></pre></div><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>@include bem-block(&#39;custom-tabs&#39;) {
+  @extend %tabs;
+
+  @include bem-element(&#39;nav&#39;) {
+    @extend %tabs__nav;
+  }
+}
+
+@include bem-block(&#39;custom-tabs-nav&#39;) {
+  @extend %tabs-nav;
+  // @extend %tabs-nav--fluid-widths; // optional
+
+  @include bem-element(&#39;item&#39;) {
+    @extend %tabs-nav__item;
+    // @extend %tabs-nav--fluid-widths__item; // optional
+  }
+
+  @include bem-element(&#39;link&#39;) {
+    @extend %tabs-nav__link;
+  }
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-html"><code>&lt;div class=&quot;newtabs&quot;&gt;
+  &lt;nav class=&quot;custom-tabs__nav&quot;&gt;
+    &lt;ul class=&quot;custom-tabs-nav&quot;&gt;
+      &lt;li class=&quot;custom-tabs-nav__item&quot;&gt;&lt;a class=&quot;custom-tabs-nav__link&quot; href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;custom-tabs-nav__item&quot;&gt;&lt;a class=&quot;custom-tabs-nav__link active&quot; href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;custom-tabs-nav__item&quot;&gt;&lt;a class=&quot;custom-tabs-nav__link&quot; href=&quot;#&quot;&gt;Item&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</code></pre></div></section><section class="main__item container item" id="placeholder-tabs-nav"><h3 class="item__heading"><a class="item__name" href="#placeholder-tabs-nav">tabs-nav</a></h3><span class="item__since">Since v0.8.18</span><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="%tabs-nav { 
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+
+  &amp;--fluid-widths {
+    display: flex;
+
+    &amp;__item {
+      @media #{$medium-up} {
+        flex: 1;
+      }
+    }
+  }
+
+  &amp;__item {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+    vertical-align: top;
+  }
+
+  &amp;__link {
+    color: tab-settings(text-color);
+    display: block;
+    font-size: tab-settings(text-size);
+    line-height: tab-settings(height);
+    margin: tab-settings(margin);
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: tab-settings(padding);
+    position: relative;
+    text-align: center;
+    transition: color tab-settings(transition-duration);
+    white-space: nowrap;
+
+    &amp;:after {
+      background-color: tab-settings(border-color);
+      bottom: 0;
+      content: &#39;&#39;;
+      height: tab-settings(border-height);
+      left: 0;
+      position: absolute;
+      transform: translate(0, 150%);
+      transition: transform tab-settings(transition-duration),
+        background-color tab-settings(transition-duration);
+      width: 100%;
+    }
+
+    &amp;:hover,
+    &amp;.active {
+      color: tab-settings(text-color-active);
+
+      &amp;:after {
+        transform: translate(0, 0);
+      }
+    }
+
+    &amp;.active {
+      &amp;:after {
+        background-color: tab-settings(border-color-active);
+      }
+    }
+
+    @media #{$small-only} {
+      margin: 0;
+    }
+  }
+ }" data-collapsed="%tabs-nav { ... }"><code>%tabs-nav { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Block: tabs-nav Elements: item, link Modifiers: fluid-widths - affects item</p></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><span class="project-info__name">As-paint</span><!-- Version --> <span class="project-info__version">- v0.9.23</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
