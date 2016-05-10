@@ -22,6 +22,7 @@ There are 2 ways to import paint into an application:
 For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/node_modules/paint/styles/paint'`
 
 * Allow theming and customising components. In this case, you need to load some components individually and create an app-specific `paint-settings` file _(which will act as your theme file)_:  
+
 ```scss
 /// Paint Core
 @import '/bower_components/paint/styles/core';
@@ -199,6 +200,7 @@ _Npm might return an error, since the tag name might already exist. No worries, 
 * Push changes and tags
 
 * **Finish** the release, adding the release notes to the description:  
+
 ```
 ## Changelog
 
