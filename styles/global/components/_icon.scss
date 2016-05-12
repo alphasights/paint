@@ -4,6 +4,13 @@
 /// @since v0.8.32
 ////
 
+/// Import Dependencies
+
+@import 'node_modules/font-awesome/scss/variables';
+@import 'node_modules/font-awesome/scss/path';
+@import 'node_modules/font-awesome/scss/mixins';
+@import 'node_modules/font-awesome/scss/icons';
+
 /// Import Paint icons
 
 @import url(https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css);
