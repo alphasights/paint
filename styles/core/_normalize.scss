@@ -6,9 +6,6 @@ html {
   font-family: sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
-  @if $legacy_browser_support {
-    *font-size: 100%; /* 3 */
-  }
 }
 
 body {
@@ -37,10 +34,6 @@ progress,
 video {
   display: inline-block; /* 1 */
   vertical-align: baseline; /* 2 */
-  @if $legacy_browser_support {
-    *display: inline;
-    *zoom: 1;
-  }
 }
 
 audio:not([controls]) {
@@ -52,13 +45,6 @@ audio:not([controls]) {
 template {
   display: none;
 }
-
-/* Links
-   ========================================================================== */
-
-/**
- * Remove the gray background color from active links in IE 10.
- */
 
 a {
   background-color: transparent;
@@ -77,12 +63,6 @@ abbr[title] {
 b,
 strong {
   font-weight: bold;
-}
-
-@if $legacy_browser_support {
-  blockquote {
-    margin: 1em 40px;
-  }
 }
 
 dfn {
@@ -121,9 +101,6 @@ sub {
 
 img {
   border: 0;
-  @if $legacy_browser_support {
-    *-ms-interpolation-mode: bicubic; /* 2 */
-  }
 }
 
 svg:not(:root) {
@@ -148,9 +125,6 @@ kbd,
 pre,
 samp {
   font-family: monospace, monospace;
-  @if $legacy_browser_support {
-    _font-family: 'courier new', monospace;
-  }
   font-size: 1em;
 }
 
@@ -162,10 +136,6 @@ textarea {
   color: inherit; /* 1 */
   font: inherit; /* 2 */
   margin: 0; /* 3 */
-  @if $legacy_browser_support {
-    vertical-align: baseline; /* 3 */
-    *vertical-align: middle; /* 3 */
-  }
 }
 
 button {
@@ -183,9 +153,6 @@ input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; /* 2 */
   cursor: pointer; /* 3 */
-  @if $legacy_browser_support {
-    *overflow: visible;  /* 4 */
-  }
 }
 
 button[disabled],
@@ -207,10 +174,6 @@ input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
-  @if $legacy_browser_support {
-    *height: 13px; /* 3 */
-    *width: 13px; /* 3 */
-  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -237,10 +200,6 @@ fieldset {
 legend {
   border: 0; /* 1 */
   padding: 0; /* 2 */
-  @if $legacy_browser_support {
-    white-space: normal; /* 3 */
-    *margin-left: -7px; /* 4 */
-  }
 }
 
 textarea {
