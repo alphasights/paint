@@ -22,15 +22,13 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   $v2: nth($value, length($value));
   $value: $v1;
 
-  // scale $v2 to just above $v1
   @while $v2 > $v1 {
-    $v2: ($v2 / $ratio); // will be off-by-1
+    $v2: ($v2 / $ratio);
   }
   @while $v2 < $v1 {
-    $v2: ($v2 * $ratio); // will fix off-by-1
+    $v2: ($v2 * $ratio);
   }
 
-  // check AFTER scaling $v2 to prevent double-counting corner-case
   $double-stranded: $v2 > $v1;
 
   @if $increment > 0 {
@@ -46,7 +44,6 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   }
 
   @if $increment < 0 {
-    // adjust $v2 to just below $v1
     @if $double-stranded {
       $v2: ($v2 / $ratio);
     }
@@ -65,18 +62,18 @@ $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
   @return $value;
 }
 
-$fg-column: modular-scale(3, 1em, 1.618);
-$fg-gutter: modular-scale(1, 1em, 1.618);
+$g-column: modular-scale(3, 1em, 1.618);
+$g-gutter: modular-scale(1, 1em, 1.618);
 $fg-max-columns: $grid-columns;
 
 @function flex-grid($columns, $container-columns: $fg-max-columns) {
-  $width: $columns * $fg-column + ($columns - 1) * $fg-gutter;
-  $container-width: $container-columns * $fg-column + ($container-columns - 1) * $fg-gutter;
+  $width: $columns * $g-column + ($columns - 1) * $g-gutter;
+  $container-width: $container-columns * $g-column + ($container-columns - 1) * $g-gutter;
   @return percentage($width / $container-width);
 }
 
-@function flex-gutter($container-columns: $fg-max-columns, $gutter: $fg-gutter) {
-  $container-width: $container-columns * $fg-column + ($container-columns - 1) * $fg-gutter;
+@function flex-gutter($container-columns: $fg-max-columns, $gutter: $g-gutter) {
+  $container-width: $container-columns * $g-column + ($container-columns - 1) * $g-gutter;
   @return percentage($gutter / $container-width);
 }
 @mixin span-columns($span) {
