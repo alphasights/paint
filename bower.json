@@ -21,6 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "fontawesome": "~4.4.0"
+    "fontawesome": "~4.6.3"
   }
 }

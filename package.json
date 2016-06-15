@@ -8,11 +8,13 @@
   },
   "author": "AlphaSights",
   "license": "MIT",
+  "dependencies": {
+    "font-awesome": "^4.6.3"
+  },
   "devDependencies": {
     "broccoli": "0.16.9",
     "broccoli-cli": "1.0.0",
     "broccoli-sass": "0.7.0",
-    "font-awesome": "^4.6.1",
     "sassdoc": "2.1.18"
   }
 }
