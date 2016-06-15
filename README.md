@@ -24,6 +24,9 @@ For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/no
 * Allow theming and customising components. In this case, you need to load some components individually and create an app-specific `paint-settings` file _(which will act as your theme file)_:  
 
 ```scss
+/// Paint Dependencies
+@import '/bower_components/paint/styles/dependencies';
+
 /// Paint Core
 @import '/bower_components/paint/styles/core';
 
@@ -51,6 +54,7 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 @import 'styles';
 
 /// paint-loader.scss
+@import '/bower_components/paint/styles/dependencies';
 @import '/bower_components/paint/styles/core';
 @import 'paint-settings';
 @import '/bower_components/paint/styles/settings';
@@ -70,6 +74,7 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 
 Paint is separated into
 
+* Dependencies _*optional_
 * Core
 * Settings
 * Tools
@@ -81,13 +86,12 @@ Paint is separated into
 This contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:
 
 ```
-- core/dependencies
-  normalize-scss
-  bourbon
 - core/functions
   export
   map
   bound
+  units
+- core/normalize
 - core/resets
 ```
 
