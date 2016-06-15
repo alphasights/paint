@@ -91,8 +91,8 @@ This contains a set of functions and mixins that are mandatory for the rest of t
   map
   bound
   units
-- core/normalize
 - core/resets
+  - core/normalize
 ```
 
 ### Settings
@@ -117,15 +117,15 @@ A set of reusable styles that we want to share between the components and throug
 ### Global
 
 This contains the most basic set of components.  
-_Each component might have extra package dependencies that are not defined above._
+_Each component might have extra package dependencies that are defined in `styles/dependencies`._
 
 ```
 - global/components
   icon
     font-awesome
+    paint-icons
   button
   grid
-    neat (bower) / node-neat (npm)
   typography  
 ```
 
