@@ -1,9 +1,8 @@
 {
   "name": "paint",
-  "version": "0.9.23",
+  "version": "0.9.24",
   "homepage": "https://github.com/alphasights/paint",
   "authors": [
-    "Eugenio Depalo <eugenio@alphasights.com>",
     "David Griffiths <david.griffiths@alphasights.com>",
     "Andrei Popa <andrei@alphasights.com>"
   ],
@@ -22,9 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "fontawesome": "~4.4.0",
-    "bourbon": "~4.2.6",
-    "neat": "~1.7.2",
-    "normalize-scss": "~3.0.3"
+    "fontawesome": "~4.6.3"
   }
 }
