@@ -4,7 +4,7 @@
 /// @since v0.9.25
 ////
 
-$gutter-prefix: 'gutter' !default;
+$gutter-prefix: '%gutter' !default;
 $gutter-base: 1.5rem !default;
 
 $gutter-placements: (
@@ -30,7 +30,7 @@ $gutter-sizes: (
   }
 }
 
-%gutter {
+#{$gutter-prefix} {
   @each $placement, $placement_value in $gutter-placements {
     &__#{$placement} {
       @include gutter($placement_value, $type: padding);
