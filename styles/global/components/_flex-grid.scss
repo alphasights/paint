@@ -4,8 +4,8 @@
 /// @since v0.9.25
 ////
 
-$flex-row-prefix: 'row' !default;
-$flex-col-prefix: 'col' !default;
+$flex-row-prefix: '%row' !default;
+$flex-col-prefix: '%col' !default;
 
 @function col-width($columns, $total-columns: $grid-columns) {
   @return 100% / $total-columns * $columns;
@@ -26,23 +26,19 @@ $flex-col-prefix: 'col' !default;
 
 @mixin col-placeholders($prefix: $flex-col-prefix) {
   @for $i from 1 through $grid-columns {
-    %#{$prefix}-#{$i} {
+    #{$prefix}-#{$i} {
       @include col($i);
     }
   }
 
-  %#{$prefix}--fill {
-    flex: 1;
-  }
-
-  %#{$prefix}--auto-fill {
-    flex: auto;
+  #{$prefix}--fill {
+    flex-grow: 1;
   }
 }
 
 @mixin col-push-placeholders($prefix: $flex-col-prefix) {
   @for $i from 1 through $grid-columns {
-    %#{$prefix}-push-#{$i} {
+    #{$prefix}-push-#{$i} {
       @include col-gutter($i);
     }
   }
@@ -50,7 +46,7 @@ $flex-col-prefix: 'col' !default;
 
 @mixin col-pull-placeholders($prefix: $flex-col-prefix) {
   @for $i from 1 through $grid-columns {
-    %#{$prefix}-pull-#{$i} {
+    #{$prefix}-pull-#{$i} {
       @include col-gutter($i, right);
     }
   }
@@ -70,7 +66,7 @@ $flex-col-prefix: 'col' !default;
   }
 }
 
-%#{$flex-row-prefix} {
+#{$flex-row-prefix} {
   align-content: flex-start;
   display: flex;
 
@@ -106,21 +102,33 @@ $flex-col-prefix: 'col' !default;
     justify-content: center;
   }
 
+  &--right {
+    justify-content: flex-end;
+  }
+
   &--vertical {
     flex-direction: column;
   }
 }
 
-%#{$flex-col-prefix} {
+#{$flex-col-prefix} {
   &--no-fill {
     flex: none;
     flex-basis: auto;
+  }
+
+  &--auto-fill {
+    flex: auto;
   }
 
   &--gutter {
     &:not(:last-child) {
       margin-right: $column-gutter / 2;
     }
+  }
+
+  &--no-shrink {
+    flex-shrink: 0;
   }
 
   &--middle {
