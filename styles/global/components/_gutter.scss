@@ -1,0 +1,53 @@
+////
+/// Gutter placeholders
+/// @group grid
+/// @since v0.9.25
+////
+
+$gutter-prefix: '%gutter' !default;
+$gutter-base: 1.5rem !default;
+
+$gutter-placements: (
+  top: top,
+  bottom: bottom,
+  left: left,
+  right: right,
+  vertical: top bottom,
+  horizontal: left right,
+  all: top bottom left right
+);
+
+$gutter-sizes: (
+  small: $gutter-base / 2,
+  smaller: $gutter-base / 4,
+  large: $gutter-base * 2,
+  larger: $gutter-base * 3
+);
+
+@mixin gutter($placement: left right, $size: $gutter-base, $type: margin) {
+  @each $placement_item in $placement {
+    #{$type}-#{$placement_item}: $size;
+  }
+}
+
+#{$gutter-prefix} {
+  @each $placement, $placement_value in $gutter-placements {
+    &__#{$placement} {
+      @include gutter($placement_value, $type: padding);
+
+      &-outer {
+        @include gutter($placement_value);
+      }
+    }
+
+    @each $size, $size_value in $gutter-sizes {
+      &__#{$placement}-#{$size} {
+        @include gutter($placement_value, $size_value, $type: padding);
+
+        &-outer {
+          @include gutter($placement_value, $size_value);
+        }
+      }
+    }
+  }
+}

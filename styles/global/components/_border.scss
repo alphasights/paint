@@ -1,0 +1,45 @@
+$border-prefix: '%border' !default;
+$border-color: color(border) !default;
+
+$border-placements: (
+  top: top,
+  bottom: bottom,
+  left: left,
+  right: right,
+  vertical: top bottom,
+  horizontal: left right,
+  all: top bottom left right
+);
+
+$border-colors: (
+  dark: color(border, dark),
+  light: color(border, light)
+);
+
+@mixin border($placement: bottom, $color: $border-color) {
+  @each $placement_item in $placement {
+    border-#{$placement_item}: 1px solid #{$color};
+  }
+}
+
+#{$border-prefix} {
+  @each $placement, $placement_value in $border-placements {
+    &__#{$placement} {
+      @include border($placement_value);
+    }
+
+    @each $color, $color_value in $border-colors {
+      &__#{$placement}-#{$color} {
+        @include border($placement_value, $color_value);
+      }
+    }
+  }
+
+  &--rounded {
+    border-radius: $global-radius;
+  }
+
+  &--circle {
+    border-radius: $global-rounded;
+  }
+}
