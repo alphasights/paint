@@ -11,7 +11,7 @@
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: $small-up, $medium-up, $large-up, $xlarge-up, $xxlarge-up;
 $grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
-
+$grid-columns: 12 !default;
 // Deprecated in the next major version
 
 @function modular-scale(
