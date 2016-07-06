@@ -45,7 +45,7 @@ $include-html-paint-form: true !default;
   @if $with-border {
     background-color: color(border, light);
     border: solid 1px color(border);
-    border-radius: $global-radius;
+    border-radius: border(radius);
   }
 }
 
@@ -168,7 +168,7 @@ $include-html-paint-form: true !default;
       -webkit-appearance: none;
       background: rgba(color(black), 0);
       border: 0;
-      border-radius: $global-radius;
+      border-radius: border(radius);
       color: $form-input-text-color;
       font-size: $base-font-size;
       margin: 0;
@@ -185,7 +185,7 @@ $include-html-paint-form: true !default;
 
       > option {
         background: color(gray, silver);
-        border-radius: $global-radius;
+        border-radius: border(radius);
         cursor: pointer;
         margin: 3px;
         padding: 3px 8px;
@@ -216,7 +216,7 @@ $include-html-paint-form: true !default;
   #{$item} {
     background-color: $form-multi-select-item-background;
     border: $form-multi-select-item-border;
-    border-radius: $global-radius;
+    border-radius: border(radius);
     color: $form-multi-select-item-color;
     float: left;
     font-size: $small-font-size;
@@ -310,7 +310,7 @@ $include-html-paint-form: true !default;
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
   background-color: color(white);
-  border-radius: 0 0 $global-radius $global-radius;
+  border-radius: 0 0 border(radius) border(radius);
   border: 1px solid $form-input-border-color;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
   box-sizing: border-box;
@@ -344,7 +344,7 @@ $include-html-paint-form: true !default;
 
     &:last-child {
       border-bottom: 0;
-      border-radius: 0 0 $global-radius $global-radius;
+      border-radius: 0 0 border(radius) border(radius);
     }
 
     &#{$is-focused-selector},
@@ -727,8 +727,8 @@ $include-html-paint-form: true !default;
     border-top: 1px solid color(border);
 
     @if $with-border {
-      border-bottom-left-radius: $global-radius;
-      border-bottom-right-radius: $global-radius;
+      border-bottom-left-radius: border(radius);
+      border-bottom-right-radius: border(radius);
       padding: $column-gutter !important;
     } @else {
       padding: $column-gutter $column-gutter / 2 !important;
@@ -835,7 +835,7 @@ $include-html-paint-form: true !default;
   background-image: $form-input-background;
   border: 1px solid;
   border-color: $form-input-border-color darken($form-input-border-color, 5%);
-  border-radius: $global-radius;
+  border-radius: border(radius);
   box-shadow: 0 1px 1px $form-input-shadow-color;
   color: $form-input-text-color;
   height: auto;

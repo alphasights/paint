@@ -88,7 +88,7 @@ $include-html-paint-panel: true !default;
   backface-visibility: hidden;
   background-color: color(white);
   border: 1px solid color(border);
-  border-radius: $global-radius;
+  border-radius: border(radius);
   box-shadow: 0 2px 1px color(border);
 
   > header,
@@ -103,7 +103,7 @@ $include-html-paint-panel: true !default;
   }
 
   > header {
-    border-radius: $global-radius $global-radius 0 0;
+    border-radius: border(radius) border(radius) 0 0;
 
     h1 {
       font-size: $base-font-size;

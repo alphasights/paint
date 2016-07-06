@@ -61,25 +61,25 @@ $table-column-padding: $column-gutter / 2 !default;
 }
 
 %table-rounded {
-  border-radius: $global-radius;
+  border-radius: border(radius);
 
   thead th {
     &:first-child {
-      border-radius: $global-radius 0 0;
+      border-radius: border(radius) 0 0;
     }
 
     &:last-child {
-      border-radius: 0 $global-radius 0 0;
+      border-radius: 0 border(radius) 0 0;
     }
   }
 
   tbody tr:last-child td {
     &:first-child {
-      border-radius: 0 0 0 $global-radius;
+      border-radius: 0 0 0 border(radius);
     }
 
     &:last-child {
-      border-radius: 0 $global-radius 0 0;
+      border-radius: 0 border(radius) 0 0;
     }
   }
 }

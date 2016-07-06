@@ -26,7 +26,7 @@
 $progress-bar-default-settings: (
   background-color: color(border, light),
   border: 0,
-  border-radius: $global-radius / 2,
+  border-radius: border(radius) / 2,
   padding: 0,
   meter: (
     selector: '> div'

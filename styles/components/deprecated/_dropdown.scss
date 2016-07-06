@@ -231,7 +231,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
     background-clip: padding-box;
     background-color: dropdown-settings(background-color);
     border: 1px solid dropdown-settings(border-color);
-    border-radius: $global-radius / 2;
+    border-radius: border(radius) / 2;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .175);
     display: none;
     float: left;
