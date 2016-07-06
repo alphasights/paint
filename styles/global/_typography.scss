@@ -36,6 +36,9 @@ $h4-font-reduction: rem(3) !default;
 $h5-font-reduction: 0 !default;
 $h6-font-reduction: 0 !default;
 
+$base-spacing: $base-line-height * 1em !default;
+$small-spacing: $base-spacing / 2 !default;
+
 $typography: () !default;
 $typography-default-settings: (
   heading-tags: (
