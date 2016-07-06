@@ -126,7 +126,6 @@ $include-html-paint-typography: true !default;
   a {
     color: color(link);
     text-decoration: none;
-    transition: color $global-transition-duration / 2 ease;
 
     &:active,
     &:focus,
