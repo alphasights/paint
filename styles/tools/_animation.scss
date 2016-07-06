@@ -18,5 +18,3 @@ $animation: map-merge-settings($animation-defaults, $animation);
 @function animation($settings...) {
   @return map-deep-get($animation, $settings...);
 }
-
-animation(transition, duration): .325s;
