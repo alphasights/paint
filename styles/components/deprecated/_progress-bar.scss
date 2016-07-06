@@ -93,7 +93,7 @@ $include-html-paint-progress-bar: true !default;
 @mixin progress-bar-meter {
   display: block;
   height: 100%;
-  transition: width $global-transition-duration ease;
+  transition: width animation(transition, duration) ease;
   width: 0;
 }
 

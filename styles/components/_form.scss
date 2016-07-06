@@ -83,7 +83,7 @@ $include-html-paint-form: true !default;
     textarea,
     &#{$form-select-selector} > div {
       border-color: color(alert, light);
-      transition: border-color $global-transition-duration / 2 linear;
+      transition: border-color animation(transition, duration) / 2 linear;
     }
   }
 }
@@ -720,7 +720,7 @@ $include-html-paint-form: true !default;
   @extend %grid-column-12;
 
   position: relative;
-  transition: background-color $global-transition-duration / 2 linear;
+  transition: background-color animation(transition, duration) / 2 linear;
 
   @if $standalone == false {
     background-color: color(white);
@@ -752,7 +752,7 @@ $include-html-paint-form: true !default;
 
   button {
     margin-bottom: 0 !important;
-    transition: background-color $global-transition-duration / 2 linear;
+    transition: background-color animation(transition, duration) / 2 linear;
 
     &[type='submit'] {
       @extend %button-primary;

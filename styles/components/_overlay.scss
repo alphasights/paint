@@ -10,7 +10,7 @@ $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
   position: $position;
   right: 0;
   top: 0;
-  transition: background-color $global-transition-duration ease;
+  transition: background-color animation(transition, duration) ease;
   z-index: $z-index;
 
   > * {

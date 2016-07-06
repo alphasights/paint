@@ -39,7 +39,7 @@ $tab-default-settings: (
   text-size: $h4-font-size,
   padding: 0 $column-gutter / 2,
   margin: 0 $column-gutter / 2,
-  transition-duration: $global-transition-duration / 2
+  transition-duration: animation(transition, duration) / 2
 );
 
 $tab: () !default;

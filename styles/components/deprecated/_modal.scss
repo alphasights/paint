@@ -144,8 +144,8 @@ $include-html-paint-modal: true !default;
     top: -100%;
     transform: translateY(-100%);
     transition: 
-      top $global-transition-duration $global-transition-easing,
-      transform $global-transition-duration;
+      top animation(transition, duration) animation(transition, easing),
+      transform animation(transition, duration);
   }
 
   &.active > div {

@@ -30,12 +30,12 @@ $notification-colors: (
 
 @mixin notification-animation(
   $animation: 'notificationSlideIn',
-  $duration: $global-transition-duration,
+  $duration: animation(transition, duration),
   $direction: normal
 ) {
   animation: $animation;
   animation-duration: $duration;
-  animation-timing-function: $global-transition-easing;
+  animation-timing-function: animation(transition, easing);
   animation-fill-mode: forwards;
   animation-direction: $direction;
   transition-duration: $duration;
@@ -74,7 +74,7 @@ $notification-colors: (
 
   #{$content-selector},
   #{$close-selector} {
-    @include notification-animation('notificationFade', $global-transition-duration * 2);
+    @include notification-animation('notificationFade', animation(transition, duration) * 2);
 
     color: $text-color;
     display: inline-block;

@@ -105,7 +105,7 @@ $include-html-paint-side-panel: true !default;
     right: 0;
     top: 0;
     transform: translate(100%, 0);
-    transition: transform $global-transition-duration $global-transition-easing;
+    transition: transform animation(transition, duration) animation(transition, easing);
 
     &.has-footer > .content {
       bottom: side-panel-settings(footer-bar, height);
