@@ -45,7 +45,7 @@ $gutter: map-merge-settings($gutter-defaults, $gutter);
       &__#{$placement} {
         @include gutter-position($placement_value, $type: padding);
 
-        &-outer {
+        &--outer {
           @include gutter-position($placement_value);
         }
       }
@@ -54,7 +54,7 @@ $gutter: map-merge-settings($gutter-defaults, $gutter);
         &__#{$placement}-#{$size} {
           @include gutter-position($placement_value, $size_value, $type: padding);
 
-          &-outer {
+          &--outer {
             @include gutter-position($placement_value, $size_value);
           }
         }
