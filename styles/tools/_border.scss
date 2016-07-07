@@ -19,7 +19,6 @@ $border-defaults: (
   )
 );
 
-
 $border: () !default;
 $border: map-merge-settings($border-defaults, $border);
 
