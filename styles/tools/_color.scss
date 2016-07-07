@@ -6,7 +6,7 @@
 
 /// Default color palettes and general color settings
 
-$colors-default-settings: (
+$color-settings: (
   text: (
     base: #222222,
     small: #888888
@@ -84,8 +84,8 @@ $colors-default-settings: (
   )
 );
 
-$colors: () !default;
-$colors: map-merge-settings($colors-default-settings, $colors);
+$color: () !default;
+$color: map-merge-settings($color-settings, $color);
 
 /// Fetch a color from a palette group / setting
 /// @param {color | palette} $color - Single color, palette variant or solid color
@@ -122,8 +122,8 @@ $colors: map-merge-settings($colors-default-settings, $colors);
 ///   // Call example: `color(dragon-skin)` or `color(dragon-skin, transparent)`
 ///
 
-@function color($color, $variant: base) {
-  $output-color: map-get($colors, $color);
+@function color($name, $variant: base) {
+  $output-color: map-get($color, $name);
   $adjust: ();
   $is-map: false;
 
@@ -139,7 +139,7 @@ $colors: map-merge-settings($colors-default-settings, $colors);
   }
 
   @if $is-map {
-    @if map-has-key($colors, $base) {
+    @if map-has-key($color, $base) {
       $output-color: color($base);
     } @else {
       $output-color: $base;
