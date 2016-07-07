@@ -10,7 +10,7 @@ $em-base: 16px !default;
     $pxval: strip-units($pxval);
   }
 
-  $base: $em-base;
+  $base: $rem-base;
 
   @if not unitless($base) {
     $base: strip-units($base);
