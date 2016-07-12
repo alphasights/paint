@@ -42,19 +42,19 @@ $gutter: map-merge-settings($gutter-defaults, $gutter);
 @include exports('paint-gutter') {
   #{gutter(prefix)} {
     @each $placement, $placement_value in gutter(placement) {
-      &__#{$placement} {
+      &-#{$placement} {
         @include gutter-position($placement_value, $type: padding);
 
-        &--outer {
+        &-outer {
           @include gutter-position($placement_value);
         }
       }
 
       @each $size, $size_value in gutter(size) {
-        &__#{$placement}-#{$size} {
+        &-#{$placement}-#{$size} {
           @include gutter-position($placement_value, $size_value, $type: padding);
 
-          &--outer {
+          &-outer {
             @include gutter-position($placement_value, $size_value);
           }
         }

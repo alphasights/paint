@@ -38,38 +38,38 @@ $border: map-merge-settings($border-defaults, $border);
 
 @include exports('paint-border') {
   #{border(prefix)} {
-    @each $placement, $placement_value in border(placement) {
-      &__#{$placement} {
-        @extend #{border(prefix)}--base;
-        @include border-position($placement_value);
+    @each $placement, $placement-value in border(placement) {
+      &-#{$placement} {
+        @extend #{border(prefix)}-base;
+        @include border-position($placement-value);
       }
 
-      &__#{$placement}--light {
-        @extend #{border(prefix)}--light;
+      &-#{$placement}-light {
+        @extend #{border(prefix)}-light;
       }
 
-      &__#{$placement}--dark {
-        @extend #{border(prefix)}--dark;
+      &-#{$placement}-dark {
+        @extend #{border(prefix)}-dark;
       }
     }
 
-    &--base {
+    &-base {
       @include border-color(color(border));
     }
 
-    &--light {
+    &-light {
       @include border-color(color(border, light));
     }
 
-    &--dark {
+    &-dark {
       @include border-color(color(border, dark));
     }
 
-    &--rounded {
+    &-rounded {
       border-radius: border(radius);
     }
 
-    &--circle {
+    &-circle {
       border-radius: 1000px;
     }
   }
