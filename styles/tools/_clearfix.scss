@@ -5,3 +5,9 @@
     display: block;
   }
 }
+
+@include exports('paint-clearfix') {
+  %clearfix {
+    @include clearfix;
+  }
+}
