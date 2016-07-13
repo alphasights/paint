@@ -5,6 +5,14 @@ $em-base: 16px !default;
   @return ($value / ($value * 0 + 1));
 }
 
+@function px($val) {
+  @if not unitless($val) {
+    $val: strip-units($val);
+  }
+
+  @return $val * 1px;
+}
+
 @function rem($pxval) {
   @if not unitless($pxval) {
     $pxval: strip-units($pxval);

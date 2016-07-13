@@ -1,60 +1,90 @@
-$small-breakpoint:  em(640) !default;
-$medium-breakpoint: em(1024) !default;
-$large-breakpoint:  em(1440) !default;
-$xlarge-breakpoint: em(1920) !default;
+////
+/// Media Query Atoms
+/// @group tools
+/// @since v1.0.0
+////
 
-$small-range:   (0, $small-breakpoint) !default;
-$medium-range:  ($small-breakpoint  + em(1), $medium-breakpoint) !default;
-$large-range:   ($medium-breakpoint + em(1), $large-breakpoint) !default;
-$xlarge-range:  ($large-breakpoint  + em(1), $xlarge-breakpoint) !default;
-$xxlarge-range: ($xlarge-breakpoint + em(1), em(99999999)) !default;
+$mq-breakpoint-defaults: (
+  small: 640,
+  medium: 1024,
+  large: 1440,
+  xlarge: 1920,
+  xxlarge: 99999
+);
 
-$screen: 'only screen' !default;
+$mq-breakpoint: () !default;
+$mq-breakpoint: map-merge-settings($mq-breakpoint-defaults, $mq-breakpoint);
 
-$landscape: "#{$screen} and (orientation: landscape)" !default;
-$portrait: "#{$screen} and (orientation: portrait)" !default;
-
-@function lower-bound($range) {
-  @if length($range) <= 0 {
-    @return 0;
-  }
-  @return nth($range, 1);
+@function mq-breakpoint($settings...) {
+  @return map-deep-get($mq-breakpoint, $settings...);
 }
 
-@function upper-bound($range) {
-  @if length($range) < 2 {
-    @return 999999999999;
+$_breakpoint-list: map-keys($mq-breakpoint);
+
+/// Builds the range limits for a specific breakpoint
+@function mq-range($breakpoint) {
+  @if map-has-key($mq-breakpoint, $breakpoint) {
+    $breakpoint-index: index($_breakpoint-list, $breakpoint);
+
+    $lower-bound: 0;
+    $upper-bound: mq-breakpoint($breakpoint);
+
+    @if $breakpoint-index > 1 {
+      $previous-breakpoint: mq-breakpoint(nth($_breakpoint-list, $breakpoint-index - 1));
+      $lower-bound: $previous-breakpoint + 1;
+    }
+
+    @return (px($lower-bound), px($upper-bound));
+  } @else {
+    @error "There is no breakpoint defined for '#{$breakpoint}'";
   }
-  @return nth($range, 2);
 }
 
-$small-up: $screen !default;
-$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})" !default;
+/// Holds the media query ranges for each breakpoint
+$mq-range: ();
 
-$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})" !default;
-$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})" !default;
-$medium-down: "#{$screen} and (max-width:#{upper-bound($medium-range)})" !default;
+@mixin mq-range-build {
+  @each $breakpoint, $value in $mq-breakpoint {
+    $breakpoint-range: (
+      $breakpoint: mq-range($breakpoint)
+    );
 
-$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})" !default;
-$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})" !default;
-$large-down: "#{$screen} and (max-width:#{upper-bound($large-range)})" !default;
+    $mq-range: map-merge($mq-range, $breakpoint-range) !global;
+  }
+}
 
-$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})" !default;
-$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})" !default;
-$xlarge-down: "#{$screen} and (max-width:#{upper-bound($xlarge-range)})" !default;
+@include mq-range-build;
 
-$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})" !default;
-$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})" !default;
+/// Holds the media query strings with directions for each breakpoint
+$mq: ();
 
-$retina: (
- "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
- "#{$screen} and (min--moz-device-pixel-ratio: 2)",
- "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
- "#{$screen} and (min-device-pixel-ratio: 2)",
- "#{$screen} and (min-resolution: 192dpi)",
- "#{$screen} and (min-resolution: 2dppx)"
-) !default;
+@mixin mq-build {
+  @each $breakpoint, $range in $mq-range {
+    $mq-item: (
+      $breakpoint: (
+        up: "#{$screen} and (min-width:#{lower-bound($range)})",
+        only: "#{$screen} and (min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})",
+        down: "#{$screen} and (max-width:#{upper-bound($range)})"
+      )
+    );
 
-$small: $medium-up !default;
-$medium: $medium-up !default;
-$large: $large-up !default;
+    $mq: map-merge($mq, $mq-item) !global;
+  }
+
+  $retina: (
+   "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+   "#{$screen} and (min--moz-device-pixel-ratio: 2)",
+   "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+   "#{$screen} and (min-device-pixel-ratio: 2)",
+   "#{$screen} and (min-resolution: 192dpi)",
+   "#{$screen} and (min-resolution: 2dppx)"
+  );
+
+  $mq: map-merge($mq, $retina) !global;
+}
+
+@include mq-build;
+
+@function mq($breakpoint, $direction: only) {
+  @return map-deep-get($mq, $breakpoint, $direction);
+}
