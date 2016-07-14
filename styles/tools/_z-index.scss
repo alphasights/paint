@@ -1,0 +1,76 @@
+////
+/// Z-Index Atoms
+/// @group tools
+/// @since v1.0.0
+////
+
+$z-index-defaults: (
+  prefix: '%z-index',
+  increment-ratio: 10,
+
+  layer: (
+    basement: -100,
+    content: 1,
+    tooltip: 100,
+    navigation: 200,
+    popover: 300,
+    overlay: 400,
+    modal: 500,
+    rooftop: 600
+  )
+);
+
+$z-index: () !default;
+$z-index: map-merge-settings($z-index-defaults, $z-index);
+
+@function z-index($settings...) {
+  @return map-deep-get($z-index, $settings...);
+}
+
+$z-layer: ();
+
+@mixin z-layers-build($increment-ratio: z-index(increment-ratio)) {
+  @each $layer, $value in z-index(layer) {
+    $z-index-item: (
+      $layer: (
+        under: $value - $increment-ratio,
+        base: $value,
+        over: $value + $increment-ratio
+      )
+    );
+
+    $z-layer: map-merge($z-layer, $z-index-item) !global;
+  }
+}
+
+@include z-layers-build;
+
+@function z($layer, $position: base) {
+  $value: map-deep-get($z-layer, $layer, $position);
+
+  @if $value {
+    @return $value;
+  } @else {
+    @return (z($layer) + $position);
+  }
+}
+
+@mixin z-index-placeholders {
+  $prefix: z-index(prefix);
+
+  @each $layer, $value in z-index(layer) {
+    #{$prefix}-#{$layer} {
+      z-index: z($layer);
+
+      @each $position in (under, over) {
+        &-#{$position} {
+          z-index: z($layer, $position);
+        }
+      }
+    }
+  }
+}
+
+@include exports('paint-z-index') {
+  @include z-index-placeholders;
+}
