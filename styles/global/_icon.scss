@@ -1,122 +1,252 @@
 ////
-/// Icons Component
-/// @group icon
-/// @since v0.8.32
+/// Icon Component
+/// @group global
+/// @since v1.0.0
 ////
 
-/// Custom Paint icons map
+$icon-defaults: (
+  prefix: '%icon',
 
-$paint-icons: (
-  avatar-advisor: '\f053',
-  avatar-client: '\f052',
-  archive: '\f016',
-  arrow-down: '\f050',
-  arrow-right: '\f04f',
-  arrow-up: '\f04e',
-  calendar: '\f046',
-  calendar-full: '\f051',
-  chart: '\f017',
-  check: '\f018',
-  circle-check: '\f019',
-  circle-cross: '\f01a',
-  circle-minus: '\f01b',
-  circle-plus: '\f01c',
-  clip: '\f01d',
-  clock: '\f01e',
-  cog: '\f01f',
-  cross: '\f020',
-  dashboard: '\f014',
-  delete: '\f021',
-  download: '\f022',
-  file: '\f023',
-  flag: '\f024',
-  folder: '\f025',
-  globe: '\f026',
-  head: '\f027',
-  heart: '\f028',
-  image: '\f029',
-  left-arrow: '\f02a',
-  link: '\f02b',
-  lock: '\f02c',
-  mail: '\f02d',
-  menu: '\f02e',
-  // Libsass bug sass/libsass#934
-  'notification': '\f02f',
-  printer: '\f030',
-  right-arrow: '\f015',
-  search: '\f031',
-  share: '\f032',
-  square-check: '\f04b',
-  square-cross: '\f04a',
-  square-minus: '\f049',
-  square-plus: '\f04c',
-  toggle: '\f033',
-  upload: '\f034',
-  video: '\f035',
-  chevron-left: '\f036',
-  chevron-right: '\f037',
-  ban: '\f038',
-  shield: '\f039',
-  dots-horizontal: '\f040',
-  done-circle: '\f041',
-  interaction: '\f03f',
-  zoom-in: '\f047',
-  zoom-out: '\f048'
+  sets: (
+    fa: 'FontAwesome',
+    paint: 'Paint'
+  ),
+
+  fa: (
+    angle-double-left: $fa-var-angle-double-left,
+    angle-down: $fa-var-angle-down,
+    angle-left: $fa-var-angle-left,
+    angle-right: $fa-var-angle-right,
+    angle-up: $fa-var-angle-up,
+    bar-chart: $fa-var-bar-chart,
+    black-tie: $fa-var-black-tie,
+    briefcase: $fa-var-briefcase,
+    building-o: $fa-var-building-o,
+    calendar: $fa-var-calendar,
+    caret-down: $fa-var-caret-down,
+    caret-left: $fa-var-caret-left,
+    caret-right: $fa-var-caret-right,
+    caret-up: $fa-var-caret-up,
+    check: $fa-var-check,
+    check-circle: $fa-var-check-circle,
+    check-square: $fa-var-check-square,
+    chevron-down: $fa-var-chevron-down,
+    chevron-left: $fa-var-chevron-left,
+    chevron-right: $fa-var-chevron-right,
+    circle: $fa-var-circle,
+    circle-o: $fa-var-circle-o,
+    clipboard: $fa-var-clipboard,
+    clock-o: $fa-var-clock-o,
+    close: $fa-var-close,
+    cog: $fa-var-cog,
+    dot-circle-o: $fa-var-dot-circle-o,
+    ellipsis-h: $fa-var-ellipsis-h,
+    ellipsis-v: $fa-var-ellipsis-v,
+    envelope: $fa-var-envelope,
+    external-link: $fa-var-external-link,
+    eye: $fa-var-eye,
+    eye-slash: $fa-var-eye-slash,
+    file-text: $fa-var-file-text,
+    flag-checkered: $fa-var-flag-checkered,
+    folder: $fa-var-folder,
+    globe: $fa-var-globe,
+    hand-o-left: $fa-var-hand-o-left,
+    hand-o-right: $fa-var-hand-o-right,
+    home: $fa-var-home,
+    info: $fa-var-info,
+    info-circle: $fa-var-info-circle,
+    language: $fa-var-language,
+    lightbulb-o: $fa-var-lightbulb-o,
+    linkedin: $fa-var-linkedin,
+    lock: $fa-var-lock,
+    long-arrow-left: $fa-var-long-arrow-left,
+    long-arrow-right: $fa-var-long-arrow-right,
+    minus-circle: $fa-var-minus-circle,
+    minus-square: $fa-var-minus-square,
+    mobile: $fa-var-mobile,
+    money: $fa-var-money,
+    paper-plane: $fa-var-paper-plane,
+    pencil: $fa-var-pencil,
+    phone: $fa-var-phone,
+    plus: $fa-var-plus,
+    plus-circle: $fa-var-plus-circle,
+    question: $fa-var-question,
+    random: $fa-var-random,
+    remove: $fa-var-remove,
+    repeat: $fa-var-repeat,
+    search: $fa-var-search,
+    square-o: $fa-var-square-o,
+    star: $fa-var-star,
+    star-o: $fa-var-star-o,
+    tag: $fa-var-tag,
+    tags: $fa-var-tags,
+    th: $fa-var-th,
+    th-large: $fa-var-th-large,
+    thumb-tack: $fa-var-thumb-tack,
+    times: $fa-var-times,
+    times-circle: $fa-var-times-circle,
+    trash: $fa-var-trash,
+    trash-o: $fa-var-trash-o,
+    user: $fa-var-user,
+    warning: $fa-var-warning
+  ),
+
+  paint: (
+    avatar-advisor: '\f053',
+    avatar-client: '\f052',
+    archive: '\f016',
+    arrow-down: '\f050',
+    arrow-right: '\f04f',
+    arrow-up: '\f04e',
+    calendar: '\f046',
+    calendar-full: '\f051',
+    chart: '\f017',
+    check: '\f018',
+    circle-check: '\f019',
+    circle-cross: '\f01a',
+    circle-minus: '\f01b',
+    circle-plus: '\f01c',
+    clip: '\f01d',
+    clock: '\f01e',
+    cog: '\f01f',
+    cross: '\f020',
+    dashboard: '\f014',
+    delete: '\f021',
+    download: '\f022',
+    file: '\f023',
+    flag: '\f024',
+    folder: '\f025',
+    globe: '\f026',
+    head: '\f027',
+    heart: '\f028',
+    image: '\f029',
+    left-arrow: '\f02a',
+    link: '\f02b',
+    lock: '\f02c',
+    mail: '\f02d',
+    menu: '\f02e',
+    // Libsass bug sass/libsass#934
+    'notification': '\f02f',
+    printer: '\f030',
+    right-arrow: '\f015',
+    search: '\f031',
+    share: '\f032',
+    square-check: '\f04b',
+    square-cross: '\f04a',
+    square-minus: '\f049',
+    square-plus: '\f04c',
+    toggle: '\f033',
+    upload: '\f034',
+    video: '\f035',
+    chevron-left: '\f036',
+    chevron-right: '\f037',
+    ban: '\f038',
+    shield: '\f039',
+    dots-horizontal: '\f040',
+    done-circle: '\f041',
+    interaction: '\f03f',
+    zoom-in: '\f047',
+    zoom-out: '\f048'
+  )
 );
 
-/// Renders font-awesome icons
+$icon: () !default;
+$icon: map-merge-settings($icon-defaults, $icon);
+
+@function icon($settings...) {
+  @return map-deep-get($icon, $settings...);
+}
+
+$_icon-sets: map-keys(icon(sets));
+$_icon-default-set: nth($_icon-sets, 1);
+
+/// Renders custom icon from set
 /// @param {string} $name - The name of the icon
+/// @param {string} $selector - The selector (before, after or null)
 /// @example scss - Usage
 ///   .dashboard-icon {
 ///     @include icon(dashboard);
 ///   }
+///
+///   .paint-dashboard-icon {
+///     @include icon(dashboard, before, paint);
+///   }
 
-@mixin icon($name, $selector: null) {
-  @extend .fa-#{$name};
+@mixin icon($name, $selector: before, $set: $_icon-default-set) {
+  $content: icon($set, $name);
+  $selector: if($selector == null, '&', '&::' + $selector);
 
-  @if $selector == null {
-    @include fa-icon;
-  } @else {
-    &:#{$selector} {
-      @include fa-icon;
+  @if not $content {
+    @error "Icon #{$name} doesn't exist in the #{set} set";
+  }
+
+  #{$selector} {
+    @extend %_#{$set}-icon;
+
+    content: $content;
+
+    @if $selector == '&::before' {
+      @extend %gutter-right-smaller-outer;
+    }
+
+    @if $selector == '&::after' {
+      @extend %gutter-left-smaller-outer;
     }
   }
 }
 
 /// @access private
-
-%paint-icon {
+%_icon {
   display: inline-block;
-  font-family: 'Paint';
-  font-size: $h4-font-size;
+  font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} icon(sets, $_icon-default-set);
+  font-size: inherit;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  line-height: 1;
   speak: none;
   text-align: center;
-  text-transform: none;
+  text-decoration: none;
+  text-rendering: auto;
 }
 
-/// Renders custom Paint icons
-/// @param {string} $name - The name of the icon
-/// @example scss - Usage
-///   .dashboard-icon {
-///     @include paint-icon(dashboard);
-///   }
+/// @access private
+@mixin _icon-set-placeholders {
+  @each $set in $_icon-sets {
+    %_#{$set}-icon {
+      @extend %_icon;
 
-@mixin paint-icon($name, $selector: null) {
-  $content: map-get($paint-icons, $name);
-  $selector: if($selector == null, '&', '&:' + $selector);
+      font-family: icon(sets, $set);
+    }
+  }
+}
 
-  @if not $content {
-    @error "Icon #{$name} doesn't exist"
+@include _icon-set-placeholders;
+
+@include exports('paint-icon') {
+  @each $set in $_icon-sets {
+    $prefix: '#{icon(prefix)}-#{$set}';
+
+    @if $set == $_icon-default-set {
+      $prefix: '#{icon(prefix)}';
+    }
+
+    @each $icon in map-keys(icon($set)) {
+      #{$prefix}-#{$icon} {
+        @include icon($icon, $set: $set)
+      }
+
+      #{$prefix}-#{$icon}-after {
+        @include icon($icon, $selector: after, $set: $set)
+      }
+    }
   }
 
-  #{$selector} {
-    @extend %paint-icon;
+  #{icon(prefix)}-no-margin {
+    &::after {
+      margin-left: 0;
+    },
 
-    content: $content;
+    &::before {
+      margin-right: 0;
+    }
   }
 }
