@@ -56,7 +56,7 @@ $mq-range: ();
 
 @include mq-bounds-build;
 
-$mq-screen: (
+$mq-screen-defaults: (
   screen: "only screen",
   landscape: "only screen and (orientation: landscape)",
   portrait: "only screen and (orientation: portrait)",
@@ -68,13 +68,20 @@ $mq-screen: (
     "only screen and (min-resolution: 192dpi)",
     "only screen and (min-resolution: 2dppx)"
   )
-);
+) !default;
+
+$mq-screen: () !default;
+$mq-screen: map-merge-settings($mq-screen-defaults, $mq-screen);
+
+@function mq-screen($setting) {
+  @return map-get($mq-screen, $setting);
+}
 
 /// Holds the media query bound strings and directions for each breakpoint
 $mq: ();
 
 @mixin mq-build($screen: screen) {
-  $screen: map-get($mq-screen, $screen);
+  $screen: mq-screen($screen);
 
   @each $breakpoint, $range in $mq-range {
     $mq-item: (
@@ -92,7 +99,7 @@ $mq: ();
 @include mq-build;
 
 @function mq($breakpoint, $direction: only, $type: screen) {
-  $screen-type: map-get($mq-screen, $type);
+  $screen-type: mq-screen($type);
   $range: map-deep-get($mq, $breakpoint, $direction);
 
   @return "#{$screen-type} and #{$range}";
