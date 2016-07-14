@@ -92,7 +92,7 @@ $include-html-paint-side-panel: true !default;
 
 @mixin side-panel($overlay: true, $scaled: false, $full-size: false) {
   @if $overlay {
-    @include overlay($position: fixed, $z-index: 200);
+    @include overlay($position: fixed, $z-index: z(modal));
   }
 
   > .main,
@@ -153,7 +153,7 @@ $include-html-paint-side-panel: true !default;
   }
 
   > .main {
-    z-index: 1;
+    @extend %z-index-content;
   }
 
   @if $full-size {

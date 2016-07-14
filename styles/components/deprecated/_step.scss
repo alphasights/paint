@@ -210,6 +210,7 @@ $include-html-paint-step: true !default;
       }
 
       > * {
+        @extend %z-index-content;
         @include detached-border(step-settings(colors, inactive-border));
 
         background-color: step-settings(colors, inactive-background);
@@ -218,7 +219,6 @@ $include-html-paint-step: true !default;
         line-height: step-settings(height);
         padding: 0 $column-gutter / 2 !important;
         position: relative;
-        z-index: 1;
 
         &:hover {
           background-color: lighten(step-settings(colors, inactive-background), 3%);

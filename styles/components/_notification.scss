@@ -120,12 +120,13 @@ $notification-colors: (
 
 @mixin notifications($position: fixed) {
   @if $position == fixed {
+    @extend %z-index-notification;
+
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 1000;
   } @else {
     position: $position;
     width: 100%;

@@ -178,9 +178,10 @@ $include-html-paint-form: true !default;
       width: 130%;
 
       &:focus {
+        @extend %z-index-content;
+
         color: color(link);
         outline: none;
-        z-index: 1;
       }
 
       > option {
@@ -309,6 +310,8 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
+  @extend %z-index-content;
+
   background-color: color(white);
   border-radius: 0 0 border(radius) border(radius);
   border: 1px solid $form-input-border-color;
@@ -324,7 +327,6 @@ $include-html-paint-form: true !default;
   overflow-y: auto;
   position: absolute;
   top: 100%;
-  z-index: 1;
 
   #{$options} {
     margin: 0;
@@ -655,6 +657,8 @@ $include-html-paint-form: true !default;
   }
 
   #{$form-submission-action-confirmation-selector} {
+    @extend %z-index-popover;
+
     backface-visibility: hidden;
     background-color: color(alert);
     bottom: 0;
@@ -668,7 +672,6 @@ $include-html-paint-form: true !default;
     transform: rotateX(180deg) rotateY(0deg);
     transform-style: preserve-3d;
     transition: transform .250s ease-in-out;
-    z-index: 300;
 
     &.warning {
       background-color: color(warning);

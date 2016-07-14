@@ -7,7 +7,7 @@
 $dropdown-default-settings: (
   background-color: color(white),
   border-color: color(border),
-  z-index: 100,
+  z-index: z(tooltip),
 
   link: (
     color: color(text),

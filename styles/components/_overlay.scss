@@ -1,6 +1,6 @@
 $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
 
-@mixin overlay($position: absolute, $z-index: 100) {
+@mixin overlay($position: absolute, $z-index: z(overlay)) {
   background-color: transparent;
   bottom: 0;
   left: 0;
