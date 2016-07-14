@@ -32,13 +32,13 @@ $bem-modifier-separator: '--';
   @return str-slice($selector, 0, $modifier-start);
 }
 
-@mixin bem-block($block) {
+@mixin b($block) {
   .#{$block} {
     @content;
   }
 }
 
-@mixin bem-element($elements) {
+@mixin e($elements) {
   $selector: &;
 
   @if _bem-selector-has-modifier($selector) {
@@ -64,7 +64,7 @@ $bem-modifier-separator: '--';
   }
 }
 
-@mixin bem-modifier($modifier) {
+@mixin m($modifier) {
   @at-root {
     #{&}#{$bem-modifier-separator + $modifier} {
       @content;
