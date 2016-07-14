@@ -156,7 +156,7 @@ $include-html-paint-step: true !default;
 /// @require {placeholder} steps
 
 %steps-with-border {
-  @media #{$medium-up} {
+  @media #{mq(medium, up)} {
     text-align: center;
 
     li {
@@ -248,7 +248,7 @@ $include-html-paint-step: true !default;
     }
   }
 
-  @media #{$medium-up} {
+  @media #{mq(medium, up)} {
     .with-pre > *:first-child,
     .with-post > *:last-child {
       padding-left: $column-gutter / 6;

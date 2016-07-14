@@ -157,31 +157,31 @@ $include-html-paint-side-panel: true !default;
   }
 
   @if $full-size {
-    @media #{$small-only} {
+    @media #{mq(small)} {
       @include side-panel-size(small, $scaled: true);
     }
 
-    @media #{$medium-up} {
+    @media #{mq(medium, up)} {
       @include side-panel-size(full-size, $scaled);
     }
   } @else {
-    @media #{$small-only} {
+    @media #{mq(small)} {
       @include side-panel-size(small, $scaled);
     }
 
-    @media #{$medium-only} {
+    @media #{mq(medium)} {
       @include side-panel-size(medium, $scaled);
     }
 
-    @media #{$large-only} {
+    @media #{mq(large)} {
       @include side-panel-size(large, $scaled);
     }
 
-    @media #{$xlarge-only} {
+    @media #{mq(xlarge)} {
       @include side-panel-size(xlarge, $scaled);
     }
 
-    @media #{$xxlarge-up} {
+    @media #{mq(xxlarge, up)} {
       @include side-panel-size(xxlarge, $scaled);
     }
   }

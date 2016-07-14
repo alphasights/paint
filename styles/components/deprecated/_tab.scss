@@ -155,7 +155,7 @@ $include-html-paint-tabs: true !default;
     width: 100%;
   }
 
-  @media #{$small-only} {
+  @media #{mq(small)} {
     margin: 0;
   }
 }
@@ -235,7 +235,7 @@ $include-html-paint-tabs: true !default;
     display: flex;
 
     &__item {
-      @media #{$medium-up} {
+      @media #{mq(medium, up)} {
         flex: 1;
       }
     }
@@ -290,7 +290,7 @@ $include-html-paint-tabs: true !default;
       }
     }
 
-    @media #{$small-only} {
+    @media #{mq(small)} {
       margin: 0;
     }
   }

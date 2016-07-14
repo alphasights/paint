@@ -84,23 +84,23 @@ $include-html-paint-modal: true !default;
     @extend %grid-row;
   }
 
-  @media #{$small-only} {
+  @media #{mq(small)} {
     @include modal-size(small, $use-content-size);
   }
 
-  @media #{$medium-only} {
+  @media #{mq(medium)} {
     @include modal-size(medium, $use-content-size);
   }
 
-  @media #{$large-only} {
+  @media #{mq(large)} {
     @include modal-size(large, $use-content-size);
   }
 
-  @media #{$xlarge-only} {
+  @media #{mq(xlarge)} {
     @include modal-size(xlarge, $use-content-size);
   }
 
-  @media #{$xxlarge-up} {
+  @media #{mq(xxlarge, up)} {
     @include modal-size(xxlarge, $use-content-size);
   }
 }
@@ -143,7 +143,7 @@ $include-html-paint-modal: true !default;
     position: relative;
     top: -100%;
     transform: translateY(-100%);
-    transition: 
+    transition:
       top animation(transition, duration) animation(transition, easing),
       transform animation(transition, duration);
   }

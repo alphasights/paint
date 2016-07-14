@@ -11,11 +11,11 @@ $grid-defaults: (
   ),
   columns: 12,
   responsive-breakpoints: (
-    small: $small-up,
-    medium: $medium-up,
-    large: $large-up,
-    xlarge: $xlarge-up,
-    xxlarge: $xxlarge-up
+    small: mq(small, up),
+    medium: mq(medium, up),
+    large: mq(large, up),
+    xlarge: mq(xlarge, up),
+    xxlarge: mq(xxlarge, up)
   )
 );
 
