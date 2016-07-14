@@ -19,6 +19,7 @@ $mq-breakpoint: map-merge-settings($mq-breakpoint-defaults, $mq-breakpoint);
   @return map-deep-get($mq-breakpoint, $settings...);
 }
 
+/// Create list of breakpoints. Used to hold the breakpoint index value
 $_breakpoint-list: map-keys($mq-breakpoint);
 
 /// Builds the range limits for a specific breakpoint
@@ -40,10 +41,10 @@ $_breakpoint-list: map-keys($mq-breakpoint);
   }
 }
 
-/// Holds the media query ranges for each breakpoint
+/// Holds the media query bounds for each breakpoint
 $mq-range: ();
 
-@mixin mq-range-build {
+@mixin mq-bounds-build {
   @each $breakpoint, $value in $mq-breakpoint {
     $breakpoint-range: (
       $breakpoint: mq-range($breakpoint)
@@ -53,38 +54,46 @@ $mq-range: ();
   }
 }
 
-@include mq-range-build;
+@include mq-bounds-build;
 
-/// Holds the media query strings with directions for each breakpoint
+$mq-screen: (
+  screen: "only screen",
+  landscape: "only screen and (orientation: landscape)",
+  portrait: "only screen and (orientation: portrait)",
+  retina: (
+    "only screen and (-webkit-min-device-pixel-ratio: 2)",
+    "only screen and (min--moz-device-pixel-ratio: 2)",
+    "only screen and (-o-min-device-pixel-ratio: 2/1)",
+    "only screen and (min-device-pixel-ratio: 2)",
+    "only screen and (min-resolution: 192dpi)",
+    "only screen and (min-resolution: 2dppx)"
+  )
+);
+
+/// Holds the media query bound strings and directions for each breakpoint
 $mq: ();
 
-@mixin mq-build {
+@mixin mq-build($screen: screen) {
+  $screen: map-get($mq-screen, $screen);
+
   @each $breakpoint, $range in $mq-range {
     $mq-item: (
       $breakpoint: (
-        up: "#{$screen} and (min-width:#{lower-bound($range)})",
-        only: "#{$screen} and (min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})",
-        down: "#{$screen} and (max-width:#{upper-bound($range)})"
+        up: "(min-width:#{lower-bound($range)})",
+        only: "(min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})",
+        down: "(max-width:#{upper-bound($range)})"
       )
     );
 
     $mq: map-merge($mq, $mq-item) !global;
   }
-
-  $retina: (
-   "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
-   "#{$screen} and (min--moz-device-pixel-ratio: 2)",
-   "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
-   "#{$screen} and (min-device-pixel-ratio: 2)",
-   "#{$screen} and (min-resolution: 192dpi)",
-   "#{$screen} and (min-resolution: 2dppx)"
-  );
-
-  $mq: map-merge($mq, $retina) !global;
 }
 
 @include mq-build;
 
-@function mq($breakpoint, $direction: only) {
-  @return map-deep-get($mq, $breakpoint, $direction);
+@function mq($breakpoint, $direction: only, $type: screen) {
+  $screen-type: map-get($mq-screen, $type);
+  $range: map-deep-get($mq, $breakpoint, $direction);
+
+  @return "#{$screen-type} and #{$range}";
 }
