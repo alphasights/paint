@@ -1,5 +1,16 @@
+$text-ellipsis-defaults: (
+  prefix: '%text-ellipsis'
+);
+
+$text-ellipsis: () !default;
+$text-ellipsis: map-merge($text-ellipsis-defaults, $text-ellipsis);
+
+@function text-ellipsis($setting) {
+  @return map-deep-get($text-ellipsis, $setting);
+}
+
 @include exports('paint-text-ellipsis') {
-  %text-ellipsis {
+  #{text-ellipsis(prefix)} {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

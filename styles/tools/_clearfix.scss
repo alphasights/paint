@@ -1,3 +1,14 @@
+$clearfix-defaults: (
+  prefix: '%clearfix'
+);
+
+$clearfix: () !default;
+$clearfix: map-merge($clearfix-defaults, $clearfix);
+
+@function clearfix($setting) {
+  @return map-get($clearfix, $setting);
+}
+
 @mixin clearfix {
   &::after {
     clear: both;
@@ -7,7 +18,7 @@
 }
 
 @include exports('paint-clearfix') {
-  %clearfix {
+  #{clearfix(prefix)} {
     @include clearfix;
   }
 }
