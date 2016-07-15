@@ -14,7 +14,7 @@ $form-input-border-color: darken(color(white), 10%) !default;
 $form-input-border-color-focused: color(border, dark) !default;
 $form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
 $form-input-height: $button-small-height !default;
-$form-input-padding: $form-input-height - $base-font-size !default;
+$form-input-padding: $form-input-height - font(size, base) !default;
 $form-input-shadow-color: rgba(color(black), .08) !default;
 $form-input-text-color: color(text, small) !default;
 $form-input-disabled-text-color: lighten($form-input-text-color, 20%) !default;
@@ -74,7 +74,7 @@ $include-html-paint-form: true !default;
   &#{$form-field-with-errors} {
     #{$form-field-error-selector} {
       color: color(alert);
-      font-size: $small-font-size;
+      font-size: font(size, small);
       line-height: $form-input-height / 2;
       padding-left: $column-gutter / 2;
     }
@@ -90,8 +90,8 @@ $include-html-paint-form: true !default;
 
 @mixin form-label() {
   display: block;
-  font-size: $h5-font-size;
-  font-weight: $font-weight-bold;
+  font-size: font(heading, h5);
+  font-weight: font(weight, bold);
   line-height: $form-label-height;
   min-height: $form-label-height;
 }
@@ -99,7 +99,7 @@ $include-html-paint-form: true !default;
 @mixin form-input() {
   @include form-input-shared-properties;
 
-  font-size: $base-font-size;
+  font-size: font(size, base);
   line-height: $form-input-height;
   height: $form-input-height;
   margin-bottom: 0;
@@ -170,7 +170,7 @@ $include-html-paint-form: true !default;
       border: 0;
       border-radius: border(radius);
       color: $form-input-text-color;
-      font-size: $base-font-size;
+      font-size: font(size, base);
       margin: 0;
       padding: 0 $form-input-padding / 2;
       position: relative;
@@ -220,7 +220,7 @@ $include-html-paint-form: true !default;
     border-radius: border(radius);
     color: $form-multi-select-item-color;
     float: left;
-    font-size: $small-font-size;
+    font-size: font(size, small);
     margin: $column-gutter / 5 $column-gutter / 5 $column-gutter / 5 0;
     position: relative;
 
@@ -269,7 +269,7 @@ $include-html-paint-form: true !default;
         }
 
         &:before {
-          font-size: $small-font-size;
+          font-size: font(size, small);
           left: -$form-multi-select-icon-size * 1000;
           line-height: $item-height;
           position: absolute;
@@ -341,7 +341,7 @@ $include-html-paint-form: true !default;
     color: $form-multi-select-option-color;
     cursor: pointer;
     display: block;
-    font-size: $small-font-size;
+    font-size: font(size, small);
     padding: $column-gutter / 4 $column-gutter / 2;
 
     &:last-child {
@@ -496,7 +496,7 @@ $include-html-paint-form: true !default;
     @include icon($icon);
 
     float: right;
-    font-size: $small-font-size;
+    font-size: font(size, small);
     line-height: $form-input-height !important;
     margin-left: $column-gutter / 2;
   }
@@ -643,8 +643,8 @@ $include-html-paint-form: true !default;
 @mixin form-textarea() {
   @include form-input-shared-properties;
 
-  font-size: $base-font-size;
-  line-height: $base-line-height;
+  font-size: font(size, base);
+  line-height: font(line-height);
   min-height: $form-input-height * 3;
   padding: $form-input-padding / 2;
 }

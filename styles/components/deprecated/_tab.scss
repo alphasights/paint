@@ -36,7 +36,7 @@ $tab-default-settings: (
   height: 60px,
   text-color: color(text, small),
   text-color-active: color(text),
-  text-size: $h4-font-size,
+  text-size: font(heading, h4),
   padding: 0 $column-gutter / 2,
   margin: 0 $column-gutter / 2,
   transition-duration: animation(transition, duration) / 2

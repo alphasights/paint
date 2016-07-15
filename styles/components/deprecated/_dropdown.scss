@@ -235,7 +235,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
     box-shadow: 0 2px 3px rgba(0, 0, 0, .175);
     display: none;
     float: left;
-    font-size: $base-font-size;
+    font-size: font(size, base);
     list-style: none;
     margin: 0;
     min-width: 100px;
@@ -296,8 +296,8 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
     color: dropdown-settings(link, color);
     cursor: pointer;
     display: block;
-    font-weight: $font-weight-normal;
-    line-height: $base-line-height;
+    font-weight: font(weight, base);
+    line-height: font(line-height);
     padding: 0 $column-gutter / 2;
     white-space: nowrap;
 

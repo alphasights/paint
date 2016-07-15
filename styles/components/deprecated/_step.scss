@@ -236,7 +236,7 @@ $include-html-paint-step: true !default;
   li {
     &.with-pre > *:first-child,
     &.with-post > *:last-child {
-      font-weight: $font-weight-bold;
+      font-weight: font(weight, bold);
     }
 
     &.with-pre > *:first-child {

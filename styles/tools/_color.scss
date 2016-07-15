@@ -15,13 +15,22 @@ $color-settings: (
   link: (
     base: #008fd9,
     dark: link (darken: 10%),
-    light: link (lighten: 10%)
+    light: link (lighten: 10%),
+    hover: link (darken: 5%)
+  ),
+
+  heading: (
+    base: #111111
   ),
 
   border: (
     base: #ececec,
     dark: border (darken: 10%),
     light: border (lighten: 5%)
+  ),
+
+  code: (
+    background: border (lighten: 5%)
   ),
 
   primary: (

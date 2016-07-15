@@ -78,8 +78,8 @@ $notification-colors: (
 
     color: $text-color;
     display: inline-block;
-    font-size: $h4-font-size;
-    font-weight: $font-weight-bold;
+    font-size: font(heading, h4);
+    font-weight: font(weight, bold);
     padding: $column-gutter / 2 $column-gutter;
     text-shadow: -1px 0 $text-shadow-color;
   }

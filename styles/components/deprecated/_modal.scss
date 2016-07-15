@@ -71,8 +71,8 @@ $include-html-paint-modal: true !default;
   @include panel-background(color(gray, smoke));
 
   > header {
-    font-size: $small-font-size;
-    font-weight: $font-weight-bold;
+    font-size: font(size, small);
+    font-weight: font(weight, bold);
     text-transform: uppercase;
 
     > .close {

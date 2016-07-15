@@ -1,101 +1,100 @@
-$base-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
-$heading-font-family: "Helvetica Neue", Helvetica, sans-serif !default;
+////
+/// Typography
+/// @group global
+/// @since v1.0.0
+////
 
-$font-weight-normal: 300 !default;
-$font-weight-bold: 400 !default;
-$font-weight-extrabold: 600 !default;
+$font-defaults: (
+  prefix: '%font',
+  include-reset-tags: true,
 
-$heading-font-weight: $font-weight-normal !default;
+  family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
+  size: (
+    base: 14px,
+    small: 80%,
+    tiny: 70%,
+  ),
+  weight: (
+    light: 100,
+    base: 300,
+    bold: 400,
+    extrabold: 600
+  ),
+  style: (
+    italic: italic
+  ),
+  line-height: 1.5,
+  smoothing: subpixel-antialiased,
 
-// Font Sizes
-$rem-base: 14px !default;
-$base-font-size: $rem-base !default;
-$small-font-size: 80% !default;
-$tiny-font-size: 70% !default;
+  heading: (
+    family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
 
-// Line height
-$base-line-height: 1.5 !default;
-$heading-line-height: 1.5 !default;
+    h1: 1.75rem,
+    h2: 1.375rem,
+    h3: 1.125rem,
+    h4: 1rem,
+    h5: .875rem,
+    h6: .8rem,
 
-$body-font-smoothing: subpixel-antialiased !default;
-$heading-font-smoothing: antialiased !default;
-
-$paragraph-font-weight: $font-weight-normal !default;
-
-$h1-font-size: 1.75rem !default;
-$h2-font-size: 1.375rem !default;
-$h3-font-size: 1.125rem !default;
-$h4-font-size: 1rem !default;
-$h5-font-size: .875rem !default;
-$h6-font-size: .8rem !default;
-
-$h1-font-reduction: rem(7) !default;
-$h2-font-reduction: rem(7) !default;
-$h3-font-reduction: rem(3) !default;
-$h4-font-reduction: rem(3) !default;
-$h5-font-reduction: 0 !default;
-$h6-font-reduction: 0 !default;
-
-$base-spacing: $base-line-height * 1em !default;
-$small-spacing: $base-spacing / 2 !default;
-
-$typography: () !default;
-$typography-default-settings: (
-  heading-tags: (
-    h1, h2, h3, h4, h5, h6, blockquote
+    weight: 300,
+    line-height: 1.5,
+    smoothing: antialiased,
   ),
 
-  condensed-tags: ()
+  blockquote: (
+    size: 1.5rem,
+    border: 6px
+  ),
+
+  monospace: (
+    family: 'Menlo, monospace',
+    weight: 400
+  ),
+
+  condensed: (
+    tags: h1 h2 h3,
+    value: -1px
+  )
 );
 
-$typography: map-merge-settings($typography-default-settings, $typography);
+$font: () !default;
+$font: map-merge-settings($font-defaults, $font);
 
-$include-html-paint-typography: true !default;
-
-@function typography-settings($setting, $property: null) {
-  @if $property {
-    @return map-get(map-get($typography, $setting), $property);
-  } @else {
-    @return map-get($typography, $setting);
-  }
+@function font($settings...) {
+  @return map-deep-get($font, $settings...);
 }
 
-@mixin typography-font-smoothing(
-  $heading-tags: typography-settings(heading-tags)
-) {
-  body {
-    -webkit-font-smoothing: $body-font-smoothing;
-    text-rendering: optimizeLegibility;
-  }
-
-  @for $i from 1 through length($heading-tags) {
-    $tag: nth($heading-tags, $i);
-
-    #{$tag} {
-      -webkit-font-smoothing: $heading-font-smoothing;
-    }
-  }
-}
-
-@mixin typography-condensed-tags {
-  @each $tag, $letter-spacing in typography-settings(condensed-tags) {
-    #{$tag} {
-      letter-spacing: $letter-spacing;
-    }
-  }
-}
-
-@mixin typography-resets {
+@mixin font-resets {
   html {
-    font-size: $rem-base;
+    font-size: font(size, base);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
 
   body {
-    color: color(text);
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    font-weight: $font-weight-normal;
-    line-height: $base-line-height;
+    @extend #{font(prefix)}-base-smoothing;
+
+    font-family: font(family);
+    font-style: normal;
+    font-weight: font(weight, base);
+    line-height: font(line-height);
+  }
+
+  a {
+    color: color(link);
+    text-decoration: none;
+    transition: color .1s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color(link, hover);
+      text-decoration: none;
+    }
+  }
+
+  p {
+    font-feature-settings: 'kern', 'onum', 'liga';
   }
 
   h1,
@@ -104,94 +103,216 @@ $include-html-paint-typography: true !default;
   h4,
   h5,
   h6 {
-    color: color(text);
-    font-family: $heading-font-family;
+    @extend #{font(prefix)}-heading-smoothing;
+
+    color: color(heading);
+    font-family: font(heading, family);
+    font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
     font-style: normal;
-    font-weight: $heading-font-weight;
-    line-height: $heading-line-height;
-    margin-bottom: 0;
-    margin-top: 0;
+    font-weight: font(heading, weight);
+    line-height: font(heading, line-height);
+  }
 
-    small {
-      color: color(text, small);
-      font-size: $small-font-size;
-      line-height: 0;
+  @for $i from 1 to 6 {
+    h#{$i},
+    #{font(prefix)}-h#{$i} {
+      font-size: font(heading, h#{$i});
     }
-  }
-
-  p {
-    margin: 0 0 $small-spacing;
-  }
-
-  a {
-    color: color(link);
-    text-decoration: none;
-
-    &:active,
-    &:focus,
-    &:hover {
-      color: color(link, dark);
-    }
-  }
-
-  hr {
-    border-bottom: color(border);
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    margin: $base-spacing 0;
-  }
-
-  img,
-  picture {
-    margin: 0;
-    max-width: 100%;
   }
 
   ul,
   ol {
+    li {
+      font-feature-settings: 'kern', 'onum', 'liga';
+
+      ol,
+      ul {
+        @extend %gutter-left-small-outer;
+      }
+    }
+  }
+
+  ol {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+
+    li {
+      counter-increment: top-level;
+
+      &:before {
+        content: counter(top-level) '.';
+        font-feature-settings: 'lnum', 'tnum';
+        margin-left: -3rem;
+        position: absolute;
+        text-align: right;
+        width: 2em;
+      }
+
+      ul {
+        li {
+          &:before {
+            content: '';
+          }
+
+          ol {
+            li {
+              counter-increment: alt-level;
+
+              &:before {
+                content: counter(alt-level) '.';
+              }
+            }
+          }
+        }
+      }
+
+      ol {
+        li {
+          counter-increment: sub-level;
+
+          &:before {
+            content: counter(top-level) '.' counter(sub-level);
+          }
+
+          ul {
+            li {
+              &:before {
+                content: '';
+              }
+            }
+          }
+
+          ol {
+            li {
+              counter-increment: sub-sub-level;
+
+              &:before {
+                content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   dl {
-    margin-bottom: $small-spacing;
+    dt,
+    dd {
+      font-feature-settings: 'kern', 'onum', 'liga';
+    }
 
     dt {
-      font-weight: $font-weight-extrabold;
-      margin-top: $small-spacing;
+      font-weight: font(weight, bold);
     }
 
-    dd {
-      margin: 0;
+    dd + dt {
+      @extend %gutter-top-small;
     }
+  }
+
+  b,
+  strong,
+  #{font(prefix)}-bold {
+    font-weight: font(weight, bold);
+  }
+
+  #{font(prefix)}-extrabold {
+    font-weight: font(weight, extrabold);
+  }
+
+  // Italic.
+  em,
+  i,
+  #{font(prefix)}-italic {
+    font-style: font(style, italic);
+  }
+
+  small,
+  #{font(prefix)}-small {
+    font-size: font(size, small);
+    font-style: normal;
+    font-weight: font(weight, base);
+  }
+
+  blockquote,
+  #{font(prefix)}-blockquote {
+    @extend %gutter-left;
+    @extend %gutter-bottom;
+    @extend %gutter-bottom-outer;
+
+    border-left: font(blockquote, border) solid color(border);
+    font-style: font(style, italic);
+  }
+
+  hr,
+  #{font(prefix)}-hr {
+    @extend %gutter-vertical;
+
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
+    background-position: 0 50%;
+    background-repeat: repeat-x;
+    background-size: 100% 2px;
+    border: 0;
+    margin: 0;
+  }
+
+  #{font(prefix)}-monospace {
+    font-family: font(monospace, family);
+  }
+
+  code,
+  pre {
+    background-color: color(code, background);
+    font-family: font(monospace, family);
+  }
+
+  pre {
+    @extend %gutter-all-small;
+    @extend %gutter-bottom-outer;
+
+    display: block;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
   }
 }
 
-@mixin typography-headings {
-  h1 { font-size: $h1-font-size - $h1-font-reduction; }
-  h2 { font-size: $h2-font-size - $h2-font-reduction; }
-  h3 { font-size: $h3-font-size - $h3-font-reduction; }
-  h4 { font-size: $h4-font-size - $h4-font-reduction; }
-  h5 { font-size: $h5-font-size - $h5-font-reduction; }
-  h6 { font-size: $h6-font-size - $h6-font-reduction; }
-
-  @media #{mq(large, up)} {
-    h1 { font-size: $h1-font-size; }
-    h2 { font-size: $h2-font-size; }
-    h3 { font-size: $h3-font-size; }
-    h4 { font-size: $h4-font-size; }
-    h5 { font-size: $h5-font-size; }
-    h6 { font-size: $h6-font-size; }
+@mixin font-condensed {
+  @each $tag in font(condensed, tags) {
+    #{$tag} {
+      letter-spacing: font(condensed, value);
+    }
   }
 }
 
 @include exports('paint-typography') {
-  @if $include-html-paint-typography {
-    @include typography-resets;
-    @include typography-headings;
-    @include typography-font-smoothing;
-    @include typography-condensed-tags;
+  @include font-resets;
+  @include font-condensed;
+
+  #{font(prefix)} {
+    &-base-smoothing {
+      -webkit-font-smoothing: font(smoothing);
+      text-rendering: optimizeLegibility;
+    }
+
+    &-heading-smoothing {
+      -webkit-font-smoothing: font(heading, smoothing);
+    }
+
+    &-uppercase {
+      font-kerning: normal;
+      text-transform: uppercase;
+    }
+
+    &-smallcaps {
+      font-feature-settings: 'smcp', 'kern';
+      font-kerning: normal;
+      letter-spacing: 0.1rem;
+    }
+
+    &-lining-numerals {
+      font-feature-settings: 'lnum', 'kern';
+    }
   }
 }

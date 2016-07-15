@@ -171,7 +171,7 @@ $include-html-paint-flip-panel: true !default;
       span {
         border-top: 1px solid color(border);
         display: block;
-        font-weight: $font-weight-bold;
+        font-weight: font(weight, bold);
         line-height: flip-panel-settings(footer-height);
         padding: 0 $column-gutter / 2;
       }
@@ -210,7 +210,7 @@ $include-html-paint-flip-panel: true !default;
 
     > header > * {
       color: contrast(color(white), panel-settings(styles, $style), color(text, small));
-      font-weight: $font-weight-extrabold !important;
+      font-weight: font(weight, extrabold) !important;
     }
 
     > .content {

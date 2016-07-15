@@ -72,7 +72,7 @@ $label: map-merge-settings($label-default-settings, $label);
 @mixin label-size($size: small) {
   $fraction: label-settings(sizes, $size);
 
-  font-size: $base-font-size * $fraction;
+  font-size: font(size, base) * $fraction;
 
   @if $fraction < 1 {
     text-transform: uppercase;
@@ -88,7 +88,7 @@ $label: map-merge-settings($label-default-settings, $label);
   border-radius: border(radius) / 2;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
   display: inline-block;
-  font-weight: $font-weight-bold;
+  font-weight: font(weight, bold);
   line-height: 1;
   padding: label-settings(padding);
   text-align: center;

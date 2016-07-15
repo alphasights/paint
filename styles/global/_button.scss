@@ -90,12 +90,12 @@ button,
   border-radius: border(radius);
   cursor: pointer;
   display: inline-block;
-  font-family: $base-font-family;
-  font-size: $small-font-size;
-  -webkit-font-smoothing: $heading-font-smoothing;
-  font-weight: $font-weight-normal;
-  line-height: $base-line-height;
-  padding: $small-spacing $base-spacing;
+  font-family: font(family);
+  font-size: font(size, small);
+  -webkit-font-smoothing: font(heading, smoothing);
+  font-weight: font(weight, base);
+  line-height: font(line-height);
+  padding: $button-base-padding / 2 $button-base-padding;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color animation(transition, duration) / 2 ease;
@@ -188,8 +188,8 @@ button,
 
 %button-solid {
   border-radius: border(radius);
-  font-size: $small-font-size;
-  font-weight: $font-weight-bold;
+  font-size: font(size, small);
+  font-weight: font(weight, bold);
   padding: $button-base-padding;
   text-transform: uppercase;
 }
