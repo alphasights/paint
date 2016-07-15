@@ -220,7 +220,6 @@ $font: map-merge-settings($font-defaults, $font);
     font-weight: font(weight, extrabold);
   }
 
-  // Italic.
   em,
   i,
   #{font(prefix)}-italic {
