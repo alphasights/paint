@@ -240,19 +240,31 @@ $_icon-default-set: nth($_icon-sets, 1);
     }
 
     &-large {
-      font-size: font(size, h3);
+      &::before,
+      &::after {
+        font-size: font(heading, h3);
+      }
     }
 
     &-larger {
-      font-size: font(size, h1);
+      &::before,
+      &::after {
+        font-size: font(heading, h1);
+      }
     }
 
     &-middle {
-      vertical-align: middle;
+      &::before,
+      &::after {
+        vertical-align: middle;
+      }
     }
 
     &-text-top {
-      vertical-align: text-top;
+      &::before,
+      &::after {
+        vertical-align: text-top;
+      }
     }
   }
 }
