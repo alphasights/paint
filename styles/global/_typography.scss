@@ -41,14 +41,18 @@ $font-defaults: (
     smoothing: antialiased,
   ),
 
-  blockquote: (
-    size: 1.5rem,
-    border: 6px
-  ),
-
   monospace: (
     family: 'Menlo, monospace',
     weight: 400
+  ),
+
+  link: (
+    decoration: none
+  ),
+
+  blockquote: (
+    size: 1.5rem,
+    border: 6px
   ),
 
   condensed: (
@@ -82,7 +86,7 @@ $font: map-merge-settings($font-defaults, $font);
 
   a {
     color: color(link);
-    text-decoration: none;
+    text-decoration: font(link, decoration);
     transition: color .1s;
 
     &:hover,
@@ -95,6 +99,7 @@ $font: map-merge-settings($font-defaults, $font);
 
   p {
     font-feature-settings: 'kern', 'onum', 'liga';
+    margin-top: 0;
   }
 
   h1,
@@ -120,6 +125,74 @@ $font: map-merge-settings($font-defaults, $font);
     }
   }
 
+  b,
+  strong,
+  #{font(prefix)}-bold {
+    font-weight: font(weight, bold);
+  }
+
+  #{font(prefix)}-extrabold {
+    font-weight: font(weight, extrabold);
+  }
+
+  em,
+  i,
+  #{font(prefix)}-italic {
+    font-style: font(style, italic);
+  }
+
+  small,
+  #{font(prefix)}-small {
+    font-size: font(size, small);
+    font-style: normal;
+    font-weight: font(weight, base);
+  }
+
+  blockquote,
+  #{font(prefix)}-blockquote {
+    @extend %gutter-left;
+    @extend %gutter-bottom;
+    @extend %gutter-bottom-outer;
+
+    border-left: font(blockquote, border) solid color(border);
+    font-style: font(style, italic);
+  }
+
+  hr,
+  #{font(prefix)}-hr {
+    @extend %gutter-vertical;
+
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
+    background-position: 0 50%;
+    background-repeat: repeat-x;
+    background-size: 100% 2px;
+    border: 0;
+    margin: 0;
+  }
+
+  #{font(prefix)}-monospace {
+    font-family: font(monospace, family);
+  }
+
+  code,
+  pre {
+    background-color: color(code, background);
+    font-family: font(monospace, family);
+  }
+
+  pre {
+    @extend %gutter-all-small;
+    @extend %gutter-bottom-outer;
+
+    display: block;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+}
+
+@mixin list-resets {
   ul,
   ol {
     li {
@@ -209,72 +282,6 @@ $font: map-merge-settings($font-defaults, $font);
       @extend %gutter-top-small;
     }
   }
-
-  b,
-  strong,
-  #{font(prefix)}-bold {
-    font-weight: font(weight, bold);
-  }
-
-  #{font(prefix)}-extrabold {
-    font-weight: font(weight, extrabold);
-  }
-
-  em,
-  i,
-  #{font(prefix)}-italic {
-    font-style: font(style, italic);
-  }
-
-  small,
-  #{font(prefix)}-small {
-    font-size: font(size, small);
-    font-style: normal;
-    font-weight: font(weight, base);
-  }
-
-  blockquote,
-  #{font(prefix)}-blockquote {
-    @extend %gutter-left;
-    @extend %gutter-bottom;
-    @extend %gutter-bottom-outer;
-
-    border-left: font(blockquote, border) solid color(border);
-    font-style: font(style, italic);
-  }
-
-  hr,
-  #{font(prefix)}-hr {
-    @extend %gutter-vertical;
-
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
-    background-position: 0 50%;
-    background-repeat: repeat-x;
-    background-size: 100% 2px;
-    border: 0;
-    margin: 0;
-  }
-
-  #{font(prefix)}-monospace {
-    font-family: font(monospace, family);
-  }
-
-  code,
-  pre {
-    background-color: color(code, background);
-    font-family: font(monospace, family);
-  }
-
-  pre {
-    @extend %gutter-all-small;
-    @extend %gutter-bottom-outer;
-
-    display: block;
-    white-space: pre;
-    white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word;
-  }
 }
 
 @mixin font-condensed {
@@ -288,6 +295,7 @@ $font: map-merge-settings($font-defaults, $font);
 @include exports('paint-typography') {
   @include font-resets;
   @include font-condensed;
+  @include list-resets;
 
   #{font(prefix)} {
     &-base-smoothing {
