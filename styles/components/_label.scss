@@ -10,11 +10,11 @@ $label-defaults: (
   radius: border(radius) * 8 border(radius) border(radius) border(radius) * 8,
 
   style: (
-    base: #c2c7c9,
-    cleared: #70c0f2,
-    available: #e5c95d,
-    interested: #4ba59b,
-    pending: #eb5851
+    base: color(border),
+    success: color(success),
+    warning: color(warning),
+    alert: color(alert),
+    info: color(info)
   )
 );
 
