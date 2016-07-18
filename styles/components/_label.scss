@@ -49,6 +49,13 @@ $label: map-merge-settings($label-defaults, $label);
       }
     }
   }
+
+  #{label(prefix)} {
+    &-small {
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+  }
 }
 
 @include exports('paint-label') {
