@@ -1,0 +1,66 @@
+////
+/// Avatar
+/// @group components
+/// @since v1.0.0
+////
+
+$avatar-defaults: (
+  prefix: '%avatar',
+
+  radius: border(radius),
+  border-color: color(border),
+
+  size: (
+    base: rem(48),
+    small: rem(24),
+    large: rem(60)
+  )
+);
+
+$avatar: () !default;
+$avatar: map-merge-settings($avatar-defaults, $avatar);
+
+@function avatar($settings...) {
+  @return map-deep-get($avatar, $settings...);
+}
+
+@mixin _avatar-box($size: avatar(size, base)) {
+  width: $size;
+  height: $size;
+}
+
+%_avatar {
+  background-color: color(border);
+  border-radius: avatar(radius);
+  display: inline-block;
+}
+
+@mixin avatar-placeholders {
+  @each $size, $value in avatar(size) {
+    #{avatar(prefix)}-#{$size} {
+      @extend %_avatar;
+      @include _avatar-box($value);
+    }
+  }
+}
+
+@mixin avatar-border($color: avatar(border-color)) {
+  box-shadow: 0 0 0 1px $color, 0 0 0 1px color(white) inset;
+  padding: 1px;
+}
+
+@include exports('paint-avatar') {
+  @include avatar-placeholders;
+
+  #{avatar(prefix)} {
+    @extend #{avatar(prefix)}-base;
+
+    &-circle {
+      border-radius: 100%;
+    }
+
+    &-border {
+      @include avatar-border;
+    }
+  }
+}
