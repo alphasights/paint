@@ -160,18 +160,6 @@ $icon: map-merge-settings($icon-defaults, $icon);
 $_icon-sets: map-keys(icon(sets));
 $_icon-default-set: nth($_icon-sets, 1);
 
-/// Renders custom icon from set
-/// @param {string} $name - The name of the icon
-/// @param {string} $selector - The selector (before, after or null)
-/// @example scss - Usage
-///   .dashboard-icon {
-///     @include icon(dashboard);
-///   }
-///
-///   .paint-dashboard-icon {
-///     @include icon(dashboard, before, paint);
-///   }
-
 @mixin icon($name, $selector: before, $set: $_icon-default-set) {
   $content: icon($set, $name);
   $selector: if($selector == null, '&', '&::' + $selector);
@@ -198,7 +186,7 @@ $_icon-default-set: nth($_icon-sets, 1);
 /// @access private
 %_icon {
   display: inline-block;
-  font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} icon(sets, $_icon-default-set);
+  font: normal normal normal #{font(size, base)}/#{font(line-height)} icon(sets, $_icon-default-set);
   font-size: inherit;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -240,13 +228,31 @@ $_icon-default-set: nth($_icon-sets, 1);
     }
   }
 
-  #{icon(prefix)}-no-margin {
-    &::after {
-      margin-left: 0;
+  #{icon(prefix)} {
+    &-no-margin {
+      &::after {
+        margin-left: 0;
+      }
+
+      &::before {
+        margin-right: 0;
+      }
     }
 
-    &::before {
-      margin-right: 0;
+    &-large {
+      font-size: font(size, h3);
+    }
+
+    &-larger {
+      font-size: font(size, h1);
+    }
+
+    &-middle {
+      vertical-align: middle;
+    }
+
+    &-text-top {
+      vertical-align: text-top;
     }
   }
 }
