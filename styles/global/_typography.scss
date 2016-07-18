@@ -116,6 +116,7 @@ $font: map-merge-settings($font-defaults, $font);
     font-style: normal;
     font-weight: font(heading, weight);
     line-height: font(heading, line-height);
+    margin-top: 0;
   }
 
   @for $i from 1 to 6 {
