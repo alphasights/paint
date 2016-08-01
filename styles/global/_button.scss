@@ -1,311 +1,140 @@
 ////
-/// Buttons Component
-/// @group button
-/// @since v0.9.0
+/// Buttons
+/// @group global
+/// @since v1.0.0
 ////
 
-$button-base-background-color: color(white) !default;
-$button-base-text-color: color(gray, jumbo) !default;
-$button-base-padding: 15px !default;
-$button-icon-size: 28px !default;
-$button-disabled-transparency: .4 !default;
-$button-disabled-hover-transparency: .2 !default;
-$button-tiny-height: 24px !default;
-$button-small-height: 38px !default;
-$button-large-height: 50px !default;
+$button-defaults: (
+  prefix: '%button',
 
-/// Default button styles
+  style: (
+    base: (
+      background: color(white) color(border, light),
+      border: color(border) color(border, dark)
+    ),
+    primary: (
+      background: color(primary)
+    ),
+    secondary: (
+      background: color(link)
+    ),
+    disabled: (
+      background: color(border),
+      border: color(border, dark)
+    )
+  ),
 
-$button-colors: (
-  base: color(text, small),
-  primary: color(link),
-  secondary: color(secondary),
-  alert: color(alert),
-  error: color(alert),
-  warning: color(warning),
-  success: color(success),
-  info: color(info)
+  size: (
+    small: gutter(size, smaller),
+    base: gutter(size, small) gutter(size, base),
+    large: gutter(size, base) gutter(size, base)
+  ),
+
+  radius: border(radius),
+  mod: circle square disabled
 );
 
-$include-html-paint-button: true !default;
+$button: () !default;
+$button: map-merge-settings($button-defaults, $button);
 
-/// Generate a button with icon
-/// @param {String} $icon - The icon name
-/// @example scss
-///   .dasboard-button {
-///     @include button-icon(dashboard);
-///   }
-
-@mixin button-icon($icon) {
-  @extend %button-icon;
-  @include icon($icon);
+@function button($settings...) {
+  @return map-deep-get($button, $settings...);
 }
 
-/// Disabled button styles
-/// @access private
+@mixin button-style($style: base) {
+  $background: button(style, $style, background);
+  $background-hover: nth($background, length($background));
 
-@mixin button-disabled() {
-  background-color: transparentize(
-    $button-base-background-color,
-    $button-disabled-transparency);
-  border-color: darken($button-base-background-color, 5%);
-  box-shadow: none;
-  color: transparentize(
-    $button-base-text-color,
-    $button-disabled-transparency);
-  cursor: not-allowed;
+  @if length($background) > 1 {
+    $background: nth($background, 1);
+  }
+
+  $border: if(button(style, $style, border), button(style, $style, border), $background);
+  $border-hover: nth($border, length($border));
+
+  @if length($border) > 1 {
+    $border: nth($border, 1);
+  }
+
+  background-color: $background;
+  border: 1px solid $border;
+  color: contrast($background, $dark: color(text, small));
 
   &:hover,
-  &:focus {
-    background-color: transparentize(
-      $button-base-background-color,
-      $button-disabled-hover-transparency);
-    color: transparentize(
-      $button-base-text-color,
-      $button-disabled-hover-transparency);
+  &--hover {
+    background-color: $background-hover;
+    border: 1px solid $border-hover;
+    color: contrast($background-hover, $dark: color(text));
   }
 }
 
-/// Button with icon placeholder
-/// @access private
-
-%button-icon {
-  padding: 0;
-
-  &:before {
-    display: block;
-    line-height: $button-icon-size;
-    width: $button-icon-size;
-  }
+@mixin button-size($size: button(size, base)) {
+  padding: $size;
 }
 
-/// Button resets
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+%_button-reset {
   appearance: none;
   border: 0;
-  border-radius: border(radius);
   cursor: pointer;
-  display: inline-block;
-  font-family: font(family);
-  font-size: font(size, small);
-  -webkit-font-smoothing: font(heading, smoothing);
-  font-weight: font(weight, base);
-  line-height: font(line-height);
-  padding: $button-base-padding / 2 $button-base-padding;
   text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color animation(transition, duration) / 2 ease;
   user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
 
-  &:hover,
+  &--hover,
+  &--focus,
+  &:active,
   &:focus {
-    background-color: color(border, light);
     outline: none;
   }
+}
 
-  &:disabled {
+%_button-base {
+  @include button-size;
+
+  border-radius: button(radius);
+  font-weight: font(weight, bold);
+}
+
+// Extra button styles / mods
+%_button-style {
+  &-disabled {
     cursor: not-allowed;
     opacity: .5;
+  }
 
-    &:hover {
-      background-color: color(border);
-    }
+  &-circle {
+    border-radius: 1000px;
+  }
+
+  &-square {
+    border-radius: 0;
   }
 }
 
-/// Default button styles
-
-%button {
-  background-color: $button-base-background-color;
-  border: 1px solid lighten($button-base-text-color, 20%);
-  border-radius: border(radius);
-  color: $button-base-text-color;
-  transition: color animation(transition, duration) / 2 ease;
-
-  &:hover,
-  &:focus {
-    color: darken($button-base-text-color, 20%);
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  &:disabled,
-  &.disabled,
-  &[disabled] {
-    @include button-disabled;
-  }
-}
-
-/// Solid button styles
-/// @access private
-
-@mixin button-solid(
-  $bg: color(white),
-  $color: color(primary)
-) {
-  background-color: $bg;
-  border: 1px solid $color;
-  color: $color;
-
-  &:focus {
-    background-color: $bg;
-    color: $color;
-  }
-
-  &:hover {
-    background-color: $color;
-    border-color: $bg;
-    color: $bg;
-  }
-}
-
-/// Generate all button styles placeholders
-/// @access private
-
-@mixin button-color-placeholders {
-  @each $type, $button-color in $button-colors {
-    %button-#{$type} {
-      @extend %button-solid;
-      @include button-solid($color: $button-color);
-    }
-
-    %button-#{$type}-inverted {
-      @extend %button-solid;
-      @include button-solid($bg: $button-color, $color: contrast($button-color, $dark: color(text)));
-
-      border-color: transparent;
-    }
-  }
-}
-
-%button-solid {
-  border-radius: border(radius);
-  font-size: font(size, small);
-  font-weight: font(weight, bold);
-  padding: $button-base-padding;
-  text-transform: uppercase;
-}
-
-/// Tiny button styles
-/// @require {placeholder} button
-
-%button-tiny {
-  line-height: $button-tiny-height;
-  padding: 0 $button-base-padding / 2;
-}
-
-/// Small button styles
-/// @require {placeholder} button
-
-%button-small {
-  line-height: $button-small-height;
-  padding: 0 $button-base-padding / 2;
-}
-
-/// Large button styles
-/// @require {placeholder} button
-
-%button-large {
-  line-height: $button-large-height;
-  padding: 0 $button-base-padding * 2;
-}
-
-/// Rounded button style
-/// @require {placeholder} button
-
-%button-rounded {
-  border-radius: 1000px;
-  padding: 0;
-  text-align: center;
-}
-
-/// Button Group
-///
-/// @example scss
-/// .button-group {
-///   @extend %button-group;
-/// }
-///
-/// @example
-///   <ul class="button-group">
-///     <li><button class="cog"></button></li>
-///     <li><button class="dashboard">Dashboard</button></li>
-///     <li><button class="clock"></button></li>
-///   </ul>
-
-%button-group {
-  @include clearfix();
-
-  display: inline-block;
-  list-style: none;
-  margin: 0;
-  white-space: nowrap;
-
-  &:not(:first-child) {
-    padding-left: $button-base-padding / 2;
-  }
-
-  > li {
-    display: inline-block;
-    margin: 0 -2px 0 -1px;
-
-    button {
-      border-color: color(border);
-      border-radius: 0;
-      border-right: 0;
-      line-height: $button-icon-size;
-      padding: 0 $button-base-padding;
-
-      &:before {
-        display: inline-block;
+@mixin button-placeholders {
+  #{button(prefix)} {
+    @each $style, $color in button(style) {
+      &-#{$style} {
+        @extend %_button-reset;
+        @extend %_button-base;
+        @extend %_button-style--#{$style} !optional;
+        @include button-style($style);
       }
 
-      &:not(:empty):before {
-        margin-left: -$button-base-padding;
+      @each $size, $value in button(size) {
+        &--#{$size} {
+          @include button-size($value);
+        }
+      }
+
+      @each $mod in button(mod) {
+        &--#{$mod} {
+          @extend %_button-style-#{$mod};
+        }
       }
     }
-
-    &:first-child {
-      margin-left: 0;
-
-      &,
-      button {
-        border-top-left-radius: border(radius);
-        border-bottom-left-radius: border(radius);
-      }
-    }
-
-    &:last-child {
-      margin-right: 0;
-
-      &,
-      button {
-        border-top-right-radius: border(radius);
-        border-bottom-right-radius: border(radius);
-      }
-
-      button {
-        border-right: solid 1px color(border);
-      }
-    }
-
   }
 }
 
 @include exports('paint-button') {
-  @include button-color-placeholders;
-
-  @if $include-html-paint-button {
-    button {
-      @extend %button;
-    }
-  }
+  @include button-placeholders;
 }

@@ -94,7 +94,7 @@ $notification-colors: (
   }
 
   #{$close-selector} {
-    @include button-icon(times);
+    @include icon(times);
 
     background-color: transparent;
     border: 0;
@@ -104,16 +104,16 @@ $notification-colors: (
 
   #{$actions-selector} {
     #{$primary-action-tag} {
-      @extend %button-#{$type}-inverted;
+      @extend %button-base;
     }
 
     #{$secondary-action-tag} {
-      @extend %button-base-inverted;
+      @extend %button-base;
     }
 
     #{$primary-action-tag},
     #{$secondary-action-tag} {
-      @extend %button-tiny;
+      @extend %button--small;
     }
   }
 }

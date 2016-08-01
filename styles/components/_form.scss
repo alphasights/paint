@@ -13,7 +13,7 @@ $form-input-background-color: color(white) !default;
 $form-input-border-color: darken(color(white), 10%) !default;
 $form-input-border-color-focused: color(border, dark) !default;
 $form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
-$form-input-height: $button-small-height !default;
+$form-input-height: 32px !default;
 $form-input-padding: $form-input-height - font(size, base) !default;
 $form-input-shadow-color: rgba(color(black), .08) !default;
 $form-input-text-color: color(text, small) !default;
@@ -443,7 +443,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$clear-all-selector} {
-    @include button-icon(trash-o);
+    @include icon(trash-o);
 
     margin: $column-gutter / 4
       $column-gutter / 6
@@ -457,7 +457,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$add-selector} {
-    @include button-icon($form-multi-select-dropdown-icon);
+    @include icon($form-multi-select-dropdown-icon);
 
     margin: $column-gutter / 4  0;
     right: 0;
@@ -625,7 +625,7 @@ $include-html-paint-form: true !default;
 
       @each $action, $icon in $actions {
         .#{$action} {
-          @include button-icon(nth($icon, 1));
+          @include icon(nth($icon, 1));
 
           &:hover {
             color: color(nth($icon, 2));
@@ -687,7 +687,7 @@ $include-html-paint-form: true !default;
 
     span {
       float: left;
-      line-height: $button-large-height;
+      line-height: 40px;
       padding: 0;
     }
 
@@ -761,28 +761,8 @@ $include-html-paint-form: true !default;
       @extend %button-primary;
 
       &:disabled {
-        @include button-disabled;
+        @extend %button--disabled;
       }
-    }
-
-    &.secondary {
-      @extend %button-secondary;
-    }
-
-    &.error {
-      @extend %button-error;
-    }
-
-    &.warning {
-      @extend %button-warning;
-    }
-
-    &.info {
-      @extend %button-info;
-    }
-
-    &.success {
-      @extend %button-success;
     }
   }
 
