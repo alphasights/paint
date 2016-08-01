@@ -27,7 +27,7 @@ $button-defaults: (
   size: (
     small: gutter(size, smaller),
     base: gutter(size, small) gutter(size, base),
-    large: gutter(size, base) gutter(size, base)
+    large: gutter(size, base)
   ),
 
   radius: border(radius),
@@ -47,6 +47,8 @@ $button: map-merge-settings($button-defaults, $button);
 
   @if length($background) > 1 {
     $background: nth($background, 1);
+  } @else {
+    $background-hover: darken($background-hover, 5%);
   }
 
   $border: if(button(style, $style, border), button(style, $style, border), $background);
