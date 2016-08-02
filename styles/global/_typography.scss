@@ -6,7 +6,7 @@
 
 $font-defaults: (
   prefix: '%font',
-  include-reset-tags: true,
+  include-tags: true,
 
   family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
   size: (
@@ -68,7 +68,99 @@ $font: map-merge-settings($font-defaults, $font);
   @return map-deep-get($font, $settings...);
 }
 
-@mixin font-resets {
+@mixin font-placeholders {
+  #{font(prefix)} {
+    &-light {
+      font-weight: font(weight, light);
+    }
+
+    &-bold {
+      font-weight: font(weight, bold);
+    }
+
+    &-extrabold {
+      font-weight: font(weight, extrabold);
+    }
+
+    &-italic {
+      font-style: font(style, italic);
+    }
+
+    &-small {
+      font-size: font(size, small);
+    }
+
+    &-blockquote {
+      @extend #{gutter(prefix)}-left;
+      @extend #{gutter(prefix)}-bottom;
+      @extend #{gutter(prefix)}-bottom-outer;
+
+      border-left: font(blockquote, border) solid color(border);
+      font-style: font(style, italic);
+    }
+
+    &-hr {
+      @extend #{gutter(prefix)}-vertical;
+
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
+      background-position: 0 50%;
+      background-repeat: repeat-x;
+      background-size: 100% 2px;
+      border: 0;
+      margin: 0;
+    }
+
+    &-monospace {
+      font-family: font(monospace, family);
+    }
+
+    &-base-smoothing {
+      -webkit-font-smoothing: font(smoothing);
+      text-rendering: optimizeLegibility;
+    }
+
+    &-heading-smoothing {
+      -webkit-font-smoothing: font(heading, smoothing);
+    }
+
+    &-uppercase {
+      font-kerning: normal;
+      text-transform: uppercase;
+    }
+
+    &-smallcaps {
+      font-feature-settings: 'smcp', 'kern';
+      font-kerning: normal;
+      letter-spacing: 0.1rem;
+    }
+
+    &-lining-numerals {
+      font-feature-settings: 'lnum', 'kern';
+    }
+
+    &-heading {
+      @extend #{font(prefix)}-heading-smoothing;
+
+      color: color(heading);
+      font-family: font(heading, family);
+      font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
+      font-style: normal;
+      font-weight: font(heading, weight);
+      line-height: font(heading, line-height);
+      margin-top: 0;
+    }
+
+    @for $i from 1 to 6 {
+      &-h#{$i} {
+        @extend #{font(prefix)}-heading;
+
+        font-size: font(size, h#{$i});
+      }
+    }
+  }
+}
+
+@mixin font-tag-resets {
   html {
     font-size: font(size, base);
     -webkit-text-size-adjust: 100%;
@@ -102,77 +194,35 @@ $font: map-merge-settings($font-defaults, $font);
     margin-top: 0;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @extend #{font(prefix)}-heading-smoothing;
-
-    color: color(heading);
-    font-family: font(heading, family);
-    font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
-    font-style: normal;
-    font-weight: font(heading, weight);
-    line-height: font(heading, line-height);
-    margin-top: 0;
-  }
-
   @for $i from 1 to 6 {
-    h#{$i},
-    #{font(prefix)}-h#{$i} {
-      font-size: font(size, h#{$i});
+    h#{$i} {
+      @extend #{font(prefix)}-h#{$i};
     }
   }
 
   b,
-  strong,
-  #{font(prefix)}-bold {
-    font-weight: font(weight, bold);
-  }
-
-  #{font(prefix)}-extrabold {
-    font-weight: font(weight, extrabold);
+  strong {
+    @extend #{font(prefix)}-bold;
   }
 
   em,
-  i,
-  #{font(prefix)}-italic {
-    font-style: font(style, italic);
+  i {
+    @extend #{font(prefix)}-italic;
   }
 
-  small,
-  #{font(prefix)}-small {
-    font-size: font(size, small);
+  small {
+    @extend #{font(prefix)}-small;
+
     font-style: normal;
     font-weight: font(weight, base);
   }
 
-  blockquote,
-  #{font(prefix)}-blockquote {
-    @extend #{gutter(prefix)}-left;
-    @extend #{gutter(prefix)}-bottom;
-    @extend #{gutter(prefix)}-bottom-outer;
-
-    border-left: font(blockquote, border) solid color(border);
-    font-style: font(style, italic);
+  blockquote {
+    @extend #{font(prefix)}-blockquote;
   }
 
-  hr,
-  #{font(prefix)}-hr {
-    @extend #{gutter(prefix)}-vertical;
-
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
-    background-position: 0 50%;
-    background-repeat: repeat-x;
-    background-size: 100% 2px;
-    border: 0;
-    margin: 0;
-  }
-
-  #{font(prefix)}-monospace {
-    font-family: font(monospace, family);
+  hr {
+    @extend #{font(prefix)}-hr;
   }
 
   code,
@@ -193,7 +243,7 @@ $font: map-merge-settings($font-defaults, $font);
   }
 }
 
-@mixin list-resets {
+@mixin list-tag-resets {
   ul,
   ol {
     li {
@@ -294,33 +344,11 @@ $font: map-merge-settings($font-defaults, $font);
 }
 
 @include exports('paint-typography') {
-  @include font-resets;
-  @include font-condensed;
-  @include list-resets;
+  @include font-placeholders;
 
-  #{font(prefix)} {
-    &-base-smoothing {
-      -webkit-font-smoothing: font(smoothing);
-      text-rendering: optimizeLegibility;
-    }
-
-    &-heading-smoothing {
-      -webkit-font-smoothing: font(heading, smoothing);
-    }
-
-    &-uppercase {
-      font-kerning: normal;
-      text-transform: uppercase;
-    }
-
-    &-smallcaps {
-      font-feature-settings: 'smcp', 'kern';
-      font-kerning: normal;
-      letter-spacing: 0.1rem;
-    }
-
-    &-lining-numerals {
-      font-feature-settings: 'lnum', 'kern';
-    }
+  @if font(include-tags) {
+    @include font-tag-resets;
+    @include font-condensed;
+    @include list-tag-resets;
   }
 }
