@@ -137,6 +137,79 @@ $button: map-merge-settings($button-defaults, $button);
   }
 }
 
+@mixin button-group-placeholders {
+  #{button(prefix)}-group {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    &__item {
+      float: left;
+    }
+
+    &__button {
+      @extend #{button(prefix)}-base;
+      @extend #{button(prefix)}--square;
+
+      &--not-last-child {
+        border-right: 0;
+      }
+
+      &--first-child {
+        border-top-left-radius: border(radius);
+        border-bottom-left-radius: border(radius);
+      }
+
+      &--last-child {
+        border-top-right-radius: border(radius);
+        border-bottom-right-radius: border(radius);
+      }
+
+      &--active {
+        @extend #{button(prefix)}-secondary;
+        @extend #{button(prefix)}--square;
+      }
+    }
+
+    &--block {
+      @extend #{grid(prefix, row)};
+      @extend #{grid(prefix, row)}-middle;
+
+      float: none;
+
+      &__item {
+        @extend #{grid(prefix, col)}-fill;
+        @extend #{grid(prefix, row)};
+      }
+
+      &__button {
+        @extend #{grid(prefix, col)}-fill;
+
+        text-align: center;
+      }
+    }
+
+    &--small {
+      position: relative;
+
+      &__button {
+        @extend #{button(prefix)}--small;
+      }
+    }
+
+    &--large {
+      position: relative;
+
+      &__button {
+        @extend #{button(prefix)}--large;
+      }
+    }
+  }
+}
+
 @include exports('paint-button') {
   @include button-placeholders;
+  @include button-group-placeholders;
 }
