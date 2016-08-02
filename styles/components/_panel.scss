@@ -26,8 +26,8 @@
 ///   }
 
 $panel-default-settings: (
-  header-height: font(heading, h1) + $column-gutter,
-  footer-height: font(heading, h1) + $column-gutter / 2,
+  header-height: font(size, h1) + $column-gutter,
+  footer-height: font(size, h1) + $column-gutter / 2,
   styles: (
     default: color(border, light),
     primary: color(primary),
