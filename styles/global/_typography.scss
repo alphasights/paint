@@ -151,9 +151,9 @@ $font: map-merge-settings($font-defaults, $font);
 
   blockquote,
   #{font(prefix)}-blockquote {
-    @extend %gutter-left;
-    @extend %gutter-bottom;
-    @extend %gutter-bottom-outer;
+    @extend #{gutter(prefix)}-left;
+    @extend #{gutter(prefix)}-bottom;
+    @extend #{gutter(prefix)}-bottom-outer;
 
     border-left: font(blockquote, border) solid color(border);
     font-style: font(style, italic);
@@ -161,7 +161,7 @@ $font: map-merge-settings($font-defaults, $font);
 
   hr,
   #{font(prefix)}-hr {
-    @extend %gutter-vertical;
+    @extend #{gutter(prefix)}-vertical;
 
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
     background-position: 0 50%;
@@ -182,8 +182,8 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   pre {
-    @extend %gutter-all-small;
-    @extend %gutter-bottom-outer;
+    @extend #{gutter(prefix)}-all-small;
+    @extend #{gutter(prefix)}-bottom-outer;
 
     display: block;
     white-space: pre;
@@ -201,7 +201,7 @@ $font: map-merge-settings($font-defaults, $font);
 
       ol,
       ul {
-        @extend %gutter-left-small-outer;
+        @extend #{gutter(prefix)}-left-small-outer;
       }
     }
   }
@@ -280,7 +280,7 @@ $font: map-merge-settings($font-defaults, $font);
     }
 
     dd + dt {
-      @extend %gutter-top-small;
+      @extend #{gutter(prefix)}-top-small;
     }
   }
 }
