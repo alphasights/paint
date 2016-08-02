@@ -31,7 +31,7 @@ $button-defaults: (
   ),
 
   radius: border(radius),
-  mod: circle square disabled
+  custom: circle square disabled
 );
 
 $button: () !default;
@@ -96,8 +96,8 @@ $button: map-merge-settings($button-defaults, $button);
   font-weight: font(weight, bold);
 }
 
-// Extra button styles / mods
-%_button-style {
+// Extra button styles
+%_button-custom {
   &-disabled {
     cursor: not-allowed;
     opacity: .5;
@@ -118,19 +118,19 @@ $button: map-merge-settings($button-defaults, $button);
       &-#{$style} {
         @extend %_button-reset;
         @extend %_button-base;
-        @extend %_button-style--#{$style} !optional;
+        @extend %_button-custom-#{$style} !optional;
         @include button-style($style);
       }
 
       @each $size, $value in button(size) {
-        &--#{$size} {
+        &-#{$size} {
           @include button-size($value);
         }
       }
 
-      @each $mod in button(mod) {
-        &--#{$mod} {
-          @extend %_button-style-#{$mod};
+      @each $style in button(custom) {
+        &-#{$style} {
+          @extend %_button-custom-#{$style};
         }
       }
     }
@@ -151,7 +151,7 @@ $button: map-merge-settings($button-defaults, $button);
 
     &__button {
       @extend #{button(prefix)}-base;
-      @extend #{button(prefix)}--square;
+      @extend #{button(prefix)}-square;
 
       &--not-last-child {
         border-right: 0;
@@ -169,7 +169,7 @@ $button: map-merge-settings($button-defaults, $button);
 
       &--active {
         @extend #{button(prefix)}-secondary;
-        @extend #{button(prefix)}--square;
+        @extend #{button(prefix)}-square;
       }
     }
 
@@ -195,7 +195,7 @@ $button: map-merge-settings($button-defaults, $button);
       position: relative;
 
       &__button {
-        @extend #{button(prefix)}--small;
+        @extend #{button(prefix)}-small;
       }
     }
 
@@ -203,7 +203,7 @@ $button: map-merge-settings($button-defaults, $button);
       position: relative;
 
       &__button {
-        @extend #{button(prefix)}--large;
+        @extend #{button(prefix)}-large;
       }
     }
   }

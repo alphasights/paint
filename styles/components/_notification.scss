@@ -113,7 +113,7 @@ $notification-colors: (
 
     #{$primary-action-tag},
     #{$secondary-action-tag} {
-      @extend %button--small;
+      @extend %button-small;
     }
   }
 }

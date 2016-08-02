@@ -761,7 +761,7 @@ $include-html-paint-form: true !default;
       @extend %button-primary;
 
       &:disabled {
-        @extend %button--disabled;
+        @extend %button-disabled;
       }
     }
   }
