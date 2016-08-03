@@ -22,6 +22,11 @@ $button-defaults: (
       background: transparent color(white),
       border: color(white) color(border)
     ),
+    link: (
+      background: transparent,
+      border: transparent,
+      color: color(link) color(link, dark)
+    ),
     disabled: (
       background: color(border),
       border: color(border, dark)
@@ -62,15 +67,28 @@ $button: map-merge-settings($button-defaults, $button);
     $border: nth($border, 1);
   }
 
+  $color: button(style, $style, color);
+  $color-hover: $color;
+
+  $color: if($color,
+    nth($color, 1),
+    contrast($background, $dark: color(text, small))
+  );
+
+  $color-hover: if($color-hover,
+    nth($color-hover, length($color-hover)),
+    contrast($background-hover, $dark: color(text, small))
+  );
+
   background-color: $background;
   border: 1px solid $border;
-  color: contrast($background, $dark: color(text, small));
+  color: $color;
 
   &:hover,
   &--hover {
     background-color: $background-hover;
     border: 1px solid $border-hover;
-    color: contrast($background-hover, $dark: color(text));
+    color: $color-hover;
   }
 }
 
