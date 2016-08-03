@@ -31,8 +31,8 @@ $notification-defaults: (
   ),
 
   size: (
-    small: gutter(size, smaller) gutter(size, base),
     base: gutter(size, small) gutter(size, base),
+    small: gutter(size, smaller) gutter(size, base),
     large: gutter(size, base)
   )
 );

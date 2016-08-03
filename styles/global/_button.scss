@@ -34,8 +34,8 @@ $button-defaults: (
   ),
 
   size: (
-    small: gutter(size, smaller),
     base: gutter(size, small) gutter(size, base),
+    small: gutter(size, smaller),
     large: gutter(size, base)
   ),
 
