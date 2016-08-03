@@ -18,6 +18,10 @@ $button-defaults: (
     secondary: (
       background: color(link)
     ),
+    ghost: (
+      background: transparent color(white),
+      border: color(white) color(border)
+    ),
     disabled: (
       background: color(border),
       border: color(border, dark)
