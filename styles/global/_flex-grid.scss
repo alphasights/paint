@@ -141,7 +141,7 @@ $grid: map-merge-settings($grid-defaults, $grid);
 
     &-gutter {
       &:not(:last-child) {
-        @extend %gutter-right-small;
+        padding-right: gutter(small);
       }
     }
 

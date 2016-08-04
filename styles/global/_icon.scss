@@ -8,88 +8,10 @@ $icon-defaults: (
   prefix: '%icon',
 
   sets: (
-    fa: 'FontAwesome',
     paint: 'Paint'
   ),
 
-  fa: (
-    angle-double-left: $fa-var-angle-double-left,
-    angle-down: $fa-var-angle-down,
-    angle-left: $fa-var-angle-left,
-    angle-right: $fa-var-angle-right,
-    angle-up: $fa-var-angle-up,
-    bar-chart: $fa-var-bar-chart,
-    black-tie: $fa-var-black-tie,
-    briefcase: $fa-var-briefcase,
-    building-o: $fa-var-building-o,
-    calendar: $fa-var-calendar,
-    caret-down: $fa-var-caret-down,
-    caret-left: $fa-var-caret-left,
-    caret-right: $fa-var-caret-right,
-    caret-up: $fa-var-caret-up,
-    check: $fa-var-check,
-    check-circle: $fa-var-check-circle,
-    check-square: $fa-var-check-square,
-    chevron-down: $fa-var-chevron-down,
-    chevron-left: $fa-var-chevron-left,
-    chevron-right: $fa-var-chevron-right,
-    circle: $fa-var-circle,
-    circle-o: $fa-var-circle-o,
-    clipboard: $fa-var-clipboard,
-    clock-o: $fa-var-clock-o,
-    close: $fa-var-close,
-    cog: $fa-var-cog,
-    dot-circle-o: $fa-var-dot-circle-o,
-    ellipsis-h: $fa-var-ellipsis-h,
-    ellipsis-v: $fa-var-ellipsis-v,
-    envelope: $fa-var-envelope,
-    external-link: $fa-var-external-link,
-    eye: $fa-var-eye,
-    eye-slash: $fa-var-eye-slash,
-    file-text: $fa-var-file-text,
-    flag-checkered: $fa-var-flag-checkered,
-    folder: $fa-var-folder,
-    globe: $fa-var-globe,
-    hand-o-left: $fa-var-hand-o-left,
-    hand-o-right: $fa-var-hand-o-right,
-    home: $fa-var-home,
-    info: $fa-var-info,
-    info-circle: $fa-var-info-circle,
-    language: $fa-var-language,
-    lightbulb-o: $fa-var-lightbulb-o,
-    linkedin: $fa-var-linkedin,
-    lock: $fa-var-lock,
-    long-arrow-left: $fa-var-long-arrow-left,
-    long-arrow-right: $fa-var-long-arrow-right,
-    minus-circle: $fa-var-minus-circle,
-    minus-square: $fa-var-minus-square,
-    mobile: $fa-var-mobile,
-    money: $fa-var-money,
-    paper-plane: $fa-var-paper-plane,
-    pencil: $fa-var-pencil,
-    phone: $fa-var-phone,
-    plus: $fa-var-plus,
-    plus-circle: $fa-var-plus-circle,
-    question: $fa-var-question,
-    random: $fa-var-random,
-    remove: $fa-var-remove,
-    repeat: $fa-var-repeat,
-    search: $fa-var-search,
-    square-o: $fa-var-square-o,
-    star: $fa-var-star,
-    star-o: $fa-var-star-o,
-    tag: $fa-var-tag,
-    tags: $fa-var-tags,
-    th: $fa-var-th,
-    th-large: $fa-var-th-large,
-    thumb-tack: $fa-var-thumb-tack,
-    times: $fa-var-times,
-    times-circle: $fa-var-times-circle,
-    trash: $fa-var-trash,
-    trash-o: $fa-var-trash-o,
-    user: $fa-var-user,
-    warning: $fa-var-warning
-  ),
+  default: paint,
 
   paint: (
     avatar-advisor: '\f053',
@@ -158,7 +80,7 @@ $icon: map-merge-settings($icon-defaults, $icon);
 }
 
 $_icon-sets: map-keys(icon(sets));
-$_icon-default-set: nth($_icon-sets, 1);
+$_icon-default-set: icon(default);
 
 @mixin icon($name, $selector: before, $set: $_icon-default-set) {
   $content: icon($set, $name);
@@ -174,11 +96,11 @@ $_icon-default-set: nth($_icon-sets, 1);
     content: $content;
 
     @if $selector == '&::before' {
-      @extend %gutter-right-smaller-outer;
+      margin-right: gutter(smaller);
     }
 
     @if $selector == '&::after' {
-      @extend %gutter-left-smaller-outer;
+      margin-left: gutter(smaller);
     }
   }
 }
@@ -242,14 +164,14 @@ $_icon-default-set: nth($_icon-sets, 1);
     &-large {
       &::before,
       &::after {
-        font-size: font(heading, h3);
+        font-size: font(size, h3);
       }
     }
 
     &-larger {
       &::before,
       &::after {
-        font-size: font(heading, h1);
+        font-size: font(size, h1);
       }
     }
 

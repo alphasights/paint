@@ -6,7 +6,7 @@
 
 $font-defaults: (
   prefix: '%font',
-  include-tags: true,
+  include-html-tags: true,
 
   family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
   size: (
@@ -26,9 +26,6 @@ $font-defaults: (
     base: 300,
     bold: 400,
     extrabold: 600
-  ),
-  style: (
-    italic: italic
   ),
   line-height: 1.5,
   smoothing: subpixel-antialiased,
@@ -70,48 +67,22 @@ $font: map-merge-settings($font-defaults, $font);
 
 @mixin font-placeholders {
   #{font(prefix)} {
-    &-light {
-      font-weight: font(weight, light);
-    }
-
-    &-bold {
-      font-weight: font(weight, bold);
-    }
-
-    &-extrabold {
-      font-weight: font(weight, extrabold);
-    }
-
-    &-italic {
-      font-style: font(style, italic);
-    }
-
-    &-small {
-      font-size: font(size, small);
-    }
-
     &-blockquote {
-      @extend #{gutter(prefix)}-left;
-      @extend #{gutter(prefix)}-bottom;
-      @extend #{gutter(prefix)}-bottom-outer;
-
       border-left: font(blockquote, border) solid color(border);
-      font-style: font(style, italic);
+      font-style: italic;
+      margin-bottom: gutter();
+      padding-bottom: gutter();
+      padding-left: gutter();
     }
 
     &-hr {
-      @extend #{gutter(prefix)}-vertical;
-
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
       background-position: 0 50%;
       background-repeat: repeat-x;
       background-size: 100% 2px;
       border: 0;
       margin: 0;
-    }
-
-    &-monospace {
-      font-family: font(monospace, family);
+      padding: gutter() 0;
     }
 
     &-base-smoothing {
@@ -202,19 +173,18 @@ $font: map-merge-settings($font-defaults, $font);
 
   b,
   strong {
-    @extend #{font(prefix)}-bold;
+    font-weight: font(weight, bold);
   }
 
   em,
   i {
-    @extend #{font(prefix)}-italic;
+    font-style: italic;
   }
 
   small {
-    @extend #{font(prefix)}-small;
-
     font-style: normal;
     font-weight: font(weight, base);
+    font-size: font(size, small);
   }
 
   blockquote {
@@ -232,14 +202,13 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   pre {
-    @extend #{gutter(prefix)}-all-small;
-    @extend #{gutter(prefix)}-bottom-outer;
-
     display: block;
     white-space: pre;
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;
+    padding: gutter(small);
+    margin-bottom: gutter();
   }
 }
 
@@ -251,7 +220,7 @@ $font: map-merge-settings($font-defaults, $font);
 
       ol,
       ul {
-        @extend #{gutter(prefix)}-left-small-outer;
+        margin-left: gutter(small);
       }
     }
   }
@@ -330,7 +299,7 @@ $font: map-merge-settings($font-defaults, $font);
     }
 
     dd + dt {
-      @extend #{gutter(prefix)}-top-small;
+      padding-top: gutter(small);
     }
   }
 }
@@ -346,7 +315,7 @@ $font: map-merge-settings($font-defaults, $font);
 @include exports('paint-typography') {
   @include font-placeholders;
 
-  @if font(include-tags) {
+  @if font(include-html-tags) {
     @include font-tag-resets;
     @include font-condensed;
     @include list-tag-resets;
