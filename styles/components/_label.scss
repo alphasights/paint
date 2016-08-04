@@ -7,7 +7,7 @@
 $label-defaults: (
   prefix: '%label',
 
-  radius: border(radius) * 8 border(radius) border(radius) border(radius) * 8,
+  radius: radius(round) radius() radius() radius(round),
 
   style: (
     base: color(border),
@@ -26,13 +26,11 @@ $label: map-merge-settings($label-defaults, $label);
 }
 
 %_label {
-  @extend %gutter-horizontal-small;
-  @extend %gutter-vertical-smaller;
-
   border-radius: label(radius);
   display: inline-block;
   font-size: font(size, small);
   font-weight: font(weight, bold);
+  padding: gutter(smaller) gutter(small);
   text-align: center;
 }
 

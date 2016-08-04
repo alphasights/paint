@@ -31,9 +31,9 @@ $notification-defaults: (
   ),
 
   size: (
-    base: gutter(size, small) gutter(size, base),
-    small: gutter(size, smaller) gutter(size, base),
-    large: gutter(size, base)
+    base: gutter(small) gutter(base),
+    small: gutter(smaller) gutter(base),
+    large: gutter(base)
   )
 );
 
@@ -61,7 +61,7 @@ $notification: map-merge-settings($notification-defaults, $notification);
   @extend #{grid(prefix, row)}-middle;
   @include notification-size;
 
-  border-radius: border(radius);
+  border-radius: radius();
 }
 
 @mixin notification-wrapper-placeholders {
@@ -71,7 +71,7 @@ $notification: map-merge-settings($notification-defaults, $notification);
 
       &-fixed,
       &-absolute {
-        @extend #{z-index(prefix)}-notification;
+        z-index: z(notification);
       }
 
       &-fixed {

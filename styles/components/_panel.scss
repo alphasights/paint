@@ -26,8 +26,8 @@
 ///   }
 
 $panel-default-settings: (
-  header-height: font(size, h1) + $column-gutter,
-  footer-height: font(size, h1) + $column-gutter / 2,
+  header-height: font(size, h1) + gutter(),
+  footer-height: font(size, h1) + gutter(small),
   styles: (
     default: color(border, light),
     primary: color(primary),
@@ -88,7 +88,7 @@ $include-html-paint-panel: true !default;
   backface-visibility: hidden;
   background-color: color(white);
   border: 1px solid color(border);
-  border-radius: border(radius);
+  border-radius: radius();
   box-shadow: 0 2px 1px color(border);
 
   > header,
@@ -98,12 +98,12 @@ $include-html-paint-panel: true !default;
     }
 
     i {
-      margin-right: $column-gutter / 4;
+      margin-right: gutter(smaller);
     }
   }
 
   > header {
-    border-radius: border(radius) border(radius) 0 0;
+    border-radius: radius() radius() 0 0;
 
     h1 {
       font-size: font(size, base);
@@ -111,7 +111,7 @@ $include-html-paint-panel: true !default;
       letter-spacing: 0;
       line-height: panel-settings(header-height);
       margin: 0;
-      padding: 0 $column-gutter / 2;
+      padding: 0 gutter(small);
     }
   }
 }

@@ -178,10 +178,9 @@ $include-html-paint-form: true !default;
       width: 130%;
 
       &:focus {
-        @extend %z-index-content;
-
         color: color(link);
         outline: none;
+        z-index: z();
       }
 
       > option {
@@ -253,7 +252,7 @@ $include-html-paint-form: true !default;
       }
 
       #{$icon} {
-        @include icon(times);
+        @extend #{icon(prefix)}-cross;
 
         cursor: pointer;
         display: none;
@@ -310,8 +309,6 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-select-options($options, $option, $is-focused-selector) {
-  @extend %z-index-content;
-
   background-color: color(white);
   border-radius: 0 0 border(radius) border(radius);
   border: 1px solid $form-input-border-color;
@@ -327,6 +324,7 @@ $include-html-paint-form: true !default;
   overflow-y: auto;
   position: absolute;
   top: 100%;
+  z-index: z();
 
   #{$options} {
     margin: 0;
@@ -443,7 +441,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$clear-all-selector} {
-    @include icon(trash-o);
+    @extend #{icon(prefix)}-delete;
 
     margin: $column-gutter / 4
       $column-gutter / 6
@@ -457,7 +455,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$add-selector} {
-    @include icon($form-multi-select-dropdown-icon);
+    @extend #{icon(prefix)}-circle-plus;
 
     margin: $column-gutter / 4  0;
     right: 0;
@@ -492,9 +490,9 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-checkbox-icon($icon) {
-  &:before {
-    @include icon($icon);
+  @extend %icon-#{$icon};
 
+  &:before {
     float: right;
     font-size: font(size, small);
     line-height: $form-input-height !important;
@@ -509,7 +507,7 @@ $include-html-paint-form: true !default;
   white-space: $option-whitespace;
 
   &:before {
-    @include icon(square-o);
+    @include icon(heart);
 
     color: color(text, small);
     margin-right: $column-gutter / 4;
@@ -553,14 +551,14 @@ $include-html-paint-form: true !default;
   $is-checked-selector: '.is-checked',
   $actions-selector: '.actions',
   $actions: (
-    remove: trash alert
+    remove: delete alert
   )
 ) {
   position: relative;
 
   #{$control} {
     @include form-input;
-    @include form-multi-checkbox-icon(angle-down);
+    @include form-multi-checkbox-icon(arrow-down);
 
     background-color: $form-input-background-color;
     display: block;
@@ -586,7 +584,7 @@ $include-html-paint-form: true !default;
   }
 
   &#{$is-open-selector} > #{$control} {
-    @include form-multi-checkbox-icon(angle-up);
+    @include form-multi-checkbox-icon(arrow-up);
   }
 
   #{$options-selector} {
@@ -657,8 +655,6 @@ $include-html-paint-form: true !default;
   }
 
   #{$form-submission-action-confirmation-selector} {
-    @extend %z-index-popover;
-
     backface-visibility: hidden;
     background-color: color(alert);
     bottom: 0;
@@ -672,6 +668,7 @@ $include-html-paint-form: true !default;
     transform: rotateX(180deg) rotateY(0deg);
     transform-style: preserve-3d;
     transition: transform .250s ease-in-out;
+    z-index: z(popover);
 
     &.warning {
       background-color: color(warning);

@@ -214,7 +214,7 @@ $include-html-paint-step: true !default;
         @include detached-border(step-settings(colors, inactive-border));
 
         background-color: step-settings(colors, inactive-background);
-        border-radius: border(radius);
+        border-radius: radius();
         color: contrast(step-settings(colors, inactive-background));
         line-height: step-settings(height);
         padding: 0 $column-gutter / 2 !important;

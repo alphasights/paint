@@ -7,7 +7,7 @@
 $avatar-defaults: (
   prefix: '%avatar',
 
-  radius: border(radius),
+  radius: radius(),
   border-color: color(border),
 
   size: (

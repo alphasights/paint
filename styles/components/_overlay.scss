@@ -1,4 +1,4 @@
-$global-overlay-background-color: rgba(0, 0, 0, .45) !default;
+$overlay-color: rgba(0, 0, 0, .45) !default;
 
 @mixin overlay($position: absolute, $z-index: z(overlay)) {
   background-color: transparent;
@@ -13,12 +13,12 @@ $global-overlay-background-color: rgba(0, 0, 0, .45) !default;
   transition: background-color animation(transition, duration) ease;
   z-index: $z-index;
 
-  > * {
+  &__container {
     pointer-events: all;
   }
 
-  &.active {
-    background-color: $global-overlay-background-color;
+  &--active {
+    background-color: $overlay-color;
     pointer-events: all;
   }
 }
