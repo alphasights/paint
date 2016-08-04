@@ -252,8 +252,6 @@ $include-html-paint-form: true !default;
       }
 
       #{$icon} {
-        @extend #{icon(prefix)}-cross;
-
         cursor: pointer;
         display: none;
         height: $item-height;
@@ -268,6 +266,8 @@ $include-html-paint-form: true !default;
         }
 
         &:before {
+          @include icon(cross, $set: paint);
+
           font-size: font(size, small);
           left: -$form-multi-select-icon-size * 1000;
           line-height: $item-height;
@@ -441,7 +441,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$clear-all-selector} {
-    @extend #{icon(prefix)}-delete;
+    @include icon(delete, null, $set: paint);
 
     margin: $column-gutter / 4
       $column-gutter / 6
@@ -455,7 +455,7 @@ $include-html-paint-form: true !default;
   }
 
   #{$add-selector} {
-    @extend #{icon(prefix)}-circle-plus;
+    @include icon(circle-plus, null, $set: paint);
 
     margin: $column-gutter / 4  0;
     right: 0;
@@ -490,9 +490,9 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-checkbox-icon($icon) {
-  @extend %icon-#{$icon};
-
   &:before {
+    @include icon($icon, null, $set: paint);
+
     float: right;
     font-size: font(size, small);
     line-height: $form-input-height !important;
@@ -507,7 +507,7 @@ $include-html-paint-form: true !default;
   white-space: $option-whitespace;
 
   &:before {
-    @include icon(heart);
+    @include icon(heart, $set: paint);
 
     color: color(text, small);
     margin-right: $column-gutter / 4;
@@ -518,7 +518,7 @@ $include-html-paint-form: true !default;
     color: $form-multi-checkbox-option-checked-color;
 
     &:before {
-      @include icon(check);
+      @include icon(check, $set: paint);
 
       color: $form-multi-checkbox-option-checked-color;
     }
@@ -623,7 +623,7 @@ $include-html-paint-form: true !default;
 
       @each $action, $icon in $actions {
         .#{$action} {
-          @include icon(nth($icon, 1));
+          @include icon(nth($icon, 1), $set: paint);
 
           &:hover {
             color: color(nth($icon, 2));
