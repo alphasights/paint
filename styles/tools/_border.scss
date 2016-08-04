@@ -1,76 +1,18 @@
 ////
-/// Border Atoms
+/// Border
 /// @group tools
 /// @since v1.0.0
 ////
 
-$border-defaults: (
-  prefix: '%border',
-  radius: 3px,
-
-  placement: (
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    vertical: top bottom,
-    horizontal: left right,
-    all: top bottom left right
-  )
+$radius-defaults: (
+  base: 3px,
+  round: 24px,
+  circle: 1000px
 );
 
-$border: () !default;
-$border: map-merge-settings($border-defaults, $border);
+$radius: () !default;
+$radius: map-merge-settings($radius-defaults, $radius);
 
-@function border($settings...) {
-  @return map-deep-get($border, $settings...);
-}
-
-@mixin border-position($placement: bottom) {
-  @each $placement_item in $placement {
-    border-#{$placement_item}: 1px solid;
-  }
-}
-
-@mixin border-color($color: color(border)) {
-  border-color: $color;
-}
-
-@include exports('paint-border') {
-  #{border(prefix)} {
-    @each $placement, $placement-value in border(placement) {
-      &-#{$placement} {
-        @extend #{border(prefix)}-base;
-        @include border-position($placement-value);
-      }
-
-      &-#{$placement}-light {
-        @extend #{border(prefix)}-light;
-      }
-
-      &-#{$placement}-dark {
-        @extend #{border(prefix)}-dark;
-      }
-    }
-
-    &-base {
-      @include border-color(color(border));
-    }
-
-    &-light {
-      @include border-color(color(border, light));
-    }
-
-    &-dark {
-      @include border-color(color(border, dark));
-    }
-
-    &-rounded {
-      border-radius: border(radius);
-    }
-
-    &-circle {
-      border-radius: 1000px;
-    }
-  }
+@function radius($value: base) {
+  @return map-get($radius, $value);
 }

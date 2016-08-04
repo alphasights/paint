@@ -1,64 +1,20 @@
 ////
-/// Gutter Atoms
+/// Gutter
 /// @group tools
 /// @since v1.0.0
 ////
 
 $gutter-defaults: (
-  prefix: '%gutter',
-
-  placement: (
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    vertical: top bottom,
-    horizontal: left right,
-    all: top bottom left right
-  ),
-
-  size: (
-    base: 1.5rem,
-    small: .75rem,
-    smaller: .375rem,
-    large: 3rem,
-    larger: 4.5rem
-  )
+  base: 1.5rem,
+  small: .75rem,
+  smaller: .375rem,
+  large: 3rem,
+  larger: 4.5rem
 );
 
 $gutter: () !default;
 $gutter: map-merge-settings($gutter-defaults, $gutter);
 
-@function gutter($settings...) {
-  @return map-deep-get($gutter, $settings...);
-}
-
-@mixin gutter-position($placement: left right, $size: gutter(size, base), $type: margin) {
-  @each $placement_item in $placement {
-    #{$type}-#{$placement_item}: $size;
-  }
-}
-
-@include exports('paint-gutter') {
-  #{gutter(prefix)} {
-    @each $placement, $placement_value in gutter(placement) {
-      &-#{$placement} {
-        @include gutter-position($placement_value, $type: padding);
-
-        &-outer {
-          @include gutter-position($placement_value);
-        }
-      }
-
-      @each $size, $size_value in gutter(size) {
-        &-#{$placement}-#{$size} {
-          @include gutter-position($placement_value, $size_value, $type: padding);
-
-          &-outer {
-            @include gutter-position($placement_value, $size_value);
-          }
-        }
-      }
-    }
-  }
+@function gutter($size: base) {
+  @return map-get($gutter, $size);
 }
