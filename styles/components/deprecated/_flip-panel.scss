@@ -186,9 +186,8 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .front {
-    @extend %z-index-popover;
-
     transform: rotateX(0deg) rotateY(0deg);
+    z-index: z(popover);
 
     @if $min-height {
       > .content {
@@ -200,7 +199,7 @@ $include-html-paint-flip-panel: true !default;
   }
 
   .back {
-    @extend %z-index-popover-under;
+    z-index: z(popover) - z(increment);
     @include panel-background(color(white));
 
     position: absolute;
@@ -233,15 +232,13 @@ $include-html-paint-flip-panel: true !default;
     }
 
     .front {
-      @extend %z-index-popover-under;
-
       transform: rotateY(180deg);
+      z-index: z(popover) - z(increment);
     }
 
     .back {
-      @extend %z-index-popover;
-
       transform: rotateX(0deg) rotateY(0deg);
+      z-index: z(popover);
     }
   }
 
