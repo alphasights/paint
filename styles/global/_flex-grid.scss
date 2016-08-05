@@ -56,7 +56,7 @@ $grid: map-merge-settings($grid-defaults, $grid);
 }
 
 @mixin grid-col-push-placeholders($prefix: grid(prefix, col)) {
-  @for $i from 1 through $grid-columns {
+  @for $i from 1 through grid(columns) {
     #{$prefix}-push-#{$i} {
       @include grid-col-gutter($i);
     }
@@ -64,7 +64,7 @@ $grid: map-merge-settings($grid-defaults, $grid);
 }
 
 @mixin grid-col-pull-placeholders($prefix: grid(prefix, col)) {
-  @for $i from 1 through $grid-columns {
+  @for $i from 1 through grid(columns) {
     #{$prefix}-pull-#{$i} {
       @include grid-col-gutter($i, right);
     }

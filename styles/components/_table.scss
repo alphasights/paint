@@ -4,7 +4,7 @@ $table-row-background-color: color(white) !default;
 $table-odd-background-color: color(border, light) !default;
 $table-highlighted-row-background-color: color(primary, light) !default;
 $table-highlighted-row-color: color(gray, jet) !default;
-$table-column-padding: $column-gutter / 2 !default;
+$table-column-padding: gutter(small) !default;
 
 %table {
   width: 100%;
