@@ -1,19 +1,17 @@
 $overlay-color: rgba(0, 0, 0, .45) !default;
 
-@mixin overlay($position: absolute, $z-index: z(overlay)) {
+%overlay {
   background-color: transparent;
   bottom: 0;
   left: 0;
   overflow-x: hidden;
   overflow-y: auto;
   pointer-events: none;
-  position: $position;
   right: 0;
   top: 0;
   transition: background-color animation(transition, duration) ease;
-  z-index: $z-index;
 
-  &__container {
+  &__content {
     pointer-events: all;
   }
 
@@ -21,4 +19,11 @@ $overlay-color: rgba(0, 0, 0, .45) !default;
     background-color: $overlay-color;
     pointer-events: all;
   }
+}
+
+@mixin overlay($position: absolute, $z-index: z(overlay)) {
+  @extend %overlay;
+
+  position: $position;
+  z-index: $z-index;
 }

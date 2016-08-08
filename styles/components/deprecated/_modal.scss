@@ -134,6 +134,7 @@ $include-html-paint-modal: true !default;
   text-align: center;
 
   > div {
+    @extend %overlay__content;
     @include modal-panel($use-content-size);
 
     display: inline-block;
@@ -148,9 +149,13 @@ $include-html-paint-modal: true !default;
       transform animation(transition, duration);
   }
 
-  &.active > div {
-    top: 50%;
-    transform: translateY(-50%);
+  &.active {
+    @extend %overlay--active;
+
+    > div {
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
 
