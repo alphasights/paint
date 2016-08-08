@@ -211,6 +211,7 @@ $include-html-paint-side-panel: true !default;
   > .content {
     @extend %grid-column-10;
 
+    min-height: 1px;
     padding: 0 !important;
 
     > ul {
