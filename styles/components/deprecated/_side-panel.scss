@@ -245,6 +245,12 @@ $include-html-paint-side-panel: true !default;
 
         line-height: font(line-height);
         padding: 0;
+
+        &:disabled {
+          @extend %button-disabled;
+
+          padding: 0;
+        }
       }
     }
 
