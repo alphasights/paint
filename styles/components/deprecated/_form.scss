@@ -496,7 +496,6 @@ $include-html-paint-form: true !default;
     float: right;
     font-size: font(size, small);
     line-height: $form-input-height !important;
-    margin-left: $column-gutter / 2;
   }
 }
 
@@ -507,7 +506,7 @@ $include-html-paint-form: true !default;
   white-space: $option-whitespace;
 
   &:before {
-    @include icon(heart, $set: paint);
+    @include icon(heart, null, paint);
 
     color: color(text, small);
     margin-right: $column-gutter / 4;
@@ -518,7 +517,7 @@ $include-html-paint-form: true !default;
     color: $form-multi-checkbox-option-checked-color;
 
     &:before {
-      @include icon(check, $set: paint);
+      @include icon(check, null, paint);
 
       color: $form-multi-checkbox-option-checked-color;
     }
