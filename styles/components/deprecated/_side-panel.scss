@@ -249,7 +249,7 @@ $include-html-paint-side-panel: true !default;
         &:disabled {
           @extend %button-disabled;
 
-          padding: 0;
+          padding: 0 !important;
         }
       }
     }
