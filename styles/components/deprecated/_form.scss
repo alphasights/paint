@@ -695,13 +695,7 @@ $include-html-paint-form: true !default;
     }
 
     button {
-      background-color: transparent;
-      border: solid 1px $form-confirm-border-color;
-      color: color(white);
-
-      &:hover {
-        background-color: $form-confirm-border-color;
-      }
+      @extend %button-ghost;
     }
 
     a {
