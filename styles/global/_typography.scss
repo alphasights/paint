@@ -118,6 +118,7 @@ $font: map-merge-settings($font-defaults, $font);
       font-style: normal;
       font-weight: font(heading, weight);
       line-height: font(heading, line-height);
+      margin-bottom: 0;
       margin-top: 0;
     }
 
