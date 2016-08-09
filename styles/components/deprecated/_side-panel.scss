@@ -22,7 +22,7 @@ $side-panel-default-settings: (
   ),
 
   footer-bar: (
-    height: rem(90)
+    height: rem(80)
   ),
 
   actions: (
@@ -154,6 +154,10 @@ $include-html-paint-side-panel: true !default;
         height: side-panel-settings(footer-bar, height);
         line-height: side-panel-settings(footer-bar, height);
         width: 100%;
+      }
+
+      .action {
+        line-height: font(line-height);
       }
     }
   }
