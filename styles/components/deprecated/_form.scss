@@ -506,7 +506,7 @@ $include-html-paint-form: true !default;
   white-space: $option-whitespace;
 
   &:before {
-    @include icon(heart, null, paint);
+    @include icon(square-empty, null, paint);
 
     color: color(text, small);
     margin-right: $column-gutter / 4;
@@ -517,7 +517,7 @@ $include-html-paint-form: true !default;
     color: $form-multi-checkbox-option-checked-color;
 
     &:before {
-      @include icon(check, null, paint);
+      @include icon(square-check, null, paint);
 
       color: $form-multi-checkbox-option-checked-color;
     }
@@ -557,7 +557,7 @@ $include-html-paint-form: true !default;
 
   #{$control} {
     @include form-input;
-    @include form-multi-checkbox-icon(arrow-down);
+    @include form-multi-checkbox-icon(chevron-thin-down);
 
     background-color: $form-input-background-color;
     display: block;
@@ -583,7 +583,7 @@ $include-html-paint-form: true !default;
   }
 
   &#{$is-open-selector} > #{$control} {
-    @include form-multi-checkbox-icon(arrow-up);
+    @include form-multi-checkbox-icon(chevron-thin-up);
   }
 
   #{$options-selector} {
@@ -623,6 +623,10 @@ $include-html-paint-form: true !default;
       @each $action, $icon in $actions {
         .#{$action} {
           @include icon(nth($icon, 1), $set: paint);
+
+          &:before {
+            margin-right: 0;
+          }
 
           &:hover {
             color: color(nth($icon, 2));
