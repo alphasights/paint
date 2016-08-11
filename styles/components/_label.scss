@@ -26,11 +26,13 @@ $label: map-merge-settings($label-defaults, $label);
 }
 
 %_label {
+  border-bottom: 1px solid rgba(color(white), .75);
   border-radius: label(radius);
   display: inline-block;
   font-size: font(size, small);
   font-weight: font(weight, bold);
-  padding: gutter(smaller);
+  line-height: font(line-height) * .75;
+  padding: gutter(smaller) gutter(small);
   text-align: center;
 }
 
@@ -39,8 +41,11 @@ $label: map-merge-settings($label-defaults, $label);
     #{label(prefix)}-#{$style} {
       @extend %_label;
 
+      $shadow-color: contrast(contrast($color));
+
       background-color: $color;
       color: contrast($color);
+      text-shadow: 0 1px 1px rgba($shadow-color, .175);
     }
   }
 
@@ -51,6 +56,7 @@ $label: map-merge-settings($label-defaults, $label);
     }
 
     &-uppercase {
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
   }
