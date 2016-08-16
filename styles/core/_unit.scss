@@ -1,3 +1,9 @@
+////
+/// Unit functions
+/// @group core
+/// @since v1.0.0
+////
+
 $rem-base: 16px !default;
 $em-base: 16px !default;
 
@@ -13,12 +19,10 @@ $em-base: 16px !default;
   @return $val * 1px;
 }
 
-@function rem($pxval) {
+@function rem($pxval, $base: $rem-base) {
   @if not unitless($pxval) {
     $pxval: strip-units($pxval);
   }
-
-  $base: $rem-base;
 
   @if not unitless($base) {
     $base: strip-units($base);

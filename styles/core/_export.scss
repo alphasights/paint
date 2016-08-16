@@ -1,3 +1,9 @@
+////
+/// Exports mixin
+/// @group core
+/// @since v1.0.0
+////
+
 $modules: () !default;
 
 @mixin exports($name) {

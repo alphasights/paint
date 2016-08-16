@@ -1,3 +1,9 @@
+////
+/// Color functions
+/// @group core
+/// @since v1.0.0
+////
+
 @function brightness($color) {
   @return ((red($color) * .229) + (green($color) * .499) + (blue($color) * .199)) / 255 * 100%;
 }

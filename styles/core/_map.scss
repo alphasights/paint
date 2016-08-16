@@ -1,3 +1,9 @@
+////
+/// Map functions
+/// @group core
+/// @since v1.0.0
+////
+
 @function map-set($map, $keys, $value) {
   $maps: ($map,);
   $result: null;
