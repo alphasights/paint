@@ -1,0 +1,20 @@
+////
+/// Gutter
+/// @group tools
+/// @since v1.0.0
+////
+
+$gutter-defaults: (
+  base: 1.5rem,
+  small: .75rem,
+  smaller: .375rem,
+  large: 3rem,
+  larger: 4.5rem
+);
+
+$gutter: () !default;
+$gutter: map-merge-settings($gutter-defaults, $gutter);
+
+@function gutter($size: base) {
+  @return map-get($gutter, $size);
+}

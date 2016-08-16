@@ -1,0 +1,122 @@
+////
+/// Media Query
+/// @group tools
+/// @since v1.0.0
+////
+
+$mq-breakpoint-defaults: (
+  small: 640,
+  medium: 1024,
+  large: 1440,
+  xlarge: 1920,
+  xxlarge: 99999
+);
+
+$mq-breakpoint: () !default;
+$mq-breakpoint: map-merge-settings($mq-breakpoint-defaults, $mq-breakpoint);
+
+@function mq-breakpoint($settings...) {
+  @return map-deep-get($mq-breakpoint, $settings...);
+}
+
+@function lower-bound($range){
+    @if length($range) <= 0 {
+        @return 0;
+    }
+
+    @return nth($range, 1);
+}
+
+@function upper-bound($range) {
+    @if length($range) < 2 {
+        @return 999999999999;
+    }
+
+    @return nth($range, 2);
+}
+
+/// Create list of breakpoints. Used to hold the breakpoint index value
+$_breakpoint-list: map-keys($mq-breakpoint);
+
+/// Builds the range limits for a specific breakpoint
+@function mq-range($breakpoint) {
+  @if map-has-key($mq-breakpoint, $breakpoint) {
+    $breakpoint-index: index($_breakpoint-list, $breakpoint);
+
+    $lower-bound: 0;
+    $upper-bound: mq-breakpoint($breakpoint);
+
+    @if $breakpoint-index > 1 {
+      $previous-breakpoint: mq-breakpoint(nth($_breakpoint-list, $breakpoint-index - 1));
+      $lower-bound: $previous-breakpoint + 1;
+    }
+
+    @return (px($lower-bound), px($upper-bound));
+  } @else {
+    @error "There is no breakpoint defined for '#{$breakpoint}'";
+  }
+}
+
+/// Holds the media query bounds for each breakpoint
+$mq-range: ();
+
+@mixin mq-bounds-build {
+  @each $breakpoint, $value in $mq-breakpoint {
+    $breakpoint-range: (
+      $breakpoint: mq-range($breakpoint)
+    );
+
+    $mq-range: map-merge($mq-range, $breakpoint-range) !global;
+  }
+}
+
+@include mq-bounds-build;
+
+$mq-screen-defaults: (
+  screen: "only screen",
+  landscape: "only screen and (orientation: landscape)",
+  portrait: "only screen and (orientation: portrait)",
+  retina: (
+    "only screen and (-webkit-min-device-pixel-ratio: 2)",
+    "only screen and (min--moz-device-pixel-ratio: 2)",
+    "only screen and (-o-min-device-pixel-ratio: 2/1)",
+    "only screen and (min-device-pixel-ratio: 2)",
+    "only screen and (min-resolution: 192dpi)",
+    "only screen and (min-resolution: 2dppx)"
+  )
+) !default;
+
+$mq-screen: () !default;
+$mq-screen: map-merge-settings($mq-screen-defaults, $mq-screen);
+
+@function mq-screen($setting) {
+  @return map-get($mq-screen, $setting);
+}
+
+/// Holds the media query bound strings and directions for each breakpoint
+$mq: ();
+
+@mixin mq-build($screen: screen) {
+  $screen: mq-screen($screen);
+
+  @each $breakpoint, $range in $mq-range {
+    $mq-item: (
+      $breakpoint: (
+        up: "(min-width:#{lower-bound($range)})",
+        only: "(min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})",
+        down: "(max-width:#{upper-bound($range)})"
+      )
+    );
+
+    $mq: map-merge($mq, $mq-item) !global;
+  }
+}
+
+@include mq-build;
+
+@function mq($breakpoint, $direction: only, $type: screen) {
+  $screen-type: mq-screen($type);
+  $range: map-deep-get($mq, $breakpoint, $direction);
+
+  @return "#{$screen-type} and #{$range}";
+}

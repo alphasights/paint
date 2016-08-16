@@ -1,0 +1,324 @@
+////
+/// Typography
+/// @group global
+/// @since v1.0.0
+////
+
+$font-defaults: (
+  prefix: '%font',
+  include-html-tags: true,
+
+  family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
+  size: (
+    base: 14px,
+    small: 80%,
+    tiny: 70%,
+
+    h1: 1.75rem,
+    h2: 1.375rem,
+    h3: 1.125rem,
+    h4: 1rem,
+    h5: .875rem,
+    h6: .8rem,
+  ),
+  weight: (
+    light: 100,
+    base: 300,
+    bold: 400,
+    extrabold: 600
+  ),
+  line-height: 1.5,
+  smoothing: subpixel-antialiased,
+
+  heading: (
+    family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
+
+    weight: 300,
+    line-height: 1.5,
+    smoothing: antialiased,
+  ),
+
+  monospace: (
+    family: 'Menlo, monospace',
+    weight: 400
+  ),
+
+  link: (
+    decoration: none
+  ),
+
+  blockquote: (
+    size: 1.5rem,
+    border: 6px
+  ),
+
+  condensed: (
+    tags: h1 h2,
+    value: -1px
+  )
+);
+
+$font: () !default;
+$font: map-merge-settings($font-defaults, $font);
+
+@function font($settings...) {
+  @return map-deep-get($font, $settings...);
+}
+
+@mixin font-placeholders {
+  #{font(prefix)} {
+    &-blockquote {
+      border-left: font(blockquote, border) solid color(border);
+      font-style: italic;
+      margin-bottom: gutter();
+      padding-bottom: gutter();
+      padding-left: gutter();
+    }
+
+    &-hr {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, color(border, dark) 50%);
+      background-position: 0 50%;
+      background-repeat: repeat-x;
+      background-size: 100% 2px;
+      border: 0;
+      margin: 0;
+      padding: gutter() 0;
+    }
+
+    &-base-smoothing {
+      -webkit-font-smoothing: font(smoothing);
+      text-rendering: optimizeLegibility;
+    }
+
+    &-heading-smoothing {
+      -webkit-font-smoothing: font(heading, smoothing);
+    }
+
+    &-uppercase {
+      font-kerning: normal;
+      text-transform: uppercase;
+    }
+
+    &-smallcaps {
+      font-feature-settings: 'smcp', 'kern';
+      font-kerning: normal;
+      letter-spacing: 0.1rem;
+    }
+
+    &-lining-numerals {
+      font-feature-settings: 'lnum', 'kern';
+    }
+
+    &-heading {
+      @extend #{font(prefix)}-heading-smoothing;
+
+      color: color(heading);
+      font-family: font(heading, family);
+      font-feature-settings: 'dlig', 'liga', 'lnum', 'kern';
+      font-style: normal;
+      font-weight: font(heading, weight);
+      line-height: font(heading, line-height);
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    @for $i from 1 to 6 {
+      &-h#{$i} {
+        @extend #{font(prefix)}-heading;
+
+        font-size: font(size, h#{$i});
+      }
+    }
+  }
+}
+
+@mixin font-tag-resets {
+  html {
+    font-size: font(size, base);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  body {
+    @extend #{font(prefix)}-base-smoothing;
+
+    font-family: font(family);
+    font-style: normal;
+    font-weight: font(weight, base);
+    line-height: font(line-height);
+  }
+
+  a {
+    color: color(link);
+    text-decoration: font(link, decoration);
+    transition: color .1s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color(link, hover);
+      text-decoration: none;
+    }
+  }
+
+  p {
+    font-feature-settings: 'kern', 'onum', 'liga';
+    margin-top: 0;
+  }
+
+  @for $i from 1 to 6 {
+    h#{$i} {
+      @extend #{font(prefix)}-h#{$i};
+    }
+  }
+
+  b,
+  strong {
+    font-weight: font(weight, bold);
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  small {
+    font-style: normal;
+    font-weight: font(weight, base);
+    font-size: font(size, small);
+  }
+
+  blockquote {
+    @extend #{font(prefix)}-blockquote;
+  }
+
+  hr {
+    @extend #{font(prefix)}-hr;
+  }
+
+  code,
+  pre {
+    background-color: color(code, background);
+    font-family: font(monospace, family);
+  }
+
+  pre {
+    display: block;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+    padding: gutter(small);
+    margin-bottom: gutter();
+  }
+}
+
+@mixin list-tag-resets {
+  ul,
+  ol {
+    li {
+      font-feature-settings: 'kern', 'onum', 'liga';
+
+      ol,
+      ul {
+        margin-left: gutter(small);
+      }
+    }
+  }
+
+  ol {
+    list-style-type: none;
+
+    li {
+      counter-increment: top-level;
+
+      &:before {
+        content: counter(top-level) '.';
+        font-feature-settings: 'lnum', 'tnum';
+        margin-left: -3rem;
+        position: absolute;
+        text-align: right;
+        width: 2em;
+      }
+
+      ul {
+        li {
+          &:before {
+            content: '';
+          }
+
+          ol {
+            li {
+              counter-increment: alt-level;
+
+              &:before {
+                content: counter(alt-level) '.';
+              }
+            }
+          }
+        }
+      }
+
+      ol {
+        li {
+          counter-increment: sub-level;
+
+          &:before {
+            content: counter(top-level) '.' counter(sub-level);
+          }
+
+          ul {
+            li {
+              &:before {
+                content: '';
+              }
+            }
+          }
+
+          ol {
+            li {
+              counter-increment: sub-sub-level;
+
+              &:before {
+                content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  dl {
+    dt,
+    dd {
+      font-feature-settings: 'kern', 'onum', 'liga';
+    }
+
+    dt {
+      font-weight: font(weight, bold);
+    }
+
+    dd + dt {
+      padding-top: gutter(small);
+    }
+  }
+}
+
+@mixin font-condensed {
+  @each $tag in font(condensed, tags) {
+    #{$tag} {
+      letter-spacing: font(condensed, value);
+    }
+  }
+}
+
+@include exports('paint-typography') {
+  @include font-placeholders;
+
+  @if font(include-html-tags) {
+    @include font-tag-resets;
+    @include font-condensed;
+    @include list-tag-resets;
+  }
+}

@@ -1,0 +1,30 @@
+////
+/// Clearfix
+/// @group tools
+/// @since v1.0.0
+////
+
+$clearfix-defaults: (
+  prefix: '%clearfix'
+);
+
+$clearfix: () !default;
+$clearfix: map-merge($clearfix-defaults, $clearfix);
+
+@function clearfix($setting) {
+  @return map-get($clearfix, $setting);
+}
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+@include exports('paint-clearfix') {
+  #{clearfix(prefix)} {
+    @include clearfix;
+  }
+}

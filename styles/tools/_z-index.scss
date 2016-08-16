@@ -1,0 +1,26 @@
+////
+/// Z-index settings
+/// @group tools
+/// @since v1.0.0
+////
+
+$z-defaults: (
+  increment: 10,
+
+  basement: -100,
+  content: 1,
+  tooltip: 100,
+  navigation: 200,
+  popover: 300,
+  overlay: 400,
+  modal: 500,
+  notification: 600,
+  rooftop: 700
+);
+
+$z: () !default;
+$z: map-merge-settings($z-defaults, $z);
+
+@function z($layer: content) {
+  @return map-get($z, $layer);
+}

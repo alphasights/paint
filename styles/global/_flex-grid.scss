@@ -1,0 +1,181 @@
+////
+/// Flex Grid
+/// @group global
+/// @since v1.0.0
+////
+
+$grid-defaults: (
+  prefix: (
+    row: '%row',
+    col: '%col'
+  ),
+  columns: 12,
+  responsive-breakpoints: (
+    small: mq(small, up),
+    medium: mq(medium, up),
+    large: mq(large, up),
+    xlarge: mq(xlarge, up),
+    xxlarge: mq(xxlarge, up)
+  )
+);
+
+$grid: () !default;
+$grid: map-merge-settings($grid-defaults, $grid);
+
+@function grid($settings...) {
+  @return map-deep-get($grid, $settings...);
+}
+
+@function grid-col-width($columns, $total-columns: grid(columns)) {
+  @return 100% / $total-columns * $columns;
+}
+
+@mixin grid-col($columns) {
+  $width: grid-col-width($columns);
+
+  flex-basis: $width;
+  max-width: $width;
+}
+
+@mixin grid-col-gutter($columns, $direction: left, $type: margin) {
+  $width: grid-col-width($columns);
+
+  #{$type}-#{$direction}: $width;
+}
+
+@mixin grid-col-placeholders($prefix: grid(prefix, col)) {
+  @for $i from 1 through grid(columns) {
+    #{$prefix}-#{$i} {
+      @include grid-col($i);
+    }
+  }
+
+  #{$prefix}-fill {
+    flex-grow: 1;
+  }
+}
+
+@mixin grid-col-push-placeholders($prefix: grid(prefix, col)) {
+  @for $i from 1 through grid(columns) {
+    #{$prefix}-push-#{$i} {
+      @include grid-col-gutter($i);
+    }
+  }
+}
+
+@mixin grid-col-pull-placeholders($prefix: grid(prefix, col)) {
+  @for $i from 1 through grid(columns) {
+    #{$prefix}-pull-#{$i} {
+      @include grid-col-gutter($i, right);
+    }
+  }
+}
+
+@include exports('paint-grid') {
+  @include grid-col-placeholders;
+  @include grid-col-push-placeholders;
+  @include grid-col-pull-placeholders;
+
+  @each $breakpoint, $query in grid(responsive-breakpoints) {
+    $prefix: '#{grid(prefix, col)}-#{$breakpoint}';
+
+    @media #{$query} {
+      @include grid-col-placeholders($prefix: $prefix);
+    }
+  }
+
+  #{grid(prefix, row)} {
+    align-content: flex-start;
+    display: flex;
+
+    &-fill {
+      width: 100%;
+    }
+
+    &-wrap {
+      flex-wrap: wrap;
+    }
+
+    &-middle {
+      align-items: center;
+    }
+
+    &-top {
+      align-items: flex-start;
+    }
+
+    &-bottom {
+      align-items: flex-end;
+    }
+
+    &-space-around {
+      justify-content: space-around;
+    }
+
+    &-space-between {
+      justify-content: space-between;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-right {
+      justify-content: flex-end;
+    }
+
+    &-vertical {
+      flex-direction: column;
+    }
+  }
+
+  #{grid(prefix, col)} {
+    &-no-fill {
+      flex: none;
+      flex-basis: auto;
+    }
+
+    &-auto-fill {
+      flex: auto;
+    }
+
+    &-gutter {
+      &:not(:last-child) {
+        padding-right: gutter(small);
+      }
+    }
+
+    &-no-shrink {
+      flex-shrink: 0;
+    }
+
+    &-shrink {
+      flex-shrink: 1;
+    }
+
+    &-middle {
+      align-self: center;
+    }
+
+    &-top {
+      align-self: flex-start;
+    }
+
+    &-bottom {
+      align-self: flex-end;
+    }
+
+    &-right {
+      margin-left: auto;
+    }
+
+    &-left {
+      margin-right: auto;
+    }
+
+    &-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

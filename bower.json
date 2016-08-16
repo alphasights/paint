@@ -1,12 +1,12 @@
 {
   "name": "paint",
-  "version": "0.9.24",
+  "version": "1.0.0",
   "homepage": "https://github.com/alphasights/paint",
   "authors": [
     "David Griffiths <david.griffiths@alphasights.com>",
     "Andrei Popa <andrei@alphasights.com>"
   ],
-  "description": "Base CSS Framework",
+  "description": "Alphasights' CSS Framework",
   "main": "paint.scss",
   "keywords": [
     "CSS",
@@ -19,8 +19,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "fontawesome": "~4.6.3"
-  }
+  ]
 }
