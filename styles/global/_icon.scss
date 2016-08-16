@@ -1,0 +1,202 @@
+////
+/// Icon Component
+/// @group global
+/// @since v1.0.0
+////
+
+$icon-defaults: (
+  prefix: '%icon',
+
+  sets: (
+    paint: 'Paint'
+  ),
+
+  default: paint,
+
+  paint: (
+    avatar-advisor: '\f053',
+    avatar-client: '\f052',
+    archive: '\f016',
+    arrow-down: '\f050',
+    arrow-right: '\f04f',
+    arrow-up: '\f04e',
+    calendar: '\f046',
+    calendar-full: '\f051',
+    chart: '\f017',
+    check: '\f018',
+    chevron-down: '\f057',
+    chevron-up: '\f056',
+    chevron-small-down: '\f059',
+    chevron-small-up: '\f058',
+    chevron-thin-down: '\f05a',
+    chevron-thin-up: '\f042',
+    chevron-left: '\f036',
+    chevron-right: '\f037',
+    circle-check: '\f019',
+    circle-cross: '\f01a',
+    circle-minus: '\f01b',
+    circle-plus: '\f01c',
+    clip: '\f01d',
+    clock: '\f01e',
+    cog: '\f01f',
+    cross: '\f020',
+    dashboard: '\f014',
+    delete: '\f021',
+    download: '\f022',
+    file: '\f023',
+    flag: '\f024',
+    folder: '\f025',
+    globe: '\f026',
+    head: '\f027',
+    heart: '\f028',
+    image: '\f029',
+    left-arrow: '\f02a',
+    link: '\f02b',
+    lock: '\f02c',
+    mail: '\f02d',
+    menu: '\f02e',
+    // Libsass bug sass/libsass#934
+    'notification': '\f02f',
+    printer: '\f030',
+    ribbon: '\f045',
+    right-arrow: '\f015',
+    search: '\f031',
+    share: '\f032',
+    speech: '\f044',
+    square-check: '\f04b',
+    square-cross: '\f04a',
+    square-minus: '\f049',
+    square-plus: '\f04c',
+    square-empty: '\f055',
+    toggle: '\f033',
+    upload: '\f034',
+    video: '\f035',
+    ban: '\f038',
+    shield: '\f039',
+    dots-horizontal: '\f040',
+    done-circle: '\f041',
+    interaction: '\f03f',
+    zoom-in: '\f047',
+    zoom-out: '\f048',
+    terms-send: '\f054'
+  )
+);
+
+$icon: () !default;
+$icon: map-merge-settings($icon-defaults, $icon);
+
+@function icon($settings...) {
+  @return map-deep-get($icon, $settings...);
+}
+
+$_icon-sets: map-keys(icon(sets));
+$_icon-default-set: icon(default);
+
+@mixin icon($name, $selector: before, $set: $_icon-default-set) {
+  $content: icon($set, $name);
+  $selector: if($selector == null, '&', '&::' + $selector);
+
+  @if not $content {
+    @error "Icon #{$name} doesn't exist in the #{set} set";
+  }
+
+  #{$selector} {
+    @extend %_#{$set}-icon;
+
+    content: $content;
+
+    @if $selector == '&::before' {
+      margin-right: gutter(smaller);
+    }
+
+    @if $selector == '&::after' {
+      margin-left: gutter(smaller);
+    }
+  }
+}
+
+/// @access private
+%_icon {
+  display: inline-block;
+  font: normal normal normal #{font(size, base)}/#{font(line-height)} icon(sets, $_icon-default-set);
+  font-size: inherit;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+  text-align: center;
+  text-decoration: none;
+  text-rendering: auto;
+}
+
+/// @access private
+@mixin _icon-set-placeholders {
+  @each $set in $_icon-sets {
+    %_#{$set}-icon {
+      @extend %_icon;
+
+      font-family: icon(sets, $set);
+    }
+  }
+}
+
+@include _icon-set-placeholders;
+
+@include exports('paint-icon') {
+  @each $set in $_icon-sets {
+    $prefix: '#{icon(prefix)}-#{$set}';
+
+    @if $set == $_icon-default-set {
+      $prefix: '#{icon(prefix)}';
+    }
+
+    @each $icon in map-keys(icon($set)) {
+      #{$prefix}-#{$icon} {
+        @include icon($icon, $set: $set)
+      }
+
+      #{$prefix}-#{$icon}-after {
+        @include icon($icon, $selector: after, $set: $set)
+      }
+    }
+  }
+
+  #{icon(prefix)} {
+    &-no-margin {
+      &::after {
+        margin-left: 0;
+      }
+
+      &::before {
+        margin-right: 0;
+      }
+    }
+
+    &-large {
+      &::before,
+      &::after {
+        font-size: font(size, h3);
+      }
+    }
+
+    &-larger {
+      &::before,
+      &::after {
+        font-size: font(size, h1);
+      }
+    }
+
+    &-middle {
+      &::before,
+      &::after {
+        vertical-align: middle;
+      }
+    }
+
+    &-text-top {
+      &::before,
+      &::after {
+        vertical-align: text-top;
+      }
+    }
+  }
+}

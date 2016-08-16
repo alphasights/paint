@@ -1,0 +1,187 @@
+////
+/// Grid placeholders generator
+/// @group deprecated
+/// @since v0.8.28
+////
+
+/// Import dependencies
+
+/// Grid placeholder prefix
+
+$grid-prefix: 'grid-column';
+$grid-responsive-media-queries: mq(small, up), mq(medium, up), mq(large, up), mq(xlarge, up), mq(xxlarge, up);
+$grid-responsive-sizes: 'small', 'medium', 'large', 'xlarge', 'xxlarge';
+$grid-columns: 12 !default;
+
+$column-gutter: 1.5rem !default;
+
+// Deprecated in the next major version
+@function modular-scale(
+    $increment,
+    $value: 1em,
+    $ratio: 1.618
+  ) {
+
+  $v1: nth($value, 1);
+  $v2: nth($value, length($value));
+  $value: $v1;
+
+  @while $v2 > $v1 {
+    $v2: ($v2 / $ratio);
+  }
+  @while $v2 < $v1 {
+    $v2: ($v2 * $ratio);
+  }
+
+  $double-stranded: $v2 > $v1;
+
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      @if $double-stranded and ($v1 * $ratio) > $v2 {
+        $value: $v2;
+        $v2: ($v2 * $ratio);
+      } @else {
+        $v1: ($v1 * $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @if $increment < 0 {
+    @if $double-stranded {
+      $v2: ($v2 / $ratio);
+    }
+
+    @for $i from $increment through -1 {
+      @if $double-stranded and ($v1 / $ratio) < $v2 {
+        $value: $v2;
+        $v2: ($v2 / $ratio);
+      } @else {
+        $v1: ($v1 / $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @return $value;
+}
+
+$g-column: modular-scale(3, 1em, 1.618);
+$g-gutter: modular-scale(1, 1em, 1.618);
+$fg-max-columns: $grid-columns;
+
+@function flex-grid($columns, $container-columns: $fg-max-columns) {
+  $width: $columns * $g-column + ($columns - 1) * $g-gutter;
+  $container-width: $container-columns * $g-column + ($container-columns - 1) * $g-gutter;
+  @return percentage($width / $container-width);
+}
+
+@function flex-gutter($container-columns: $fg-max-columns, $gutter: $g-gutter) {
+  $container-width: $container-columns * $g-column + ($container-columns - 1) * $g-gutter;
+  @return percentage($gutter / $container-width);
+}
+@mixin span-columns($span) {
+  display: block;
+  float: left;
+  margin-right: flex-gutter($grid-columns);
+  width: flex-grid($span, $grid-columns);
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@mixin outer-container($local-max-width: 100%) {
+  @include clearfix;
+
+  max-width: $local-max-width;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin fill-parent() {
+  width: 100%;
+}
+
+/// Generate grid column placeholders
+/// and uses Foundation to generate column placeholders
+
+@mixin grid-column-placeholders($prefix: $grid-prefix) {
+  @for $i from 1 through $grid-columns {
+    %#{$prefix}-#{$i} {
+      @include span-columns($i);
+    }
+
+    %#{$prefix}-#{$i}-collapsed {
+      @include span-columns($i);
+
+      margin-right: 0;
+      width: flex-grid($i, $grid-columns) + flex-gutter($grid-columns);
+
+      &:last-child {
+        width: flex-grid($i, $grid-columns);
+      }
+    }
+
+    %#{$prefix}-#{$i}-centered {
+      @include span-columns($i);
+
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@include grid-column-placeholders;
+
+/// Generate placeholders for different media queries, e.g. %grid-column-small-4
+
+@for $i from 1 through length($grid-responsive-media-queries) {
+  $query: nth($grid-responsive-media-queries, $i);
+  $size: nth($grid-responsive-sizes, $i);
+  $prefix: '#{$grid-prefix}-#{$size}';
+
+  @media #{$query} {
+    @include grid-column-placeholders($prefix: $prefix);
+  }
+}
+
+///
+/// @example scss - Usage
+///   .wrapper {
+///     @extend %grid-row;
+///
+///     .sidebar {
+///       @extend %grid-column-medium-4;
+///       @extend %grid-column-large-3;
+///       @extend %grid-column-xlarge-2;
+///     }
+///
+///     .content {
+///       @extend %grid-column-medium-8;
+///       @extend %grid-column-large-9;
+///       @extend %grid-column-xlarge-10;
+///     }
+///   }
+///
+
+%grid-row {
+  @include outer-container;
+  @include fill-parent;
+}
+
+%grid-row-table {
+  @include fill-parent;
+
+  display: table;
+}
+
+%grid-row-gutter {
+  @extend %grid-row;
+
+  padding-left: $column-gutter;
+  padding-right: $column-gutter;
+}

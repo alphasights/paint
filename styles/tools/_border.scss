@@ -1,0 +1,18 @@
+////
+/// Border radius settings
+/// @group tools
+/// @since v1.0.0
+////
+
+$radius-defaults: (
+  base: 3px,
+  round: 24px,
+  circle: 1000px
+);
+
+$radius: () !default;
+$radius: map-merge-settings($radius-defaults, $radius);
+
+@function radius($value: base) {
+  @return map-get($radius, $value);
+}

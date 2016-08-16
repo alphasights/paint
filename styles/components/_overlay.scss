@@ -1,0 +1,29 @@
+$overlay-color: rgba(0, 0, 0, .45) !default;
+
+%overlay {
+  background-color: transparent;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: none;
+  right: 0;
+  top: 0;
+  transition: background-color animation(transition, duration) ease;
+
+  &__content {
+    pointer-events: all;
+  }
+
+  &--active {
+    background-color: $overlay-color;
+    pointer-events: all;
+  }
+}
+
+@mixin overlay($position: absolute, $z-index: z(overlay)) {
+  @extend %overlay;
+
+  position: $position;
+  z-index: $z-index;
+}

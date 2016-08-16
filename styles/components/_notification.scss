@@ -1,149 +1,121 @@
-@keyframes notificationSlideIn {
-  0% {
-    transform: rotateX(-90deg);
-  }
+////
+/// Notifications
+/// @group components
+/// @since v1.0.0
+////
 
-  100% {
-    transform: rotateX(0deg);
-  }
-}
+$notification-defaults: (
+  prefix: '%notification',
 
-@keyframes notificationFade {
-  0% {
-    opacity: 0;
-  }
+  style: (
+    base: (
+      background: color(border),
+      border: color(border, dark)
+    ),
+    info: (
+      background: color(info),
+      border: color(info, dark)
+    ),
+    warning: (
+      background: color(warning),
+      border: color(warning, dark)
+    ),
+    error: (
+      background: color(alert),
+      border: color(alert, dark)
+    ),
+    success: (
+      background: color(success),
+      border: color(success, dark)
+    )
+  ),
 
-  100% {
-    opacity: 1;
-  }
-}
-
-$notification-colors: (
-  primary: primary,
-  secondary: secondary,
-  alert: alert,
-  error: alert,
-  warning: warning,
-  success: success,
-  info: info
+  size: (
+    base: gutter(small) gutter(base),
+    small: gutter(smaller) gutter(base),
+    large: gutter(base)
+  )
 );
 
-@mixin notification-animation(
-  $animation: 'notificationSlideIn',
-  $duration: $global-transition-duration,
-  $direction: normal
-) {
-  animation: $animation;
-  animation-duration: $duration;
-  animation-timing-function: $global-transition-easing;
-  animation-fill-mode: forwards;
-  animation-direction: $direction;
-  transition-duration: $duration;
-  transform-style: preserve-3d;
-  transform-origin: center top;
-  perspective: 1000px;
+$notification: () !default;
+$notification: map-merge-settings($notification-defaults, $notification);
+
+@function notification($settings...) {
+  @return map-deep-get($notification, $settings...);
 }
 
-@mixin notification(
-  $type: info,
-  $content-selector: '> span',
-  $close-selector: '> .close',
-  $is-closing-class: 'is-closing',
-  $actions-selector: '> .actions',
-  $primary-action-tag: '> a',
-  $secondary-action-tag: '> a.secondary'
-) {
-  $background-color: color($type, light);
-  $contrast-text-dark: color($type, dark);
-  $contrast-text-light: color($type, light);
-  $text-color: contrast($background-color, $contrast-text-light, $contrast-text-dark);
-  $text-shadow-color: contrast($text-color, color(black), color(white));
+@mixin notification-style($style: base) {
+  $background: notification(style, $style, background);
 
-  @include notification-animation;
-
-  background-color: $background-color;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(255, 255, 255, .3);
-  left: 0;
-  position: relative;
-  top: 0;
-  width: 100%;
-
-  &.#{$is-closing-class} {
-    @include notification-animation('notificationFade', $direction: reverse);
-  }
-
-  #{$content-selector},
-  #{$close-selector} {
-    @include notification-animation('notificationFade', $global-transition-duration * 2);
-
-    color: $text-color;
-    display: inline-block;
-    font-size: $h4-font-size;
-    font-weight: $font-weight-bold;
-    padding: $column-gutter / 2 $column-gutter;
-    text-shadow: -1px 0 $text-shadow-color;
-  }
-
-  #{$close-selector},
-  #{$actions-selector} {
-    position: absolute;
-    right: $column-gutter / 2;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  #{$close-selector} {
-    @include button-icon(times);
-
-    background-color: transparent;
-    border: 0;
-    color: transparentize($text-color, .4);
-    padding: 0;
-  }
-
-  #{$actions-selector} {
-    #{$primary-action-tag} {
-      @extend %button-#{$type}-inverted;
-    }
-
-    #{$secondary-action-tag} {
-      @extend %button-base-inverted;
-    }
-
-    #{$primary-action-tag},
-    #{$secondary-action-tag} {
-      @extend %button-tiny;
-    }
-  }
+  background-color: $background;
+  border: 1px solid notification(style, $style, border);
+  color: contrast($background);
 }
 
-@mixin notifications($position: fixed) {
-  @if $position == fixed {
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  } @else {
-    position: $position;
-    width: 100%;
+@mixin notification-size($size: notification(size, base)) {
+  padding: $size;
+}
+
+%_notification-base {
+  @extend #{grid(prefix, row)};
+  @extend #{grid(prefix, row)}-middle;
+  @include notification-size;
+
+  border-radius: radius();
+}
+
+@mixin notification-wrapper-placeholders {
+  #{notification(prefix)} {
+    &-wrapper {
+      display: block;
+
+      &-fixed,
+      &-absolute {
+        z-index: z(notification);
+      }
+
+      &-fixed {
+        position: fixed;
+        width: 100%;
+      }
+
+      &-absolute {
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
   }
 }
 
 @mixin notification-placeholders {
-  %notifications {
-    @include notifications;
-  }
+  #{notification(prefix)} {
+    @each $style, $color in notification(style) {
+      &-#{$style} {
+        @extend %_notification-base;
+        @include notification-style($style);
+      }
 
-  @each $type, $palette in $notification-colors {
-    %notification-#{$type} {
-      @include notification($palette);
+      @each $size, $value in notification(size) {
+        &-#{$size} {
+          @include notification-size($value);
+        }
+      }
+    }
+
+    &__actions {
+      @extend #{grid(prefix, col)}-right;
+    }
+
+    &__action {
+      @extend #{button(prefix)}-ghost;
+      @extend #{button(prefix)}-small;
     }
   }
 }
 
 @include exports('paint-notification') {
+  @include notification-wrapper-placeholders;
   @include notification-placeholders;
 }

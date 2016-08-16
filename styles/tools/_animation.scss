@@ -1,0 +1,20 @@
+////
+/// Animation Settings
+/// @group tools
+/// @since v1.0.0
+////
+
+$animation-defaults: (
+  transition: (
+    easing: cubic-bezier(.78, .01, .27, 1),
+    duration: .325s
+  )
+);
+
+
+$animation: () !default;
+$animation: map-merge-settings($animation-defaults, $animation);
+
+@function animation($settings...) {
+  @return map-deep-get($animation, $settings...);
+}

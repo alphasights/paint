@@ -3,7 +3,7 @@ Paint
 
 Paint is a collection of SCSS functions, mixins, placeholders and global styles that help us bootstrap our internal apps.
 
-It also acts as an abstraction layer, keeping other frameworks / dependencies away from the applications. This makes structural changes _(like removing a dependency or adding a new one)_ easier to implement.
+The main goal of Paint is to provide a set of easily consumable and extendable tools to developers so they don’t have to “re-invent the wheel” every time they need some basic front-end components.
 
 ---
 
@@ -13,8 +13,6 @@ Paint comes as a bower package (`paint`) and an npm package (`as-paint`).
 
 To use the **bower package**, run `bower install paint --save-dev`.  
 For **npm**, run `npm install as-paint --save-dev`.
-
-This is going to install all dependencies.  
 
 There are 2 ways to import paint into an application:
 
@@ -33,16 +31,13 @@ For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/no
 /// Application-specific Resets
 @import 'paint-settings';
 
-/// Import Paint Global Settings
-@import '/bower_components/paint/styles/settings';
-
 /// Paint Tools / Helpers
 @import '/bower_components/paint/styles/tools';
 
 /// Import Global Components
 @import '/bower_components/paint/styles/global';
 
-/// Import all Paint Components
+/// Import all other Paint Components
 @import '/bower_components/paint/styles/components';
 ```
 
@@ -57,7 +52,6 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 @import '/bower_components/paint/styles/dependencies';
 @import '/bower_components/paint/styles/core';
 @import 'paint-settings';
-@import '/bower_components/paint/styles/settings';
 @import '/bower_components/paint/styles/tools';
 @import '/bower_components/paint/styles/global';
 @import '/bower_components/paint/styles/components';
@@ -72,87 +66,20 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 
 ## Structure
 
-Paint is separated into
+Paint is structured into 4 main sections:
 
-* Dependencies _*optional_
-* Core
-* Settings
-* Tools
-* Globals
-* Components
+- /CORE - contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:
+- /TOOLS - a collection of mixins, placeholders and functions that we want to use across all components and the application
+- /GLOBAL - This contains the most basic set of components
+- /COMPONENTS - A set of generated placeholders commonly used in all applications
 
-### Core
+Choosing which component goes where is decided mainly by the usage pattern:
 
-This contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:
+- If it uses a core function, it’s at least a tool.
+- If it uses a tool, it’s at least a global.
+- If it uses globals, it’s a component.
 
-```
-- core/functions
-  export
-  map
-  bound
-  units
-- core/resets
-  - core/normalize
-```
-
-### Settings
-
-This contains variables that are shared between globals, tools and components. Settings use the core functions, that's the reason why we need to load Core before.
-
-### Tools
-
-A set of reusable styles that we want to share between the components and throughout the application.
-
-```
-- tools/functions
-  color
-- tools/mixins
-  detached-border
-  overlay
-  bem
-- tools/placeholders
-  vertical-align
-```
-
-### Global
-
-This contains the most basic set of components.  
-_Each component might have extra package dependencies that are defined in `styles/dependencies`._
-
-```
-- global/components
-  icon
-    font-awesome
-    paint-icons
-  button
-  grid
-  typography  
-```
-
-### Components
-
-A set of components that are pretty common in all applications
-
-```
-- layout
-- navigation
-- label
-- panel
-- flip-panel
-- side-panel
-- tab
-- table
-- notification
-- progress-bar
-- form
-- quick-jump
-- modal
-- dropdown
-- step
-```
-
-**Deprecation warning**  
-Most of these components are going to be extracted into separate repos and refactored to make it easier to customise and more flexible to extend.
+Dependencies on components of the same type is not encouraged.
 
 ---
 
@@ -220,7 +147,7 @@ _Npm might return an error, since the tag name might already exist. No worries, 
 ```
 npm install -g sassdoc
 npm install -g sassdocify
-// run the above only the first time you do this
+// run the above only once, during app setup
 
 bin/docs
 ```

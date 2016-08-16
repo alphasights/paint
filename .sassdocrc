@@ -1,5 +1,5 @@
 dest: './docs'
-src: ['styles/components']
+src: ['styles']
 
 description: |
   ## Paint
@@ -7,17 +7,9 @@ description: |
 descriptionPath: './README.md'
 
 groups:
-  color: Colors / Palettes
-  button: Buttons
-  grid: Grid
-  layout: Layout
-  icon: Icons
-  modal: Modals
-  dropdown: Dropdowns
-  label: Labels
-  step: Steps
-  navigation: Navigation
-  tab: Tabs
-  panel: Panels
-  progress-bar: Progress Bars
+  core: Core
+  tools: Tools
+  global: Global
+  components: Components
+  deprecated: Deprecated
   undefined: Misc

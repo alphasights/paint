@@ -1,0 +1,17 @@
+////
+/// Exports mixin
+/// @group core
+/// @since v1.0.0
+////
+
+$modules: () !default;
+
+@mixin exports($name) {
+  $modules: $modules !global;
+  $module-index: index($modules, $name);
+
+  @if (($module-index == null) or ($module-index == false)) {
+    $modules: append($modules, $name) !global;
+    @content;
+  }
+}

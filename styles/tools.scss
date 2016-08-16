@@ -1,3 +1,10 @@
-@import 'tools/functions';
-@import 'tools/mixins';
-@import 'tools/placeholders';
+@import 'tools/color';
+@import 'tools/bem';
+@import 'tools/clearfix';
+@import 'tools/text-ellipsis';
+
+@import 'tools/border';
+@import 'tools/gutter';
+@import 'tools/animation';
+@import 'tools/media-query';
+@import 'tools/z-index';

@@ -2,7 +2,7 @@
 
 set -e
 
-SASSDOC='sassdoc --verbose' sassdocify components
+SASSDOC='sassdoc --verbose' sassdocify styles
 cd .pages
 git push --force origin gh-pages
 cd ..
