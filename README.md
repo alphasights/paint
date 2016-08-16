@@ -69,33 +69,9 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 Paint is structured into 4 main sections:
 
 - /CORE - contains a set of functions and mixins that are mandatory for the rest of the paint components to work properly. It includes:
-  - export
-  - map
-  - color
-  - unit
-- /TOOLS - a set of reusable styles that we want to share between the components and throughout the application
-  - color
-  - bem
-  - clearfix
-  - text-ellipsis
-  - border
-  - gutter
-  - animation
-  - media-query
-  - z-index
+- /TOOLS - a collection of mixins, placeholders and functions that we want to use across all components and the application
 - /GLOBAL - This contains the most basic set of components
-  - resets
-  - typography
-  - flex-grid
-  - button
-  - icon
-- /COMPONENTS - A set pretty common in all applications
-  - avatar
-  - label
-  - notification
-  - panel
-  - overlay
-
+- /COMPONENTS - A set of generated placeholders commonly used in all applications
 
 Choosing which component goes where is decided mainly by the usage pattern:
 
