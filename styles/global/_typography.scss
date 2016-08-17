@@ -162,7 +162,7 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   p {
-    font-feature-settings: 'kern', 'onum', 'liga';
+    font-feature-settings: 'kern', 'liga';
     margin-top: 0;
   }
 
@@ -217,7 +217,7 @@ $font: map-merge-settings($font-defaults, $font);
   ul,
   ol {
     li {
-      font-feature-settings: 'kern', 'onum', 'liga';
+      font-feature-settings: 'kern', 'liga';
 
       ol,
       ul {
@@ -292,7 +292,7 @@ $font: map-merge-settings($font-defaults, $font);
   dl {
     dt,
     dd {
-      font-feature-settings: 'kern', 'onum', 'liga';
+      font-feature-settings: 'kern', 'liga';
     }
 
     dt {
