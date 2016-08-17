@@ -30,11 +30,16 @@ $grid: map-merge-settings($grid-defaults, $grid);
   @return 100% / $total-columns * $columns;
 }
 
-@mixin grid-col($columns) {
+@mixin grid-col($columns, $fixed: false) {
   $width: grid-col-width($columns);
 
   flex-basis: $width;
-  max-width: $width;
+
+  @if $fixed {
+    min-width: $width;
+  } @else {
+    max-width: $width;
+  }
 }
 
 @mixin grid-col-gutter($columns, $direction: left, $type: margin) {
@@ -47,6 +52,10 @@ $grid: map-merge-settings($grid-defaults, $grid);
   @for $i from 1 through grid(columns) {
     #{$prefix}-#{$i} {
       @include grid-col($i);
+
+      &-fixed {
+        @include grid-col($i, $fixed: true);
+      }
     }
   }
 
