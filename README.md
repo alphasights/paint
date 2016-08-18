@@ -83,9 +83,154 @@ Dependencies on components of the same type is not encouraged.
 
 ---
 
-## How to use Paint
+## How to use Paint - The DSL explained
 
-[upcoming]
+The base layer of functionality Paint provides is a set of functions that can be used consistently to define reusable values for standard properties.
+
+### `rem($value)` - function
+
+This function converts any pixel / units into their REM representation.
+_Using REM units for pixel values greater than the base font size to make sure the spacing / sizes are proportional if we change the base. Read more about [typography units](https://snook.ca/archives/html_and_css/font-size-with-rem) here._
+
+__Example:__
+
+* `width: rem(300);` returns `width: 18.75rem` for a 16px REM base.
+* `width: rem(16)` returns `width: 1.23077rem` for a 13px REM base and `width: 1rem` for a 16px base.
+
+### `color($style, [$variant])` - function
+
+Function to fetch a color value from the default palette map. _`$variant` is optional, it defaults to `base`_.
+Default palette values [here](https://github.com/alphasights/paint/blob/master/styles/tools/_color.scss#L9)
+
+__Example:__
+
+* `color: color(primary)` returns `color: #f36b09` - from `$color-defaults: ... (primary: (base: #f36b09, ...))`
+* `border-color: color(border, dark)` returns the dark variant for the border color.
+
+__Customisation:__
+
+Add or update color palettes by defining a `$color` map in your `paint-settings.scss`:
+
+```css
+// paint-settings.scss
+$color: (
+  fancy-labels: (
+    cleared: #70c0f2,
+    available: #e5c95d,
+    interested: #4ba59b,
+    pending: #eb5851
+  )    
+);
+
+// custom-component.scss
+color: color(fancy-labels, cleared);
+
+// compiles to
+color: #4ba59b;
+```
+
+### `gutter($size: base)` - function
+
+Used for general spacing around headings, listing rows, padded containers.
+Returns a consistent spacing value proportional to the base font size.
+Default size values [here](https://github.com/alphasights/paint/blob/master/styles/tools/_gutter.scss#L7).
+
+__Example:__
+
+* `padding: gutter()` returns `padding: 1.5rem`
+* `margin-right: gutter(smaller)` returns `margin-right: 0.375rem`
+
+__Customisation:__
+
+```css
+// paint-settings.scss
+$gutter: (
+  base: 1rem,
+  hulk: 10rem
+);
+
+// custom-component.scss
+padding: gutter(hulk) 0;
+
+//compiles to
+padding: 10rem 0;
+```
+
+### `radius($style)` - function
+
+__Example:__
+
+__Customisation:__
+
+```css
+// paint-settings.scss
+$component: (
+);
+
+// custom-component.scss
+
+
+//compiles to
+
+```
+
+### `mq($size, [$options])` - function
+
+__Example:__
+
+__Customisation:__
+
+```css
+// paint-settings.scss
+$component: (
+);
+
+// custom-component.scss
+
+
+//compiles to
+
+```
+
+### `z($layer)` - function
+
+__Example:__
+
+__Customisation:__
+
+```css
+// paint-settings.scss
+$component: (
+);
+
+// custom-component.scss
+
+
+//compiles to
+
+```
+
+### `animation($setting, $variant)` - function
+
+__Example:__
+
+__Customisation:__
+
+```css
+// paint-settings.scss
+$component: (
+);
+
+// custom-component.scss
+
+
+//compiles to
+
+```
+
+### `%clearfix` - placeholder
+
+__Example:__
 
 ---
 
