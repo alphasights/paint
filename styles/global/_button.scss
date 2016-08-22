@@ -87,7 +87,7 @@ $button: map-merge-settings($button-defaults, $button);
   &:hover,
   &--hover {
     background-color: $background-hover;
-    border: 1px solid $border-hover;
+    border-color: $border-hover;
     color: $color-hover;
   }
 }
