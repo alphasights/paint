@@ -59,7 +59,7 @@ linters:
     enabled: false
 
   ImportPath:
-    enabled: false
+    enabled: true
     leading_underscore: false
     filename_extension: false
 
@@ -77,15 +77,18 @@ linters:
     force_nesting: true
 
   NameFormat:
-    enabled: true
-    convention: hyphenated_lowercase # or 'BEM', or a regex pattern
+    enabled: false
+    convention: BEM # or 'BEM', or a regex pattern
 
   NestingDepth:
     enabled: true
     max_depth: 4
 
   PlaceholderInExtend:
-    enabled: false
+    enabled: true
+
+  PrivateNamingConvention:
+    enabled: true
 
   PropertySortOrder:
     enabled: true
@@ -97,16 +100,20 @@ linters:
 
   QualifyingElement:
     enabled: true
-    allow_with_attribute: false
-    allow_with_class: false
-    allow_with_id: false
+    allow_with_attribute: true
+    allow_with_class: true
+    allow_with_id: true
 
   SelectorDepth:
     enabled: false
 
-  SelectorFormat:
+  BemDepth:
     enabled: true
-    convention: hyphenated_lowercase # or 'BEM', or 'snake_case', or 'camel_case', or a regex pattern
+    max_elements: 1
+
+  SelectorFormat:
+    enabled: false
+    convention: BEM # or 'BEM', or 'snake_case', or 'camel_case', or a regex pattern
 
   Shorthand:
     enabled: true
@@ -162,8 +169,6 @@ linters:
   VendorPrefixes:
     enabled: true
     identifier_list: base
-    include: []
-    exclude: []
 
   ZeroUnit:
     enabled: true
