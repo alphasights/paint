@@ -136,6 +136,10 @@ $color: map-merge-settings($color-settings, $color);
   $adjust: ();
   $is-map: false;
 
+  @if $output-color == null {
+    @return $name;
+  }
+
   @if type-of($output-color) == 'map' {
     $output-color: map-get($output-color, $variant);
     $is-map: true;
