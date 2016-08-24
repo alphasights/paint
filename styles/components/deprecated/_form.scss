@@ -751,14 +751,6 @@ $include-html-paint-form: true !default;
     @extend %button-base;
 
     transition: background-color animation(transition, duration) / 2 linear;
-
-    &[type='submit'] {
-      @extend %button-primary;
-
-      &:disabled {
-        @extend %button-disabled;
-      }
-    }
   }
 
   a {
