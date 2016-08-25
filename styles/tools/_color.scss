@@ -1,7 +1,7 @@
 ////
 /// Colors / Palettes Component
 /// @group tools
-/// @since v0.8.16
+/// @since v1.0.0
 ////
 
 /// Default color palettes and general color settings
@@ -135,6 +135,10 @@ $color: map-merge-settings($color-settings, $color);
   $output-color: map-get($color, $name);
   $adjust: ();
   $is-map: false;
+
+  @if $output-color == null {
+    @return $name;
+  }
 
   @if type-of($output-color) == 'map' {
     $output-color: map-get($output-color, $variant);

@@ -26,10 +26,6 @@ $button-defaults: (
       background: transparent,
       border: transparent,
       color: color(link) color(link, dark)
-    ),
-    disabled: (
-      background: color(border),
-      border: color(border, dark)
     )
   ),
 
@@ -87,7 +83,7 @@ $button: map-merge-settings($button-defaults, $button);
   &:hover,
   &--hover {
     background-color: $background-hover;
-    border: 1px solid $border-hover;
+    border-color: $border-hover;
     color: $color-hover;
   }
 }
@@ -109,6 +105,11 @@ $button: map-merge-settings($button-defaults, $button);
   &:focus {
     outline: none;
   }
+
+  &--disabled,
+  &:disabled {
+    @extend %_button-custom-disabled;
+  }
 }
 
 %_button-base {
@@ -122,7 +123,7 @@ $button: map-merge-settings($button-defaults, $button);
 %_button-custom {
   &-disabled {
     cursor: not-allowed;
-    opacity: .5;
+    opacity: .45;
   }
 
   &-circle {
@@ -180,13 +181,13 @@ $button: map-merge-settings($button-defaults, $button);
       }
 
       &--first-child {
-        border-top-left-radius: radius();
         border-bottom-left-radius: radius();
+        border-top-left-radius: radius();
       }
 
       &--last-child {
-        border-top-right-radius: radius();
         border-bottom-right-radius: radius();
+        border-top-right-radius: radius();
       }
 
       &--active {
