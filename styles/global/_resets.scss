@@ -8,7 +8,7 @@
 
 $include-reset-classes: true !default;
 
-@if $include-resets-classes {
+@if $include-reset-classes {
   html {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
