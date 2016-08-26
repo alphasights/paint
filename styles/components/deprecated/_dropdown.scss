@@ -61,7 +61,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
 
   @if ($direction == top) or ($direction == bottom) or ($direction == right) or ($direction == left) {
     $width: $width / 2;
-    $height: if(length($size) > 1, $height, $height/2);
+    $height: if(length($size) > 1, $height, $height / 2);
 
     @if $direction == bottom {
       border-bottom: $height solid $foreground-color;
@@ -99,11 +99,11 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
   $background-color: nth($color, 1);
   $background-size: ($size + $adjust);
 
-  &:before {
+  &::before {
     @include dropdown-triangle($background-size, $background-color, $direction, ($adjust + 1px));
   }
 
-  &:after {
+  &::after {
     @include dropdown-triangle($size, $foreground-color, $direction);
   }
 }
@@ -341,7 +341,7 @@ $dropdown-link-hover-background-color: dropdown-settings(hover-background-color)
   > ul {
     top: 0;
 
-    &:before {
+    &::before {
       display: none;
     }
   }

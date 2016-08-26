@@ -19,20 +19,20 @@ $mq-breakpoint: map-merge-settings($mq-breakpoint-defaults, $mq-breakpoint);
   @return map-deep-get($mq-breakpoint, $settings...);
 }
 
-@function lower-bound($range){
-    @if length($range) <= 0 {
-        @return 0;
-    }
+@function lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
 
-    @return nth($range, 1);
+  @return nth($range, 1);
 }
 
 @function upper-bound($range) {
-    @if length($range) < 2 {
-        @return 999999999999;
-    }
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
 
-    @return nth($range, 2);
+  @return nth($range, 2);
 }
 
 /// Create list of breakpoints. Used to hold the breakpoint index value
@@ -73,16 +73,16 @@ $mq-range: ();
 @include mq-bounds-build;
 
 $mq-screen-defaults: (
-  screen: "only screen",
-  landscape: "only screen and (orientation: landscape)",
-  portrait: "only screen and (orientation: portrait)",
+  screen: 'only screen',
+  landscape: 'only screen and (orientation: landscape)',
+  portrait: 'only screen and (orientation: portrait)',
   retina: (
-    "only screen and (-webkit-min-device-pixel-ratio: 2)",
-    "only screen and (min--moz-device-pixel-ratio: 2)",
-    "only screen and (-o-min-device-pixel-ratio: 2/1)",
-    "only screen and (min-device-pixel-ratio: 2)",
-    "only screen and (min-resolution: 192dpi)",
-    "only screen and (min-resolution: 2dppx)"
+    'only screen and (-webkit-min-device-pixel-ratio: 2)',
+    'only screen and (min--moz-device-pixel-ratio: 2)',
+    'only screen and (-o-min-device-pixel-ratio: 2/1)',
+    'only screen and (min-device-pixel-ratio: 2)',
+    'only screen and (min-resolution: 192dpi)',
+    'only screen and (min-resolution: 2dppx)'
   )
 ) !default;
 
@@ -102,9 +102,9 @@ $mq: ();
   @each $breakpoint, $range in $mq-range {
     $mq-item: (
       $breakpoint: (
-        up: "(min-width:#{lower-bound($range)})",
-        only: "(min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})",
-        down: "(max-width:#{upper-bound($range)})"
+        up: '(min-width:#{lower-bound($range)})',
+        only: '(min-width:#{lower-bound($range)}) and (max-width:#{upper-bound($range)})',
+        down: '(max-width:#{upper-bound($range)})'
       )
     );
 

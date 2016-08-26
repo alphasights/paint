@@ -18,7 +18,7 @@ $clearfix: map-merge($clearfix-defaults, $clearfix);
 @mixin clearfix {
   &::after {
     clear: both;
-    content: "";
+    content: '';
     display: block;
   }
 }

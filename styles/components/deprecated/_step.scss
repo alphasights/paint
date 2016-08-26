@@ -124,7 +124,7 @@ $include-html-paint-step: true !default;
 @mixin steps-icon-default {
   @include icon(circle-o, before);
 
-  &:before {
+  &::before {
     margin-right: $column-gutter / 4;
   }
 }
@@ -181,7 +181,7 @@ $include-html-paint-step: true !default;
       }
 
       &#{step-settings(selectors, highlighted)} {
-        &:after {
+        &::after {
           background-color: step-settings(colors, highlighted-border);
         }
 
