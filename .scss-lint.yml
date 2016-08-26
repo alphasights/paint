@@ -1,6 +1,13 @@
-scss_files: '**/*.scss'
+plugin_directories: ['.scss-linters', 'linter']
+scss_files: 'styles/**/*.scss'
 
 linters:
+  PaintColor:
+    enabled: true
+
+  PaintUnits:
+    enabled: true
+
   BangFormat:
     enabled: true
     space_before_bang: true
