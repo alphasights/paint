@@ -87,8 +87,9 @@ linters:
   PlaceholderInExtend:
     enabled: true
 
+  # temporarily disable until this gets fixed https://github.com/brigade/scss-lint/issues/828
   PrivateNamingConvention:
-    enabled: true
+    enabled: false
 
   PropertySortOrder:
     enabled: true
