@@ -6,7 +6,7 @@
 
 // scss-lint:disable VendorPrefix, QualifyingElement
 
-$include-resets-classes: true !default;
+$include-reset-classes: true !default;
 
 @if $include-resets-classes {
   html {
