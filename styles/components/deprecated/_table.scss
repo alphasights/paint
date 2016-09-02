@@ -85,7 +85,7 @@ $table-column-padding: gutter(small) !default;
 }
 
 @include exports('paint-table') {
-  @if $include-html-paint-table {
+  @if $include-table-tags {
     .table {
       @extend %table;
 
