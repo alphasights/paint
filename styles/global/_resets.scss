@@ -4,9 +4,11 @@
 /// @since v1.0.0
 ////
 
-$include-resets-classes: true !default;
+// scss-lint:disable VendorPrefix, QualifyingElement
 
-@if $include-resets-classes {
+$include-reset-classes: true !default;
+
+@if $include-reset-classes {
   html {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
@@ -56,7 +58,8 @@ $include-resets-classes: true !default;
   }
 
   a {
-    &:active, &:hover {
+    &:active,
+    &:hover {
       outline: 0;
     };
   }
@@ -76,7 +79,7 @@ $include-resets-classes: true !default;
 
   h1 {
     font-size: 2em;
-    margin: 0.67em 0;
+    margin: .67em 0;
   }
 
   mark {
@@ -97,11 +100,11 @@ $include-resets-classes: true !default;
   }
 
   sup {
-    top: -0.5em;
+    top: -.5em;
   }
 
   sub {
-    bottom: -0.25em;
+    bottom: -.25em;
   }
 
   img {
@@ -199,7 +202,7 @@ $include-resets-classes: true !default;
   fieldset {
     border: 1px solid #c0c0c0;
     margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+    padding: .35em .625em .75em;
   }
 
   legend {
@@ -230,8 +233,8 @@ $include-resets-classes: true !default;
   }
 
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
 

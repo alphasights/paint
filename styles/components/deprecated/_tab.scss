@@ -133,7 +133,7 @@ $include-html-paint-tabs: true !default;
   > #{$active-tab-selector} {
     color: tab-settings(text-color-active);
 
-    &:after {
+    &::after {
       transform: translate(0, 0);
     }
   }
@@ -262,7 +262,7 @@ $include-html-paint-tabs: true !default;
     transition: color tab-settings(transition-duration);
     white-space: nowrap;
 
-    &:after {
+    &::after {
       background-color: tab-settings(border-color);
       bottom: 0;
       content: '';
@@ -279,13 +279,13 @@ $include-html-paint-tabs: true !default;
     &.active {
       color: tab-settings(text-color-active);
 
-      &:after {
+      &::after {
         transform: translate(0, 0);
       }
     }
 
     &.active {
-      &:after {
+      &::after {
         background-color: tab-settings(border-color-active);
       }
     }

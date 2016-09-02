@@ -16,7 +16,7 @@ linters:
     enabled: false
 
   Comment:
-    enabled: true
+    enabled: false
 
   DebugStatement:
     enabled: true
@@ -168,7 +168,6 @@ linters:
 
   VendorPrefixes:
     enabled: true
-    identifier_list: base
 
   ZeroUnit:
     enabled: true
