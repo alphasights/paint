@@ -102,7 +102,7 @@ $font: map-merge-settings($font-defaults, $font);
     &-smallcaps {
       font-feature-settings: 'smcp', 'kern';
       font-kerning: normal;
-      letter-spacing: 0.1rem;
+      letter-spacing: .1rem;
     }
 
     &-lining-numerals {
@@ -135,8 +135,6 @@ $font: map-merge-settings($font-defaults, $font);
 @mixin font-tag-resets {
   html {
     font-size: font(size, base);
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
   }
 
   body {
@@ -183,9 +181,9 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   small {
+    font-size: font(size, small);
     font-style: normal;
     font-weight: font(weight, base);
-    font-size: font(size, small);
   }
 
   blockquote {
@@ -204,12 +202,11 @@ $font: map-merge-settings($font-defaults, $font);
 
   pre {
     display: block;
-    white-space: pre;
+    margin-bottom: gutter();
+    padding: gutter(small);
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;
-    padding: gutter(small);
-    margin-bottom: gutter();
   }
 }
 
@@ -230,61 +227,17 @@ $font: map-merge-settings($font-defaults, $font);
     list-style-type: none;
 
     li {
+      @extend %_nested-list;
+
       counter-increment: top-level;
 
-      &:before {
+      &::before {
         content: counter(top-level) '.';
         font-feature-settings: 'lnum', 'tnum';
         margin-left: -3rem;
         position: absolute;
         text-align: right;
         width: 2em;
-      }
-
-      ul {
-        li {
-          &:before {
-            content: '';
-          }
-
-          ol {
-            li {
-              counter-increment: alt-level;
-
-              &:before {
-                content: counter(alt-level) '.';
-              }
-            }
-          }
-        }
-      }
-
-      ol {
-        li {
-          counter-increment: sub-level;
-
-          &:before {
-            content: counter(top-level) '.' counter(sub-level);
-          }
-
-          ul {
-            li {
-              &:before {
-                content: '';
-              }
-            }
-          }
-
-          ol {
-            li {
-              counter-increment: sub-sub-level;
-
-              &:before {
-                content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -301,6 +254,62 @@ $font: map-merge-settings($font-defaults, $font);
 
     dd + dt {
       padding-top: gutter(small);
+    }
+  }
+}
+
+%_nested-list {
+  ul {
+    li {
+      @extend %_nested-o-list;
+
+      &::before {
+        content: '';
+      }
+    }
+  }
+
+  ol {
+    li {
+      @extend %_nested-sub-lists;
+
+      counter-increment: sub-level;
+
+      &::before {
+        content: counter(top-level) '.' counter(sub-level);
+      }
+    }
+  }
+}
+
+%_nested-o-list {
+  ol {
+    li {
+      counter-increment: alt-level;
+
+      &::before {
+        content: counter(alt-level) '.';
+      }
+    }
+  }
+}
+
+%_nested-sub-lists {
+  ul {
+    li {
+      &::before {
+        content: '';
+      }
+    }
+  }
+
+  ol {
+    li {
+      counter-increment: sub-sub-level;
+
+      &::before {
+        content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
+      }
     }
   }
 }

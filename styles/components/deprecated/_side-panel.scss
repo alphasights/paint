@@ -220,30 +220,10 @@ $include-html-paint-side-panel: true !default;
 
     > ul {
       @extend %button-group;
+      @extend %_header-actions-group-item;
 
       line-height: inherit !important;
 
-      > li {
-        @extend %button-group__item;
-
-        &:not(:last-child) {
-          button {
-            @extend %button-group__button--not-last-child;
-          }
-        }
-
-        &:first-child {
-          button {
-            @extend %button-group__button--first-child;
-          }
-        }
-
-        &:last-child {
-          button {
-            @extend %button-group__button--last-child;
-          }
-        }
-      }
 
       button {
         @extend %button-group__button;
@@ -280,7 +260,7 @@ $include-html-paint-side-panel: true !default;
   }
 
   button {
-    &:before {
+    &::before {
       font-size: $h3-font-size;
       line-height: side-panel-settings(actions-bar, button-size) !important;
       width: side-panel-settings(actions-bar, button-size) !important;
@@ -293,6 +273,30 @@ $include-html-paint-side-panel: true !default;
         .#{$action} {
           @include button-icon($icon);
         }
+      }
+    }
+  }
+}
+
+%_header-actions-group-item {
+  > li {
+    @extend %button-group__item;
+
+    &:not(:last-child) {
+      button {
+        @extend %button-group__button--not-last-child;
+      }
+    }
+
+    &:first-child {
+      button {
+        @extend %button-group__button--first-child;
+      }
+    }
+
+    &:last-child {
+      button {
+        @extend %button-group__button--last-child;
       }
     }
   }
