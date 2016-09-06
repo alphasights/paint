@@ -57,7 +57,7 @@ $include-html-paint-modal: true !default;
   background-color: transparent !important;
   padding: 0 $column-gutter / 2;
 
-  &:before {
+  &::before {
     display: inline-block;
   }
 }
@@ -144,8 +144,7 @@ $include-html-paint-modal: true !default;
     position: relative;
     top: -100%;
     transform: translateY(-100%);
-    transition:
-      top animation(transition, duration) animation(transition, easing),
+    transition: top animation(transition, duration) animation(transition, easing),
       transform animation(transition, duration);
   }
 

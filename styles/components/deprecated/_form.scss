@@ -265,7 +265,7 @@ $include-html-paint-form: true !default;
           color: color(alert);
         }
 
-        &:before {
+        &::before {
           @include icon(cross, $set: paint);
 
           font-size: font(size, small);
@@ -490,7 +490,7 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-multi-checkbox-icon($icon) {
-  &:before {
+  &::before {
     @include icon($icon, null, $set: paint);
 
     float: right;
@@ -505,7 +505,7 @@ $include-html-paint-form: true !default;
 ) {
   white-space: $option-whitespace;
 
-  &:before {
+  &::before {
     @include icon(square-empty, null, paint);
 
     color: color(text, small);
@@ -516,7 +516,7 @@ $include-html-paint-form: true !default;
     background-color: $form-multi-checkbox-option-checked-background;
     color: $form-multi-checkbox-option-checked-color;
 
-    &:before {
+    &::before {
       @include icon(square-check, null, paint);
 
       color: $form-multi-checkbox-option-checked-color;
@@ -624,7 +624,7 @@ $include-html-paint-form: true !default;
         .#{$action} {
           @include icon(nth($icon, 1), $set: paint);
 
-          &:before {
+          &::before {
             margin-right: 0;
           }
 
@@ -778,8 +778,8 @@ $include-html-paint-form: true !default;
 }
 
 @mixin form-select-arrow() {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     border: $form-select-arrow-size dashed;
     border-color: color(text, small) transparent;
     content: '';
@@ -791,12 +791,12 @@ $include-html-paint-form: true !default;
     width: 0;
   }
 
-  &:before {
+  &::before {
     border-bottom-style: solid;
     border-top: 0;
   }
 
-  &:after {
+  &::after {
     border-bottom: 0;
     border-top-style: solid;
     margin-top: $form-select-arrow-size * 2;

@@ -80,6 +80,7 @@ $fg-max-columns: $grid-columns;
   $container-width: $container-columns * $g-column + ($container-columns - 1) * $g-gutter;
   @return percentage($gutter / $container-width);
 }
+
 @mixin span-columns($span) {
   display: block;
   float: left;

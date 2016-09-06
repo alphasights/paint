@@ -2,4 +2,4 @@
 
 set -e
 
-bundle exec scss-lint **/*.scss
+bundle exec scss-lint styles

@@ -1,0 +1,311 @@
+$side-panel: () !default;
+$side-panel-default-settings: (
+  size: (
+    small: 100%,
+    full-size: 95%,
+    medium: 45em,
+    large: 75em,
+    xlarge: 90em,
+    xxlarge: 120em
+  ),
+
+  scale-ratio: (
+    small: 1,
+    full-size: 1,
+    large: .5
+  ),
+
+  actions-bar: (
+    background-color: #e1e5ea,
+    button-size: 35px,
+    height: rem(60)
+  ),
+
+  footer-bar: (
+    height: rem(80)
+  ),
+
+  actions: (
+    navigation: (
+      previous: angle-left,
+      next: angle-right
+    )
+  )
+);
+
+$side-panel: map-merge-settings($side-panel-default-settings, $side-panel);
+
+$include-html-paint-side-panel: true !default;
+
+@function side-panel-settings($setting, $property: null) {
+  @if $property {
+    @return map-get(map-get($side-panel, $setting), $property);
+  } @else {
+    @return map-get($side-panel, $setting);
+  }
+}
+
+@mixin side-panel-size($size: large, $scaled: false) {
+  $width: side-panel-settings(size, $size);
+  $ratio: side-panel-settings(scale-ratio, large);
+  $main-translation: -100% * $ratio;
+  $drawer-width: "calc(#{$width} * #{$ratio})";
+
+  @if ($size == small or $size == medium) {
+    $ratio: side-panel-settings(scale-ratio, small);
+  } @else if ($size == full-size) {
+    $ratio: side-panel-settings(scale-ratio, full-size);
+  }
+
+  @if $scaled {
+    $width: "calc(#{$width} * #{$ratio})";
+    $drawer-width: $width;
+    $main-translation: -100%;
+  }
+
+  > .main {
+    width: #{$width};
+  }
+
+  > .drawer {
+    width: #{$drawer-width};
+  }
+
+  &.active {
+    > .main {
+      transform: translate(0, 0);
+    }
+
+    &.drawer-active {
+      // Animating the width of the drawer seems more natural. However, we must
+      // use percentages otherwise the transform is wonky (not fluid).
+      > .main {
+        transform: translate($main-translation, 0);
+      }
+
+      > .drawer {
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
+
+@mixin side-panel($overlay: true, $scaled: false, $full-size: false) {
+  @if $overlay {
+    @include overlay($position: fixed, $z-index: z(modal));
+
+    &.active {
+      @extend %overlay--active;
+    }
+  }
+
+  > .main,
+  > .drawer {
+    @extend %overlay__content;
+
+    background-color: color(white);
+    box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, .125);
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(100%, 0);
+    transition: transform animation(transition, duration) animation(transition, easing);
+
+    &.has-footer > .content {
+      bottom: side-panel-settings(footer-bar, height);
+    }
+
+    &.has-header > .content {
+      top: side-panel-settings(actions-bar, height);
+    }
+
+    > header {
+      @include side-panel-header;
+
+      .actions {
+        @include side-panel-header-actions;
+      }
+    }
+
+    > .content {
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    > footer {
+      border-top: solid 1px color(border);
+      bottom: 0;
+      height: side-panel-settings(footer-bar, height);
+      left: 0;
+      line-height: side-panel-settings(footer-bar, height);
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: 0;
+
+      .actions {
+        float: left;
+        height: side-panel-settings(footer-bar, height);
+        line-height: side-panel-settings(footer-bar, height);
+        width: 100%;
+      }
+
+      .action {
+        line-height: font(line-height);
+      }
+    }
+  }
+
+  > .main {
+    z-index: z();
+  }
+
+  @if $full-size {
+    @media #{mq(small)} {
+      @include side-panel-size(small, $scaled: true);
+    }
+
+    @media #{mq(medium, up)} {
+      @include side-panel-size(full-size, $scaled);
+    }
+  } @else {
+    @media #{mq(small)} {
+      @include side-panel-size(small, $scaled);
+    }
+
+    @media #{mq(medium)} {
+      @include side-panel-size(medium, $scaled);
+    }
+
+    @media #{mq(large)} {
+      @include side-panel-size(large, $scaled);
+    }
+
+    @media #{mq(xlarge)} {
+      @include side-panel-size(xlarge, $scaled);
+    }
+
+    @media #{mq(xxlarge, up)} {
+      @include side-panel-size(xxlarge, $scaled);
+    }
+  }
+}
+
+@mixin side-panel-header {
+  @extend %grid-row;
+
+  background-color: side-panel-settings(actions-bar, background-color);
+  height: side-panel-settings(actions-bar, height);
+  line-height: side-panel-settings(actions-bar, height);
+  min-height: side-panel-settings(actions-bar, height);
+  top: 0;
+  padding: 0 $column-gutter;
+  position: absolute;
+}
+
+@mixin side-panel-header-actions {
+  $side-panel-actions: side-panel-settings(actions);
+
+  > .content {
+    @extend %grid-column-10;
+
+    min-height: 1px;
+    padding: 0 !important;
+
+    > ul {
+      @extend %button-group;
+      @extend %_header-actions-group-item;
+
+      line-height: inherit !important;
+
+
+      button {
+        @extend %button-group__button;
+
+        line-height: font(line-height);
+        padding: 0;
+
+        &:disabled {
+          @extend %button-disabled;
+
+          padding: 0 !important;
+        }
+      }
+    }
+
+    > .title {
+      display: inline-block;
+      padding: 0 $column-gutter / 2;
+    }
+  }
+
+  .close {
+    @extend %grid-column-2;
+
+    text-align: right;
+
+    > button {
+      @extend %button-group__button;
+      @include button-icon(close);
+
+      line-height: font(line-height) !important;
+      padding: 0 !important;
+    }
+  }
+
+  button {
+    &::before {
+      font-size: $h3-font-size;
+      line-height: side-panel-settings(actions-bar, button-size) !important;
+      width: side-panel-settings(actions-bar, button-size) !important;
+    }
+  }
+
+  @each $action-group, $actions in $side-panel-actions {
+    .#{$action-group}-actions {
+      @each $action, $icon in $actions {
+        .#{$action} {
+          @include button-icon($icon);
+        }
+      }
+    }
+  }
+}
+
+%_header-actions-group-item {
+  > li {
+    @extend %button-group__item;
+
+    &:not(:last-child) {
+      button {
+        @extend %button-group__button--not-last-child;
+      }
+    }
+
+    &:first-child {
+      button {
+        @extend %button-group__button--first-child;
+      }
+    }
+
+    &:last-child {
+      button {
+        @extend %button-group__button--last-child;
+      }
+    }
+  }
+}
+
+@include exports('paint-side-panel') {
+  @if $include-html-paint-side-panel {
+    .side-panel {
+      @include side-panel;
+    }
+  }
+}
