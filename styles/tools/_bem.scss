@@ -6,6 +6,7 @@
 
 $bem-element-separator: '__';
 $bem-modifier-separator: '--';
+$bem-pseudo-separator: ':';
 
 @function _bem-selector-to-string($selector) {
   $selector: inspect($selector);
@@ -27,7 +28,7 @@ $bem-modifier-separator: '--';
 
 @function _bem-get-block-name($selector) {
   $selector: _bem-selector-to-string($selector);
-  $modifier-separator: ':';
+  $modifier-separator: $bem-pseudo-separator;
 
   @if str-index($selector, $bem-modifier-separator) {
     $modifier-separator: $bem-modifier-separator;
