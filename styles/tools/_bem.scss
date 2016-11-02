@@ -27,10 +27,10 @@ $bem-modifier-separator: '--';
 
 @function _bem-get-block-name($selector) {
   $selector: _bem-selector-to-string($selector);
-  $modifier-separator: $bem-modifier-separator;
+  $modifier-separator: ':';
 
-  @if str-index($selector, ':') {
-    $modifier-separator: ':';
+  @if str-index($selector, $bem-modifier-separator) {
+    $modifier-separator: $bem-modifier-separator;
   }
 
   $modifier-start: str-index($selector, $modifier-separator) - 1;
