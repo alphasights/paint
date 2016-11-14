@@ -72,7 +72,7 @@ $include-html-paint-panel: true !default;
     }
   }
 
-  .content {
+  > .content {
     background-color: $background-color;
   }
 
