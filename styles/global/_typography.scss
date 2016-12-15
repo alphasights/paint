@@ -70,9 +70,9 @@ $font: map-merge-settings($font-defaults, $font);
     &-blockquote {
       border-left: font(blockquote, border) solid color(border);
       font-style: italic;
-      margin-bottom: gutter();
+      margin: 0 0 gutter() gutter(small);
       padding-bottom: gutter();
-      padding-left: gutter();
+      padding-left: gutter(small);
     }
 
     &-hr {
