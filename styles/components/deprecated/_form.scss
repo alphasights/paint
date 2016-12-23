@@ -14,7 +14,7 @@ $form-input-border-color: darken(color(white), 10%) !default;
 $form-input-border-color-focused: color(border, dark) !default;
 $form-input-disabled-bg: rgba(255, 255, 255, 0) !default;
 $form-input-height: 32px !default;
-$form-input-padding: $form-input-height - font(size, base) !default;
+$form-input-padding: calc($form-input-height - font(size, base)) !default;
 $form-input-shadow-color: rgba(color(black), .08) !default;
 $form-input-text-color: color(text, small) !default;
 $form-input-disabled-text-color: lighten($form-input-text-color, 20%) !default;

@@ -10,11 +10,12 @@ $font-defaults: (
 
   family: unquote('"Helvetica Neue", Helvetica, sans-serif'),
   size: (
-    base: 14px,
+    rem-base: 13px,
+    base: 1rem,
     small: 80%,
     tiny: 70%,
 
-    h1: 1.75rem,
+    h1: 1.5rem,
     h2: 1.375rem,
     h3: 1.125rem,
     h4: 1rem,
@@ -134,7 +135,7 @@ $font: map-merge-settings($font-defaults, $font);
 
 @mixin font-tag-resets {
   html {
-    font-size: font(size, base);
+    font-size: font(size, rem-base);
   }
 
   body {
