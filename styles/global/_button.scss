@@ -198,7 +198,7 @@ $button: map-merge-settings($button-defaults, $button);
 
     &--block {
       @extend #{grid(prefix, row)};
-      @extend #{grid(prefix, row)}-middle;
+      @extend #{grid(prefix, row)}-stretch;
 
       float: none;
 
