@@ -109,6 +109,10 @@ $grid: map-merge-settings($grid-defaults, $grid);
       align-items: center;
     }
 
+    &-stretch {
+      align-items: stretch;
+    }
+
     &-top {
       align-items: flex-start;
     }
@@ -164,6 +168,10 @@ $grid: map-merge-settings($grid-defaults, $grid);
 
     &-middle {
       align-self: center;
+    }
+
+    &-stretch {
+      align-self: stretch;
     }
 
     &-top {
