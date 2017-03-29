@@ -52,18 +52,16 @@ $bem-pseudo-separator: ':';
     $block: _bem-get-block-name($selector);
 
     @at-root {
-      #{$selector} {
-        @each $element in $elements {
-          .#{$block + $bem-element-separator + $element} {
-            @content;
-          }
+      @each $element in $elements {
+        #{selector-parse(selector-nest(&, '.#{selector-append($block, $bem-element-separator, $element)}'))} {
+          @content;
         }
       }
     }
   } @else {
     @at-root {
       @each $element in $elements {
-        #{$selector + $bem-element-separator + $element} {
+        #{selector-append(&, $bem-element-separator, $element)} {
           @content;
         }
       }
@@ -72,9 +70,13 @@ $bem-pseudo-separator: ':';
 }
 
 @mixin m($modifier) {
-  @at-root {
-    #{&}#{$bem-modifier-separator + $modifier} {
-      @content;
-    }
+  $class-name: selector-append(&, $bem-modifier-separator, $modifier);
+
+  @if str-index($modifier, $bem-pseudo-separator) == 1 {
+    $class-name: selector-append(&, $modifier);
+  }
+
+  @at-root #{$class-name} {
+    @content;
   }
 }
