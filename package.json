@@ -6,14 +6,13 @@
   "engines": {
     "node": ">= 7.7.3"
   },
-
   "author": "AlphaSights",
   "license": "MIT",
   "dependencies": {
     "node-sass": "4.5.1"
   },
-
   "devDependencies": {
+    "mocha": "3.2.0",
     "sass-true": "2.2.1",
     "sassdoc": "2.1.18"
   }

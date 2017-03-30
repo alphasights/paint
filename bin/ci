@@ -4,3 +4,4 @@ set -e
 
 bin/lint
 node_modules/.bin/node-sass styles/paint.scss dist/paint.css
+./node_modules/.bin/mocha --reporter spec
