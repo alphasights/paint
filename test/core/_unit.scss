@@ -1,0 +1,17 @@
+@include test-module('strip-units') {
+  @include test('should return an unitless value') {
+    $actual: strip-units(28px);
+    $expected: 28;
+
+    @include assert-equal($actual, $expected);
+  }
+}
+
+@include test-module('rem') {
+  @include test('should return the computed rem value') {
+    $actual: rem(18);
+    $expected: 1.125rem;
+
+    @include assert-equal($actual, $expected);
+  }
+}

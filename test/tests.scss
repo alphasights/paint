@@ -1,0 +1,14 @@
+@import 'true';
+
+// Import the project
+@import '../styles/core';
+@import '../styles/tools';
+@import '../styles/global';
+@import '../styles/components';
+
+
+// Import the test files
+@import 'core/all';
+
+// Run the tests
+@include report();
