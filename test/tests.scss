@@ -1,8 +1,18 @@
 @import 'true';
 
 // Import the project
-@import '../styles/core';
-@import '../styles/tools';
+@import '../styles/core/unit';
+@import '../styles/core/map';
+@import '../styles/core/export';
+@import '../styles/core/color';
+
+@import '../styles/tools/color';
+@import '../styles/tools/gutter';
+@import '../styles/tools/animation';
+@import '../styles/tools/bem';
+@import '../styles/tools/border';
+@import '../styles/tools/media-query';
+@import '../styles/tools/z-index';
 
 @import '../styles/global/flex-grid';
 @import '../styles/global/icon';
