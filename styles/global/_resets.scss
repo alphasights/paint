@@ -10,9 +10,9 @@ $include-reset-classes: true !default;
 
 @if $include-reset-classes {
   html {
-    font-family: sans-serif; /* 1 */
-    -ms-text-size-adjust: 100%; /* 2 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -39,8 +39,8 @@ $include-reset-classes: true !default;
   canvas,
   progress,
   video {
-    display: inline-block; /* 1 */
-    vertical-align: baseline; /* 2 */
+    display: inline-block;
+    vertical-align: baseline;
   }
 
   audio:not([controls]) {
@@ -141,9 +141,9 @@ $include-reset-classes: true !default;
   optgroup,
   select,
   textarea {
-    color: inherit; /* 1 */
-    font: inherit; /* 2 */
-    margin: 0; /* 3 */
+    color: inherit;
+    font: inherit;
+    margin: 0;
   }
 
   button {
@@ -156,11 +156,11 @@ $include-reset-classes: true !default;
   }
 
   button,
-  html input[type="button"], /* 1 */
+  html input[type="button"],
   input[type="reset"],
   input[type="submit"] {
-    -webkit-appearance: button; /* 2 */
-    cursor: pointer; /* 3 */
+    -webkit-appearance: button;
+    cursor: pointer;
   }
 
   button[disabled],
@@ -180,8 +180,8 @@ $include-reset-classes: true !default;
 
   input[type="checkbox"],
   input[type="radio"] {
-    box-sizing: border-box; /* 1 */
-    padding: 0; /* 2 */
+    box-sizing: border-box;
+    padding: 0;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -190,8 +190,8 @@ $include-reset-classes: true !default;
   }
 
   input[type="search"] {
-    -webkit-appearance: textfield; /* 1 */
-    box-sizing: content-box; /* 2 */
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
   }
 
   input[type="search"]::-webkit-search-cancel-button,
@@ -206,8 +206,8 @@ $include-reset-classes: true !default;
   }
 
   legend {
-    border: 0; /* 1 */
-    padding: 0; /* 2 */
+    border: 0;
+    padding: 0;
   }
 
   textarea {
