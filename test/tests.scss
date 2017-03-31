@@ -3,9 +3,10 @@
 // Import the project
 @import '../styles/core';
 @import '../styles/tools';
-@import '../styles/global';
-@import '../styles/components';
 
+@import '../styles/global/flex-grid';
+@import '../styles/global/icon';
+@import '../styles/global/button';
 
 // Import the test files
 @import 'core/all';
