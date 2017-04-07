@@ -108,7 +108,7 @@ $color: map-merge-settings($color-settings, $color);
 ///
 /// @example scss - Update existing colors / variations
 ///   // Include in your app's `paint-settings.scss`
-///   $colors: (
+///   $color: (
 ///     text: (
 ///       base: #111111,
 ///       funky: link
@@ -119,7 +119,7 @@ $color: map-merge-settings($color-settings, $color);
 ///
 /// @example scss - Create custom palette map
 ///   // Include in your app's `paint-settings.scss`
-///   $colors: (
+///   $color: (
 ///     dragon-skin: (
 ///       base: #47C51D,
 ///       dark: dragon-skin (darken: 20%, saturate: 20%),
