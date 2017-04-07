@@ -28,7 +28,7 @@
   }
 }
 
-@include test-module('color [extended]') {
+@include test-module('color [extend]') {
   @include test('should be able to override and extend the color palette outside the library') {
     $app-colors: (
       text: (
@@ -46,7 +46,7 @@
         seventh: violet
       )
     );
-    $color: map-merge-settings($color-settings, $app-colors) !global;
+    $color: map-merge-settings($color-defaults, $app-colors) !global; // only required when testing
 
     $test_1: color(text);
     $expected_1: #fc0000;
@@ -56,7 +56,6 @@
 
     $test_3: color(rainbow, sixth);
     $expected_3: indigo;
-
 
     @include assert-equal($test_1, $expected_1);
     @include assert-equal($test_2, $expected_2);
