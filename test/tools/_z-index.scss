@@ -1,0 +1,41 @@
+@include test-module('z-index (z)') {
+  @include test('should return a defaut value if no params are specified') {
+    $test: z();
+    $expected: 1;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the value for the specified param name') {
+    $test: z(overlay);
+    $expected: 400;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should be able to combine values using the standard increment unit') {
+    $test: z(overlay) + z(increment);
+    $expected: 410;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('z-index (z) [extend]') {
+  @include test('should be able to override and extend the defaults outside the library') {
+    $app-z: (
+      navigation: 450, // resetting the navigation z-index
+      hell: -666 // adding a new z-index
+    );
+    $z: map-merge-settings($z-defaults, $app-z) !global; // only required when testing
+
+    $test_1: z(navigation);
+    $expected_1: 450;
+
+    $test_2: z(hell);
+    $expected_2: -666;
+
+    @include assert-equal($test_1, $expected_1);
+    @include assert-equal($test_2, $expected_2);
+  }
+}

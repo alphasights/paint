@@ -1,12 +1,12 @@
 @include test-module('gutter') {
-  @include test('should return the defaut gutter value if no params are specified') {
+  @include test('should return a defaut value if no params are specified') {
     $test: gutter();
     $expected: 1.5rem;
 
     @include assert-equal($test, $expected);
   }
 
-  @include test('should return the gutter value for the specified size') {
+  @include test('should return the value for the specified param name') {
     $test: gutter(small);
     $expected: .75rem;
 
@@ -15,7 +15,7 @@
 }
 
 @include test-module('gutter [extend]') {
-  @include test('should be able to override and extend the gutter outside the library') {
+  @include test('should be able to override and extend the defaults outside the library') {
     $app-gutters: (
       base: 2rem, // resetting the base gutter size
       kath: 6rem // adding a new gutter type and value
