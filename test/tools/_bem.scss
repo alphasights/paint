@@ -1,0 +1,327 @@
+@include test-module('BEM mixins [basic]') {
+  @include test('b([param]) should generate a class with the param name') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          display: flex;
+        }
+      }
+
+      @include expect {
+        .block {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  @include test('e([param]) should generate a class name based on the parent block') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          display: flex;
+
+          @include e('element') {
+            align-self: center;
+          }
+        }
+      }
+
+      @include expect {
+        .block {
+          display: flex;
+        }
+
+        .block__element {
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  @include test('m([param]) passed inside a block should generate a modifier class name') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m('modifier') {
+            background-color: #f5f5f5;
+          }
+        }
+      }
+
+      @include expect {
+        .block--modifier {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+}
+
+@include test('m([param]) passed inside an element should generate a modifier class name') {
+  @include assert {
+    @include output {
+      @include b('block') {
+        @include e('element') {
+          background-color: #ffffff;
+
+          @include m('modifier') {
+            background-color: #f5f5f5;
+          }
+        }
+      }
+    }
+
+    @include expect {
+      .block__element {
+        background-color: #ffffff;
+      }
+
+      .block__element--modifier {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+@include test-module('BEM mixins [mixed modifiers]') {
+  @include test('an element defined inside a block modifier should generate a nested class name') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m('modifier') {
+            @include e('element') {
+              color: #f5f5f5;
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block--modifier
+        .block__element {
+          color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  @include test('an element modifier defined inside a block modifier should have the proper class names') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m('modifier') {
+            @include e('element') {
+              @include m('modifier') {
+                color: #f5f5f5;
+              }
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block--modifier
+        .block__element--modifier {
+          color: #f5f5f5;
+        }
+      }
+    }
+  }
+}
+
+@include test-module('BEM mixins [pseudo-selectors as modifiers]') {
+  @include test('pseudo-selectors as modifiers should generate the proper class names') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          border-bottom: 1px solid #f5f5f5;
+
+          @include m(':last-child') {
+            border-bottom: 0;
+          }
+        }
+      }
+
+      @include expect {
+        .block {
+          border-bottom: 1px solid #f5f5f5;
+        }
+
+        .block:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include e('element') {
+            background-color: #ffffff;
+
+            @include m(':hover') {
+              background-color: #f5f5f5;
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block__element {
+          background-color: #ffffff;
+        }
+
+        .block__element:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  @include test('combined pseudo-selectors as modifiers should generate the proper class names') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m(':not(:last-child)::after') {
+            content: '|';
+          }
+        }
+      }
+
+      @include expect {
+        .block:not(:last-child)::after {
+          content: '|';
+        }
+      }
+    }
+  }
+
+  @include test('element pseudo-selectors nested inside block pseudo-selectors should generate the proper class names') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m(':not(:last-child)') {
+            @include e('element') {
+              background-color: #ffffff;
+
+              @include m(':hover') {
+                background-color: #f5f5f5;
+              }
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block:not(:last-child)
+        .block__element {
+          background-color: #ffffff;
+        }
+
+        .block:not(:last-child)
+        .block__element:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  @include test('pseudo-selectors nested inside element modifiers should generate the proper class names') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include e('element') {
+            background-color: #ffffff;
+
+            @include m('is-active') {
+              background-color: #f5f5f5;
+
+              @include m(':hover') {
+                background-color: #333333;
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block__element {
+          background-color: #ffffff;
+        }
+
+        .block__element--is-active {
+          background-color: #f5f5f5;
+        }
+
+        .block__element--is-active:hover {
+          background-color: #333333;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+@include test-module('BEM mixins [stress-test]') {
+  @include test('defining nested elements and element modifiers should not break under pressure') {
+    @include assert {
+      @include output {
+        @include b('block') {
+          @include m('modifier') {
+            @include e('parent') {
+              color: red;
+
+              @include m('parent-modifier') {
+                color: orange;
+
+                @include e('child') {
+                  color: yellow;
+
+                  @include m('child-modifier') {
+                    color: green;
+
+                    @include m('super-child-modifier') {
+                      color: blue;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .block--modifier
+        .block__parent {
+          color: red;
+        }
+
+        .block--modifier
+        .block__parent--parent-modifier {
+          color: orange;
+        }
+
+        .block--modifier
+        .block__parent--parent-modifier
+        .block__child {
+          color: yellow;
+        }
+
+        .block--modifier
+        .block__parent--parent-modifier
+        .block__child--child-modifier {
+          color: green;
+        }
+
+        .block--modifier
+        .block__parent--parent-modifier
+        .block__child--child-modifier--super-child-modifier {
+          color: blue;
+        }
+      }
+    }
+  }
+}
