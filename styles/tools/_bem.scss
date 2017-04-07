@@ -29,14 +29,19 @@ $bem-pseudo-separator: ':';
 @function _bem-get-block-name($selector) {
   $selector: _bem-selector-to-string($selector);
   $modifier-separator: $bem-pseudo-separator;
+  $combined-selector-position: 0;
 
   @if str-index($selector, $bem-modifier-separator) {
     $modifier-separator: $bem-modifier-separator;
   }
 
+  @if str-index($selector, ' ') {
+    $combined-selector-position: str-index($selector, ' ') + 1;
+  }
+
   $modifier-start: str-index($selector, $modifier-separator) - 1;
 
-  @return str-slice($selector, 0, $modifier-start);
+  @return str-slice($selector, $combined-selector-position, $modifier-start);
 }
 
 @mixin b($block) {
@@ -53,7 +58,7 @@ $bem-pseudo-separator: ':';
 
     @at-root {
       @each $element in $elements {
-        #{selector-parse(selector-nest(&, '.#{selector-append($block, $bem-element-separator, $element)}'))} {
+        #{selector-parse(selector-nest(&, selector-append($block, $bem-element-separator, $element)))} {
           @content;
         }
       }
