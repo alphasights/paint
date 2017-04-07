@@ -34,6 +34,7 @@ $modules: [
 
 // Import the test files
 @import 'core/all';
+@import 'tools/all';
 
 // Run the tests
 @include report();

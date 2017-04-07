@@ -1,0 +1,29 @@
+@include test-module('color') {
+  @include test('should return the color value for a specific palette name') {
+    $test: color(primary);
+    $expected: #f36b09;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the color variation for a specific palette name') {
+    $test: color(gray, silver);
+    $expected: #efefef;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test("should return the param value if the color doesn't exist") {
+    $test: color(#xoxoxo);
+    $expected: #xoxoxo;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test("should return the param value if the color doesn't exist") {
+    $test: color(crazy-pink);
+    $expected: crazy-pink;
+
+    @include assert-equal($test, $expected);
+  }
+}
