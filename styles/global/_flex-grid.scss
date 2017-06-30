@@ -44,13 +44,16 @@ $grid: map-merge-settings($grid-defaults, $grid);
 
 @mixin grid-col-gutter($columns, $direction: left, $type: margin) {
   $width: grid-col-width($columns);
+  $selector: selector-append($type, '-', $direction);
 
-  #{$type}-#{$direction}: $width;
+  #{$selector}: $width;
 }
 
 @mixin grid-col-placeholders($prefix: grid(prefix, col)) {
   @for $i from 1 through grid(columns) {
-    #{$prefix}-#{$i} {
+    $selector: selector-append($prefix, '-', $i);
+
+    #{$selector} {
       @include grid-col($i);
 
       &-fixed {

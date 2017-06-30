@@ -27,7 +27,9 @@ $label: map-merge-settings($label-defaults, $label);
 
 @mixin label-placeholders {
   @each $style, $color in label(style) {
-    #{label(prefix)}-#{$style} {
+    $selector: selector-append(label(prefix), '-', $style);
+
+    #{$selector} {
       @extend %_label;
 
       $shadow-color: contrast(contrast($color));

@@ -4,16 +4,16 @@
 /// @since v1.0.0
 ////
 
-// scss-lint:disable VendorPrefix, QualifyingElement
+// sass-lint:disable force-element-nesting, force-pseudo-nesting, force-attribute-nesting, no-qualifying-elements
 
 $include-reset-classes: true !default;
 
 @include exports('paint-resets') {
   @if $include-reset-classes {
     html {
-      font-family: sans-serif;
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
+      font-family: sans-serif;
     }
 
     body {
@@ -157,9 +157,9 @@ $include-reset-classes: true !default;
     }
 
     button,
-    html input[type="button"],
-    input[type="reset"],
-    input[type="submit"] {
+    html input[type='button'],
+    input[type='reset'],
+    input[type='submit'] {
       -webkit-appearance: button;
       cursor: pointer;
     }
@@ -179,24 +179,24 @@ $include-reset-classes: true !default;
       line-height: normal;
     }
 
-    input[type="checkbox"],
-    input[type="radio"] {
+    input[type='checkbox'],
+    input[type='radio'] {
       box-sizing: border-box;
       padding: 0;
     }
 
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
       height: auto;
     }
 
-    input[type="search"] {
+    input[type='search'] {
       -webkit-appearance: textfield;
       box-sizing: content-box;
     }
 
-    input[type="search"]::-webkit-search-cancel-button,
-    input[type="search"]::-webkit-search-decoration {
+    input[type='search']::-webkit-search-cancel-button,
+    input[type='search']::-webkit-search-decoration {
       -webkit-appearance: none;
     }
 

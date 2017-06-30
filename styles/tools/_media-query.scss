@@ -53,7 +53,7 @@ $_breakpoint-list: map-keys($mq-breakpoint);
 
     @return (px($lower-bound), px($upper-bound));
   } @else {
-    @error "There is no breakpoint defined for '#{$breakpoint}'";
+    @error 'There is no breakpoint defined for \'#{$breakpoint}\'';
   }
 }
 
@@ -118,5 +118,5 @@ $mq: ();
   $screen-type: mq-screen($type);
   $range: map-deep-get($mq, $breakpoint, $direction);
 
-  @return "#{$screen-type} and #{$range}";
+  @return '#{$screen-type} and #{$range}';
 }

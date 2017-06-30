@@ -1,3 +1,5 @@
+//sass-lint:disable-all
+
 $form-with-border: true !default;
 $form-field-selector: '.form-field' !default;
 $form-field-with-errors: '.with-errors' !default;
@@ -825,7 +827,7 @@ $include-html-paint-form: true !default;
   }
 
   &:focus,
-  > *:focus, {
+  > *:focus {
     background-color: color(white);
     background-image: none;
     outline: none;

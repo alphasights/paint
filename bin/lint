@@ -2,4 +2,4 @@
 
 set -e
 
-bundle exec scss-lint styles
+yarn run sass-lint -- --config .sass-lint.yml --verbose --no-exit

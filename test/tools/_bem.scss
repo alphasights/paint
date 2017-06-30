@@ -1,3 +1,5 @@
+// sass-lint:disable force-element-nesting, force-pseudo-nesting
+
 @include test-module('BEM mixins [basic]') {
   @include test('b([param]) should generate a class with the param name') {
     @include assert {

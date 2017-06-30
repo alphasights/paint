@@ -54,6 +54,8 @@
 ///   Toggle class `.flipped` on the main selector to trigger the flipping animation
 ///
 
+//sass-lint:disable-all
+
 $flip-panel-default-settings: (
   header-height: panel-settings(header-height),
   footer-height: panel-settings(footer-height),
