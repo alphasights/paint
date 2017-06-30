@@ -2,4 +2,4 @@
 
 set -e
 
-node_modules/.bin/node-sass styles/paint.scss dist/paint.css
+yarn run node-sass styles/paint.scss dist/paint.css
