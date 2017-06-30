@@ -1,2 +1,5 @@
 /// Dependencies required by global/components/icon
-@import url(https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css);
+
+// sass-lint:disable no-url-protocols
+
+@import url('https://use.fonticons.com/kits/4d2e7f35/4d2e7f35.css');

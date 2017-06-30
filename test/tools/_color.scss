@@ -13,14 +13,14 @@
     @include assert-equal($test, $expected);
   }
 
-  @include test("should return the param value if the color doesn't exist [color]") {
-    $test: color(#xoxoxo);
-    $expected: #xoxoxo;
+  @include test('should return the param value if the color doesn\'t exist [color]') {
+    $test: color(#fafafa);
+    $expected: #fafafa;
 
     @include assert-equal($test, $expected);
   }
 
-  @include test("should return the param value if the color doesn't exist [string]") {
+  @include test('should return the param value if the color doesn\'t exist [string]') {
     $test: color(crazy-pink);
     $expected: crazy-pink;
 

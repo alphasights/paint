@@ -97,7 +97,7 @@ $_icon-default-set: icon(default);
   $selector: if($selector == null, '&', '&::' + $selector);
 
   @if not $content {
-    @error "Icon #{$name} doesn't exist in the #{set} set";
+    @error 'Icon #{$name} doesn\'t exist in the #{set} set';
   }
 
   #{$selector} {
@@ -117,11 +117,11 @@ $_icon-default-set: icon(default);
 
 /// @access private
 %_icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   display: inline-block;
   font: normal normal normal #{font(size, base)}/#{font(line-height)} icon(sets, $_icon-default-set);
   font-size: inherit;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   speak: none;
   text-align: center;
   text-decoration: none;
@@ -150,11 +150,13 @@ $_icon-default-set: icon(default);
     }
 
     @each $icon in map-keys(icon($set)) {
-      #{$prefix}-#{$icon} {
+      $selector: selector-append($prefix, '-', $icon);
+
+      #{$selector} {
         @include icon($icon, $set: $set)
       }
 
-      #{$prefix}-#{$icon}-after {
+      #{$selector}-after {
         @include icon($icon, $selector: after, $set: $set)
       }
     }

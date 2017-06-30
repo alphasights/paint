@@ -9,7 +9,7 @@
   $result: null;
 
   @if type-of(nth($keys, -1)) == 'map' {
-    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
+    @warn 'The last key you specified is a map; it will be overrided with \'#{$value}\'.';
   }
 
   @if length($keys) == 1 {
@@ -21,7 +21,7 @@
     $current-map: nth($maps, -1);
     $current-get: map-get($current-map, $current-key);
     @if $current-get == null {
-      @warn "Key `#{$key}` doesn't exist at current level in map.";
+      @warn 'Key \'#{$key}\' doesn\'t exist at current level in map.';
     }
     $maps: append($maps, $current-get);
   }
