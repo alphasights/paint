@@ -1,0 +1,25 @@
+@include test-module('exports [mixin]') {
+  @include test('should output the contents only once, even if the same module is included multiple times') {
+    @include assert {
+      @include output {
+        @include exports('output-once') {
+          .output-once {
+            display: flex;
+          }
+        }
+
+        @include exports('output-once') {
+          .output-once {
+            display: flex;
+          }
+        }
+      }
+
+      @include expect {
+        .output-once {
+          display: flex;
+        }
+      }
+    }
+  }
+}

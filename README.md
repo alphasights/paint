@@ -13,6 +13,7 @@ Paint comes as a bower package (`paint`) and an npm package (`as-paint`).
 
 To use the **bower package**, run `bower install paint --save-dev`.  
 For **npm**, run `npm install as-paint --save-dev`.
+For **yarn**, run `yarn add as-paint`.
 
 There are 2 ways to import paint into an application:
 
@@ -160,3 +161,9 @@ If the changes you made affect any `ember-cli-paint` component you also need to:
 - Release a new version of `ember-cli-paint`
   - `npm version major | minor | patch`
   - `npm publish`
+
+## Testing
+
+Paint is using [true](https://github.com/oddbird/true/) to test Sass code and [Mocha](https://mochajs.org) as a JS test runner.
+
+Assuming you already executed `bin/setup`, `bin/test` should run all available tests.

@@ -1,0 +1,24 @@
+@include test-module('brightness') {
+  @include test('should return the brightness percentage for a color') {
+    $test: brightness(#000000);
+    $expected: 0%;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('contrast') {
+  @include test('should return the dark variant if the color is bright enough') {
+    $test: contrast(#ffffff);
+    $expected: #333333;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the light variant if the color is dark') {
+    $test: contrast(#000000);
+    $expected: #ffffff;
+
+    @include assert-equal($test, $expected);
+  }
+}

@@ -1,0 +1,27 @@
+@include test-module('map-merge-settings') {
+  @include test('should merge two maps, the second overriding the first in case of duplicate keys') {
+    $default: (
+      base: 16,
+      small: 11,
+      large: 24
+    );
+
+    $extender: (
+      small: 12,
+      smaller: 8,
+      large: 28,
+      larger: 36
+    );
+
+    $test: map-merge-settings($default, $extender);
+    $expected: (
+      base:  16,
+      small: 12,
+      large: 28,
+      smaller: 8,
+      larger: 36
+    );
+
+    @include assert-equal($test, $expected);
+  }
+}

@@ -1,0 +1,34 @@
+@include test-module('border (radius)') {
+  @include test('should return a defaut value if no params are specified') {
+    $test: radius();
+    $expected: 3px;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the value for the specified param name') {
+    $test: radius(round);
+    $expected: 24px;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('border (radius) [extend]') {
+  @include test('should be able to override and extend the defaults outside the library') {
+    $app-radius: (
+      base: 6px, // resetting the base
+      kath: 32px // adding a new value
+    );
+    $radius: map-merge-settings($radius-defaults, $app-radius) !global; // only required when testing
+
+    $test_1: radius();
+    $expected_1: 6px;
+
+    $test_2: radius(kath);
+    $expected_2: 32px;
+
+    @include assert-equal($test_1, $expected_1);
+    @include assert-equal($test_2, $expected_2);
+  }
+}

@@ -1,0 +1,40 @@
+@import 'true';
+
+// Prevent modules from rendering any output
+$modules: [
+  'paint-grid',
+  'paint-icon',
+  'paint-button',
+  'paint-avatar',
+  'paint-label',
+  'paint-notification'
+];
+
+// Import tested components
+@import '../styles/core/unit';
+@import '../styles/core/map';
+@import '../styles/core/export';
+@import '../styles/core/color';
+
+@import '../styles/tools/color';
+@import '../styles/tools/gutter';
+@import '../styles/tools/animation';
+@import '../styles/tools/bem';
+@import '../styles/tools/border';
+@import '../styles/tools/media-query';
+@import '../styles/tools/z-index';
+
+@import '../styles/global/flex-grid';
+@import '../styles/global/icon';
+@import '../styles/global/button';
+
+@import '../styles/components/avatar';
+@import '../styles/components/label';
+@import '../styles/components/notification';
+
+// Import the test files
+@import 'core/all';
+@import 'tools/all';
+
+// Run the tests
+@include report();

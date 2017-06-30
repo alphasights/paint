@@ -6,7 +6,7 @@
 
 /// Default color palettes and general color settings
 
-$color-settings: (
+$color-defaults: (
   text: (
     base: #222222,
     small: #888888
@@ -94,7 +94,7 @@ $color-settings: (
 );
 
 $color: () !default;
-$color: map-merge-settings($color-settings, $color);
+$color: map-merge-settings($color-defaults, $color);
 
 /// Fetch a color from a palette group / setting
 /// @param {color | palette} $color - Single color, palette variant or solid color
@@ -108,7 +108,7 @@ $color: map-merge-settings($color-settings, $color);
 ///
 /// @example scss - Update existing colors / variations
 ///   // Include in your app's `paint-settings.scss`
-///   $colors: (
+///   $color: (
 ///     text: (
 ///       base: #111111,
 ///       funky: link
@@ -119,7 +119,7 @@ $color: map-merge-settings($color-settings, $color);
 ///
 /// @example scss - Create custom palette map
 ///   // Include in your app's `paint-settings.scss`
-///   $colors: (
+///   $color: (
 ///     dragon-skin: (
 ///       base: #47C51D,
 ///       dark: dragon-skin (darken: 20%, saturate: 20%),

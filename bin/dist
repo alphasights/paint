@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+node_modules/.bin/node-sass styles/paint.scss dist/paint.css

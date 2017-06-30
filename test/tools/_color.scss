@@ -1,0 +1,64 @@
+@include test-module('color') {
+  @include test('should return the base color value for a specific palette name') {
+    $test: color(primary);
+    $expected: #f36b09;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the color variation for a specific palette name') {
+    $test: color(gray, silver);
+    $expected: #efefef;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test("should return the param value if the color doesn't exist [color]") {
+    $test: color(#xoxoxo);
+    $expected: #xoxoxo;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test("should return the param value if the color doesn't exist [string]") {
+    $test: color(crazy-pink);
+    $expected: crazy-pink;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('color [extend]') {
+  @include test('should be able to override and extend the color palette outside the library') {
+    $app-colors: (
+      text: (
+        base: #fc0000 // resetting the base text color
+      ),
+
+      rainbow: (
+        base: text, // using the new text color
+        first: red,
+        second: orange,
+        third: yellow,
+        fourth: green,
+        fifth: blue,
+        sixth: indigo,
+        seventh: violet
+      )
+    );
+    $color: map-merge-settings($color-defaults, $app-colors) !global; // only required when testing
+
+    $test_1: color(text);
+    $expected_1: #fc0000;
+
+    $test_2: color(rainbow);
+    $expected_2: #fc0000;
+
+    $test_3: color(rainbow, sixth);
+    $expected_3: indigo;
+
+    @include assert-equal($test_1, $expected_1);
+    @include assert-equal($test_2, $expected_2);
+    @include assert-equal($test_3, $expected_3);
+  }
+}
