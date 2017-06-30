@@ -56,14 +56,6 @@ $notification: map-merge-settings($notification-defaults, $notification);
   padding: $size;
 }
 
-%_notification-base {
-  @extend #{grid(prefix, row)};
-  @extend #{grid(prefix, row)}-middle;
-  @include notification-size;
-
-  border-radius: radius();
-}
-
 @mixin notification-wrapper-placeholders {
   #{notification(prefix)} {
     &-wrapper {
@@ -118,4 +110,12 @@ $notification: map-merge-settings($notification-defaults, $notification);
 @include exports('paint-notification') {
   @include notification-wrapper-placeholders;
   @include notification-placeholders;
+
+  %_notification-base {
+    @extend #{grid(prefix, row)};
+    @extend #{grid(prefix, row)}-middle;
+    @include notification-size;
+
+    border-radius: radius();
+  }
 }

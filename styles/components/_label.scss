@@ -25,17 +25,6 @@ $label: map-merge-settings($label-defaults, $label);
   @return map-deep-get($label, $settings...);
 }
 
-%_label {
-  border-bottom: 1px solid rgba(color(white), .75);
-  border-radius: label(radius);
-  display: inline-block;
-  font-size: font(size, small);
-  font-weight: font(weight, bold);
-  line-height: font(line-height) * .75;
-  padding: gutter(smaller) gutter(small);
-  text-align: center;
-}
-
 @mixin label-placeholders {
   @each $style, $color in label(style) {
     #{label(prefix)}-#{$style} {
@@ -64,4 +53,15 @@ $label: map-merge-settings($label-defaults, $label);
 
 @include exports('paint-label') {
   @include label-placeholders;
+
+  %_label {
+    border-bottom: 1px solid rgba(color(white), .75);
+    border-radius: label(radius);
+    display: inline-block;
+    font-size: font(size, small);
+    font-weight: font(weight, bold);
+    line-height: font(line-height) * .75;
+    padding: gutter(smaller) gutter(small);
+    text-align: center;
+  }
 }

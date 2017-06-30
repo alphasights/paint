@@ -1,17 +1,19 @@
 {
   "name": "as-paint",
   "description": "AlphaSights' CSS Framework",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "repository": "https://github.com/alphasights/paint",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.0"
   },
   "author": "AlphaSights",
   "license": "MIT",
+  "dependencies": {
+    "node-sass": "4.5.2"
+  },
   "devDependencies": {
-    "broccoli": "0.16.9",
-    "broccoli-cli": "1.0.0",
-    "broccoli-sass": "0.7.0",
+    "mocha": "3.2.0",
+    "sass-true": "2.2.1",
     "sassdoc": "2.1.18"
   }
 }

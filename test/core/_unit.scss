@@ -1,0 +1,24 @@
+@include test-module('strip-units') {
+  @include test('should return an unitless value') {
+    $test: strip-units(28px);
+    $expected: 28;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('rem') {
+  @include test('should return the computed rem value for a 16px rem base') {
+    $test: rem(18);
+    $expected: 1.125rem;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should allow passing a rem base value as a second param') {
+    $test: rem(24, 24);
+    $expected: 1rem;
+
+    @include assert-equal($test, $expected);
+  }
+}

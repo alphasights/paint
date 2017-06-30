@@ -1,0 +1,34 @@
+@include test-module('gutter') {
+  @include test('should return a defaut value if no params are specified') {
+    $test: gutter();
+    $expected: 1.5rem;
+
+    @include assert-equal($test, $expected);
+  }
+
+  @include test('should return the value for the specified param name') {
+    $test: gutter(small);
+    $expected: .75rem;
+
+    @include assert-equal($test, $expected);
+  }
+}
+
+@include test-module('gutter [extend]') {
+  @include test('should be able to override and extend the defaults outside the library') {
+    $app-gutters: (
+      base: 2rem, // resetting the base gutter size
+      kath: 6rem // adding a new gutter type and value
+    );
+    $gutter: map-merge-settings($gutter-defaults, $app-gutters) !global; // only required when testing
+
+    $test_1: gutter();
+    $expected_1: 2rem;
+
+    $test_2: gutter(kath);
+    $expected_2: 6rem;
+
+    @include assert-equal($test_1, $expected_1);
+    @include assert-equal($test_2, $expected_2);
+  }
+}
