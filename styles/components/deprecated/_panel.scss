@@ -25,6 +25,8 @@
 ///     @extend %panel-success;
 ///   }
 
+//sass-lint:disable-all
+
 $panel-default-settings: (
   header-height: font(size, h1) + gutter(),
   footer-height: font(size, h1) + gutter(small),

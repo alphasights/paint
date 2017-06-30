@@ -162,7 +162,7 @@ $color: map-merge-settings($color-defaults, $color);
       @if function-exists($function) {
         $output-color: call($function, $output-color, $value);
       } @else {
-        @error "Function '#{$function}' in #{$adjust} doesn't exist.";
+        @error 'Function \'#{$function}\' in #{$adjust} doesn\'t exist.';
       }
     }
   }

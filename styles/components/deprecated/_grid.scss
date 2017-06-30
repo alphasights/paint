@@ -4,9 +4,7 @@
 /// @since v0.8.28
 ////
 
-/// Import dependencies
-
-/// Grid placeholder prefix
+//sass-lint:disable-all
 
 $grid-prefix: 'grid-column';
 $grid-responsive-media-queries: mq(small, up), mq(medium, up), mq(large, up), mq(xlarge, up), mq(xxlarge, up);
@@ -111,11 +109,13 @@ $fg-max-columns: $grid-columns;
 
 @mixin grid-column-placeholders($prefix: $grid-prefix) {
   @for $i from 1 through $grid-columns {
-    %#{$prefix}-#{$i} {
+    $selector: selector-append($prefix, '-', $i);
+
+    %#{$selector} {
       @include span-columns($i);
     }
 
-    %#{$prefix}-#{$i}-collapsed {
+    %#{$selector}-collapsed {
       @include span-columns($i);
 
       margin-right: 0;
@@ -126,7 +126,7 @@ $fg-max-columns: $grid-columns;
       }
     }
 
-    %#{$prefix}-#{$i}-centered {
+    %#{$selector}-centered {
       @include span-columns($i);
 
       float: none;

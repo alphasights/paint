@@ -4,6 +4,8 @@
 /// @since v1.0.0
 ////
 
+// sass-lint:disable placeholder-in-extend
+
 $avatar-defaults: (
   prefix: '%avatar',
 
@@ -25,8 +27,8 @@ $avatar: map-merge-settings($avatar-defaults, $avatar);
 }
 
 @mixin _avatar-box($size: avatar(size, base)) {
-  width: $size;
   height: $size;
+  width: $size;
 }
 
 %_avatar {
@@ -37,7 +39,9 @@ $avatar: map-merge-settings($avatar-defaults, $avatar);
 
 @mixin avatar-placeholders {
   @each $size, $value in avatar(size) {
-    #{avatar(prefix)}-#{$size} {
+    $selector: selector-append(avatar(prefix), '-', $size);
+
+    #{$selector} {
       @extend %_avatar;
       @include _avatar-box($value);
     }
