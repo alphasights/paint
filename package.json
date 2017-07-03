@@ -1,20 +1,20 @@
 {
   "name": "as-paint",
   "description": "AlphaSights' CSS Framework",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "repository": "https://github.com/alphasights/paint",
   "engines": {
-    "node": ">= 0.12.0"
+    "node": "7.1.0"
   },
   "author": "AlphaSights",
   "license": "MIT",
   "dependencies": {
-    "node-sass": "4.5.2",
+    "node-sass": "4.5.3",
     "sass-lint": "1.10.2"
   },
   "devDependencies": {
-    "mocha": "3.2.0",
-    "sass-true": "2.2.1",
-    "sassdoc": "2.1.18"
+    "mocha": "3.4.2",
+    "sass-true": "2.2.2",
+    "sassdoc": "2.2.2"
   }
 }
