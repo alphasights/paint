@@ -1,7 +1,7 @@
 {
   "name": "as-paint",
   "description": "AlphaSights' CSS Framework",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "repository": "https://github.com/alphasights/paint",
   "engines": {
     "node": "7.1.0"
