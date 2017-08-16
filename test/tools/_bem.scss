@@ -264,7 +264,7 @@
   }
 }
 
-@include test-module('BEM mixins [stress-test]') {
+@include test-module('BEM mixins [modifiers-stress-test]') {
   @include test('defining nested elements and element modifiers should not break under pressure') {
     @include assert {
       @include output {
@@ -320,6 +320,46 @@
         .block__parent--parent-modifier
         .block__child--child-modifier--super-child-modifier {
           color: blue;
+        }
+      }
+    }
+  }
+}
+
+@include test-module('BEM mixins [block-stress-test]') {
+  @include test('defining nested blocks should fetch the first block name within') {
+    @include assert {
+      @include output {
+        @include b('megablock--megamodifier') {
+          @include b('megablock') {
+            @include m('modifier') {
+              @include e('element') {
+                color: pink;
+              }
+            }
+
+            @include m(':first-of-type') {
+              @include e('element') {
+                @include m('modifier') {
+                  color: fuchsia;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @include expect {
+        .megablock--megamodifier
+        .megablock--modifier
+        .megablock__element {
+          color: pink;
+        }
+
+        .megablock--megamodifier
+        .megablock:first-of-type
+        .megablock__element--modifier {
+          color: fuchsia;
         }
       }
     }

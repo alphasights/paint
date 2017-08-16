@@ -31,17 +31,18 @@ $bem-pseudo-separator: ':';
   $modifier-separator: $bem-pseudo-separator;
   $combined-selector-position: 0;
 
+  @if str-index($selector, ' ') {
+    $combined-selector-position: str-index($selector, ' ') + 1;
+    $selector: str-slice($selector, $combined-selector-position);
+  }
+
   @if str-index($selector, $bem-modifier-separator) {
     $modifier-separator: $bem-modifier-separator;
   }
 
-  @if str-index($selector, ' ') {
-    $combined-selector-position: str-index($selector, ' ') + 1;
-  }
-
   $modifier-start: str-index($selector, $modifier-separator) - 1;
 
-  @return str-slice($selector, $combined-selector-position, $modifier-start);
+  @return str-slice($selector, 0, $modifier-start);
 }
 
 @mixin b($block) {
@@ -54,7 +55,7 @@ $bem-pseudo-separator: ':';
   $selector: &;
 
   @if _bem-selector-has-modifier($selector) {
-    $block: _bem-get-block-name($selector);
+    $block: _bem-get-block-name(inspect($selector));
 
     @at-root {
       @each $element in $elements {
