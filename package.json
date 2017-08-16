@@ -4,7 +4,12 @@
   "version": "1.0.14",
   "repository": "https://github.com/alphasights/paint",
   "engines": {
-    "node": "7.1.0"
+    "node": "7.10.0"
+  },
+  "scripts": {
+    "setup": "bin/setup",
+    "build": "bin/dist",
+    "test": "yarn run mocha --reporter spec"
   },
   "author": "AlphaSights",
   "license": "MIT",
