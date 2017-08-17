@@ -8,7 +8,7 @@ $bem-element-separator: '__';
 $bem-modifier-separator: '--';
 $bem-pseudo-separator: ':';
 
-@function _bem-selector-to-string($selector) {
+@function _selector-to-string($selector) {
   $selector: inspect($selector);
   $dot-index: str-index($selector, '.');
   $selector: str-slice($selector, $dot-index, -1);
@@ -16,8 +16,8 @@ $bem-pseudo-separator: ':';
   @return $selector;
 }
 
-@function _bem-selector-has-modifier($selector) {
-  $selector: _bem-selector-to-string($selector);
+@function _selector-has-modifier($selector) {
+  $selector: _selector-to-string($selector);
 
   @if str-index($selector, $bem-modifier-separator) or str-index($selector, ':') {
     @return true;
@@ -26,8 +26,8 @@ $bem-pseudo-separator: ':';
   }
 }
 
-@function _bem-get-block-name($selector) {
-  $selector: _bem-selector-to-string($selector);
+@function _get-block-name($selector) {
+  $selector: _selector-to-string($selector);
   $modifier-separator: $bem-pseudo-separator;
   $combined-selector-position: 0;
 
@@ -57,8 +57,8 @@ $bem-pseudo-separator: ':';
 @mixin e($elements) {
   $selector: &;
 
-  @if _bem-selector-has-modifier($selector) {
-    $block: _bem-get-block-name($selector);
+  @if _selector-has-modifier($selector) {
+    $block: _get-block-name($selector);
 
     @at-root {
       @each $element in $elements {
