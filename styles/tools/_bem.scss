@@ -9,8 +9,8 @@ $bem-modifier-separator: '--';
 $bem-pseudo-separator: ':';
 
 @function _bem-selector-to-string($selector) {
-  $selector: inspect($selector);
-  $dot-index: str-index($selector, '.') + 1;
+  $selector: inspect(simple-selector($selector));
+  $dot-index: str-index($selector, '.');
   $selector: str-slice($selector, $dot-index, -1);
 
   @return $selector;
@@ -33,7 +33,6 @@ $bem-pseudo-separator: ':';
 
   @if str-index($selector, ' ') {
     $combined-selector-position: str-index($selector, ' ') + 1;
-    $selector: str-slice($selector, $combined-selector-position);
   }
 
   @if str-index($selector, $bem-modifier-separator) {
@@ -42,7 +41,11 @@ $bem-pseudo-separator: ':';
 
   $modifier-start: str-index($selector, $modifier-separator) - 1;
 
-  @return str-slice($selector, 0, $modifier-start);
+  @if $combined-selector-position < $modifier-start {
+    @return selector-parse(str-slice($selector, $combined-selector-position, $modifier-start));
+  } @else {
+    @return selector-parse(str-slice($selector, 0, $modifier-start));
+  }
 }
 
 @mixin b($block) {
@@ -55,7 +58,7 @@ $bem-pseudo-separator: ':';
   $selector: &;
 
   @if _bem-selector-has-modifier($selector) {
-    $block: _bem-get-block-name(inspect($selector));
+    $block: _bem-get-block-name($selector);
 
     @at-root {
       @each $element in $elements {
