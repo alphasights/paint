@@ -10,7 +10,7 @@ $bem-pseudo-separator: ':';
 
 @function _bem-selector-to-string($selector) {
   $selector: inspect($selector);
-  $dot-index: str-index($selector, '.') + 1;
+  $dot-index: str-index($selector, '.');
   $selector: str-slice($selector, $dot-index, -1);
 
   @return $selector;
@@ -31,17 +31,21 @@ $bem-pseudo-separator: ':';
   $modifier-separator: $bem-pseudo-separator;
   $combined-selector-position: 0;
 
-  @if str-index($selector, $bem-modifier-separator) {
-    $modifier-separator: $bem-modifier-separator;
-  }
-
   @if str-index($selector, ' ') {
     $combined-selector-position: str-index($selector, ' ') + 1;
   }
 
+  @if str-index($selector, $bem-modifier-separator) {
+    $modifier-separator: $bem-modifier-separator;
+  }
+
   $modifier-start: str-index($selector, $modifier-separator) - 1;
 
-  @return str-slice($selector, $combined-selector-position, $modifier-start);
+  @if $combined-selector-position < $modifier-start {
+    @return selector-parse(str-slice($selector, $combined-selector-position, $modifier-start));
+  } @else {
+    @return selector-parse(str-slice($selector, 0, $modifier-start));
+  }
 }
 
 @mixin b($block) {
