@@ -227,8 +227,6 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   ol {
-    list-style-type: decimal;
-
     li {
       @extend %_nested-list;
 
@@ -271,8 +269,6 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   ol {
-    list-style-type: decimal;
-
     li {
       @extend %_nested-sub-lists;
 
@@ -285,8 +281,6 @@ $font: map-merge-settings($font-defaults, $font);
 
 %_nested-o-list {
   ol {
-    list-style-type: decimal;
-
     li {
       &::before {
         content: '';
@@ -305,8 +299,6 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   ol {
-    list-style-type: decimal;
-
     li {
       &::before {
         content: '';
