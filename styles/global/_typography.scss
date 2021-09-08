@@ -227,15 +227,11 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   ol {
-    list-style-type: none;
-
     li {
       @extend %_nested-list;
 
-      counter-increment: top-level;
-
       &::before {
-        content: counter(top-level) '.';
+        content: '';
         font-feature-settings: 'lnum', 'tnum';
         margin-left: -3rem;
         position: absolute;
@@ -276,10 +272,8 @@ $font: map-merge-settings($font-defaults, $font);
     li {
       @extend %_nested-sub-lists;
 
-      counter-increment: sub-level;
-
       &::before {
-        content: counter(top-level) '.' counter(sub-level);
+        content: '';
       }
     }
   }
@@ -288,10 +282,8 @@ $font: map-merge-settings($font-defaults, $font);
 %_nested-o-list {
   ol {
     li {
-      counter-increment: alt-level;
-
       &::before {
-        content: counter(alt-level) '.';
+        content: '';
       }
     }
   }
@@ -308,10 +300,8 @@ $font: map-merge-settings($font-defaults, $font);
 
   ol {
     li {
-      counter-increment: sub-sub-level;
-
       &::before {
-        content: counter(top-level) '.' counter(sub-level) '.' counter(sub-sub-level);
+        content: '';
       }
     }
   }
