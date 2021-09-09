@@ -1,15 +1,19 @@
 {
-  "name": "as-paint",
+  "name": "@alphasights/paint",
   "description": "AlphaSights' CSS Framework",
-  "version": "1.1.1",
+  "version": "0.0.1",
   "repository": "https://github.com/alphasights/paint",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
   "engines": {
     "node": ">=12.0.0"
   },
   "scripts": {
-    "setup": "bin/setup",
-    "build": "bin/dist",
-    "test": "yarn run mocha --reporter spec"
+    "build": "yarn node-sass styles/paint.scss dist/paint.css",
+    "test": "yarn mocha --reporter spec",
+    "shipit": "auto shipit -v"
   },
   "author": "AlphaSights",
   "license": "MIT",
@@ -20,6 +24,16 @@
   "devDependencies": {
     "mocha": "3.4.2",
     "sass-true": "5.0.0",
-    "sassdoc": "2.2.2"
+    "sassdoc": "2.2.2",
+    "auto": "^10.29.2",
+    "@auto-it/conventional-commits": "^10.29.2",
+    "@auto-it/released": "^10.29.2"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "conventional-commits",
+      "released"
+    ]
   }
 }
