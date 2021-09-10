@@ -1,7 +1,7 @@
 {
   "name": "@alphasights/paint",
   "description": "AlphaSights' CSS Framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/alphasights/paint",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
