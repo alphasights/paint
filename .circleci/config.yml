@@ -15,28 +15,30 @@ commands:
             - node_modules
 
 jobs:
-  setup:
+  build-test:
+    working_directory: ~/repo
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:12.22
     steps:
       - checkout
       - restore_dependencies
-      - run:
-          command: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile
       - save_dependencies
+      - run: yarn build
+      - run: yarn test
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
 
   publish:
+    working_directory: ~/repo
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:12.22
     steps:
       - checkout
       - restore_dependencies
-      - run:
-          command: yarn build
-      - run:
-          command: yarn test
-      - run:
-          command: yarn shipit
+      - run: yarn shipit
       - run:
           name: NPM User
           command: npm --verbose whoami
@@ -45,10 +47,10 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - setup
+      - build-test
       - publish:
           requires:
-            - setup
+            - build-test
           filters:
             branches:
               only: master
