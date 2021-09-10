@@ -1,0 +1,56 @@
+version: 2.1
+
+commands:
+  restore_dependencies:
+    steps:
+      - restore_cache:
+          keys:
+            - node-deps-v2-{{ .Branch }}-{{checksum "yarn.lock"}}
+
+  save_dependencies:
+    steps:
+      - save_cache:
+          key: node-deps-v2-{{ .Branch }}-{{checksum "yarn.lock"}}
+          paths:
+            - node_modules
+
+jobs:
+  build-test:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/node:12.22
+    steps:
+      - checkout
+      - restore_dependencies
+      - run: yarn install --frozen-lockfile
+      - save_dependencies
+      - run: yarn build
+      - run: yarn test
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+
+  publish:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/node:12.22
+    steps:
+      - checkout
+      - restore_dependencies
+      - run: yarn shipit
+      - run:
+          name: NPM User
+          command: npm --verbose whoami
+          when: on_fail
+
+workflows:
+  build-test:
+    jobs:
+      - build-test
+      - publish:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only: master
