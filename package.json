@@ -30,6 +30,7 @@
     "@auto-it/released": "^10.29.2"
   },
   "auto": {
+    "baseBranch": "develop",
     "plugins": [
       "npm",
       "conventional-commits",
