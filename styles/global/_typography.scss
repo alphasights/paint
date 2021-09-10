@@ -227,6 +227,8 @@ $font: map-merge-settings($font-defaults, $font);
   }
 
   ol {
+    list-style-type: decimal;
+
     li {
       @extend %_nested-list;
 
