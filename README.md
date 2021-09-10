@@ -7,39 +7,60 @@ The main goal of Paint is to provide a set of easily consumable and extendable t
 
 ---
 
+## Usage
+
+### Referencing via npm Enterprise registry
+
+The Paint package (`@alphasights/paint`) is published on github's package registry private repository. The first time using Paint on any front-end project, you need to register the repo on your local machine:
+
+- Create a [github personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) with `repo` and `package` permission scope selected
+- Run `npm login --registry https://npm.pkg.github.com/ --scope=@alphasights` to configure npm/yarn on how to fetch `@alphasights` packages
+- Enter your github username
+- Enter your recent created token as password
+- Enter your email
+
+A new file at `~/.npmrc` should now exists with the content like the following:
+
+```
+//npm.pkg.github.com/:_authToken=YOUR_TOKEN_HERE
+@alphasights:registry=https://npm.pkg.github.com/
+```
+
+Done! Now yarn/npm should be able to pull `@alphasights/paint` without problems. This only needs to be done **once** for your development machine.
+
+
 ## Setup
 
-Paint comes as a bower package (`paint`) and an npm package (`as-paint`).
+Paint comes as an npm package (`as-paint`).
 
-To use the **bower package**, run `bower install paint --save-dev`.  
-For **npm**, run `npm install as-paint --save-dev`.
-For **yarn**, run `yarn add as-paint`.
+For **npm**, run `npm install @alphasights/paint --save-dev`.
+For **yarn**, run `yarn add @alphasights/paint`.
 
 There are 2 ways to import paint into an application:
 
 * Out-of-the-box, without any theming / resets.  
-For that, just `@import '/bower_components/paint/styles/paint'` or `@import '/node_modules/paint/styles/paint'`
+For that `@import '/node_modules/@alphasights/paint/styles/paint'`
 
 * Allow theming and customising components. In this case, you need to load some components individually and create an app-specific `paint-settings` file _(which will act as your theme file)_:  
 
 ```scss
 /// Paint Dependencies
-@import '/bower_components/paint/styles/dependencies';
+@import '/node_modules/@alphasights/paint/styles/dependencies';
 
 /// Paint Core
-@import '/bower_components/paint/styles/core';
+@import '/node_modules/@alphasights/paint/styles/core';
 
 /// Application-specific Resets
 @import 'paint-settings';
 
 /// Paint Tools / Helpers
-@import '/bower_components/paint/styles/tools';
+@import '/node_modules/@alphasights/paint/styles/tools';
 
 /// Import Global Components
-@import '/bower_components/paint/styles/global';
+@import '/node_modules/@alphasights/paint/styles/global';
 
 /// Import all other Paint Components
-@import '/bower_components/paint/styles/components';
+@import '/node_modules/@alphasights/paint/styles/components';
 ```
 
 To make any future changes easier, add all of the above in a `paint-loader.scss` file and import it in your main `application` stylesheet, before the app-specific dependencies and styles, e.g
@@ -50,12 +71,12 @@ To make any future changes easier, add all of the above in a `paint-loader.scss`
 @import 'styles';
 
 /// paint-loader.scss
-@import '/bower_components/paint/styles/dependencies';
-@import '/bower_components/paint/styles/core';
+@import '/node_modules/@alphasights/paint/styles/dependencies';
+@import '/node_modules/@alphasights/paint/styles/core';
 @import 'paint-settings';
-@import '/bower_components/paint/styles/tools';
-@import '/bower_components/paint/styles/global';
-@import '/bower_components/paint/styles/components';
+@import '/node_modules/@alphasights/paint/styles/tools';
+@import '/node_modules/@alphasights/paint/styles/global';
+@import '/node_modules/@alphasights/paint/styles/components';
 
 /// styles.scss
 @import 'components/custom-component1';
